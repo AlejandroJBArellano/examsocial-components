@@ -2,7 +2,6 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import tailwindcss from "tailwindcss";
 import { defineConfig } from "vite";
-import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import dts from "vite-plugin-dts";
 
 // https://vitejs.dev/config/
@@ -26,7 +25,7 @@ export default defineConfig({
     sourcemap: true,
     emptyOutDir: true,
   },
-  plugins: [react(), dts({ rollupTypes: true }), cssInjectedByJsPlugin()],
+  plugins: [react(), dts({ rollupTypes: true }), ],
   css: {
     postcss: {
       plugins: [tailwindcss],

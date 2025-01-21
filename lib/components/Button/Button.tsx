@@ -21,7 +21,7 @@ const Button = ({ rounded, theme, ...props }: ButtonProps) => {
   };
 
   return (
-    <button
+    <button data-testid="button"
       {...props}
       className={cn(
         `border px-4 py-2 shadow-right-sm duration-300 ease-out hover:shadow-right hover:transition-all

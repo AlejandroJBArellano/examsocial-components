@@ -7,7 +7,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
 }
 
-export const Input = ({ LeftIcon, RightIcon, error, ...props }: InputProps) => {
+const Input = ({ LeftIcon, RightIcon, error, ...props }: InputProps) => {
   return (
     <div className="relative flex flex-auto">
       <input
@@ -62,3 +62,5 @@ export const Input = ({ LeftIcon, RightIcon, error, ...props }: InputProps) => {
     </div>
   );
 };
+
+export default Input;

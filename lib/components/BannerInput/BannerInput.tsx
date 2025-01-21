@@ -10,6 +10,7 @@ const BannerInput = () => (
     </div>
     <input
       id="banner"
+      data-testid="banner"
       type="file"
       className="hidden"
       accept="image/*"

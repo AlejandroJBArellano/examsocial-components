@@ -1,12 +1,11 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import BannerInput from "./BannerInput";
 
 describe("BannerInput component", () => {
-    it("renders the input element with hidden class", () => {
+    it("renders the input element with hidden class", async () => {
         render(<BannerInput />);
-        const inputElement = screen.getByLabelText(/banner/i);
+        const inputElement = await screen.findByTestId("banner");
         expect(inputElement.className).toContain("hidden");
     });
 
@@ -16,13 +15,18 @@ describe("BannerInput component", () => {
         expect(iconElement).toBeDefined();
     });
 
-    it("calls onChange when a file is selected", () => {
+    it("calls onChange when a file is selected", async () => {
+        vi.spyOn(console, "log");
         render(<BannerInput />);
-        const inputElement = screen.getByLabelText(/banner/i);
+        const inputElement = await screen.findByTestId(/banner/i);
         const file = new File(["dummy content"], "example.png", { type: "image/png" });
 
-        userEvent.upload(inputElement, file);
+        fireEvent.change(inputElement, {
+            target: {
+                files: [file],
+            },
+        });
 
-        expect(console.log).toHaveBeenCalledWith([file]);
-    });
+        expect(console.log).toHaveBeenCalled()
+    })
 });

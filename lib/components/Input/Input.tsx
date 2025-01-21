@@ -9,8 +9,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input = ({ LeftIcon, RightIcon, error, ...props }: InputProps) => {
   return (
-    <div className="relative flex flex-auto">
-      <input
+    <div className="relative flex flex-auto" data-testid="input-container">
+      <input data-testid="input"
         {...props}
         className={
           cn(
@@ -36,7 +36,7 @@ const Input = ({ LeftIcon, RightIcon, error, ...props }: InputProps) => {
         }
       />
       {LeftIcon && (
-        <div
+        <div data-testid="left-icon"
           className={cn(
             "pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 peer-focus:text-extra",
             {
@@ -48,7 +48,7 @@ const Input = ({ LeftIcon, RightIcon, error, ...props }: InputProps) => {
         </div>
       )}
       {RightIcon && (
-        <div
+        <div data-testid="right-icon"
           className={cn(
             "pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 peer-focus:text-extra",
             {

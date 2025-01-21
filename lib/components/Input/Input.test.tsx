@@ -1,5 +1,4 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import Input from "./Input";
 
@@ -38,7 +37,7 @@ describe("Input component", () => {
         const handleChange = vi.fn();
         render(<Input onChange={handleChange} />);
         const inputElement = screen.getByTestId("input");
-        userEvent.type(inputElement, "test");
+        fireEvent.change(inputElement, { target: { value: "test" } });
         expect(handleChange).toHaveBeenCalled();
     });
 });

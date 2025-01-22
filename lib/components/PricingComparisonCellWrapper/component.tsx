@@ -8,9 +8,9 @@ const PricingComparisonCell = ({ contains }: { contains?: boolean }) => {
     contains ? "text-feedback-success" : "text-zinc-500",
   );
   return contains ? (
-    <CheckCircleIcon className={className} />
+    <CheckCircleIcon data-testid="CheckCircleIcon" className={className} />
   ) : (
-    <DoNotDisturbOnIcon className={className} />
+    <DoNotDisturbOnIcon data-testid="DoNotDisturbOnIcon" className={className} />
   );
 };
 

@@ -2,6 +2,7 @@ export * from "./AnswerToggle";
 export * from "./BannerInput";
 export * from "./Button";
 export * from './Checkbox';
+export * from "./CreateAnswer";
 export * from "./Input";
 export * from "./Option";
 export * from "./Select";

@@ -18,6 +18,7 @@ const Option = ({
       <input
         id={option._id}
         type="radio"
+        data-testid="option"
         className="h-8 w-8 rounded-full bg-white text-white accent-primary"
       />
       {option.text}

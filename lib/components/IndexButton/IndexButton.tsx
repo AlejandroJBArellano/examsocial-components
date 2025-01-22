@@ -29,6 +29,7 @@ const CheckMark = () => (
     height="13"
     viewBox="0 0 18 13"
     fill="none"
+    role="img"
   >
     <path
       d="M6.54998 13L0.849976 7.3L2.27498 5.875L6.54998 10.15L15.725 0.974998L17.15 2.4L6.54998 13Z"

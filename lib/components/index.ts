@@ -5,6 +5,7 @@ export * from './Checkbox';
 export * from "./CreateAnswer";
 export * from "./Input";
 export * from "./Option";
+export * from "./PricingComparisonCellWrapper";
 export * from "./Select";
 export * from "./Switch";
 export * from "./Tag";

@@ -13,7 +13,7 @@ interface SelectProps extends DropdownMenu.DropdownMenuProps {
 const Select = (props: SelectProps) => {
   return (
     <DropdownMenu.Root {...props}>
-      <DropdownMenu.Trigger className="group w-full data-[state=open]:border-accent-shadow data-[state]:outline-none">
+      <DropdownMenu.Trigger data-testid="trigger" className="group w-full data-[state=open]:border-accent-shadow data-[state]:outline-none">
         <Button
           theme="light"
           className="flex w-full items-center justify-between outline-none group-data-[state=open]:border-accent-shadow group-data-[state=open]:shadow-accent-shadow"

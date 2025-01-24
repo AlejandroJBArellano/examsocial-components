@@ -1,11 +1,5 @@
 export const FemaleFilled = (
-  <svg
-    width="160"
-    height="160"
-    viewBox="0 0 160 160"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M80.0004 151.078C120.119 151.078 152.641 118.556 152.641 78.4375C152.641 38.319 120.119 5.79649 80.0004 5.79649C39.8819 5.79649 7.35938 38.319 7.35938 78.4375C7.35938 118.556 39.8819 151.078 80.0004 151.078Z"
       fill="#5647EB"
@@ -50,13 +44,7 @@ export const FemaleFilled = (
 );
 
 export const FemaleUnfilled = (
-  <svg
-    width="160"
-    height="160"
-    viewBox="0 0 160 160"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M80.0004 151.078C120.119 151.078 152.641 118.556 152.641 78.4375C152.641 38.319 120.119 5.79649 80.0004 5.79649C39.8819 5.79649 7.35938 38.319 7.35938 78.4375C7.35938 118.556 39.8819 151.078 80.0004 151.078Z"
       fill="#B9B3FF"
@@ -101,13 +89,7 @@ export const FemaleUnfilled = (
 );
 
 export const MaleFilled = (
-  <svg
-    width="160"
-    height="160"
-    viewBox="0 0 160 160"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M80.0004 151.078C120.119 151.078 152.641 118.556 152.641 78.4375C152.641 38.319 120.119 5.7965 80.0004 5.7965C39.8819 5.7965 7.35938 38.319 7.35938 78.4375C7.35938 118.556 39.8819 151.078 80.0004 151.078Z"
       fill="#5647EB"
@@ -152,13 +134,7 @@ export const MaleFilled = (
 );
 
 export const MaleUnfilled = (
-  <svg
-    width="160"
-    height="160"
-    viewBox="0 0 160 160"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M80.0004 151.078C120.119 151.078 152.641 118.556 152.641 78.4375C152.641 38.319 120.119 5.7965 80.0004 5.7965C39.8819 5.7965 7.35938 38.319 7.35938 78.4375C7.35938 118.556 39.8819 151.078 80.0004 151.078Z"
       fill="#B9B3FF"

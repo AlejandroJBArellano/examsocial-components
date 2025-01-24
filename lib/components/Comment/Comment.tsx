@@ -12,7 +12,9 @@ const Comment = () => {
     <section className="space-y-2 mb-4" data-testid="comment">
       <article className="flex justify-between items-center">
         <div className="flex gap-1 items-center">
-          <ProfilePlaceholder gender="male" />
+          <span className="w-6 h-6">
+            <ProfilePlaceholder gender="male" />
+          </span>
           <span className="text-base font-medium leading-5">John Doe</span>
         </div>
         <span className="text-xs">3 days ago</span>

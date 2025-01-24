@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import postcss from "postcss";
 
 const config: StorybookConfig = {
   stories: ["../lib/components/**/*.stories.@(mdx|js|jsx|mjs|ts|tsx)"],
@@ -16,8 +17,7 @@ const config: StorybookConfig = {
           importLoaders: 1,
         },
         postcssLoaderOptions: {
-          // When using postCSS 8
-          implementation: require("postcss"),
+          implementation: postcss,
         },
       },
     },

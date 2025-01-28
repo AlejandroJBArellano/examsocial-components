@@ -8,4 +8,13 @@ export default {
 
 type Story = StoryObj<typeof Comment>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    user: {
+      name: "Lana Del Rey",
+      avatar: "",
+    },
+    children: "This is a comment",
+    rating: 3,
+  },
+};

@@ -4,35 +4,58 @@ import {
   StarHalf,
   StarOutlineSharp,
 } from "@mui/icons-material";
+import { PropsWithChildren } from "react";
 import { Button } from "../Button";
 import ProfilePlaceholder from "../ProfilePlaceholder/ProfilePlaceholder";
 
-const Comment = () => {
+interface ICommentProps {
+  user: {
+    name: string;
+    avatar: string;
+  };
+
+  rating: number;
+}
+
+const Comment = ({
+  user,
+  rating,
+  children,
+}: PropsWithChildren<ICommentProps>) => {
   return (
     <section className="space-y-2 mb-4" data-testid="comment">
       <article className="flex justify-between items-center">
         <div className="flex gap-1 items-center">
-          <span className="w-6 h-6">
-            <ProfilePlaceholder gender="male" />
-          </span>
-          <span className="text-base font-medium leading-5">John Doe</span>
+          {user.avatar ? (
+            <img
+              src={user.avatar}
+              alt="avatar"
+              className="w-6 h-6 rounded-full"
+            />
+          ) : (
+            <span className="w-6 h-6">
+              <ProfilePlaceholder gender="male" />
+            </span>
+          )}
+
+          <span className="text-base font-medium leading-5">{user.name}</span>
         </div>
         <span className="text-xs">3 days ago</span>
       </article>
-      <article className="font-light">
-        Lorem ipsum dolor sit amet consectetur. Est proin quisque venenatis
-        faucibus dictumst. Vel augue scelerisque diam sed nulla fermentum ut
-        scelerisque.
-      </article>
+      <article className="font-light">{children}</article>
       <article className="flex justify-between">
         <div>
           <p className="text-xs font-bold">Rating:</p>
-          <div className="text-secondary-shadow">
-            <Grade className="!h-5 !w-5" />
-            <Grade className="!h-5 !w-5" />
-            <Grade className="!h-5 !w-5" />
-            <StarHalf className="!h-5 !w-5" />
-            <StarOutlineSharp className="!h-5 !w-5" />
+          <div className="text-secondary-shadow flex">
+            {[...Array(5)].map((_, index) => {
+              if (rating >= index + 1) {
+                return <Grade key={index} className="!h-5 !w-5" />;
+              } else if (rating > index && rating < index + 1) {
+                return <StarHalf key={index} className="!h-5 !w-5" />;
+              } else {
+                return <StarOutlineSharp key={index} className="!h-5 !w-5" />;
+              }
+            })}
           </div>
         </div>
         <Button rounded theme="light">

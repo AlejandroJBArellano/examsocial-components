@@ -4,6 +4,7 @@ import {
   StarHalf,
   StarOutlineSharp,
 } from "@mui/icons-material";
+import { formatDistanceToNow } from "date-fns";
 import { PropsWithChildren } from "react";
 import { Button } from "../Button";
 import ProfilePlaceholder from "../ProfilePlaceholder/ProfilePlaceholder";
@@ -13,15 +14,17 @@ interface ICommentProps {
     name: string;
     avatar: string;
   };
-
+  createdAt: Date;
   rating: number;
 }
 
 const Comment = ({
   user,
+  createdAt,
   rating,
   children,
 }: PropsWithChildren<ICommentProps>) => {
+  const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
   return (
     <section className="space-y-2 mb-4" data-testid="comment">
       <article className="flex justify-between items-center">
@@ -40,7 +43,7 @@ const Comment = ({
 
           <span className="text-base font-medium leading-5">{user.name}</span>
         </div>
-        <span className="text-xs">3 days ago</span>
+        <span className="text-xs">{timeAgo}</span>
       </article>
       <article className="font-light">{children}</article>
       <article className="flex justify-between">

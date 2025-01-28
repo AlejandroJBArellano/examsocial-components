@@ -16,5 +16,6 @@ export const Default: Story = {
     },
     children: "This is a comment",
     rating: 3,
+    createdAt: new Date("2021-09-01"),
   },
 };

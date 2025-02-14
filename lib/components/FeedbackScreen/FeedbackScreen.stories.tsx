@@ -11,7 +11,8 @@ type Story = StoryObj<typeof FeedbackScreen>;
 
 export const Default: Story = {
   args: {
-    title: "Feedback",
-    description: "Please, provide your feedback",
+    title: "More than 90",
+    description:
+      "Your commitment to understanding AI is impressive. Keep up the great progress!",
   },
 };

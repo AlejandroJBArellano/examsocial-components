@@ -48,9 +48,12 @@ type Question = {
 const ReportExam = ({
   questions,
   onCancel,
+  onSubmit,
 }: {
   questions: Question[];
+
   onCancel: () => void;
+  onSubmit: (reason: string, questions: string[]) => void;
 }) => {
   const [step, setStep] = useState<ReportStep>(ReportStep.REASON);
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
@@ -152,9 +155,15 @@ const ReportExam = ({
         <Button
           theme="accent"
           rounded
-          onClick={() => setStep(ReportStep.QUESTION)}
+          onClick={() => {
+            if (step === ReportStep.REASON) {
+              setStep(ReportStep.QUESTION);
+            } else {
+              onSubmit(selectedReason!, selectedQuestions);
+            }
+          }}
         >
-          Next
+          {step === ReportStep.REASON ? "Next" : "Submit"}
         </Button>
       </article>
     </section>

@@ -4,20 +4,20 @@ import { cn } from "../../utils";
 const PremiumBadge = ({ size }: { size: "big" | "small" }) => {
   const dimensions = {
     small: {
-      container: "",
+      container: "px-2 py-1 ",
       text: "text-xs font-bold xl:text-sm xl:leading:4",
       icon: "!w-4 !h-4 xl:!w-6 xl:!h-6",
     },
     big: {
-      container: "",
-      text: "",
-      icon: "",
+      container: "px-5 py-3",
+      text: "text-base leading-5 font-medium xl:text-lg xl:leading-6",
+      icon: "!w-4 !h-4 xl:!w-6 xl:!h-6",
     },
   };
   return (
     <div
       className={cn(
-        "px-2 py-1 items-center rounded-md flex gap-1 text-secondary-tint hover:shadow-right-sm hover:shadow-secondary bg-secondary-shadow",
+        "items-center rounded-md flex gap-1 text-secondary-tint hover:shadow-right-sm hover:shadow-secondary bg-secondary-shadow",
         dimensions[size].container
       )}
     >

@@ -17,7 +17,7 @@ const PremiumBadge = ({ size }: { size: "big" | "small" }) => {
   return (
     <div
       className={cn(
-        "items-center rounded-md flex gap-1 text-secondary-tint hover:shadow-right-sm hover:shadow-secondary bg-secondary-shadow",
+        "items-center rounded-md inline-flex gap-1 text-secondary-tint hover:shadow-right-sm hover:shadow-secondary bg-secondary-shadow",
         dimensions[size].container
       )}
     >

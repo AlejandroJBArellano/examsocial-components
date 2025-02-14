@@ -101,7 +101,7 @@ const ReportExam = ({ questions }: { questions: Question[] }) => {
               <Checkbox
                 id={id}
                 checked={selectedQuestions.includes(question)}
-                onChange={() =>
+                onCheckedChange={() =>
                   setSelectedQuestions((prev) =>
                     prev.includes(question)
                       ? prev.filter((item) => item !== question)

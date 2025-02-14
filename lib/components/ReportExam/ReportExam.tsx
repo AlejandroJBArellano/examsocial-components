@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { cn } from "../../utils";
 import { Button } from "../Button";
+import { Checkbox } from "../Checkbox";
 import { Textarea } from "../Textarea";
 
 const reasons = [
@@ -34,19 +35,23 @@ const reasons = [
   },
 ];
 
-const ReportExam = () => {
+enum ReportStep {
+  REASON = "REASON",
+  QUESTION = "QUESTION",
+}
+
+type Question = {
+  question: string;
+  id: string;
+};
+
+const ReportExam = ({ questions }: { questions: Question[] }) => {
+  const [step, setStep] = useState<ReportStep>(ReportStep.REASON);
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
-  return (
-    <section className="p-4 border border-black rounded-md space-y-6">
-      <article className="space-y-2">
-        <h2 className="sentient text-2xl leading-7 font-medium tracking-[0.48px]">
-          Report Exam
-        </h2>
-        <p className="text-base leading-5">
-          Please, select the reason why you are reporting this exam from the
-          list below:
-        </p>
-      </article>
+  const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
+
+  const steps = {
+    [ReportStep.REASON]: (
       <article className="space-y-2">
         <ul className="space-y-4">
           {reasons.map((reason) => (
@@ -87,11 +92,52 @@ const ReportExam = () => {
           </div>
         )}
       </article>
+    ),
+    [ReportStep.QUESTION]: (
+      <article className="space-y-2">
+        <ul className="space-y-4">
+          {questions.map(({ question, id }) => (
+            <li key={id} className="flex items-center gap-2">
+              <Checkbox
+                id={id}
+                checked={selectedQuestions.includes(question)}
+                onChange={() =>
+                  setSelectedQuestions((prev) =>
+                    prev.includes(question)
+                      ? prev.filter((item) => item !== question)
+                      : [...prev, question]
+                  )
+                }
+              />
+              <label htmlFor={id}>{question}</label>
+            </li>
+          ))}
+        </ul>
+      </article>
+    ),
+  };
+
+  return (
+    <section className="p-4 border border-black rounded-md space-y-6">
+      <article className="space-y-2">
+        <h2 className="sentient text-2xl leading-7 font-medium tracking-[0.48px]">
+          Report Exam
+        </h2>
+        <p className="text-base leading-5">
+          Please, select the reason why you are reporting this exam from the
+          list below:
+        </p>
+      </article>
+      {steps[step]}
       <article className="grid grid-cols-2 gap-4">
         <Button theme="light" rounded>
           Cancel
         </Button>
-        <Button theme="accent" rounded>
+        <Button
+          theme="accent"
+          rounded
+          onClick={() => setStep(ReportStep.QUESTION)}
+        >
           Next
         </Button>
       </article>

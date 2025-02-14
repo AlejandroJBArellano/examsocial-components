@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { cn } from "../../utils";
 import { Button } from "../Button";
+import { Textarea } from "../Textarea";
 
 const reasons = [
   {
@@ -46,7 +47,7 @@ const ReportExam = () => {
           list below:
         </p>
       </article>
-      <article>
+      <article className="space-y-2">
         <ul className="space-y-4">
           {reasons.map((reason) => (
             <li key={reason.key} className="flex items-center gap-2">
@@ -70,6 +71,21 @@ const ReportExam = () => {
             </li>
           ))}
         </ul>
+        {selectedReason === "OTHER" && (
+          <div className="ml-8">
+            <label
+              htmlFor="other"
+              className="block text-base font-medium leading-5"
+            >
+              Please, write your reason:
+            </label>
+            <Textarea
+              id="other"
+              className="w-full h-24 p-2 border border-black rounded-md"
+              placeholder="Write in detail why you think this exam violates the TOS of ExamSocial"
+            />
+          </div>
+        )}
       </article>
       <article className="grid grid-cols-2 gap-4">
         <Button theme="light" rounded>

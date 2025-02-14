@@ -45,7 +45,13 @@ type Question = {
   id: string;
 };
 
-const ReportExam = ({ questions }: { questions: Question[] }) => {
+const ReportExam = ({
+  questions,
+  onCancel,
+}: {
+  questions: Question[];
+  onCancel: () => void;
+}) => {
   const [step, setStep] = useState<ReportStep>(ReportStep.REASON);
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
@@ -130,8 +136,18 @@ const ReportExam = ({ questions }: { questions: Question[] }) => {
       </article>
       {steps[step]}
       <article className="grid grid-cols-2 gap-4">
-        <Button theme="light" rounded>
-          Cancel
+        <Button
+          theme="light"
+          rounded
+          onClick={() => {
+            if (step === ReportStep.REASON) {
+              onCancel();
+            } else {
+              setStep(ReportStep.REASON);
+            }
+          }}
+        >
+          {step === ReportStep.REASON ? "Cancel" : "Back"}
         </Button>
         <Button
           theme="accent"

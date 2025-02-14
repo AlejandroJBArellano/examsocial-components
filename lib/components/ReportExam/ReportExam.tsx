@@ -45,6 +45,13 @@ type Question = {
   id: string;
 };
 
+const labels = {
+  [ReportStep.REASON]:
+    "Please, select the reason why you are reporting this exam from the list below:",
+  [ReportStep.QUESTION]:
+    "Now, please select all the questions to which your reason to report the exam might apply:",
+};
+
 const ReportExam = ({
   questions,
   onCancel,
@@ -132,10 +139,7 @@ const ReportExam = ({
         <h2 className="sentient text-2xl leading-7 font-medium tracking-[0.48px]">
           Report Exam
         </h2>
-        <p className="text-base leading-5">
-          Please, select the reason why you are reporting this exam from the
-          list below:
-        </p>
+        <p className="text-base leading-5">{labels[step]}</p>
       </article>
       {steps[step]}
       <article className="grid grid-cols-2 gap-4">

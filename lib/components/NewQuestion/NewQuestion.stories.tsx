@@ -10,5 +10,10 @@ export default {
 type Story = StoryObj<typeof NewQuestion>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    onSubmit: (v) => {
+      console.log({ v });
+    },
+    onCancel: () => {},
+  },
 };

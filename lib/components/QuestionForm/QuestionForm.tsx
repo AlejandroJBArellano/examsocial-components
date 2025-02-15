@@ -25,7 +25,7 @@ interface IValues {
 
 interface IQuestionForm {
   initialValues?: IValues;
-  onChange: (values: IValues) => void;
+  onChange: (values: IValues | null) => void;
 }
 
 const QuestionForm = ({
@@ -39,15 +39,19 @@ const QuestionForm = ({
     initialValues={initialValues}
     validationSchema={validationSchema}
     validateOnChange
-    onSubmit={(values) => {
-      console.log(values);
-    }}
+    onSubmit={() => {}}
+    validateOnBlur
   >
     {({ values, setFieldValue, errors }) => (
       <Form
         className="space-y-4"
-        onChange={() => {
-          onChange(values);
+        onInput={() => {
+          console.log({ errors });
+          if (Object.keys(errors).length) {
+            onChange(null);
+          } else {
+            onChange(values);
+          }
         }}
       >
         <section className="space-y-4">
@@ -71,9 +75,8 @@ const QuestionForm = ({
                     <div className="text-feedback-error">{errors.answers}</div>
                   )}
                   {values.answers.map((answer, index) => (
-                    <>
+                    <div key={index}>
                       <CreateAnswer
-                        key={index}
                         answer={answer}
                         name={`answers.${index}`}
                         onDelete={() => remove(index)}
@@ -86,7 +89,7 @@ const QuestionForm = ({
                             : errors.answers[index]?.text}
                         </div>
                       )}
-                    </>
+                    </div>
                   ))}
                   {values.answers.length < 4 && (
                     <Button

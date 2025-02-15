@@ -21,12 +21,14 @@ const QuestionSet = ({
   index,
 }: IQuestionSet) => {
   return (
-    <div className="p-4 space-y-4 border rounded-md border-black bg-extra-tint">
-      <h4 className="text-xl leading-6 font-medium sentient">{question}</h4>
+    <div className="p-4 space-y-4 xl:p-5 xl:space-y-5 border rounded-md border-black bg-extra-tint">
+      <h4 className="text-xl leading-6 font-medium sentient xl:text-2xl xl:leading-7 tracking-[0.48px]">
+        {question}
+      </h4>
       <div className="space-y-2.5">
         {options.map((option, i) => (
           <div key={i} className="flex justify-between items-center">
-            <p>{option.text}</p>
+            <p className="xl:text-lg xl:leading-6">{option.text}</p>
             {option.correct ? (
               <Tag theme="feedback-success">Correct</Tag>
             ) : null}

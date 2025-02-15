@@ -7,7 +7,7 @@ interface IStepperProps {
   steps: number;
   onClickStep: (step: number) => void;
   title: string;
-  time: string;
+  time?: string;
   showDivision?: boolean;
 }
 

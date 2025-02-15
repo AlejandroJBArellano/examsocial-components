@@ -11,7 +11,7 @@ const Button = ({ rounded, theme, ...props }: ButtonProps) => {
     extra:
       "bg-extra border-black disabled:border-extra disabled:bg-extra-tint disabled:text-extra",
     light:
-      "bg-light border-black disabled:border-light disabled:bg-light-tint disabled:text-light hover:!shadow-right-sm !shadow-none xl:hover:!shadow-right-sm xl:!shadow-none",
+      "bg-white border-black disabled:border-[#27272A] disabled:bg-[#E4E4E7] disabled:text-[#27272A] hover:!shadow-right-sm !shadow-none xl:hover:!shadow-right-sm xl:!shadow-none",
     accent:
       "bg-accent border-black disabled:border-accent disabled:bg-accent-tint disabled:text-accent",
     primary:
@@ -21,14 +21,15 @@ const Button = ({ rounded, theme, ...props }: ButtonProps) => {
   };
 
   return (
-    <button data-testid="button"
+    <button
+      data-testid="button"
       {...props}
       className={cn(
         `border px-4 py-2 shadow-right-sm duration-300 ease-out hover:shadow-right hover:transition-all
         disabled:cursor-not-allowed disabled:shadow-none xl:px-6 xl:text-2xl xl:font-medium xl:shadow-right xl:hover:shadow-right-lg  xl:disabled:hover:shadow-none`,
         classTheme[theme || "light"],
         rounded ? "rounded-full" : "rounded-md",
-        props.className,
+        props.className
       )}
     />
   );

@@ -28,11 +28,12 @@ const QuestionForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
+      validateOnChange
       onSubmit={(values) => {
         console.log(values);
       }}
     >
-      {({ values, setFieldValue }) => (
+      {({ values, setFieldValue, errors }) => (
         <Form className="space-y-4">
           <section className="space-y-4">
             <article className="space-y-1">
@@ -42,6 +43,7 @@ const QuestionForm = () => {
                 as={Input}
                 placeholder="Type your question here..."
                 className="w-full"
+                error={errors.question}
               />
             </article>
             <Separator />
@@ -50,6 +52,11 @@ const QuestionForm = () => {
               <FieldArray name="answers">
                 {({ push, remove }) => (
                   <>
+                    {typeof errors.answers === "string" && (
+                      <div className="text-feedback-error">
+                        {errors.answers}
+                      </div>
+                    )}
                     {values.answers.map((answer, index) => (
                       <CreateAnswer
                         key={index}

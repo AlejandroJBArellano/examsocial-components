@@ -23,7 +23,9 @@ const NewQuestion = ({ onSubmit, onCancel }: INewQuestion) => {
     >
       {(props) => (
         <div className="p-4 shadow-right shadow-black border border-black rounded-lg space-y-6">
-          <h2 className="text-2xl leading-7 sentient">New Question</h2>
+          <h2 className="text-2xl leading-7 sentient font-medium">
+            New Question
+          </h2>
           <QuestionForm {...props} />
           <div className="flex justify-between items-center">
             <Button type="button" theme="light" rounded onClick={onCancel}>

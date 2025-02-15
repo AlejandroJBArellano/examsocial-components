@@ -1,15 +1,11 @@
 import { Formik } from "formik";
 import { questionSchema } from "../../schemas";
+import { IQuestion } from "../../types";
 import { Button } from "../Button";
 import { QuestionForm } from "../QuestionForm";
 
-interface IValues {
-  question: string;
-  answers: { text: string; correct: boolean }[];
-}
-
 interface INewQuestion {
-  onSubmit: (values: IValues) => void;
+  onSubmit: (values: IQuestion) => void;
   onCancel: () => void;
 }
 

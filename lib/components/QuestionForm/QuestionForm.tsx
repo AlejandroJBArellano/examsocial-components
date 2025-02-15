@@ -1,5 +1,6 @@
 import { Add } from "@mui/icons-material";
 import { Field, FieldArray, Form, FormikProps } from "formik";
+import { IQuestion } from "../../types";
 import { Button } from "../Button";
 import { CreateAnswer } from "../CreateAnswer";
 import { Input } from "../Input";
@@ -9,13 +10,7 @@ const QuestionForm = ({
   values,
   setFieldValue,
   errors,
-}: FormikProps<{
-  question: string;
-  answers: {
-    text: string;
-    correct: boolean;
-  }[];
-}>) => (
+}: FormikProps<IQuestion>) => (
   <Form className="space-y-4">
     <section className="space-y-4">
       <article className="space-y-1">

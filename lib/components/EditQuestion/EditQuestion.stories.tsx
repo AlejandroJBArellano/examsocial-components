@@ -10,5 +10,17 @@ export default {
 type Story = StoryObj<typeof EditQuestion>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    initialValues: {
+      question: "What is the capital of France?",
+      answers: [
+        { text: "Paris", correct: true },
+        { text: "London", correct: false },
+        { text: "Berlin", correct: false },
+        { text: "Madrid", correct: false },
+      ],
+    },
+    onCancel: () => {},
+    onSubmit: () => {},
+  },
 };

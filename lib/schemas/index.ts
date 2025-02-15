@@ -8,5 +8,10 @@ export const questionSchema = Yup.object({
         correct: Yup.boolean(),
       })
     )
-    .min(1, "At least one answer is required"),
+    .min(1, "At least one answer is required")
+    .test(
+      "at-least-one-correct",
+      "At least one answer must be correct",
+      (answers) => answers?.some((answer) => answer.correct)
+    ),
 });

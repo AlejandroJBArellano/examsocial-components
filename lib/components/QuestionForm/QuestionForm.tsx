@@ -29,9 +29,6 @@ const QuestionForm = ({
         <FieldArray name="answers">
           {({ push, remove }) => (
             <>
-              {typeof errors.answers === "string" && (
-                <div className="text-feedback-error">{errors.answers}</div>
-              )}
               {values.answers.map((answer, index) => (
                 <div key={index}>
                   <CreateAnswer
@@ -42,13 +39,21 @@ const QuestionForm = ({
                   />
                   {errors.answers && errors.answers[index] && (
                     <div className="text-feedback-error">
-                      {typeof errors.answers[index] === "string"
-                        ? errors.answers[index]
-                        : errors.answers[index]?.text}
+                      {!(typeof errors.answers === "string")
+                        ? typeof errors.answers[index] === "string"
+                          ? errors.answers[index]
+                          : typeof errors.answers[index] === "object" &&
+                            "text" in errors.answers[index]
+                          ? errors.answers[index].text
+                          : null
+                        : null}
                     </div>
                   )}
                 </div>
               ))}
+              {typeof errors.answers === "string" && (
+                <div className="text-feedback-error">{errors.answers}</div>
+              )}
               {values.answers.length < 4 && (
                 <Button
                   type="button"

@@ -46,7 +46,6 @@ const QuestionForm = ({
       <Form
         className="space-y-4"
         onInput={() => {
-          console.log({ errors });
           if (Object.keys(errors).length) {
             onChange(null);
           } else {

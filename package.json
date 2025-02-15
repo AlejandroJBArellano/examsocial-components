@@ -1,6 +1,6 @@
 {
   "name": "examsocial-components",
-  "version": "0.0.122",
+  "version": "0.0.123",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",

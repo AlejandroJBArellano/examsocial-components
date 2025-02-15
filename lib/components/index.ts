@@ -10,6 +10,7 @@ export * from "./IndexButton";
 export * from "./Input";
 export * from "./NewQuestion";
 export * from "./Option";
+export * from "./PremiumBadge";
 export * from "./PricingCard";
 export * from "./PricingComparisonCellWrapper";
 export * from "./ProfilePlaceholder";

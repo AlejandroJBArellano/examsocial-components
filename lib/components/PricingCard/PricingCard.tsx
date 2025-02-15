@@ -20,7 +20,7 @@ const Pricing = ({ children, mode = "basic" }: PricingProps) => {
     <section
       className={cn(
         "space-y-6 rounded-xl border-black px-4 py-5 xl:space-y-8 xl:rounded-xl xl:p-6",
-        modes[mode],
+        modes[mode]
       )}
     >
       {children}
@@ -83,15 +83,15 @@ const PricingComparisonCell = ({
 }: PropsWithChildren<{ special?: boolean }>) => {
   return (
     <div className="flex items-center gap-1 leading-5">
-      {!special ? (
+      {special ? (
+        <MaterialSymbol className="h-7 w-7" size={28} icon="new_releases" />
+      ) : (
         <MaterialSymbol
           className="h-7 w-7"
           size={28}
           fill
           icon="check_circle"
         />
-      ) : (
-        <MaterialSymbol className="h-7 w-7" size={28} icon="new_releases" />
       )}
       {children}
     </div>

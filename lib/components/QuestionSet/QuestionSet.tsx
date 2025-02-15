@@ -8,8 +8,8 @@ interface IQuestionSet {
     text: string;
     correct: boolean;
   }[];
-  onDelete: (index: number) => void;
-  onEdit: (index: number) => void;
+  onDelete?: (index: number) => void;
+  onEdit?: (index: number) => void;
   index: number;
 }
 
@@ -35,28 +35,30 @@ const QuestionSet = ({
           </div>
         ))}
       </div>
-      <div className="flex justify-between items-center">
-        <Button
-          onClick={() => {
-            onDelete(index);
-          }}
-          theme="feedback-error"
-          rounded
-          className="p-2"
-        >
-          <Delete className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
-        </Button>
-        <Button
-          onClick={() => {
-            onEdit(index);
-          }}
-          theme="light"
-          rounded
-          className="p-2"
-        >
-          <Edit className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
-        </Button>
-      </div>
+      {onDelete && onEdit && (
+        <div className="flex justify-between items-center">
+          <Button
+            onClick={() => {
+              onDelete(index);
+            }}
+            theme="feedback-error"
+            rounded
+            className="p-2"
+          >
+            <Delete className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
+          </Button>
+          <Button
+            onClick={() => {
+              onEdit(index);
+            }}
+            theme="light"
+            rounded
+            className="p-2"
+          >
+            <Edit className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

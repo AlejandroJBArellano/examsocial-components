@@ -12,6 +12,7 @@ export * from "./Option";
 export * from "./PricingCard";
 export * from "./PricingComparisonCellWrapper";
 export * from "./ProfilePlaceholder";
+export * from "./QuestionForm";
 export * from "./QuestionSet";
 export * from "./ReportExam";
 export * from "./Select";

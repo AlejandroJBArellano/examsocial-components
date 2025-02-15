@@ -58,13 +58,22 @@ const QuestionForm = () => {
                       </div>
                     )}
                     {values.answers.map((answer, index) => (
-                      <CreateAnswer
-                        key={index}
-                        answer={answer}
-                        name={`answers.${index}`}
-                        onDelete={() => remove(index)}
-                        setFieldValue={setFieldValue}
-                      />
+                      <>
+                        <CreateAnswer
+                          key={index}
+                          answer={answer}
+                          name={`answers.${index}`}
+                          onDelete={() => remove(index)}
+                          setFieldValue={setFieldValue}
+                        />
+                        {errors.answers && errors.answers[index] && (
+                          <div className="text-feedback-error">
+                            {typeof errors.answers[index] === "string"
+                              ? errors.answers[index]
+                              : errors.answers[index]?.text}
+                          </div>
+                        )}
+                      </>
                     ))}
                     {values.answers.length < 4 && (
                       <Button

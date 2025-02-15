@@ -1,3 +1,5 @@
+import { Add } from "@mui/icons-material";
+import { Button } from "../Button";
 import { CreateAnswer } from "../CreateAnswer";
 import { Input } from "../Input";
 import { Separator } from "../Separator";
@@ -12,8 +14,8 @@ const NewQuestion = () => {
           <Input placeholder="Type your question here..." className="w-full" />
         </article>
         <Separator />
-        <article>
-          <label className="font-medium">Question</label>
+        <article className="space-y-3">
+          <label className="font-medium">Answers</label>
           <CreateAnswer
             answer={{
               text: "",
@@ -24,6 +26,13 @@ const NewQuestion = () => {
             setFieldValue={() => {}}
           />
         </article>
+        <Button
+          theme="light"
+          rounded
+          className="p-2 mx-auto flex items-center justify-center"
+        >
+          <Add className="!w-5 !h-5" />
+        </Button>
       </section>
     </div>
   );

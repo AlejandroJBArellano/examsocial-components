@@ -10,7 +10,7 @@ export const Questions = () => {
       <h2 className="sentient font-bold text-[28px] leading-8 tracking-[0.56px]">
         Questions
       </h2>
-      <article className="h-screen"></article>
+      <article className=""></article>
       <Button
         onClick={() => {
           dialogRef.current?.showModal();

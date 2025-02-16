@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Button } from "../Button";
 import { Select } from "../Select";
 import { Textarea } from "../Textarea";
@@ -11,14 +12,18 @@ const FeedbackCondition = {
 };
 
 const FeedbackConditionField = () => {
+  const [container, setContainer] = useState<HTMLElement>();
+  useEffect(() => {
+    const containerDOM = document.getElementById("advanced-settings");
+    if (containerDOM) {
+      setContainer(containerDOM);
+    }
+  }, []);
   return (
     <article className="grid grid-cols-2 gap-4 items-end">
       <div className="space-y-1">
         <label>Condition</label>
-        <Select
-          text="Select One"
-          container={document.getElementById("advanced-settings")!}
-        >
+        <Select text="Select One" container={container}>
           <Select.Option>All</Select.Option>
           <Select.Option>Between</Select.Option>
           <Select.Option>Equal to</Select.Option>

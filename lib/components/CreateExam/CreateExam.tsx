@@ -2,13 +2,19 @@ import { useState } from "react";
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
 import { AdditionalContent } from "./AdditionalContent";
+import { AdvancedSettings } from "./AdvancedSettings";
 import { GeneralDetails } from "./GeneralDetails";
 import { Questions } from "./Questions";
 import { Review } from "./Review";
 
 const CreateExam = () => {
   const steps = {
-    1: <GeneralDetails />,
+    1: (
+      <>
+        <GeneralDetails />
+        <AdvancedSettings />
+      </>
+    ),
     2: <Questions />,
     3: <AdditionalContent />,
     4: <Review />,
@@ -29,7 +35,7 @@ const CreateExam = () => {
         />
       </header>
       <main className="py-6 px-4">
-        {steps[step]}
+        <div className="space-y-6">{steps[step]}</div>
         <footer className="flex items-center justify-between mt-4">
           <Button
             rounded

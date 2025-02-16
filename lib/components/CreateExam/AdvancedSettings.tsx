@@ -23,8 +23,13 @@ export const AdvancedSettings = () => {
           <Add className="!w-8 !h-8" />
         </Button>
       </article>
-      <Dialog innerRef={dialogRef}>
-        <NewFeedbackScreen />
+      <Dialog innerRef={dialogRef} id="advanced-settings">
+        <NewFeedbackScreen
+          onSubmit={() => {}}
+          onCancel={() => {
+            dialogRef.current?.close();
+          }}
+        />
       </Dialog>
     </section>
   );

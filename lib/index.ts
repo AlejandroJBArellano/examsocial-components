@@ -4,3 +4,5 @@ import "./index.css";
 export * from "./components/index";
 
 export * from "./utils";
+
+export * from "./types";

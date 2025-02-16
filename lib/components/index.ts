@@ -5,6 +5,7 @@ export * from "./Checkbox";
 export * from "./Comment";
 export * from "./CreateAnswer";
 export * from "./EditQuestion";
+export * from "./Email";
 export * from "./FeedbackScreen";
 export * from "./IndexButton";
 export * from "./Input";

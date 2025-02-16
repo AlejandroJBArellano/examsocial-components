@@ -24,6 +24,7 @@ export const NewAdditionalContent = ({
         <div className="space-y-1">
           <label htmlFor="">Description</label>
           <Textarea
+            rows={4}
             className="w-full"
             placeholder="Add a description to your content. This will be shown to your students."
           />

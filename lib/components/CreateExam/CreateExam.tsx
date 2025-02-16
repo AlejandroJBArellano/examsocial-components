@@ -4,7 +4,7 @@ import { Stepper } from "../Stepper";
 import { AdditionalContent } from "./AdditionalContent";
 import { GeneralDetails } from "./GeneralDetails";
 import { Questions } from "./Questions";
-import { Review } from "./review";
+import { Review } from "./Review";
 
 const CreateExam = () => {
   const steps = {

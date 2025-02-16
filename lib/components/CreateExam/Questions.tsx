@@ -23,7 +23,7 @@ export const Questions = () => {
         <Add className="!w-5 !h-5" />
         <span className="font-medium">Add new question</span>
       </Button>
-      <Dialog ref={dialogRef}>
+      <Dialog innerRef={dialogRef}>
         <NewQuestion
           onSubmit={() => {}}
           onCancel={() => {

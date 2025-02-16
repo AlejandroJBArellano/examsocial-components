@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
+import { AdditionalContent } from "./AdditionalContent";
 import { GeneralDetails } from "./GeneralDetails";
 import { Questions } from "./Questions";
 
@@ -8,7 +9,7 @@ const CreateExam = () => {
   const steps = {
     1: <GeneralDetails />,
     2: <Questions />,
-    3: <p>Additional Content</p>,
+    3: <AdditionalContent />,
     4: <p>Review</p>,
   };
 

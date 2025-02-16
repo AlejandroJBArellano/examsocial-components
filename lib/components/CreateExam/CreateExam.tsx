@@ -4,13 +4,14 @@ import { Stepper } from "../Stepper";
 import { AdditionalContent } from "./AdditionalContent";
 import { GeneralDetails } from "./GeneralDetails";
 import { Questions } from "./Questions";
+import { Review } from "./review";
 
 const CreateExam = () => {
   const steps = {
     1: <GeneralDetails />,
     2: <Questions />,
     3: <AdditionalContent />,
-    4: <p>Review</p>,
+    4: <Review />,
   };
 
   const [step, setStep] = useState<keyof typeof steps>(1);

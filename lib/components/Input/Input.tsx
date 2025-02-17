@@ -5,12 +5,23 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   LeftIcon?: ReactNode;
   RightIcon?: ReactNode;
   error?: boolean;
+  containerClassName?: string;
 }
 
-const Input = ({ LeftIcon, RightIcon, error, ...props }: InputProps) => {
+const Input = ({
+  LeftIcon,
+  RightIcon,
+  error,
+  containerClassName,
+  ...props
+}: InputProps) => {
   return (
-    <div className="relative flex flex-auto" data-testid="input-container">
-      <input data-testid="input"
+    <div
+      className={cn("relative flex flex-auto", containerClassName)}
+      data-testid="input-container"
+    >
+      <input
+        data-testid="input"
         {...props}
         className={
           cn(
@@ -36,7 +47,8 @@ const Input = ({ LeftIcon, RightIcon, error, ...props }: InputProps) => {
         }
       />
       {LeftIcon && (
-        <div data-testid="left-icon"
+        <div
+          data-testid="left-icon"
           className={cn(
             "pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 peer-focus:text-extra",
             {
@@ -48,7 +60,8 @@ const Input = ({ LeftIcon, RightIcon, error, ...props }: InputProps) => {
         </div>
       )}
       {RightIcon && (
-        <div data-testid="right-icon"
+        <div
+          data-testid="right-icon"
           className={cn(
             "pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 peer-focus:text-extra",
             {

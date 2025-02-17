@@ -3,18 +3,19 @@ import { useRef } from "react";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { NewFeedbackScreen } from "../FeedbackScreen";
+import { Input } from "../Input";
+import { Select } from "../Select";
+import { Switch } from "../Switch";
 
 export const AdvancedSettings = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   return (
-    <section className="space-y-4">
+    <section className="space-y-4 [&>article]:space-y-1 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article>label]:leading-5 [&>article>label]:font-medium">
       <h2 className="sentient font-medium text-2xl leading-7 tracking-[0.48px]">
         Advanced Settings
       </h2>
-      <article className="space-y-1">
-        <label className="font-medium leading-5 block">
-          Personalized Thank You Screen
-        </label>
+      <article className="flex-col !items-start">
+        <label>Personalized Thank You Screen</label>
         <Button
           className="p-2"
           rounded
@@ -22,6 +23,29 @@ export const AdvancedSettings = () => {
         >
           <Add className="!w-8 !h-8" />
         </Button>
+      </article>
+      <article>
+        <label>Randomize question order</label>
+        <Switch className="w-20" />
+      </article>
+      <article>
+        <label>Show correct answers at the end</label>
+        <Switch className="w-20" />
+      </article>
+      <article className="w-full">
+        <label>Number of attempts</label>
+        <Input
+          type="number"
+          containerClassName="flex-initial"
+          className="w-20"
+        />
+      </article>
+      <article className="!grid grid-cols-2 items-center">
+        <label>Theme</label>
+        <Select text="Whiteboard">
+          <Select.Option>Light</Select.Option>
+          <Select.Option>Dark</Select.Option>
+        </Select>
       </article>
       <Dialog innerRef={dialogRef} id="advanced-settings">
         <NewFeedbackScreen

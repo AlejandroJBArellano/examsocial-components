@@ -12,6 +12,7 @@ const FeedbackCondition = {
 };
 
 const FeedbackConditionField = () => {
+  const [condition, setCondition] = useState(FeedbackCondition.ALL);
   const [container, setContainer] = useState<HTMLElement>();
   useEffect(() => {
     const containerDOM = document.getElementById("advanced-settings");
@@ -23,11 +24,16 @@ const FeedbackConditionField = () => {
     <article className="grid grid-cols-2 gap-4 items-end">
       <div className="space-y-1">
         <label>Condition</label>
-        <Select text="Select One" container={container}>
-          <Select.Option>All</Select.Option>
-          <Select.Option>Between</Select.Option>
-          <Select.Option>Equal to</Select.Option>
-          <Select.Option>Greater than</Select.Option>
+        <Select text={condition || "Select one"} container={container}>
+          {Object.entries(FeedbackCondition).map(([key, value]) => (
+            <Select.Option
+              key={key}
+              checked={condition === value}
+              onClick={() => setCondition(value)}
+            >
+              {value}
+            </Select.Option>
+          ))}
         </Select>
       </div>
       <div></div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "../Button";
+import { Input } from "../Input";
 import { Select } from "../Select";
 import { Textarea } from "../Textarea";
 
@@ -11,19 +12,41 @@ const FeedbackCondition = {
   LESS_THAN: "Less than",
 };
 
+const FeedbackConditionNodes = {
+  [FeedbackCondition.ALL]: null,
+  [FeedbackCondition.BETWEEN]: (
+    <div className="flex items-center gap-2">
+      <Input placeholder="0" type="number" className="w-full h-11" />
+      <span className="text-lg leading-6">and</span>
+      <Input placeholder="100" type="number" className="w-full h-11" />
+    </div>
+  ),
+  [FeedbackCondition.EQUAL_TO]: (
+    <Input placeholder="100" className="w-full h-11" type="number" />
+  ),
+  [FeedbackCondition.GREATER_THAN]: (
+    <Input placeholder="100" className="w-full h-11" type="number" />
+  ),
+  [FeedbackCondition.LESS_THAN]: (
+    <Input placeholder="100" className="w-full h-11" type="number" />
+  ),
+};
+
 const FeedbackConditionField = () => {
   const [condition, setCondition] = useState(FeedbackCondition.ALL);
   const [container, setContainer] = useState<HTMLElement>();
+
   useEffect(() => {
     const containerDOM = document.getElementById("advanced-settings");
     if (containerDOM) {
       setContainer(containerDOM);
     }
   }, []);
+
   return (
     <article className="grid grid-cols-2 gap-4 items-end">
       <div className="space-y-1">
-        <label>Condition</label>
+        <label className="font-medium">Condition</label>
         <Select text={condition || "Select one"} container={container}>
           {Object.entries(FeedbackCondition).map(([key, value]) => (
             <Select.Option
@@ -36,7 +59,7 @@ const FeedbackConditionField = () => {
           ))}
         </Select>
       </div>
-      <div></div>
+      <div>{FeedbackConditionNodes[condition]}</div>
     </article>
   );
 };

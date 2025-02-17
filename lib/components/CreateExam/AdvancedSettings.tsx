@@ -4,6 +4,7 @@ import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { NewFeedbackScreen } from "../FeedbackScreen";
 import { Input } from "../Input";
+import { PremiumBadge } from "../PremiumBadge";
 import { Select } from "../Select";
 import { Switch } from "../Switch";
 
@@ -11,9 +12,12 @@ export const AdvancedSettings = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   return (
     <section className="space-y-4 [&>article]:space-y-1 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article>label]:leading-5 [&>article>label]:font-medium">
-      <h2 className="sentient font-medium text-2xl leading-7 tracking-[0.48px]">
-        Advanced Settings
-      </h2>
+      <div className="flex items-center justify-between">
+        <h2 className="sentient font-medium text-2xl leading-7 tracking-[0.48px]">
+          Advanced Settings
+        </h2>
+        <PremiumBadge />
+      </div>
       <article className="flex-col !items-start">
         <label>Personalized Thank You Screen</label>
         <Button

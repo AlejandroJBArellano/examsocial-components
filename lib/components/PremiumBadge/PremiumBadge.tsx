@@ -1,7 +1,7 @@
 import { WorkspacePremium } from "@mui/icons-material";
 import { cn } from "../../utils";
 
-const PremiumBadge = ({ size }: { size: "big" | "small" }) => {
+const PremiumBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
   const dimensions = {
     small: {
       container: "px-2 py-1",
@@ -17,7 +17,7 @@ const PremiumBadge = ({ size }: { size: "big" | "small" }) => {
   return (
     <div
       className={
-        "items-center rounded-md inline-flex gap-1 text-secondary-tint hover:shadow-right-sm hover:shadow-secondary bg-secondary-shadow " +
+        "items-center rounded-md cursor-pointer select-none inline-flex gap-1 text-secondary-tint hover:shadow-right-sm hover:shadow-secondary bg-secondary-shadow " +
         dimensions[size].container
       }
     >

@@ -1,21 +1,23 @@
 import { Formik } from "formik";
+import * as Yup from "yup";
 import { questionSchema } from "../../schemas";
-import { IQuestion } from "../../types";
 import { Button } from "../Button";
 import { QuestionForm } from "../QuestionForm";
 
 interface IEditQuestion {
-  onSubmit: (values: IQuestion) => void;
+  onSubmit: (values: Yup.InferType<typeof questionSchema>) => void;
   onCancel: () => void;
-  initialValues: IQuestion;
+  initialValues: Yup.InferType<typeof questionSchema>;
 }
 
 const EditQuestion = ({ initialValues, onSubmit, onCancel }: IEditQuestion) => {
+  console.log({ initialValues });
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={questionSchema}
       validateOnChange
+      // ? enableReinitialize
       onSubmit={onSubmit}
       validateOnBlur
     >
@@ -33,7 +35,10 @@ const EditQuestion = ({ initialValues, onSubmit, onCancel }: IEditQuestion) => {
               rounded
               theme="accent"
               disabled={!props.isValid}
-              type="submit"
+              onClick={() => {
+                onSubmit(props.values);
+                props.resetForm();
+              }}
             >
               Update
             </Button>

@@ -23,5 +23,6 @@ export const examSchema = Yup.object({
   description: Yup.string().required("Description is required"),
   questions: Yup.array()
     .of(questionSchema)
+    .required()
     .min(1, "At least one question is required"),
 });

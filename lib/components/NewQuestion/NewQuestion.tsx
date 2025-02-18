@@ -37,6 +37,7 @@ const NewQuestion = ({ onSubmit, onCancel }: INewQuestion) => {
               disabled={!props.isValid}
               onClick={() => {
                 onSubmit(props.values);
+                props.resetForm();
               }}
             >
               Save

@@ -19,7 +19,25 @@ export const Questions = () => {
       </h2>
       <article className="">
         {values.questions?.map((question, index) => (
-          <QuestionSet {...question} index={index} key={index} />
+          <QuestionSet
+            {...question}
+            index={index}
+            key={index}
+            onDelete={() => {
+              setFieldValue(
+                "questions",
+                values.questions?.filter((_, i) => i !== index),
+              );
+            }}
+            onEdit={() => {
+              setFieldValue(
+                "questions",
+                values.questions?.map((q, i) =>
+                  i === index ? { ...q, question: "edited" } : q,
+                ),
+              );
+            }}
+          />
         ))}
       </article>
       <Button

@@ -22,12 +22,12 @@ const NewQuestion = ({ onSubmit, onCancel }: INewQuestion) => {
       validateOnBlur
     >
       {(props) => (
-        <div className="p-4 shadow-right shadow-black border border-black rounded-lg space-y-6">
+        <section className="p-4 shadow-right shadow-black border border-black rounded-lg space-y-6">
           <h2 className="text-2xl leading-7 sentient font-medium">
             New Question
           </h2>
           <QuestionForm {...props} />
-          <div className="flex justify-between items-center">
+          <article className="flex justify-between items-center">
             <Button type="button" theme="light" rounded onClick={onCancel}>
               Cancel
             </Button>
@@ -35,12 +35,14 @@ const NewQuestion = ({ onSubmit, onCancel }: INewQuestion) => {
               rounded
               theme="accent"
               disabled={!props.isValid}
-              type="submit"
+              onClick={() => {
+                onSubmit(props.values);
+              }}
             >
               Save
             </Button>
-          </div>
-        </div>
+          </article>
+        </section>
       )}
     </Formik>
   );

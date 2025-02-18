@@ -33,11 +33,11 @@ const CreateExam = () => {
       }}
       validationSchema={examSchema}
       onSubmit={(values) => {
-        console.log(values);
+        console.log({ values });
       }}
     >
-      {({ values }) => (
-        <Form onChange={() => console.log({ values })}>
+      {() => (
+        <Form>
           <header>
             <Stepper
               title="Create Exam"

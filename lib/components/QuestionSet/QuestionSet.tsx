@@ -1,13 +1,9 @@
 import { Delete, Edit } from "@mui/icons-material";
+import { IQuestion } from "../../types";
 import { Button } from "../Button";
 import { Tag } from "../Tag";
 
-interface IQuestionSet {
-  question: string;
-  options: {
-    text: string;
-    correct: boolean;
-  }[];
+interface IQuestionSet extends IQuestion {
   onDelete?: (index: number) => void;
   onEdit?: (index: number) => void;
   index: number;
@@ -15,7 +11,7 @@ interface IQuestionSet {
 
 const QuestionSet = ({
   question,
-  options,
+  answers,
   onDelete,
   onEdit,
   index,
@@ -26,10 +22,10 @@ const QuestionSet = ({
         {question}
       </h4>
       <div className="space-y-2.5">
-        {options.map((option, i) => (
+        {answers.map((answer, i) => (
           <div key={i} className="flex justify-between items-center">
-            <p className="xl:text-lg xl:leading-6">{option.text}</p>
-            {option.correct ? (
+            <p className="xl:text-lg xl:leading-6">{answer.text}</p>
+            {answer.correct ? (
               <Tag theme="feedback-success">Correct</Tag>
             ) : null}
           </div>

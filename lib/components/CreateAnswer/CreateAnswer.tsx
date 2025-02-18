@@ -9,11 +9,11 @@ const CreateAnswer = ({
   onDelete,
 }: {
   name: string;
-  answer: { text: string; correct: boolean };
+  answer: { text: string; correct?: boolean };
   onDelete: () => void;
   setFieldValue: (
     field: string,
-    value: string | (boolean | "indeterminate")
+    value: string | (boolean | "indeterminate"),
   ) => void;
 }) => {
   return (

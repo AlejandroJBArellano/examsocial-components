@@ -1,6 +1,7 @@
 import { Add } from "@mui/icons-material";
 import { Field, FieldArray, Form, FormikProps } from "formik";
-import { IQuestion } from "../../types";
+import * as Yup from "yup";
+import { questionSchema } from "../../schemas";
 import { Button } from "../Button";
 import { CreateAnswer } from "../CreateAnswer";
 import { Input } from "../Input";
@@ -10,7 +11,7 @@ const QuestionForm = ({
   values,
   setFieldValue,
   errors,
-}: FormikProps<IQuestion>) => (
+}: FormikProps<Yup.InferType<typeof questionSchema>>) => (
   <Form className="space-y-4">
     <section className="space-y-4">
       <article className="space-y-1">
@@ -43,9 +44,9 @@ const QuestionForm = ({
                         ? typeof errors.answers[index] === "string"
                           ? errors.answers[index]
                           : typeof errors.answers[index] === "object" &&
-                            "text" in errors.answers[index]
-                          ? errors.answers[index].text
-                          : null
+                              "text" in errors.answers[index]
+                            ? errors.answers[index].text
+                            : null
                         : null}
                     </div>
                   )}

@@ -1,17 +1,27 @@
 import { Add } from "@mui/icons-material";
+import { useFormikContext } from "formik";
 import { useRef } from "react";
+import * as Yup from "yup";
+import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { NewQuestion } from "../NewQuestion";
+import { QuestionSet } from "../QuestionSet";
 
 export const Questions = () => {
+  const { values, setFieldValue } =
+    useFormikContext<Yup.InferType<typeof examSchema>>();
   const dialogRef = useRef<HTMLDialogElement>(null);
   return (
     <section className="space-y-6">
       <h2 className="sentient font-bold text-[28px] leading-8 tracking-[0.56px]">
         Questions
       </h2>
-      <article className=""></article>
+      <article className="">
+        {values.questions?.map((question, index) => (
+          <QuestionSet {...question} index={index} key={index} />
+        ))}
+      </article>
       <Button
         onClick={() => {
           dialogRef.current?.showModal();
@@ -25,7 +35,13 @@ export const Questions = () => {
       </Button>
       <Dialog innerRef={dialogRef}>
         <NewQuestion
-          onSubmit={() => {}}
+          onSubmit={(newQuestion) => {
+            setFieldValue("questions", [
+              ...(values.questions || []),
+              newQuestion,
+            ]);
+            dialogRef.current?.close();
+          }}
           onCancel={() => {
             dialogRef.current?.close();
           }}

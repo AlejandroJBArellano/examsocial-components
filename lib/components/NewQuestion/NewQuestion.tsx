@@ -14,7 +14,7 @@ const NewQuestion = ({ onSubmit, onCancel }: INewQuestion) => {
     <Formik
       initialValues={{
         question: "",
-        answers: [{ text: "", correct: false }],
+        answers: [] as IQuestion["answers"],
       }}
       validationSchema={questionSchema}
       validateOnChange

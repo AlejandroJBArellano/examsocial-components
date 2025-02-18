@@ -29,14 +29,14 @@ const CreateExam = () => {
       initialValues={{
         title: "",
         description: "",
-        questions: [{ question: "", answer: "" }],
+        questions: [],
       }}
       validationSchema={examSchema}
       onSubmit={(values) => {
         console.log(values);
       }}
     >
-      {({ isSubmitting, values }) => (
+      {({ values }) => (
         <Form onChange={() => console.log({ values })}>
           <header>
             <Stepper

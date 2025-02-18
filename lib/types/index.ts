@@ -1,4 +1,4 @@
 export interface IQuestion {
   question: string;
-  answers: { text: string; correct: boolean }[];
+  answers: { text: string; correct?: boolean }[];
 }

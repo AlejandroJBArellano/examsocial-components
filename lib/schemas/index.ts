@@ -9,6 +9,7 @@ export const questionSchema = Yup.object({
         correct: Yup.boolean(),
       }),
     )
+    .required()
     .min(1, "At least one answer is required")
     .test(
       "at-least-one-correct",

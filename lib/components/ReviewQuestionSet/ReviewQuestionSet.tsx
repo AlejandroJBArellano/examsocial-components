@@ -11,7 +11,7 @@ interface IReviewQuestionSet {
 const ReviewQuestionSet = ({ question }: IReviewQuestionSet) => {
   const [showOptions, setShowOptions] = useState(false);
   return (
-    <div className="border-sm border-black rounded-md space-y-4 p-4 hover:shadow-right-sm hover:shadow-black">
+    <div className="border-sm bg-gray-50 border-black rounded-md space-y-4 p-4 hover:shadow-right-sm hover:shadow-black">
       <div className="text-feedback-success font-medium text-xl leading-6 tracking-[0.4px] flex items-center gap-2">
         <Check className="!w-6 !h-6" />
         <p className="sentient">{question.question}</p>

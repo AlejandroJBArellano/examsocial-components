@@ -25,3 +25,4 @@ export * from "./Stepper";
 export * from "./Switch";
 export * from "./Tag";
 export * from "./Textarea";
+export * from "./UserAnswers";

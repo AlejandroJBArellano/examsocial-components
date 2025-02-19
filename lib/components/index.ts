@@ -1,3 +1,4 @@
+export * from "./AnswerOption";
 export * from "./AnswerToggle";
 export * from "./BannerInput";
 export * from "./Button";

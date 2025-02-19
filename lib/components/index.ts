@@ -18,6 +18,7 @@ export * from "./ProfilePlaceholder";
 export * from "./QuestionForm";
 export * from "./QuestionSet";
 export * from "./ReportExam";
+export * from "./ReviewQuestionSet";
 export * from "./Select";
 export * from "./Separator";
 export * from "./Stepper";

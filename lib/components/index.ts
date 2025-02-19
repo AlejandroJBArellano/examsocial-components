@@ -12,6 +12,7 @@ export * from "./IndexButton";
 export * from "./Input";
 export * from "./NewQuestion";
 export * from "./Option";
+export * from "./Participants";
 export * from "./PremiumBadge";
 export * from "./PricingCard";
 export * from "./PricingComparisonCellWrapper";

@@ -16,6 +16,7 @@ export * from "./PremiumBadge";
 export * from "./PricingCard";
 export * from "./PricingComparisonCellWrapper";
 export * from "./ProfilePlaceholder";
+export * from "./QuestionDetail";
 export * from "./QuestionForm";
 export * from "./QuestionSet";
 export * from "./ReportExam";

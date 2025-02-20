@@ -8,6 +8,7 @@ export * from "./CreateAnswer";
 export * from "./EditQuestion";
 export * from "./Email";
 export * from "./FeedbackScreen";
+export * from "./Helper";
 export * from "./IndexButton";
 export * from "./Input";
 export * from "./NewQuestion";

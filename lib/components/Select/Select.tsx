@@ -23,10 +23,8 @@ const Select = (props: SelectProps) => {
           className="flex w-full items-center justify-between outline-none group-data-[state=open]:border-accent-shadow group-data-[state=open]:shadow-accent-shadow"
         >
           {props.text}
-          {props.open ? (
-            <KeyboardArrowDownIcon className="hidden group-data-[state=closed]:inline-block" />
-          ) : null}
-          <KeyboardArrowUpIcon className="hidden group-data-[state=open]:inline-block group-data-[state=open]:text-accent-shadow" />
+          <KeyboardArrowDownIcon className="!hidden group-data-[state=closed]:!inline-block" />
+          <KeyboardArrowUpIcon className="!hidden group-data-[state=open]:!inline-block group-data-[state=open]:text-accent-shadow" />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal container={props.container}>

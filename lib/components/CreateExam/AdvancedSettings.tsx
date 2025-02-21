@@ -36,8 +36,27 @@ export const AdvancedSettings = () => {
         <label>Show correct answers at the end</label>
         <Switch className="w-20" />
       </article>
+      <article>
+        <label>Leaderboard</label>
+        <Switch className="w-20" />
+      </article>
       <article className="w-full">
         <label>Number of attempts</label>
+        <Input
+          type="number"
+          containerClassName="flex-initial"
+          className="w-20"
+        />
+      </article>
+      <article className="!grid grid-cols-2 items-center">
+        <label>Time mode</label>
+        <Select text="Exam">
+          <Select.Option>Exam</Select.Option>
+          <Select.Option>Question</Select.Option>
+        </Select>
+      </article>
+      <article className="w-full">
+        <label>Total time of exam or question</label>
         <Input
           type="number"
           containerClassName="flex-initial"

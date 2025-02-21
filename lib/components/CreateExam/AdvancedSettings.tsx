@@ -44,6 +44,7 @@ export const AdvancedSettings = () => {
         <label>Number of attempts</label>
         <Input
           type="number"
+          placeholder="3"
           containerClassName="flex-initial"
           className="w-20"
         />
@@ -59,6 +60,7 @@ export const AdvancedSettings = () => {
         <label>Total time of exam or question</label>
         <Input
           type="number"
+          placeholder="3 min"
           containerClassName="flex-initial"
           className="w-20"
         />

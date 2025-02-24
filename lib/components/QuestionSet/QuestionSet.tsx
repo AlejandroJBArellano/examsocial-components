@@ -28,9 +28,7 @@ const QuestionSet = ({
   return (
     <div
       className={
-        (selected
-          ? "bg-extra shadow-right-sm shadow-black "
-          : "bg-extra-tint ") +
+        (selected ? "bg-extra shadow-right shadow-black " : "bg-extra-tint ") +
         "p-4 space-y-4 xl:p-5 xl:space-y-5 border rounded-md border-black"
       }
     >

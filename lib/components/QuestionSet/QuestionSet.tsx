@@ -8,11 +8,13 @@ type QuestionSetPropsEditable = IQuestion & {
   onEdit: (index: number) => void;
   index: number;
   viewOnly?: false;
+  selected?: false;
 };
 
 type QuestionSetPropsViewOnly = {
   viewOnly: true;
   question: string;
+  selected?: boolean;
 };
 
 type QuestionSetProps = QuestionSetPropsEditable | QuestionSetPropsViewOnly;
@@ -20,10 +22,18 @@ type QuestionSetProps = QuestionSetPropsEditable | QuestionSetPropsViewOnly;
 const QuestionSet = ({
   viewOnly = false,
   question,
+  selected,
   ...props
 }: QuestionSetProps) => {
   return (
-    <div className="p-4 space-y-4 xl:p-5 xl:space-y-5 border rounded-md border-black bg-extra-tint">
+    <div
+      className={
+        (selected
+          ? "bg-extra shadow-right-sm shadow-black "
+          : "bg-extra-tint ") +
+        "p-4 space-y-4 xl:p-5 xl:space-y-5 border rounded-md border-black"
+      }
+    >
       <h4 className="text-xl leading-6 font-medium sentient xl:text-2xl xl:leading-7 tracking-[0.48px]">
         {question}
       </h4>

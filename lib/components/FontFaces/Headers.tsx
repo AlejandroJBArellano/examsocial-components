@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { cn } from "../../utils";
 
 export const Heading1 = ({ children }: PropsWithChildren) => (
   <h1 className="text-4xl font-bold font-['Sentient'] leading-[48px] tracking-wide xl:text-[40px] xl:leading-[56px]">
@@ -12,10 +13,21 @@ export const Heading2 = ({ children }: PropsWithChildren) => (
   </h2>
 );
 
-export const Heading3 = ({ children }: PropsWithChildren) => (
-  <h3 className="text-[28px] font-medium font-['Sentient'] leading-loose tracking-wide xl:font-bold xl:text-[32px] xl:leading-10">
-    {children}
-  </h3>
+export const Heading3 = (
+  props: PropsWithChildren<
+    React.DetailedHTMLProps<
+      React.HTMLAttributes<HTMLHeadingElement>,
+      HTMLHeadingElement
+    >
+  >,
+) => (
+  <h3
+    {...props}
+    className={cn(
+      "text-[28px] font-medium font-['Sentient'] leading-loose tracking-wide xl:font-bold xl:text-[32px] xl:leading-10",
+      props.className,
+    )}
+  />
 );
 
 export const Heading4 = ({ children }: PropsWithChildren) => (

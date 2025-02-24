@@ -23,6 +23,7 @@ export * from "./QRCode";
 export * from "./QRCodeCard";
 export * from "./QuestionDetail";
 export * from "./QuestionForm";
+export * from "./QuestionList";
 export * from "./QuestionSet";
 export * from "./ReportExam";
 export * from "./ReviewQuestionSet";

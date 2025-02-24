@@ -20,6 +20,7 @@ export * from "./PricingCard";
 export * from "./PricingComparisonCellWrapper";
 export * from "./ProfilePlaceholder";
 export * from "./QRCode";
+export * from "./QRCodeCard";
 export * from "./QuestionDetail";
 export * from "./QuestionForm";
 export * from "./QuestionSet";

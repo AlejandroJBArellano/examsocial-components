@@ -1,10 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./lib/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./lib/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      lineHeight: {
+        tight: "20px",
+        loose: "32px",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -79,9 +81,9 @@ export default {
         12: "48px",
         13: "52px",
         14: "52px",
-        "46": "184px",
+        46: "184px",
       },
     },
   },
   plugins: [],
-}
+};

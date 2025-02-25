@@ -28,6 +28,7 @@ export * from "./QuestionSet";
 export * from "./ReportExam";
 export * from "./ReviewQuestionSet";
 export * from "./Select";
+export * from "./SelectedQuestion";
 export * from "./Separator";
 export * from "./Stepper";
 export * from "./Switch";

@@ -1,6 +1,7 @@
 import { Timer } from "@mui/icons-material";
 import { PropsWithChildren } from "react";
 import { Button } from "../Button";
+import { FocusSpan, Heading2, Heading3, Heading5 } from "../FontFaces";
 
 interface IStepperProps {
   activeStep: number;
@@ -22,14 +23,10 @@ const Stepper = ({
   return (
     <section className="bg-primary-tint border-b-sm sentient border-b-gray-500 p-4 pt-3 space-y-3">
       <article className="items-center flex justify-between">
-        <p className="text-[32px] sentient font-medium tracking-[0.64px] leading-10 text-primary-shadow">
-          {title}
-        </p>
+        <Heading2 className="text-primary-shadow">{title}</Heading2>
         {time ? (
           <div className="flex gap-2 items-center">
-            <p className="text-[28px] sentient font-[inherit] font-bold leading-8 tracking-[0.56px]">
-              20:00
-            </p>
+            <Heading3>20:00</Heading3>
             <Timer />
           </div>
         ) : null}
@@ -45,14 +42,14 @@ const Stepper = ({
               key={index}
               theme={activeStep === index + 1 ? "primary" : "light"}
             >
-              {index + 1}
+              <FocusSpan>{index + 1}</FocusSpan>
             </Button>
           ))}
         </div>
         {showDivision ? (
-          <span className="text-xl leading-[24px] sentient font-medium tracking-[0.4px]">
+          <Heading5>
             {activeStep}/{steps}
-          </span>
+          </Heading5>
         ) : null}
       </article>
     </section>

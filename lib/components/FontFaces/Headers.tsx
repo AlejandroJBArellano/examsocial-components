@@ -7,10 +7,19 @@ export const Heading1 = ({ children }: PropsWithChildren) => (
   </h1>
 );
 
-export const Heading2 = ({ children }: PropsWithChildren) => (
-  <h2 className="text-[32px] font-medium font-['Sentient'] leading-10 tracking-wide xl:text-4xl xl:leading-[48px]">
-    {children}
-  </h2>
+export const Heading2 = (
+  props: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLHeadingElement>,
+    HTMLHeadingElement
+  >,
+) => (
+  <h2
+    {...props}
+    className={cn(
+      "text-[32px] font-medium font-['Sentient'] leading-10 tracking-wide xl:text-4xl xl:leading-[48px]",
+      props.className,
+    )}
+  />
 );
 
 export const Heading3 = (

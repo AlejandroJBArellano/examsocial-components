@@ -1,5 +1,6 @@
 import { Timer } from "@mui/icons-material";
 import { PropsWithChildren } from "react";
+import { cn } from "../../utils";
 import { Button } from "../Button";
 import { FocusSpan, Heading2, Heading3, Heading5 } from "../FontFaces";
 
@@ -10,6 +11,7 @@ interface IStepperProps {
   title: string;
   time?: string;
   showDivision?: boolean;
+  theme?: "primary" | "secondary";
 }
 
 const Stepper = ({
@@ -19,11 +21,25 @@ const Stepper = ({
   title,
   time,
   showDivision,
+  theme = "primary",
 }: PropsWithChildren<IStepperProps>) => {
   return (
-    <section className="bg-primary-tint border-b-sm sentient border-b-gray-500 p-4 pt-3 space-y-3">
+    <section
+      className={cn(
+        "border-b-sm sentient border-b-gray-500 p-4 pt-3 space-y-3",
+        theme === "primary" ? "bg-primary-tint" : "bg-secondary-tint",
+      )}
+    >
       <article className="items-center flex justify-between">
-        <Heading2 className="text-primary-shadow">{title}</Heading2>
+        <Heading2
+          className={
+            theme === "primary"
+              ? "text-primary-shadow"
+              : "text-secondary-shadow"
+          }
+        >
+          {title}
+        </Heading2>
         {time ? (
           <div className="flex gap-2 items-center">
             <Heading3>20:00</Heading3>

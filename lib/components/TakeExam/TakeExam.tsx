@@ -8,6 +8,7 @@ const TakeExam = () => {
   return (
     <main>
       <Stepper
+        theme="secondary"
         activeStep={1}
         onClickStep={() => {}}
         steps={4}

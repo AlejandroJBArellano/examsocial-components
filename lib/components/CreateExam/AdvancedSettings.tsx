@@ -4,6 +4,7 @@ import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { NewFeedbackScreen } from "../FeedbackScreen";
 import { FocusSpan, Heading4 } from "../FontFaces";
+import { Helper } from "../Helper";
 import { Input } from "../Input";
 import { PremiumBadge } from "../PremiumBadge";
 import { Select } from "../Select";
@@ -29,7 +30,13 @@ export const AdvancedSettings = () => {
         </Button>
       </article>
       <article>
-        <FocusSpan>Randomize question order</FocusSpan>
+        <div className="flex items-center gap-2">
+          <FocusSpan>Randomize question order</FocusSpan>
+          <Helper align="center" side="top">
+            Randomizing question order will shuffle the order of questions for
+            each student.
+          </Helper>
+        </div>
         <Switch className="w-20" />
       </article>
       <article>

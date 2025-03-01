@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { NewFeedbackScreen } from "../FeedbackScreen";
+import { FocusSpan, Heading4 } from "../FontFaces";
 import { Input } from "../Input";
 import { PremiumBadge } from "../PremiumBadge";
 import { Select } from "../Select";
@@ -12,15 +13,13 @@ import TimingSettings from "../TimingSettings/TimingSettings";
 export const AdvancedSettings = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   return (
-    <section className="space-y-4 [&>article]:space-y-1 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article>label]:leading-5 [&>article>label]:font-medium">
+    <section className="space-y-4 [&>article]:space-y-1 [&>article]:flex [&>article]:items-center [&>article]:justify-between">
       <div className="flex items-center justify-between">
-        <h2 className="sentient font-medium text-2xl leading-7 tracking-[0.48px]">
-          Advanced Settings
-        </h2>
+        <Heading4>Advanced Settings</Heading4>
         <PremiumBadge />
       </div>
       <article className="flex-col !items-start">
-        <label>Personalized Thank You Screen</label>
+        <FocusSpan>Personalized Thank You Screen</FocusSpan>
         <Button
           className="p-2"
           rounded
@@ -30,20 +29,24 @@ export const AdvancedSettings = () => {
         </Button>
       </article>
       <article>
-        <label>Randomize question order</label>
+        <FocusSpan>Randomize question order</FocusSpan>
         <Switch className="w-20" />
       </article>
       <article>
-        <label>Show correct answers at the end</label>
+        <FocusSpan>Show correct answers at the end</FocusSpan>
         <Switch className="w-20" />
       </article>
       <article>
-        <label>Leaderboard</label>
+        <FocusSpan>Send email report</FocusSpan>
+        <Switch className="w-20" />
+      </article>
+      <article>
+        <FocusSpan>Leaderboard</FocusSpan>
         <Switch className="w-20" />
       </article>
       <TimingSettings />
       <article className="w-full">
-        <label>Number of attempts</label>
+        <FocusSpan>Number of attempts</FocusSpan>
         <Input
           type="number"
           placeholder="3"
@@ -52,7 +55,7 @@ export const AdvancedSettings = () => {
         />
       </article>
       <article className="!grid grid-cols-2 items-center">
-        <label>Theme</label>
+        <FocusSpan>Theme</FocusSpan>
         <Select text="Whiteboard">
           <Select.Option>Light</Select.Option>
           <Select.Option>Dark</Select.Option>

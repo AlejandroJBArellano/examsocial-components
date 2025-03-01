@@ -70,8 +70,6 @@ export const AdvancedSettings = () => {
         </div>
         <Switch className="w-20" />
       </article>
-      <TimingSettings />
-      <PrivacySettings onChange={() => {}} />
       <article className="w-full">
         <div>
           <FocusSpan>Number of attempts</FocusSpan>
@@ -87,6 +85,8 @@ export const AdvancedSettings = () => {
           className="w-20"
         />
       </article>
+      <TimingSettings />
+      <PrivacySettings onChange={() => {}} />
       <article className="!grid grid-cols-2 items-center">
         <FocusSpan>Theme</FocusSpan>
         <Select text="Whiteboard">

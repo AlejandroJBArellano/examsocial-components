@@ -1,6 +1,10 @@
+import { PersonRemove, UploadFile } from "@mui/icons-material";
 import { useState } from "react";
-import { FocusSpan } from "../FontFaces";
+import { Button } from "../Button";
+import { FocusSpan, Span } from "../FontFaces";
+import { Input } from "../Input";
 import { Select } from "../Select";
+import { Separator } from "../Separator";
 
 export type PrivacySetting =
   | "ONLY_ME"
@@ -22,6 +26,46 @@ const PrivacySettings = () => {
     useState<PrivacySetting>("PUBLIC");
   const handlePrivacySettingChange = (newPrivacySetting: PrivacySetting) => {
     setPrivacySetting(newPrivacySetting);
+  };
+
+  const PrivacyControls = {
+    PUBLIC: null,
+    INVITE_ONLY: (
+      <>
+        <article className="space-y-4">
+          <div className="flex gap-2 items-center">
+            <Input
+              placeholder="Email(s), separated by commas"
+              className="w-full h-11"
+            />
+            <Button theme="extra">
+              <FocusSpan>Invite</FocusSpan>
+            </Button>
+          </div>
+        </article>
+        <article>
+          <Button
+            className="flex items-center gap-2 justify-center w-full"
+            rounded
+          >
+            <UploadFile />
+            <FocusSpan>Upload .csv</FocusSpan>
+          </Button>
+        </article>
+        <article className="space-y-3">
+          <Separator>Invitees</Separator>
+          <div className="flex items-center justify-between w-full">
+            <Span>Invitee 1</Span>
+            <Button theme="feedback-error" className="p-2">
+              <PersonRemove />
+            </Button>
+          </div>
+        </article>
+      </>
+    ),
+    PASSWORD: null,
+    LINK: null,
+    ONLY_ME: null,
   };
 
   return (
@@ -63,6 +107,7 @@ const PrivacySettings = () => {
           </Select>
         </div>
       </article>
+      {PrivacyControls[privacySetting]}
     </section>
   );
 };

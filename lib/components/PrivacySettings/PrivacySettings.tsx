@@ -54,15 +54,13 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
     INVITE_ONLY: (
       <>
         <NewInvitee onSubmit={handleInvite} />
-        <article>
-          <Button
-            className="flex items-center gap-2 justify-center w-full"
-            rounded
-          >
-            <UploadFile />
-            <FocusSpan>Upload .csv</FocusSpan>
-          </Button>
-        </article>
+        <Button
+          className="flex items-center gap-2 justify-center w-full"
+          rounded
+        >
+          <UploadFile />
+          <FocusSpan>Upload .csv</FocusSpan>
+        </Button>
         <article className="space-y-3">
           <Separator>Invitees</Separator>
           {invitees.map((invitee, index) => (
@@ -153,18 +151,16 @@ const NewInvitee = ({ onSubmit }: INewInvitee) => {
   });
 
   return (
-    <article>
-      <form onSubmit={formik.handleSubmit} className="flex gap-2 items-center">
-        <Input
-          placeholder="Email(s), separated by commas"
-          className="w-full h-11"
-          type="email"
-          {...formik.getFieldProps("emails")}
-        />
-        <Button theme="extra" type="submit">
-          <FocusSpan>Invite</FocusSpan>
-        </Button>
-      </form>
-    </article>
+    <form onSubmit={formik.handleSubmit} className="flex gap-2 items-center">
+      <Input
+        placeholder="Email(s), separated by commas"
+        className="w-full h-11"
+        type="email"
+        {...formik.getFieldProps("emails")}
+      />
+      <Button theme="extra" type="submit">
+        <FocusSpan>Invite</FocusSpan>
+      </Button>
+    </form>
   );
 };

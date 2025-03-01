@@ -1,7 +1,16 @@
 import { PropsWithChildren } from "react";
+import { cn } from "../../utils";
 
-export const Smoll = ({ children }: PropsWithChildren) => (
-  <span className="text-xs leading-none xl:text-sm">{children}</span>
+export const Smoll = (
+  props: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLSpanElement>,
+    HTMLSpanElement
+  >,
+) => (
+  <span
+    {...props}
+    className={cn("text-xs leading-none xl:text-sm", props.className)}
+  />
 );
 
 export const FocusSmoll = ({ children }: PropsWithChildren) => (

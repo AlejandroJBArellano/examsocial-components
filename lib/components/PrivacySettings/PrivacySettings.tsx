@@ -30,6 +30,8 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
     useState<PrivacySetting>("PUBLIC");
   const [invitees, setInvitees] = useState<string[]>([]);
 
+  const [newInvitee, setNewInvitee] = useState("");
+
   const handlePrivacySettingChange = (newPrivacySetting: PrivacySetting) => {
     setPrivacySetting(newPrivacySetting);
     onChange(newPrivacySetting, invitees);
@@ -39,6 +41,7 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
     const newInvitees = emails.split(",").map((email) => email.trim());
     setInvitees([...invitees, ...newInvitees]);
     onChange(privacySetting, [...invitees, ...newInvitees]);
+    setNewInvitee("");
   };
 
   const handleRemoveInvitee = (email: string) => {
@@ -56,9 +59,10 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
             <Input
               placeholder="Email(s), separated by commas"
               className="w-full h-11"
-              onBlur={(e) => handleInvite(e.target.value)}
+              type="email"
+              onChange={(e) => setNewInvitee(e.target.value)}
             />
-            <Button theme="extra" onClick={() => handleInvite("")}>
+            <Button theme="extra" onClick={() => handleInvite(newInvitee)}>
               <FocusSpan>Invite</FocusSpan>
             </Button>
           </div>

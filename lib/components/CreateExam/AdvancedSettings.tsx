@@ -32,6 +32,7 @@ export const AdvancedSettings = () => {
       leaderboard: false,
       numberOfAttempts: 3,
       price: 0,
+      feedback: [],
     },
     validationSchema,
     onSubmit: (values) => {
@@ -159,7 +160,10 @@ export const AdvancedSettings = () => {
       <ThemeSettings onChange={() => {}} />
       <Dialog innerRef={dialogRef} id="advanced-settings">
         <NewFeedbackScreen
-          onSubmit={() => {}}
+          onSubmit={(newFeedback) => {
+            setFieldValue("feedback", [...values.feedback, newFeedback]);
+            dialogRef.current?.close();
+          }}
           onCancel={() => {
             dialogRef.current?.close();
           }}

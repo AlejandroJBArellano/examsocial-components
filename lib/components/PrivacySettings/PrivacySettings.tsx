@@ -54,13 +54,7 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
     INVITE_ONLY: (
       <>
         <NewInvitee onSubmit={handleInvite} />
-        <Button
-          className="flex items-center gap-2 justify-center w-full"
-          rounded
-        >
-          <UploadFile />
-          <FocusSpan>Upload .csv</FocusSpan>
-        </Button>
+        <UploadCSV />
         <article className="space-y-3">
           <Separator>Invitees</Separator>
           {invitees.map((invitee, index) => (
@@ -162,5 +156,14 @@ const NewInvitee = ({ onSubmit }: INewInvitee) => {
         <FocusSpan>Invite</FocusSpan>
       </Button>
     </form>
+  );
+};
+
+const UploadCSV = () => {
+  return (
+    <Button className="flex items-center gap-2 justify-center w-full" rounded>
+      <UploadFile />
+      <FocusSpan>Upload .csv</FocusSpan>
+    </Button>
   );
 };

@@ -4,15 +4,6 @@ import { Select } from "../Select";
 
 export type ThemeSetting = "WHITEBOARD";
 
-const ThemeSettingsPalette = {
-  WHITEBOARD: {
-    primary: "#000000",
-    secondary: "#FFFFFF",
-    accent: "#FF0000",
-    extra: "#00FF00",
-  },
-};
-
 const ThemeSettingsNameMap = {
   WHITEBOARD: "Whiteboard",
 };
@@ -42,10 +33,10 @@ const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
         </div>
       </article>
       <article className="flex items-center gap-4">
-        <div className="rounded-md border border-black bg-primary size-[77.5]" />
-        <div className="rounded-md border border-black bg-secondary size-[77.5]" />
-        <div className="rounded-md border border-black bg-accent size-[77.5]" />
-        <div className="rounded-md border border-black bg-extra size-[77.5]" />
+        <div className="rounded-md border border-black bg-primary size-[77.5px]" />
+        <div className="rounded-md border border-black bg-secondary size-[77.5px]" />
+        <div className="rounded-md border border-black bg-accent size-[77.5px]" />
+        <div className="rounded-md border border-black bg-extra size-[77.5px]" />
       </article>
     </section>
   );

@@ -114,19 +114,27 @@ const TimingSettings = (props: ITimingSettingsProps) => {
           <FocusSpan>Timing</FocusSpan>
           <div className="w-1/2">
             <Select text={TimingSettingsNameMap[timingSetting]}>
-              <Select.Option onClick={() => handleTimingSettingChange("NONE")}>
+              <Select.Option
+                onClick={() => handleTimingSettingChange("NONE")}
+                checked={timingSetting === "NONE"}
+              >
                 None
               </Select.Option>
-              <Select.Option onClick={() => handleTimingSettingChange("TOTAL")}>
+              <Select.Option
+                onClick={() => handleTimingSettingChange("TOTAL")}
+                checked={timingSetting === "TOTAL"}
+              >
                 Total
               </Select.Option>
               <Select.Option
                 onClick={() => handleTimingSettingChange("PER_QUESTION")}
+                checked={timingSetting === "PER_QUESTION"}
               >
                 Per Question
               </Select.Option>
               <Select.Option
                 onClick={() => handleTimingSettingChange("CUSTOM")}
+                checked={timingSetting === "CUSTOM"}
               >
                 Custom
               </Select.Option>

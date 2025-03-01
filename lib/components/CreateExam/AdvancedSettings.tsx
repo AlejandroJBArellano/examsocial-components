@@ -7,6 +7,7 @@ import { FocusSpan, Heading4 } from "../FontFaces";
 import { Helper } from "../Helper";
 import { Input } from "../Input";
 import { PremiumBadge } from "../PremiumBadge";
+import PrivacySettings from "../PrivacySettings/PrivacySettings";
 import { Select } from "../Select";
 import { Switch } from "../Switch";
 import TimingSettings from "../TimingSettings/TimingSettings";
@@ -70,6 +71,7 @@ export const AdvancedSettings = () => {
         <Switch className="w-20" />
       </article>
       <TimingSettings />
+      <PrivacySettings onChange={() => {}} />
       <article className="w-full">
         <div>
           <FocusSpan>Number of attempts</FocusSpan>

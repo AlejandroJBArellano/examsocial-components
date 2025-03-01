@@ -5,14 +5,14 @@ import { Select } from "../Select";
 
 export type TimingSetting = "NONE" | "TOTAL" | "PER_QUESTION" | "CUSTOM";
 
-export const TimingSettingsDescriptionMap = {
+const TimingSettingsDescriptionMap = {
   NONE: "The exam won’t have a time limit.",
   TOTAL: "Sets a limit time for the whole exam.",
   PER_QUESTION: "Set an equal amount of time for each individual question.",
   CUSTOM: "Sets a custom of time for each individual question.",
 };
 
-export const TimingSettingsNameMap = {
+const TimingSettingsNameMap = {
   NONE: "None",
   TOTAL: "Total",
   PER_QUESTION: "Per Question",

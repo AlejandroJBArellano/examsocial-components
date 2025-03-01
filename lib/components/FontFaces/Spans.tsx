@@ -1,10 +1,20 @@
 import { PropsWithChildren } from "react";
+import { cn } from "../../utils";
 
-export const Span = ({ children }: PropsWithChildren) => {
+export const Span = (
+  props: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLSpanElement>,
+    HTMLSpanElement
+  >,
+) => {
   return (
-    <span className="text-base leading-tight xl:text-lg xl:leading-normal">
-      {children}
-    </span>
+    <span
+      {...props}
+      className={cn(
+        "text-base leading-tight xl:text-lg xl:leading-normal",
+        props.className,
+      )}
+    />
   );
 };
 

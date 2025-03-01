@@ -1,6 +1,6 @@
 import { PersonRemove, UploadFile } from "@mui/icons-material";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import * as Yup from "yup";
 import { Button } from "../Button";
 import { FocusSpan, Span } from "../FontFaces";
@@ -53,8 +53,12 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
     PUBLIC: null,
     INVITE_ONLY: (
       <>
-        <NewInvitee onSubmit={handleInvite} />
-        <UploadCSV />
+        <article>
+          <NewInvitee onSubmit={handleInvite} />
+        </article>
+        <article>
+          <UploadCSV handleInvite={handleInvite} />
+        </article>
         <article className="space-y-3">
           <Separator>Invitees</Separator>
           {invitees.map((invitee, index) => (
@@ -159,11 +163,44 @@ const NewInvitee = ({ onSubmit }: INewInvitee) => {
   );
 };
 
-const UploadCSV = () => {
+interface IUploadCSV {
+  handleInvite: (emails: string) => void;
+}
+
+const UploadCSV = ({ handleInvite }: IUploadCSV) => {
+  const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target?.result as string;
+        const emails = text
+          .split("\n")
+          .map((email) => email.trim())
+          .filter(Boolean);
+        // Assuming handleInvite is accessible here
+        handleInvite(emails.join(","));
+      };
+      reader.readAsText(file);
+    }
+  };
+
   return (
-    <Button className="flex items-center gap-2 justify-center w-full" rounded>
-      <UploadFile />
-      <FocusSpan>Upload .csv</FocusSpan>
+    <Button rounded className="w-full p-0">
+      <label
+        htmlFor="upload-csv"
+        className="flex items-center gap-2 justify-center cursor-pointer py-2"
+      >
+        <UploadFile />
+        <FocusSpan>Upload .csv</FocusSpan>
+        <input
+          type="file"
+          accept=".csv"
+          onChange={handleFileUpload}
+          className="hidden"
+          id="upload-csv"
+        />
+      </label>
     </Button>
   );
 };

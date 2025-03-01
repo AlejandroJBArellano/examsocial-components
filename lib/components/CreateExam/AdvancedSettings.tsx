@@ -7,6 +7,7 @@ import { Input } from "../Input";
 import { PremiumBadge } from "../PremiumBadge";
 import { Select } from "../Select";
 import { Switch } from "../Switch";
+import TimingSettings from "../TimingSettings/TimingSettings";
 
 export const AdvancedSettings = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -40,27 +41,12 @@ export const AdvancedSettings = () => {
         <label>Leaderboard</label>
         <Switch className="w-20" />
       </article>
+      <TimingSettings />
       <article className="w-full">
         <label>Number of attempts</label>
         <Input
           type="number"
           placeholder="3"
-          containerClassName="flex-initial"
-          className="w-20"
-        />
-      </article>
-      <article className="!grid grid-cols-2 items-center">
-        <label>Time mode</label>
-        <Select text="Exam">
-          <Select.Option>Exam</Select.Option>
-          <Select.Option>Question</Select.Option>
-        </Select>
-      </article>
-      <article className="w-full">
-        <label>Total time of exam or question</label>
-        <Input
-          type="number"
-          placeholder="3 min"
           containerClassName="flex-initial"
           className="w-20"
         />

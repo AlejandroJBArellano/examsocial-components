@@ -21,11 +21,30 @@ const PrivacySettingsNameMap = {
   LINK: "Everyone with link",
 };
 
-const PrivacySettings = () => {
+interface PrivacySettingsProps {
+  onChange: (setting: PrivacySetting, invitees?: string[]) => void;
+}
+
+const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
   const [privacySetting, setPrivacySetting] =
     useState<PrivacySetting>("PUBLIC");
+  const [invitees, setInvitees] = useState<string[]>([]);
+
   const handlePrivacySettingChange = (newPrivacySetting: PrivacySetting) => {
     setPrivacySetting(newPrivacySetting);
+    onChange(newPrivacySetting, invitees);
+  };
+
+  const handleInvite = (emails: string) => {
+    const newInvitees = emails.split(",").map((email) => email.trim());
+    setInvitees([...invitees, ...newInvitees]);
+    onChange(privacySetting, [...invitees, ...newInvitees]);
+  };
+
+  const handleRemoveInvitee = (email: string) => {
+    const updatedInvitees = invitees.filter((invitee) => invitee !== email);
+    setInvitees(updatedInvitees);
+    onChange(privacySetting, updatedInvitees);
   };
 
   const PrivacyControls = {
@@ -37,8 +56,9 @@ const PrivacySettings = () => {
             <Input
               placeholder="Email(s), separated by commas"
               className="w-full h-11"
+              onBlur={(e) => handleInvite(e.target.value)}
             />
-            <Button theme="extra">
+            <Button theme="extra" onClick={() => handleInvite("")}>
               <FocusSpan>Invite</FocusSpan>
             </Button>
           </div>
@@ -54,12 +74,21 @@ const PrivacySettings = () => {
         </article>
         <article className="space-y-3">
           <Separator>Invitees</Separator>
-          <div className="flex items-center justify-between w-full">
-            <Span>Invitee 1</Span>
-            <Button theme="feedback-error" className="p-2">
-              <PersonRemove />
-            </Button>
-          </div>
+          {invitees.map((invitee, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-between w-full"
+            >
+              <Span>{invitee}</Span>
+              <Button
+                theme="feedback-error"
+                className="p-2"
+                onClick={() => handleRemoveInvitee(invitee)}
+              >
+                <PersonRemove />
+              </Button>
+            </div>
+          ))}
         </article>
       </>
     ),

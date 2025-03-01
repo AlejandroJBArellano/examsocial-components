@@ -18,7 +18,7 @@ const Helper = ({ align, side, children }: IHelper) => {
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className="bg-extra border-sm rounded border-black py-1 px-2 text-xs"
+            className="bg-extra max-w-xs border-sm rounded border-black py-1 px-2 text-xs"
             sideOffset={3}
             align={align}
             side={side}

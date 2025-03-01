@@ -30,8 +30,6 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
     useState<PrivacySetting>("PUBLIC");
   const [invitees, setInvitees] = useState<string[]>([]);
 
-  const [newInvitee, setNewInvitee] = useState("");
-
   const handlePrivacySettingChange = (newPrivacySetting: PrivacySetting) => {
     setPrivacySetting(newPrivacySetting);
     onChange(newPrivacySetting, invitees);
@@ -41,7 +39,6 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
     const newInvitees = emails.split(",").map((email) => email.trim());
     setInvitees([...invitees, ...newInvitees]);
     onChange(privacySetting, [...invitees, ...newInvitees]);
-    setNewInvitee("");
   };
 
   const handleRemoveInvitee = (email: string) => {
@@ -54,19 +51,7 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
     PUBLIC: null,
     INVITE_ONLY: (
       <>
-        <article className="space-y-4">
-          <div className="flex gap-2 items-center">
-            <Input
-              placeholder="Email(s), separated by commas"
-              className="w-full h-11"
-              type="email"
-              onChange={(e) => setNewInvitee(e.target.value)}
-            />
-            <Button theme="extra" onClick={() => handleInvite(newInvitee)}>
-              <FocusSpan>Invite</FocusSpan>
-            </Button>
-          </div>
-        </article>
+        <NewInvitee onSubmit={handleInvite} />
         <article>
           <Button
             className="flex items-center gap-2 justify-center w-full"
@@ -146,3 +131,27 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
 };
 
 export default PrivacySettings;
+
+interface INewInvitee {
+  onSubmit: (emails: string) => void;
+}
+
+const NewInvitee = ({ onSubmit }: INewInvitee) => {
+  const [newInvitee, setNewInvitee] = useState("");
+
+  return (
+    <article className="space-y-4">
+      <div className="flex gap-2 items-center">
+        <Input
+          placeholder="Email(s), separated by commas"
+          className="w-full h-11"
+          type="email"
+          onChange={(e) => setNewInvitee(e.target.value)}
+        />
+        <Button theme="extra" onClick={() => onSubmit(newInvitee)}>
+          <FocusSpan>Invite</FocusSpan>
+        </Button>
+      </div>
+    </article>
+  );
+};

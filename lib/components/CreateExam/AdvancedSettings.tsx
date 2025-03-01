@@ -14,7 +14,7 @@ import TimingSettings from "../TimingSettings/TimingSettings";
 export const AdvancedSettings = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   return (
-    <section className="space-y-4 [&>article]:space-y-1 [&>article]:flex [&>article]:items-center [&>article]:justify-between">
+    <section className="space-y-4 [&>article]:space-y-1 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article>div]:flex [&>article>div]:items-center [&>article>div]:gap-2">
       <div className="flex items-center justify-between">
         <Heading4>Advanced Settings</Heading4>
         <PremiumBadge />
@@ -30,7 +30,7 @@ export const AdvancedSettings = () => {
         </Button>
       </article>
       <article>
-        <div className="flex items-center gap-2">
+        <div>
           <FocusSpan>Randomize question order</FocusSpan>
           <Helper align="center" side="top">
             Randomizing question order will shuffle the order of questions for
@@ -40,20 +40,44 @@ export const AdvancedSettings = () => {
         <Switch className="w-20" />
       </article>
       <article>
-        <FocusSpan>Show correct answers at the end</FocusSpan>
+        <div>
+          <FocusSpan>Show correct answers at the end</FocusSpan>
+          <Helper align="center" side="top">
+            Showing correct answers at the end will display the correct answers
+            to the questions after the student has submitted the exam.
+          </Helper>
+        </div>
         <Switch className="w-20" />
       </article>
       <article>
-        <FocusSpan>Send email report</FocusSpan>
+        <div>
+          <FocusSpan>Send email report</FocusSpan>
+          <Helper align="center" side="top">
+            Sending email report will send the student's exam report to their
+            email.
+          </Helper>
+        </div>
         <Switch className="w-20" />
       </article>
       <article>
-        <FocusSpan>Leaderboard</FocusSpan>
+        <div>
+          <FocusSpan>Leaderboard</FocusSpan>
+          <Helper align="center" side="top">
+            Leaderboard will display the top 10 students with the highest score
+            after the exam.
+          </Helper>
+        </div>
         <Switch className="w-20" />
       </article>
       <TimingSettings />
       <article className="w-full">
-        <FocusSpan>Number of attempts</FocusSpan>
+        <div>
+          <FocusSpan>Number of attempts</FocusSpan>
+          <Helper align="center" side="top">
+            Number of attempts is the number of times a student can attempt the
+            exam.
+          </Helper>
+        </div>
         <Input
           type="number"
           placeholder="3"

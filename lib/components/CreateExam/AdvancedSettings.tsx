@@ -7,10 +7,10 @@ import { FocusSpan, Heading4 } from "../FontFaces";
 import { Helper } from "../Helper";
 import { Input } from "../Input";
 import { PremiumBadge } from "../PremiumBadge";
-import PrivacySettings from "../PrivacySettings/PrivacySettings";
-import { Select } from "../Select";
+import { PrivacySettings } from "../PrivacySettings";
 import { Switch } from "../Switch";
-import TimingSettings from "../TimingSettings/TimingSettings";
+import { ThemeSettings } from "../ThemeSettings";
+import { TimingSettings } from "../TimingSettings";
 
 export const AdvancedSettings = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -87,13 +87,7 @@ export const AdvancedSettings = () => {
       </article>
       <TimingSettings />
       <PrivacySettings onChange={() => {}} />
-      <article className="!grid grid-cols-2 items-center">
-        <FocusSpan>Theme</FocusSpan>
-        <Select text="Whiteboard">
-          <Select.Option>Light</Select.Option>
-          <Select.Option>Dark</Select.Option>
-        </Select>
-      </article>
+      <ThemeSettings onChange={() => {}} />
       <Dialog innerRef={dialogRef} id="advanced-settings">
         <NewFeedbackScreen
           onSubmit={() => {}}

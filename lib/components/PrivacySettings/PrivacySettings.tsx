@@ -1,5 +1,7 @@
 import { PersonRemove, UploadFile } from "@mui/icons-material";
+import { useFormik } from "formik";
 import { useState } from "react";
+import * as Yup from "yup";
 import { Button } from "../Button";
 import { FocusSpan, Span } from "../FontFaces";
 import { Input } from "../Input";
@@ -137,21 +139,32 @@ interface INewInvitee {
 }
 
 const NewInvitee = ({ onSubmit }: INewInvitee) => {
-  const [newInvitee, setNewInvitee] = useState("");
+  const formik = useFormik({
+    initialValues: {
+      emails: "",
+    },
+    validationSchema: Yup.object({
+      emails: Yup.string().required("Email(s) are required"),
+    }),
+    onSubmit: (values) => {
+      onSubmit(values.emails);
+      formik.resetForm();
+    },
+  });
 
   return (
-    <article className="space-y-4">
-      <div className="flex gap-2 items-center">
+    <article>
+      <form onSubmit={formik.handleSubmit} className="flex gap-2 items-center">
         <Input
           placeholder="Email(s), separated by commas"
           className="w-full h-11"
           type="email"
-          onChange={(e) => setNewInvitee(e.target.value)}
+          {...formik.getFieldProps("emails")}
         />
-        <Button theme="extra" onClick={() => onSubmit(newInvitee)}>
+        <Button theme="extra" type="submit">
           <FocusSpan>Invite</FocusSpan>
         </Button>
-      </div>
+      </form>
     </article>
   );
 };

@@ -85,6 +85,20 @@ export const AdvancedSettings = () => {
           className="w-20"
         />
       </article>
+      <article className="w-full">
+        <div>
+          <FocusSpan>Price</FocusSpan>
+          <Helper align="center" side="top">
+            Price is the amount a student has to pay to attempt the exam.
+          </Helper>
+        </div>
+        <Input
+          type="number"
+          placeholder="0"
+          containerClassName="flex-initial"
+          className="w-20"
+        />
+      </article>
       <TimingSettings />
       <PrivacySettings onChange={() => {}} />
       <ThemeSettings onChange={() => {}} />

@@ -63,10 +63,10 @@ const PrivacySettings = () => {
         <article>
           <UploadCSV handleInvite={handleInvite} />
         </article>
-        <article className="space-y-3">
-          <Separator>Invitees</Separator>
-          {formik.values.privacy.invitees?.length &&
-            formik.values.privacy.invitees.map((invitee, index) => (
+        {formik.values.privacy.invitees?.length ? (
+          <article className="space-y-3">
+            <Separator>Invitees</Separator>
+            {formik.values.privacy.invitees.map((invitee, index) => (
               <div
                 key={index}
                 className="flex items-center justify-between w-full"
@@ -81,7 +81,8 @@ const PrivacySettings = () => {
                 </Button>
               </div>
             ))}
-        </article>
+          </article>
+        ) : null}
       </>
     ),
     PASSWORD: null,

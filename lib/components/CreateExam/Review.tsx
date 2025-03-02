@@ -28,7 +28,7 @@ export const Review = () => {
           description={formik.values.description}
           tag="XD"
           time="10 min"
-          image="https://placecats.com/300/200"
+          image={URL.createObjectURL(formik.values.image as Blob)}
         />
       </article>
       <article className="space-y-1">

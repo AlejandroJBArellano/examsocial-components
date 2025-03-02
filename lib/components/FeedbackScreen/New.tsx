@@ -1,55 +1,17 @@
 import { useFormik, useFormikContext } from "formik";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
+import { FeedbackCondition } from "../../constants";
+import { feedbackSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { Select } from "../Select";
 import { Textarea } from "../Textarea";
 
-const FeedbackCondition = {
-  ALL: "All",
-  BETWEEN: "Between",
-  EQUAL_TO: "Equal to",
-  GREATER_THAN: "Greater than",
-  LESS_THAN: "Less than",
-};
-
-const validationSchema = Yup.object({
-  message: Yup.string().required("Message is required"),
-  condition: Yup.string()
-    .oneOf(Object.values(FeedbackCondition))
-    .required("Condition is required"),
-  min: Yup.number().when("condition", (condition, schema) =>
-    condition[0] === FeedbackCondition.BETWEEN
-      ? schema.required("Minimum value is required")
-      : schema,
-  ),
-  max: Yup.number().when("condition", (condition, schema) =>
-    condition[0] === FeedbackCondition.BETWEEN
-      ? schema.required("Maximum value is required")
-      : schema,
-  ),
-  equal: Yup.number().when("condition", (condition, schema) =>
-    condition[0] === FeedbackCondition.EQUAL_TO
-      ? schema.required("Equal value is required")
-      : schema,
-  ),
-  gt: Yup.number().when("condition", (condition, schema) =>
-    condition[0] === FeedbackCondition.GREATER_THAN
-      ? schema.required("Greater than value is required")
-      : schema,
-  ),
-  lt: Yup.number().when("condition", (condition, schema) =>
-    condition[0] === FeedbackCondition.LESS_THAN
-      ? schema.required("Less than value is required")
-      : schema,
-  ),
-});
-
 const FeedbackConditionField = () => {
   const [container, setContainer] = useState<HTMLElement>();
 
-  const formik = useFormikContext<Yup.InferType<typeof validationSchema>>();
+  const formik = useFormikContext<Yup.InferType<typeof feedbackSchema>>();
 
   const FeedbackConditionNodes = {
     [FeedbackCondition.ALL]: null,
@@ -146,7 +108,7 @@ const NewFeedbackScreen = ({ onSubmit, onCancel }: INewFeedbackScreen) => {
     onSubmit: (values) => {
       onSubmit(values);
     },
-    validationSchema,
+    validationSchema: feedbackSchema,
   });
 
   return (

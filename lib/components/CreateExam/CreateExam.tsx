@@ -30,6 +30,26 @@ const CreateExam = () => {
         title: "",
         description: "",
         questions: [],
+        advancedSettings: {
+          randomizeQuestionOrder: false,
+          showCorrectAnswers: false,
+          sendEmailReport: false,
+          leaderboard: false,
+          numberOfAttempts: 3,
+          price: 0,
+          feedback: [],
+          privacy: {
+            setting: "PUBLIC",
+            invitees: [],
+            password: "",
+          },
+          timing: {
+            setting: "NONE",
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+          },
+        },
       }}
       validationSchema={examSchema}
       onSubmit={(values) => {

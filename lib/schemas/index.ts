@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { FeedbackCondition } from "../constants";
 
 export const questionSchema = Yup.object({
   question: Yup.string().required("Question is required"),
@@ -18,11 +19,48 @@ export const questionSchema = Yup.object({
     ),
 });
 
+export const feedbackSchema = Yup.object({
+  message: Yup.string().required("Message is required"),
+  condition: Yup.string()
+    .oneOf(Object.values(FeedbackCondition))
+    .required("Condition is required"),
+  min: Yup.number().when("condition", (condition, schema) =>
+    condition[0] === FeedbackCondition.BETWEEN
+      ? schema.required("Minimum value is required")
+      : schema,
+  ),
+  max: Yup.number().when("condition", (condition, schema) =>
+    condition[0] === FeedbackCondition.BETWEEN
+      ? schema.required("Maximum value is required")
+      : schema,
+  ),
+  equal: Yup.number().when("condition", (condition, schema) =>
+    condition[0] === FeedbackCondition.EQUAL_TO
+      ? schema.required("Equal value is required")
+      : schema,
+  ),
+  gt: Yup.number().when("condition", (condition, schema) =>
+    condition[0] === FeedbackCondition.GREATER_THAN
+      ? schema.required("Greater than value is required")
+      : schema,
+  ),
+  lt: Yup.number().when("condition", (condition, schema) =>
+    condition[0] === FeedbackCondition.LESS_THAN
+      ? schema.required("Less than value is required")
+      : schema,
+  ),
+});
+
 export const advancedSettingsSchema = Yup.object({
+  randomizeQuestionOrder: Yup.boolean(),
+  showCorrectAnswers: Yup.boolean(),
+  sendEmailReport: Yup.boolean(),
+  leaderboard: Yup.boolean(),
   numberOfAttempts: Yup.number()
     .min(1, "Must be at least 1")
     .required("Required"),
   price: Yup.number().min(0, "Must be at least 0").required("Required"),
+  feedback: Yup.array().of(feedbackSchema),
   privacy: Yup.object({
     setting: Yup.string().required("Required"),
     invitees: Yup.array().when("setting", {

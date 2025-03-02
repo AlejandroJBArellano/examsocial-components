@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useFormikContext } from "formik";
+import * as Yup from "yup";
+import { advancedSettingsSchema } from "../../schemas";
 import { FocusSpan, Smoll } from "../FontFaces";
 import { Input } from "../Input";
 import { Select } from "../Select";
@@ -19,35 +21,23 @@ const TimingSettingsNameMap = {
   CUSTOM: "Custom",
 };
 
-interface ITimingSettingsProps {
-  onChange?: (
-    timingSetting: TimingSetting,
-    values?: { hours?: number; minutes?: number; seconds?: number },
-  ) => void;
-}
-
-const TimingSettings = (props: ITimingSettingsProps) => {
-  const [timingSetting, setTimingSetting] = useState<TimingSetting>("NONE");
-  const [timeValues, setTimeValues] = useState<{
-    hours?: number;
-    minutes?: number;
-    seconds?: number;
-  }>({});
+const TimingSettings = () => {
+  const formik =
+    useFormikContext<Yup.InferType<typeof advancedSettingsSchema>>();
+  const timingSetting = formik.values.timing
+    .setting as keyof typeof TimingSettingsNameMap;
 
   const handleTimingSettingChange = (newSetting: TimingSetting) => {
-    setTimingSetting(newSetting);
-    setTimeValues({});
-    if (props.onChange) {
-      props.onChange(newSetting);
+    formik.setFieldValue("timing.setting", newSetting);
+    if (newSetting === "NONE") {
+      formik.setFieldValue("timing.hours", 0);
+      formik.setFieldValue("timing.minutes", 0);
+      formik.setFieldValue("timing.seconds", 0);
     }
   };
 
   const handleInputChange = (field: string, value: number) => {
-    const newValues = { ...timeValues, [field]: value };
-    setTimeValues(newValues);
-    if (props.onChange) {
-      props.onChange(timingSetting, newValues);
-    }
+    formik.setFieldValue(`timing.${field}`, value);
   };
 
   const TotalTimeControls = {

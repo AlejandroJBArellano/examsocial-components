@@ -31,6 +31,12 @@ export const AdvancedSettings = () => {
           invitees: [],
           password: "",
         },
+        timing: {
+          setting: "NONE",
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        },
       }}
       validationSchema={advancedSettingsSchema}
       onSubmit={(values) => {

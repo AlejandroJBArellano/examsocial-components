@@ -1,7 +1,16 @@
 import { PropsWithChildren } from "react";
+import { cn } from "../../utils";
 
-export const Paragraph = ({ children }: PropsWithChildren) => (
-  <p className="font-light xl:text-lg xl:leading-7">{children}</p>
+export const Paragraph = (
+  props: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLParagraphElement>,
+    HTMLParagraphElement
+  >,
+) => (
+  <p
+    {...props}
+    className={cn("font-light xl:text-lg xl:leading-7", props.className)}
+  />
 );
 
 export const FocusParagraph = ({ children }: PropsWithChildren) => (

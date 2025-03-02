@@ -1,6 +1,10 @@
 import PhotoIcon from "@mui/icons-material/Photo";
 
-const BannerInput = () => (
+const BannerInput = ({
+  onChange,
+}: {
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+}) => (
   <label
     htmlFor="banner"
     className="xl:h-46 flex h-36 max-w-[358px] cursor-pointer items-center justify-center rounded-md border border-black bg-secondary p-4 xl:max-w-[640px]"
@@ -15,9 +19,7 @@ const BannerInput = () => (
       className="hidden"
       accept="image/*"
       multiple
-      onChange={(e) => {
-        console.log(e.target.files);
-      }}
+      onChange={onChange}
     />
   </label>
 );

@@ -18,15 +18,6 @@ export const questionSchema = Yup.object({
     ),
 });
 
-export const examSchema = Yup.object({
-  title: Yup.string().required("Title is required"),
-  description: Yup.string().required("Description is required"),
-  questions: Yup.array()
-    .of(questionSchema)
-    .required()
-    .min(1, "At least one question is required"),
-});
-
 export const advancedSettingsSchema = Yup.object({
   numberOfAttempts: Yup.number()
     .min(1, "Must be at least 1")
@@ -61,4 +52,14 @@ export const advancedSettingsSchema = Yup.object({
         schema.min(0, "Must be at least 0").required("Required"),
     }),
   }),
+});
+
+export const examSchema = Yup.object({
+  title: Yup.string().required("Title is required"),
+  description: Yup.string().required("Description is required"),
+  advancedSettings: advancedSettingsSchema,
+  questions: Yup.array()
+    .of(questionSchema)
+    .required()
+    .min(1, "At least one question is required"),
 });

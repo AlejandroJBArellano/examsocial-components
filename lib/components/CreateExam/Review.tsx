@@ -5,6 +5,7 @@ import { examSchema } from "../../schemas/index";
 import { Button } from "../Button";
 import ExamCard from "../ExamCard/ExamCard";
 import { FocusSpan, Heading3, Heading4 } from "../FontFaces";
+import { QuestionSet } from "../QuestionSet";
 
 export const Review = () => {
   const formik = useFormikContext<Yup.InferType<typeof examSchema>>();
@@ -30,7 +31,24 @@ export const Review = () => {
           image="https://placecats.com/300/200"
         />
       </article>
-      <Heading4>Questions</Heading4>
+      <article className="space-y-1">
+        <Heading4>Questions</Heading4>
+        {formik.values.questions.map((question, index) => (
+          <QuestionSet
+            index={index}
+            onEdit={(index) => console.log(index)}
+            onDelete={(index) =>
+              formik.setFieldValue(
+                "questions",
+                formik.values.questions.filter((_, i) => i !== index),
+              )
+            }
+            key={index}
+            question={question.question}
+            answers={question.answers}
+          />
+        ))}
+      </article>
       <Heading4>Additional Content</Heading4>
       <Heading4>Advanced Settings</Heading4>
     </section>

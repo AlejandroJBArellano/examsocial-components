@@ -43,4 +43,22 @@ export const advancedSettingsSchema = Yup.object({
       then: (schema) => schema.required("Required"),
     }),
   }),
+  timing: Yup.object({
+    setting: Yup.string().required("Required"),
+    hours: Yup.number().when("setting", {
+      is: (val: string) => val === "TOTAL",
+      then: (schema) =>
+        schema.min(0, "Must be at least 0").required("Required"),
+    }),
+    minutes: Yup.number().when("setting", {
+      is: (val: string) => val === "TOTAL" || val === "PER_QUESTION",
+      then: (schema) =>
+        schema.min(0, "Must be at least 0").required("Required"),
+    }),
+    seconds: Yup.number().when("setting", {
+      is: (val: string) => val === "PER_QUESTION",
+      then: (schema) =>
+        schema.min(0, "Must be at least 0").required("Required"),
+    }),
+  }),
 });

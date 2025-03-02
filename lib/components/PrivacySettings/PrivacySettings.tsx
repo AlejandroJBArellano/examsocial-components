@@ -2,7 +2,7 @@ import { PersonRemove, UploadFile } from "@mui/icons-material";
 import { useFormik, useFormikContext } from "formik";
 import { ChangeEvent } from "react";
 import * as Yup from "yup";
-import { advancedSettingsSchema } from "../../schemas";
+import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { FocusSpan, Span } from "../FontFaces";
 import { Input } from "../Input";
@@ -25,10 +25,9 @@ const PrivacySettingsNameMap = {
 };
 
 const PrivacySettings = () => {
-  const formik =
-    useFormikContext<Yup.InferType<typeof advancedSettingsSchema>>();
+  const formik = useFormikContext<Yup.InferType<typeof examSchema>>();
 
-  const privacySetting = formik.values.privacy
+  const privacySetting = formik.values.advancedSettings.privacy
     .setting as keyof typeof PrivacySettingsNameMap;
 
   const handlePrivacySettingChange = (newPrivacySetting: PrivacySetting) => {
@@ -41,15 +40,19 @@ const PrivacySettings = () => {
   const handleInvite = (emails: string) => {
     const newInvitees = emails.split(",").map((email) => email.trim());
     const updatedInvitees = [
-      ...new Set([...(formik.values.privacy.invitees || []), ...newInvitees]),
+      ...new Set([
+        ...(formik.values.advancedSettings.privacy.invitees || []),
+        ...newInvitees,
+      ]),
     ];
     formik.setFieldValue("privacy.invitees", updatedInvitees);
   };
 
   const handleRemoveInvitee = (email: string) => {
-    const updatedInvitees = formik.values.privacy.invitees?.filter(
-      (invitee) => invitee !== email,
-    );
+    const updatedInvitees =
+      formik.values.advancedSettings.privacy.invitees?.filter(
+        (invitee) => invitee !== email,
+      );
     formik.setFieldValue("privacy.invitees", updatedInvitees);
   };
 
@@ -63,24 +66,26 @@ const PrivacySettings = () => {
         <article>
           <UploadCSV handleInvite={handleInvite} />
         </article>
-        {formik.values.privacy.invitees?.length ? (
+        {formik.values.advancedSettings.privacy.invitees?.length ? (
           <article className="space-y-3">
             <Separator>Invitees</Separator>
-            {formik.values.privacy.invitees.map((invitee, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between w-full"
-              >
-                <Span>{invitee}</Span>
-                <Button
-                  theme="feedback-error"
-                  className="p-2"
-                  onClick={() => handleRemoveInvitee(invitee)}
+            {formik.values.advancedSettings.privacy.invitees.map(
+              (invitee, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between w-full"
                 >
-                  <PersonRemove />
-                </Button>
-              </div>
-            ))}
+                  <Span>{invitee}</Span>
+                  <Button
+                    theme="feedback-error"
+                    className="p-2"
+                    onClick={() => handleRemoveInvitee(invitee)}
+                  >
+                    <PersonRemove />
+                  </Button>
+                </div>
+              ),
+            )}
           </article>
         ) : null}
       </>

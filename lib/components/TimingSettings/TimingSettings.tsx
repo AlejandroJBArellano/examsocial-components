@@ -1,6 +1,6 @@
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
-import { advancedSettingsSchema } from "../../schemas";
+import { examSchema } from "../../schemas";
 import { FocusSpan, Smoll } from "../FontFaces";
 import { Input } from "../Input";
 import { Select } from "../Select";
@@ -22,9 +22,8 @@ const TimingSettingsNameMap = {
 };
 
 const TimingSettings = () => {
-  const formik =
-    useFormikContext<Yup.InferType<typeof advancedSettingsSchema>>();
-  const timingSetting = formik.values.timing
+  const formik = useFormikContext<Yup.InferType<typeof examSchema>>();
+  const timingSetting = formik.values.advancedSettings.timing
     .setting as keyof typeof TimingSettingsNameMap;
 
   const handleTimingSettingChange = (newSetting: TimingSetting) => {

@@ -27,6 +27,9 @@ export const NewAdditionalContent = ({
   const [contentType, setContentType] = useState<ContentTypes>();
   const [container, setContainer] = useState<HTMLElement>();
   const [image, setImage] = useState<File>();
+  const [video, setVideo] = useState<File>();
+  const [audio, setAudio] = useState<File>();
+  const [file, setFile] = useState<File>();
 
   useEffect(() => {
     const containerDOM = document.getElementById("additional-content");
@@ -74,19 +77,40 @@ export const NewAdditionalContent = ({
     VIDEO: (
       <div className="space-y-1">
         <FocusSpan>Video</FocusSpan>
-        <Input placeholder="https://example.com/video.mp4" className="w-full" />
+        <BannerInput
+          onChange={(e) => {
+            const file = e.target?.files?.[0];
+            if (file) {
+              setVideo(file);
+            }
+          }}
+        />
       </div>
     ),
     AUDIO: (
       <div className="space-y-1">
         <FocusSpan>Audio</FocusSpan>
-        <Input placeholder="https://example.com/audio.mp3" className="w-full" />
+        <BannerInput
+          onChange={(e) => {
+            const file = e.target?.files?.[0];
+            if (file) {
+              setAudio(file);
+            }
+          }}
+        />
       </div>
     ),
     FILE: (
       <div className="space-y-1">
         <FocusSpan>File</FocusSpan>
-        <Input placeholder="https://example.com/file.pdf" className="w-full" />
+        <BannerInput
+          onChange={(e) => {
+            const file = e.target?.files?.[0];
+            if (file) {
+              setFile(file);
+            }
+          }}
+        />
       </div>
     ),
   };

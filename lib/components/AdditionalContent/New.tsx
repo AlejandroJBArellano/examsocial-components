@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BannerInput } from "../BannerInput";
 import { Button } from "../Button";
 import { FocusSpan, Heading4 } from "../FontFaces";
 import { Input } from "../Input";
@@ -25,6 +26,7 @@ export const NewAdditionalContent = ({
 }: INewAdditionalContent) => {
   const [contentType, setContentType] = useState<ContentTypes>();
   const [container, setContainer] = useState<HTMLElement>();
+  const [image, setImage] = useState<File>();
 
   useEffect(() => {
     const containerDOM = document.getElementById("additional-content");
@@ -59,7 +61,14 @@ export const NewAdditionalContent = ({
     IMAGE: (
       <div className="space-y-1">
         <FocusSpan>Image</FocusSpan>
-        <Input placeholder="https://example.com/image.jpg" className="w-full" />
+        <BannerInput
+          onChange={(e) => {
+            const file = e.target?.files?.[0];
+            if (file) {
+              setImage(file);
+            }
+          }}
+        />
       </div>
     ),
     VIDEO: (

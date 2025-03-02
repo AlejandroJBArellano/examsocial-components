@@ -1,7 +1,8 @@
 import { PersonRemove, UploadFile } from "@mui/icons-material";
-import { useFormik } from "formik";
-import { ChangeEvent, useState } from "react";
+import { useFormik, useFormikContext } from "formik";
+import { ChangeEvent } from "react";
 import * as Yup from "yup";
+import { advancedSettingsSchema } from "../../schemas";
 import { Button } from "../Button";
 import { FocusSpan, Span } from "../FontFaces";
 import { Input } from "../Input";
@@ -23,30 +24,33 @@ const PrivacySettingsNameMap = {
   LINK: "Everyone with link",
 };
 
-interface PrivacySettingsProps {
-  onChange: (setting: PrivacySetting, invitees?: string[]) => void;
-}
+const PrivacySettings = () => {
+  const formik =
+    useFormikContext<Yup.InferType<typeof advancedSettingsSchema>>();
 
-const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
-  const [privacySetting, setPrivacySetting] =
-    useState<PrivacySetting>("PUBLIC");
-  const [invitees, setInvitees] = useState<string[]>([]);
+  const privacySetting = formik.values.privacy
+    .setting as keyof typeof PrivacySettingsNameMap;
 
   const handlePrivacySettingChange = (newPrivacySetting: PrivacySetting) => {
-    setPrivacySetting(newPrivacySetting);
-    onChange(newPrivacySetting, invitees);
+    formik.setFieldValue("privacy.setting", newPrivacySetting);
+    if (newPrivacySetting === "INVITE_ONLY") {
+      formik.setFieldValue("privacy.invitees", []);
+    }
   };
 
   const handleInvite = (emails: string) => {
     const newInvitees = emails.split(",").map((email) => email.trim());
-    setInvitees([...invitees, ...newInvitees]);
-    onChange(privacySetting, [...invitees, ...newInvitees]);
+    const updatedInvitees = [
+      ...new Set([...(formik.values.privacy.invitees || []), ...newInvitees]),
+    ];
+    formik.setFieldValue("privacy.invitees", updatedInvitees);
   };
 
   const handleRemoveInvitee = (email: string) => {
-    const updatedInvitees = invitees.filter((invitee) => invitee !== email);
-    setInvitees(updatedInvitees);
-    onChange(privacySetting, updatedInvitees);
+    const updatedInvitees = formik.values.privacy.invitees?.filter(
+      (invitee) => invitee !== email,
+    );
+    formik.setFieldValue("privacy.invitees", updatedInvitees);
   };
 
   const PrivacyControls = {
@@ -61,21 +65,22 @@ const PrivacySettings = ({ onChange }: PrivacySettingsProps) => {
         </article>
         <article className="space-y-3">
           <Separator>Invitees</Separator>
-          {invitees.map((invitee, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-between w-full"
-            >
-              <Span>{invitee}</Span>
-              <Button
-                theme="feedback-error"
-                className="p-2"
-                onClick={() => handleRemoveInvitee(invitee)}
+          {formik.values.privacy.invitees?.length &&
+            formik.values.privacy.invitees.map((invitee, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between w-full"
               >
-                <PersonRemove />
-              </Button>
-            </div>
-          ))}
+                <Span>{invitee}</Span>
+                <Button
+                  theme="feedback-error"
+                  className="p-2"
+                  onClick={() => handleRemoveInvitee(invitee)}
+                >
+                  <PersonRemove />
+                </Button>
+              </div>
+            ))}
         </article>
       </>
     ),

@@ -50,7 +50,7 @@ export const AdvancedSettings = () => {
           checked={values.advancedSettings.randomizeQuestionOrder}
           onCheckedChange={() =>
             setFieldValue(
-              "randomizeQuestionOrder",
+              "advancedSettings.randomizeQuestionOrder",
               !values.advancedSettings.randomizeQuestionOrder,
             )
           }
@@ -69,7 +69,7 @@ export const AdvancedSettings = () => {
           checked={values.advancedSettings.showCorrectAnswers}
           onCheckedChange={() =>
             setFieldValue(
-              "showCorrectAnswers",
+              "advancedSettings.showCorrectAnswers",
               !values.advancedSettings.showCorrectAnswers,
             )
           }
@@ -88,7 +88,7 @@ export const AdvancedSettings = () => {
           checked={values.advancedSettings.sendEmailReport}
           onCheckedChange={() =>
             setFieldValue(
-              "sendEmailReport",
+              "advancedSettings.sendEmailReport",
               !values.advancedSettings.sendEmailReport,
             )
           }
@@ -106,7 +106,10 @@ export const AdvancedSettings = () => {
           className="w-20"
           checked={values.advancedSettings.leaderboard}
           onCheckedChange={() =>
-            setFieldValue("leaderboard", !values.advancedSettings.leaderboard)
+            setFieldValue(
+              "advancedSettings.leaderboard",
+              !values.advancedSettings.leaderboard,
+            )
           }
         />
       </article>

@@ -1,4 +1,3 @@
-import { PropsWithChildren } from "react";
 import { cn } from "../../utils";
 
 export const Span = (
@@ -18,8 +17,17 @@ export const Span = (
   );
 };
 
-export const FocusSpan = ({ children }: PropsWithChildren) => (
-  <span className="font-medium leading-tight xl:text-lg xl:leading-normal">
-    {children}
-  </span>
+export const FocusSpan = (
+  props: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLSpanElement>,
+    HTMLSpanElement
+  >,
+) => (
+  <span
+    {...props}
+    className={cn(
+      "font-medium leading-tight xl:text-lg xl:leading-normal",
+      props.className,
+    )}
+  />
 );

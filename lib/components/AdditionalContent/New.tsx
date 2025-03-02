@@ -1,4 +1,5 @@
 import { Button } from "../Button";
+import { FocusSpan, Heading4 } from "../FontFaces";
 import { Input } from "../Input";
 import { Textarea } from "../Textarea";
 
@@ -12,17 +13,15 @@ export const NewAdditionalContent = ({
   onCancel,
 }: INewAdditionalContent) => {
   return (
-    <section className="p-4 shadow-right shadow-black border border-black space-y-6">
-      <h4 className="text-2xl leading-7 font-medium tracking-[0.48px]">
-        New Content
-      </h4>
+    <section className="p-4 shadow-right rounded-lg shadow-black border border-black space-y-6">
+      <Heading4>New Content</Heading4>
       <article className="space-y-4">
         <div className="space-y-1">
-          <label htmlFor="">YouTube URL</label>
+          <FocusSpan>YouTube URL</FocusSpan>
           <Input placeholder="https://youtu.be/?w=video" className="w-full" />
         </div>
         <div className="space-y-1">
-          <label htmlFor="">Description</label>
+          <FocusSpan>Description</FocusSpan>
           <Textarea
             rows={4}
             className="w-full"

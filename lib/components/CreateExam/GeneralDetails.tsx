@@ -1,20 +1,21 @@
-import { BannerInput, Input, Textarea } from "examsocial-components";
 import { useFormikContext } from "formik";
 import { examSchema } from "../../schemas/index";
+import { BannerInput } from "../BannerInput";
+import { FocusSpan, Heading4 } from "../FontFaces";
+import { Input } from "../Input";
+import { Textarea } from "../Textarea";
 
 export const GeneralDetails = () => {
   const { getFieldProps } = useFormikContext<typeof examSchema>();
   return (
     <section className="space-y-4">
-      <h2 className="sentient font-medium text-2xl leading-7 tracking-[0.48px]">
-        General Details
-      </h2>
+      <Heading4>General Details</Heading4>
       <article className="space-y-1">
         <label htmlFor="">Banner</label>
         <BannerInput />
       </article>
       <article className="space-y-1">
-        <label htmlFor="">Name</label>
+        <FocusSpan>Name</FocusSpan>
         <Input
           placeholder="The name of your exam"
           className="w-full"
@@ -22,7 +23,7 @@ export const GeneralDetails = () => {
         />
       </article>
       <article className="space-y-1">
-        <label htmlFor="">Description</label>
+        <FocusSpan>Description</FocusSpan>
         <Textarea
           placeholder="A brief description of your exam"
           className="w-full"

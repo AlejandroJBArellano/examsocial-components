@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { examSchema } from "../../schemas/index";
 import { Button } from "../Button";
 import ExamCard from "../ExamCard/ExamCard";
-import { FocusSpan, Heading3, Heading4 } from "../FontFaces";
+import { FocusSpan, Heading3, Heading4, Span } from "../FontFaces";
 import { QuestionSet } from "../QuestionSet";
 
 export const Review = () => {
@@ -50,7 +50,77 @@ export const Review = () => {
         ))}
       </article>
       <Heading4>Additional Content</Heading4>
-      <Heading4>Advanced Settings</Heading4>
+      <article className="space-y-1">
+        <Heading4>Advanced Settings</Heading4>
+        <div className="space-y-3">
+          <div className="flex justify-between items-center">
+            <Span>Randomize question order</Span>
+            <FocusSpan
+              className={
+                formik.values.advancedSettings.randomizeQuestionOrder
+                  ? "text-feedback-success"
+                  : "text-feedback-error"
+              }
+            >
+              {formik.values.advancedSettings.randomizeQuestionOrder
+                ? "Yes"
+                : "No"}
+            </FocusSpan>
+          </div>
+          <div className="flex justify-between items-center">
+            <Span>Show results at the end</Span>
+            <FocusSpan
+              className={
+                formik.values.advancedSettings.showCorrectAnswers
+                  ? "text-feedback-success"
+                  : "text-feedback-error"
+              }
+            >
+              {formik.values.advancedSettings.showCorrectAnswers ? "Yes" : "No"}
+            </FocusSpan>
+          </div>
+          <div className="flex justify-between items-center">
+            <Span>Send email report</Span>
+            <FocusSpan
+              className={
+                formik.values.advancedSettings.sendEmailReport
+                  ? "text-feedback-success"
+                  : "text-feedback-error"
+              }
+            >
+              {formik.values.advancedSettings.sendEmailReport ? "Yes" : "No"}
+            </FocusSpan>
+          </div>
+          <div className="flex justify-between items-center">
+            <Span>Leaderboard</Span>
+            <FocusSpan
+              className={
+                formik.values.advancedSettings.leaderboard
+                  ? "text-feedback-success"
+                  : "text-feedback-error"
+              }
+            >
+              {formik.values.advancedSettings.leaderboard ? "Yes" : "No"}
+            </FocusSpan>
+          </div>
+          <div className="flex justify-between items-center">
+            <Span>Number of attempts</Span>
+            <FocusSpan>
+              {formik.values.advancedSettings.numberOfAttempts}
+            </FocusSpan>
+          </div>
+          <div className="flex justify-between items-center">
+            <Span>Price</Span>
+            <FocusSpan>{formik.values.advancedSettings.price}</FocusSpan>
+          </div>
+          <div className="flex justify-between items-center">
+            <Span>Privacy</Span>
+            <FocusSpan>
+              {formik.values.advancedSettings.privacy.setting}
+            </FocusSpan>
+          </div>
+        </div>
+      </article>
     </section>
   );
 };

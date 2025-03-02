@@ -153,7 +153,7 @@ export const AdvancedSettings = () => {
         />
       </article>
       <TimingSettings />
-      <PrivacySettings onChange={() => {}} />
+      <PrivacySettings />
       {/* <ThemeSettings onChange={() => {}} /> */}
       <Dialog innerRef={dialogRef} id="advanced-settings">
         <NewFeedbackScreen

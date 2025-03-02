@@ -1,7 +1,7 @@
 import { Add } from "@mui/icons-material";
 import { useFormik } from "formik";
 import { useRef } from "react";
-import * as Yup from "yup";
+import { advancedSettingsSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { NewFeedbackScreen } from "../FeedbackScreen";
@@ -12,13 +12,6 @@ import { PremiumBadge } from "../PremiumBadge";
 import { PrivacySettings } from "../PrivacySettings";
 import { Switch } from "../Switch";
 import { TimingSettings } from "../TimingSettings";
-
-const validationSchema = Yup.object({
-  numberOfAttempts: Yup.number()
-    .min(1, "Must be at least 1")
-    .required("Required"),
-  price: Yup.number().min(0, "Must be at least 0").required("Required"),
-});
 
 export const AdvancedSettings = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -32,8 +25,13 @@ export const AdvancedSettings = () => {
       numberOfAttempts: 3,
       price: 0,
       feedback: [],
+      privacy: {
+        setting: "PUBLIC",
+        invitees: [],
+        password: "",
+      },
     },
-    validationSchema,
+    validationSchema: advancedSettingsSchema,
     onSubmit: (values) => {
       console.log(values);
     },

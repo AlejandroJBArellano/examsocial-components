@@ -121,6 +121,7 @@ const NewFeedbackScreen = ({ onSubmit, onCancel }: INewFeedbackScreen) => {
       }}
       onSubmit={onSubmit}
       validationSchema={feedbackSchema}
+      validateOnChange
     >
       {(formik) => (
         <div className="p-4 border rounded-lg shadow-right-sm shadow-black border-black space-y-6">

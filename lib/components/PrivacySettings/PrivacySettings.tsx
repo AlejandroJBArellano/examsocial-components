@@ -31,9 +31,9 @@ const PrivacySettings = () => {
     .setting as keyof typeof PrivacySettingsNameMap;
 
   const handlePrivacySettingChange = (newPrivacySetting: PrivacySetting) => {
-    formik.setFieldValue("privacy.setting", newPrivacySetting);
+    formik.setFieldValue("advancedSettings.privacy.setting", newPrivacySetting);
     if (newPrivacySetting === "INVITE_ONLY") {
-      formik.setFieldValue("privacy.invitees", []);
+      formik.setFieldValue("advancedSettings.privacy.invitees", []);
     }
   };
 
@@ -45,7 +45,7 @@ const PrivacySettings = () => {
         ...newInvitees,
       ]),
     ];
-    formik.setFieldValue("privacy.invitees", updatedInvitees);
+    formik.setFieldValue("advancedSettings.privacy.invitees", updatedInvitees);
   };
 
   const handleRemoveInvitee = (email: string) => {
@@ -53,7 +53,7 @@ const PrivacySettings = () => {
       formik.values.advancedSettings.privacy.invitees?.filter(
         (invitee) => invitee !== email,
       );
-    formik.setFieldValue("privacy.invitees", updatedInvitees);
+    formik.setFieldValue("advancedSettings.privacy.invitees", updatedInvitees);
   };
 
   const PrivacyControls = {

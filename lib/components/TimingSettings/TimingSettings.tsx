@@ -27,16 +27,16 @@ const TimingSettings = () => {
     .setting as keyof typeof TimingSettingsNameMap;
 
   const handleTimingSettingChange = (newSetting: TimingSetting) => {
-    formik.setFieldValue("timing.setting", newSetting);
+    formik.setFieldValue("advancedSettings.timing.setting", newSetting);
     if (newSetting === "NONE") {
-      formik.setFieldValue("timing.hours", 0);
-      formik.setFieldValue("timing.minutes", 0);
-      formik.setFieldValue("timing.seconds", 0);
+      formik.setFieldValue("advancedSettings.timing.hours", 0);
+      formik.setFieldValue("advancedSettings.timing.minutes", 0);
+      formik.setFieldValue("advancedSettings.timing.seconds", 0);
     }
   };
 
   const handleInputChange = (field: string, value: number) => {
-    formik.setFieldValue(`timing.${field}`, value);
+    formik.setFieldValue(`advancedSettings.timing.${field}`, value);
   };
 
   const TotalTimeControls = {

@@ -37,8 +37,21 @@ export const AdvancedSettings = () => {
           >
             <Add className="!w-8 !h-8" />
           </Button>
-          {values.advancedSettings.feedback?.map((feedback) => (
-            <FeedbackScreen key={feedback.condition} {...feedback} />
+          {values.advancedSettings.feedback?.map((feedback, index) => (
+            <FeedbackScreen
+              key={feedback.condition}
+              {...feedback}
+              onEdit={() => {}}
+              onDelete={() => {
+                setFieldValue(
+                  "advancedSettings.feedback",
+                  values.advancedSettings.feedback?.filter(
+                    (_, i) => i !== index,
+                  ),
+                );
+              }}
+              index={index}
+            />
           ))}
         </div>
       </article>

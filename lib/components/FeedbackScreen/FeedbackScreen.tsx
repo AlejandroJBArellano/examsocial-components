@@ -7,7 +7,17 @@ import { FocusSpan, Paragraph } from "../FontFaces";
 
 type Feedback = Yup.InferType<typeof feedbackSchema>;
 
-const FeedbackScreen = (feedback: Feedback) => {
+type FeedbackScreenProps = Feedback & {
+  onEdit: (index: number) => void;
+  onDelete: (index: number) => void;
+  index: number;
+};
+
+const FeedbackScreen = ({
+  onEdit,
+  onDelete,
+  ...feedback
+}: FeedbackScreenProps) => {
   return (
     <article className="p-4 space-y-4 border border-black rounded-md xl:space-y-5 xl:p-6">
       <FocusSpan>{handleCondition(feedback)}</FocusSpan>
@@ -18,10 +28,17 @@ const FeedbackScreen = (feedback: Feedback) => {
           rounded
           className="p-2 xl:p-2"
           type="button"
+          onClick={() => onDelete(feedback.index)}
         >
           <Delete className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
         </Button>
-        <Button theme="light" rounded className="p-2 xl:p-2" type="button">
+        <Button
+          theme="light"
+          rounded
+          className="p-2 xl:p-2"
+          type="button"
+          onClick={() => onEdit(feedback.index)}
+        >
           <Edit className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
         </Button>
       </div>

@@ -13,10 +13,15 @@ const FeedbackScreen = (feedback: Feedback) => {
       <FocusSpan>{handleCondition(feedback)}</FocusSpan>
       <Paragraph>{feedback.message}</Paragraph>
       <div className="flex items-center justify-between">
-        <Button theme="feedback-error" rounded className="p-2 xl:p-2">
+        <Button
+          theme="feedback-error"
+          rounded
+          className="p-2 xl:p-2"
+          type="button"
+        >
           <Delete className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
         </Button>
-        <Button theme="light" rounded className="p-2 xl:p-2">
+        <Button theme="light" rounded className="p-2 xl:p-2" type="button">
           <Edit className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
         </Button>
       </div>

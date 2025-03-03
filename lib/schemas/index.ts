@@ -22,30 +22,30 @@ export const questionSchema = Yup.object({
 export const feedbackSchema = Yup.object({
   message: Yup.string().required("Message is required"),
   condition: Yup.string()
-    .oneOf(Object.values(FeedbackCondition))
+    .oneOf(Object.keys(FeedbackCondition))
     .required("Condition is required"),
   min: Yup.number().when("condition", (condition, schema) =>
-    condition[0] === FeedbackCondition.BETWEEN
+    condition[0] === "BETWEEN"
       ? schema.required("Minimum value is required")
       : schema,
   ),
   max: Yup.number().when("condition", (condition, schema) =>
-    condition[0] === FeedbackCondition.BETWEEN
+    condition[0] === "BETWEEN"
       ? schema.required("Maximum value is required")
       : schema,
   ),
   equal: Yup.number().when("condition", (condition, schema) =>
-    condition[0] === FeedbackCondition.EQUAL_TO
+    condition[0] === "EQUAL_TO"
       ? schema.required("Equal value is required")
       : schema,
   ),
   gt: Yup.number().when("condition", (condition, schema) =>
-    condition[0] === FeedbackCondition.GREATER_THAN
+    condition[0] === "GREATER_THAN"
       ? schema.required("Greater than value is required")
       : schema,
   ),
   lt: Yup.number().when("condition", (condition, schema) =>
-    condition[0] === FeedbackCondition.LESS_THAN
+    condition[0] === "LESS_THAN"
       ? schema.required("Less than value is required")
       : schema,
   ),

@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
-import { NewFeedbackScreen } from "../FeedbackScreen";
+import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
 import { FocusSpan, Heading4 } from "../FontFaces";
 import { Helper } from "../Helper";
 import { Input } from "../Input";
@@ -28,14 +28,19 @@ export const AdvancedSettings = () => {
       </article>
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
-        <Button
-          className="p-2"
-          rounded
-          onClick={() => dialogRef.current?.showModal()}
-          type="button"
-        >
-          <Add className="!w-8 !h-8" />
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            className="p-2"
+            rounded
+            onClick={() => dialogRef.current?.showModal()}
+            type="button"
+          >
+            <Add className="!w-8 !h-8" />
+          </Button>
+          {values.advancedSettings.feedback?.map((feedback) => (
+            <FeedbackScreen key={feedback.condition} {...feedback} />
+          ))}
+        </div>
       </article>
       <article>
         <div>
@@ -150,10 +155,11 @@ export const AdvancedSettings = () => {
       <Dialog innerRef={dialogRef} id="advanced-settings">
         <NewFeedbackScreen
           onSubmit={(newFeedback) => {
-            setFieldValue("feedback", [
+            setFieldValue("advancedSettings.feedback", [
               ...(values.advancedSettings.feedback || []),
               newFeedback,
             ]);
+            console.log({ newFeedback });
             dialogRef.current?.close();
           }}
           onCancel={() => {

@@ -1,4 +1,4 @@
-import { useFormik, useFormikContext } from "formik";
+import { Formik, useFormikContext } from "formik";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { FeedbackCondition } from "../../constants";
@@ -14,8 +14,8 @@ const FeedbackConditionField = () => {
   const formik = useFormikContext<Yup.InferType<typeof feedbackSchema>>();
 
   const FeedbackConditionNodes = {
-    [FeedbackCondition.ALL]: null,
-    [FeedbackCondition.BETWEEN]: (
+    ALL: null,
+    BETWEEN: (
       <div className="flex items-center gap-2">
         <Input
           placeholder="0"
@@ -32,7 +32,7 @@ const FeedbackConditionField = () => {
         />
       </div>
     ),
-    [FeedbackCondition.EQUAL_TO]: (
+    EQUAL_TO: (
       <Input
         placeholder="100"
         className="w-full h-11"
@@ -40,7 +40,7 @@ const FeedbackConditionField = () => {
         {...formik.getFieldProps("equal")}
       />
     ),
-    [FeedbackCondition.GREATER_THAN]: (
+    GREATER_THAN: (
       <Input
         placeholder="100"
         className="w-full h-11"
@@ -48,7 +48,7 @@ const FeedbackConditionField = () => {
         {...formik.getFieldProps("gt")}
       />
     ),
-    [FeedbackCondition.LESS_THAN]: (
+    LESS_THAN: (
       <Input
         placeholder="100"
         className="w-full h-11"
@@ -70,21 +70,34 @@ const FeedbackConditionField = () => {
       <div className="space-y-1">
         <label className="font-medium">Condition</label>
         <Select
-          text={formik.values.condition || "Select one"}
+          text={
+            FeedbackCondition[
+              formik.values.condition as keyof typeof FeedbackCondition
+            ] || "Select one"
+          }
           container={container}
         >
           {Object.entries(FeedbackCondition).map(([key, conditionValue]) => (
             <Select.Option
               key={key}
-              checked={formik.values.condition === conditionValue}
-              onClick={() => formik.setFieldValue("condition", conditionValue)}
+              checked={formik.values.condition === key}
+              onClick={() => {
+                console.log(key);
+                formik.setFieldValue("condition", key);
+              }}
             >
               {conditionValue}
             </Select.Option>
           ))}
         </Select>
       </div>
-      <div>{FeedbackConditionNodes[formik.values.condition]}</div>
+      <div>
+        {
+          FeedbackConditionNodes[
+            formik.values.condition as keyof typeof FeedbackCondition
+          ]
+        }
+      </div>
     </article>
   );
 };
@@ -100,44 +113,54 @@ interface INewFeedbackScreen {
 }
 
 const NewFeedbackScreen = ({ onSubmit, onCancel }: INewFeedbackScreen) => {
-  const formik = useFormik({
-    initialValues: {
-      message: "",
-      condition: FeedbackCondition.ALL,
-    },
-    onSubmit: (values) => {
-      onSubmit(values);
-    },
-    validationSchema: feedbackSchema,
-  });
-
   return (
-    <div className="p-4 border rounded-lg shadow-right-sm shadow-black border-black space-y-6">
-      <h4 className="text-2xl leading-7 tracking-[0.48px] font-medium sentient">
-        Thank You Screen
-      </h4>
-      <section className="space-y-4">
-        <article className="space-y-1">
-          <label className="block font-medium leading-5">Message</label>
-          <Textarea
-            className="w-full p-2 border rounded-lg"
-            placeholder="e.g., Congrats, you got a perfect score!"
-            name="message"
-            value={formik.values.message}
-            onChange={formik.handleChange}
-          />
-        </article>
-        <FeedbackConditionField />
-      </section>
-      <div className="flex justify-between items-center">
-        <Button rounded onClick={onCancel}>
-          Cancel
-        </Button>
-        <Button theme="accent" rounded onClick={formik.submitForm}>
-          Save
-        </Button>
-      </div>
-    </div>
+    <Formik
+      initialValues={{
+        message: "",
+        condition: "ALL",
+      }}
+      onSubmit={onSubmit}
+      validationSchema={feedbackSchema}
+    >
+      {(formik) => (
+        <div className="p-4 border rounded-lg shadow-right-sm shadow-black border-black space-y-6">
+          <h4 className="text-2xl leading-7 tracking-[0.48px] font-medium sentient">
+            Thank You Screen
+          </h4>
+          <section className="space-y-4">
+            <article className="space-y-1">
+              <label className="block font-medium leading-5">Message</label>
+              <Textarea
+                className="w-full p-2 border rounded-lg"
+                placeholder="e.g., Congrats, you got a perfect score!"
+                name="message"
+                value={formik.values.message}
+                onChange={formik.handleChange}
+                error={!!formik.errors.message}
+              />
+              {formik.errors.message && (
+                <p className="text-feedback-error">{formik.errors.message}</p>
+              )}
+            </article>
+            <FeedbackConditionField />
+          </section>
+          <div className="flex justify-between items-center">
+            <Button rounded onClick={onCancel} type="button">
+              Cancel
+            </Button>
+            <Button
+              theme="accent"
+              type="button"
+              rounded
+              onClick={formik.submitForm}
+              disabled={!formik.isValid}
+            >
+              Save
+            </Button>
+          </div>
+        </div>
+      )}
+    </Formik>
   );
 };
 

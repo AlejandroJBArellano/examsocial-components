@@ -1,11 +1,12 @@
 import { Add } from "@mui/icons-material";
 import { useFormikContext } from "formik";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
+import { EditFeedbackScreen } from "../FeedbackScreen/NewAndEdit";
 import { FocusSpan, Heading4 } from "../FontFaces";
 import { Helper } from "../Helper";
 import { Input } from "../Input";
@@ -16,6 +17,8 @@ import { TimingSettings } from "../TimingSettings";
 
 export const AdvancedSettings = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const editFeedbackDialogRef = useRef<HTMLDialogElement>(null);
+  const [index, setIndex] = useState<number>(0);
 
   const { values, setFieldValue, getFieldProps } =
     useFormikContext<Yup.InferType<typeof examSchema>>();
@@ -41,7 +44,10 @@ export const AdvancedSettings = () => {
             <FeedbackScreen
               key={feedback.condition}
               {...feedback}
-              onEdit={() => {}}
+              onEdit={() => {
+                setIndex(index);
+                editFeedbackDialogRef.current?.showModal();
+              }}
               onDelete={() => {
                 setFieldValue(
                   "advancedSettings.feedback",
@@ -179,6 +185,30 @@ export const AdvancedSettings = () => {
             dialogRef.current?.close();
           }}
         />
+      </Dialog>
+      <Dialog innerRef={editFeedbackDialogRef} id="advanced-settings">
+        {values.advancedSettings.feedback![index] ? (
+          <EditFeedbackScreen
+            feedback={values.advancedSettings.feedback![index]}
+            onSubmit={(newFeedback) => {
+              setFieldValue("advancedSettings.feedback", [
+                ...(values.advancedSettings.feedback || []).map(
+                  (feedback, i) => {
+                    if (i === index) {
+                      return newFeedback;
+                    }
+                    return feedback;
+                  },
+                ),
+              ]);
+              console.log({ newFeedback });
+              editFeedbackDialogRef.current?.close();
+            }}
+            onCancel={() => {
+              editFeedbackDialogRef.current?.close();
+            }}
+          />
+        ) : null}
       </Dialog>
     </section>
   );

@@ -22,6 +22,7 @@ const FeedbackConditionField = () => {
           placeholder="0"
           type="number"
           className="w-full h-11"
+          error={!!formik.errors.min}
           {...formik.getFieldProps("min")}
         />
         <Span>and</Span>
@@ -29,6 +30,7 @@ const FeedbackConditionField = () => {
           placeholder="100"
           type="number"
           className="w-full h-11"
+          error={!!formik.errors.max}
           {...formik.getFieldProps("max")}
         />
       </div>
@@ -38,6 +40,7 @@ const FeedbackConditionField = () => {
         placeholder="100"
         className="w-full h-11"
         type="number"
+        error={!!formik.errors.equal}
         {...formik.getFieldProps("equal")}
       />
     ),
@@ -46,6 +49,7 @@ const FeedbackConditionField = () => {
         placeholder="100"
         className="w-full h-11"
         type="number"
+        error={!!formik.errors.gt}
         {...formik.getFieldProps("gt")}
       />
     ),
@@ -54,6 +58,7 @@ const FeedbackConditionField = () => {
         placeholder="100"
         className="w-full h-11"
         type="number"
+        error={!!formik.errors.lt}
         {...formik.getFieldProps("lt")}
       />
     ),

@@ -1,46 +1,54 @@
-import { Photo } from "@mui/icons-material";
 import { PropsWithChildren } from "react";
-import { Button } from "../Button";
 import { FocusSpan } from "../FontFaces";
+import ImageInput from "../ImageInput/ImageInput";
 import { ImageUploader } from "../ImageUploader";
+
+interface ImageFieldProps extends PropsWithChildren {
+  image: File | null;
+  setImage: (image: File) => void;
+  multiple?: false;
+}
+
+interface MultipleImageFieldProps extends PropsWithChildren {
+  images: File[];
+  setImages: (images: File[]) => void;
+  multiple: true;
+}
 
 const ImageField = ({
   children,
-  image,
-  setImage,
-}: PropsWithChildren<{
-  image: File;
-  setImage: (image: File) => void;
-}>) => {
+  ...props
+}: ImageFieldProps | MultipleImageFieldProps) => {
   return (
     <div className="space-y-1">
       <FocusSpan>{children}</FocusSpan>
-      {image ? (
-        <ImageUploader image={image} />
-      ) : (
-        <label
-          htmlFor="newImage"
-          className="p-4 border w-full h-28 border-black rounded-lg flex items-center justify-center"
-        >
-          <input
-            type="file"
-            id="newImage"
-            className="hidden"
+      {props.multiple ? (
+        <div className="space-y-2">
+          <ImageInput
             onChange={(e) => {
-              const file = e.target?.files?.[0];
-              if (file) {
-                setImage(file);
-              }
+              const files = e.target?.files ? Array.from(e.target.files) : [];
+              props.setImages(files);
             }}
           />
-          <Button
-            rounded
-            className="p-2 flex"
-            onClick={() => document.getElementById("newImage")?.click()}
-          >
-            <Photo className="!w-5 !h-5" />
-          </Button>
-        </label>
+          {props.images.map((image) => (
+            <ImageUploader key={image.lastModified} image={image} />
+          ))}
+        </div>
+      ) : (
+        <>
+          {props.image ? (
+            <ImageUploader image={props.image} />
+          ) : (
+            <ImageInput
+              onChange={(e) => {
+                const file = e.target?.files?.[0];
+                if (file) {
+                  props.setImage(file);
+                }
+              }}
+            />
+          )}
+        </>
       )}
     </div>
   );

@@ -18,7 +18,13 @@ const ImageInput = (
       htmlFor="newImage"
       className="p-4 border xl:p-7 xl:border-dashed cursor-pointer w-full h-28 xl:h-auto border-black rounded-lg flex items-center justify-center"
     >
-      <input type="file" id="newImage" className="hidden" {...props} />
+      <input
+        accept="image/*"
+        type="file"
+        id="newImage"
+        className="hidden"
+        {...props}
+      />
       <Button rounded className="p-2 flex xl:hidden" onClick={onClick}>
         <Photo className="!w-5 !h-5" />
       </Button>

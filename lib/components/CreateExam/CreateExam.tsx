@@ -57,7 +57,7 @@ const CreateExam = () => {
         console.log({ values });
       }}
     >
-      {() => (
+      {({ isValid }) => (
         <Form>
           <header>
             <Stepper
@@ -66,6 +66,12 @@ const CreateExam = () => {
               activeStep={step}
               onClickStep={(newStep) => {
                 setStep(newStep as keyof typeof steps);
+              }}
+              validation={{
+                1: true,
+                2: true,
+                3: true,
+                4: isValid,
               }}
             />
           </header>

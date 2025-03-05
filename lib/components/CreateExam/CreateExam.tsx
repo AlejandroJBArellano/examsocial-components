@@ -53,6 +53,7 @@ const CreateExam = () => {
         },
       }}
       validationSchema={examSchema}
+      validateOnMount
       onSubmit={(values) => {
         console.log({ values });
       }}

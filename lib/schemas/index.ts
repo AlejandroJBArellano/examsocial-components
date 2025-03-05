@@ -25,7 +25,9 @@ export const questionSchema = Yup.object({
 });
 
 export const feedbackSchema = Yup.object({
-  message: Yup.string().required("Message is required"),
+  message: Yup.string()
+    .required("Message is required")
+    .min(20, "Message must be at least 20 characters long"),
   condition: Yup.string()
     .oneOf(Object.keys(FeedbackCondition))
     .required("Condition is required"),

@@ -45,7 +45,7 @@ export const Review = () => {
             }
             key={index}
             question={question.question}
-            answers={question.answers}
+            options={question.options}
           />
         ))}
       </article>

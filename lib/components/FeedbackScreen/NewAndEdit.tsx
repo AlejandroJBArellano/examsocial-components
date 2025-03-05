@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { FeedbackCondition } from "../../constants";
 import { feedbackSchema } from "../../schemas";
 import { Button } from "../Button";
+import { FocusSpan, Heading4, Span } from "../FontFaces";
 import { Input } from "../Input";
 import { Select } from "../Select";
 import { Textarea } from "../Textarea";
@@ -23,7 +24,7 @@ const FeedbackConditionField = () => {
           className="w-full h-11"
           {...formik.getFieldProps("min")}
         />
-        <span className="text-lg leading-6">and</span>
+        <Span>and</Span>
         <Input
           placeholder="100"
           type="number"
@@ -128,12 +129,10 @@ export const NewFeedbackScreen = ({
     >
       {(formik) => (
         <div className="p-4 border rounded-lg shadow-right-sm shadow-black border-black space-y-6">
-          <h4 className="text-2xl leading-7 tracking-[0.48px] font-medium sentient">
-            Thank You Screen
-          </h4>
+          <Heading4>Thank You Screen</Heading4>
           <section className="space-y-4">
             <article className="space-y-1">
-              <label className="block font-medium leading-5">Message</label>
+              <FocusSpan>Message</FocusSpan>
               <Textarea
                 className="w-full p-2 border rounded-lg"
                 placeholder="e.g., Congrats, you got a perfect score!"
@@ -188,12 +187,10 @@ export const EditFeedbackScreen = ({
     >
       {(formik) => (
         <div className="p-4 border rounded-lg shadow-right-sm shadow-black border-black space-y-6">
-          <h4 className="text-2xl leading-7 tracking-[0.48px] font-medium sentient">
-            Edit Thank You Screen
-          </h4>
+          <Heading4>Edit Thank You Screen</Heading4>
           <section className="space-y-4">
             <article className="space-y-1">
-              <label className="block font-medium leading-5">Message</label>
+              <FocusSpan>Message</FocusSpan>
               <Textarea
                 className="w-full p-2 border rounded-lg"
                 placeholder="e.g., Congrats, you got a perfect score!"

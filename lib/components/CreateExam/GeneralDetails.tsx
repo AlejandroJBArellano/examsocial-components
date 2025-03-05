@@ -30,9 +30,9 @@ export const GeneralDetails = () => {
         />
       </article>
       <article className="space-y-1">
-        <FocusSpan>Name</FocusSpan>
+        <FocusSpan>Title</FocusSpan>
         <Input
-          placeholder="The name of your exam"
+          placeholder="The title of your exam"
           className="w-full"
           {...getFieldProps("title")}
         />

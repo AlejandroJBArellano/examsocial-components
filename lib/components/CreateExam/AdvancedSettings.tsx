@@ -149,7 +149,7 @@ export const AdvancedSettings = () => {
       </article>
       <article className="w-full">
         <div>
-          <FocusSpan>Price</FocusSpan>
+          <FocusSpan>Price (USD)</FocusSpan>
           <Helper align="center" side="top">
             Price is the amount a student has to pay to attempt the exam.
           </Helper>

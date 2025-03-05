@@ -31,6 +31,7 @@ const CreateExam = () => {
         description: "",
         questions: [],
         contents: [],
+        tags: [],
         advancedSettings: {
           randomizeQuestionOrder: false,
           showCorrectAnswers: false,

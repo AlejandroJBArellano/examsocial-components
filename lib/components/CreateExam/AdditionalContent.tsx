@@ -6,6 +6,7 @@ import { contentSchema, examSchema } from "../../schemas";
 import { NewAdditionalContent } from "../AdditionalContent/New";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
+import { Anchor } from "../FontFaces";
 
 const ContentSet = ({
   content,
@@ -24,9 +25,9 @@ const ContentSet = ({
     ),
     TEXT: <p>{content.text}</p>,
     LINK: (
-      <a href={content.link} target="_blank" rel="noreferrer">
+      <Anchor href={content.link} target="_blank" rel="noreferrer">
         {content.link}
-      </a>
+      </Anchor>
     ),
     IMAGE: content.image ? (
       <img

@@ -1,4 +1,4 @@
-import { Add } from "@mui/icons-material";
+import { Add, DragIndicator } from "@mui/icons-material";
 import { useFormikContext } from "formik";
 import { useRef } from "react";
 import * as Yup from "yup";
@@ -60,7 +60,12 @@ const ContentSet = ({
       </a>
     ) : null,
   };
-  return <div>{handleContent[content.contentType]}</div>;
+  return (
+    <section className="flex justify-between items-start gap-4">
+      {handleContent[content.contentType]}
+      <DragIndicator className="!w-5 !h-5 cursor-move" />
+    </section>
+  );
 };
 
 export const AdditionalContent = () => {

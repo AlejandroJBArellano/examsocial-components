@@ -137,7 +137,7 @@ export const examSchema = Yup.object({
   description: Yup.string().required("Description is required"),
   image: Yup.mixed().required("Image is required"),
   advancedSettings: advancedSettingsSchema,
-  contents: contentSchema,
+  contents: Yup.array().of(contentSchema),
   questions: Yup.array()
     .of(questionSchema)
     .required()

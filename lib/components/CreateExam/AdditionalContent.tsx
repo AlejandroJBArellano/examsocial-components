@@ -38,7 +38,7 @@ const ContentSet = ({
       <img
         src={content.image ? URL.createObjectURL(content.image as Blob) : ""}
         alt="content"
-        className="w-full h-[200px] rounded-lg"
+        className="aspect-video rounded-lg"
       />
     ) : null,
     VIDEO: content.video ? (
@@ -66,7 +66,7 @@ const ContentSet = ({
     ) : null,
   };
   return (
-    <section className="flex justify-between items-start gap-4">
+    <section className="flex justify-between gap-4">
       {handleContent[content.contentType]}
       <DragIndicator className="!w-5 !h-5 cursor-move" />
     </section>

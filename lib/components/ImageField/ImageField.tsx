@@ -33,7 +33,11 @@ const ImageField = ({
               }
             }}
           />
-          <Button rounded className="p-2 flex">
+          <Button
+            rounded
+            className="p-2 flex"
+            onClick={() => document.getElementById("newImage")?.click()}
+          >
             <Photo className="!w-5 !h-5" />
           </Button>
         </label>

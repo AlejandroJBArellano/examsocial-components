@@ -72,7 +72,12 @@ export const NewAdditionalContent = ({
         <Input placeholder="https://example.com" className="w-full" />
       </div>
     ),
-    IMAGE: <ImageField image={image} setImage={setImage} />,
+    IMAGE: (
+      <ImageField
+        image={image}
+        setImage={(image) => image && setImage(image)}
+      />
+    ),
     VIDEO: (
       <div className="space-y-1">
         <FocusSpan>Video</FocusSpan>

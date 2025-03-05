@@ -5,7 +5,7 @@ import { ImageUploader } from "../ImageUploader";
 
 interface ImageFieldProps extends PropsWithChildren {
   image?: File;
-  setImage: (image: File) => void;
+  setImage: (image: File | null) => void;
   multiple?: false;
 }
 
@@ -31,13 +31,28 @@ const ImageField = ({
             }}
           />
           {props.images.map((image) => (
-            <ImageUploader key={image.lastModified} image={image} />
+            <ImageUploader
+              key={image.lastModified}
+              image={image}
+              onDelete={() => {
+                props.setImages(
+                  props.images.filter(
+                    (i) => i.lastModified !== image.lastModified,
+                  ),
+                );
+              }}
+            />
           ))}
         </div>
       ) : (
         <>
           {props.image ? (
-            <ImageUploader image={props.image} />
+            <ImageUploader
+              image={props.image}
+              onDelete={() => {
+                props.setImage(null);
+              }}
+            />
           ) : (
             <ImageInput
               onChange={(e) => {

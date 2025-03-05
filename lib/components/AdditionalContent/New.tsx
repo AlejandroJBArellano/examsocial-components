@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { ContentTypes } from "../../types";
-import { BannerInput } from "../BannerInput";
 import { Button } from "../Button";
 import { FocusSpan, Heading4 } from "../FontFaces";
 import { ImageField } from "../ImageField";
@@ -103,7 +102,10 @@ export const NewAdditionalContent = ({
     VIDEO: (
       <div className="space-y-1">
         <FocusSpan>Video</FocusSpan>
-        <BannerInput
+        <input
+          type="file"
+          accept="video/*"
+          className="w-full file:rounded-full file:bg-primary file:p-2 file:hover:bg-primary-shadow file:hover:text-primary-tint file:border-primary-shadow file:text-primary-shadow"
           onChange={(e) => {
             const file = e.target?.files?.[0];
             if (file) {
@@ -116,7 +118,10 @@ export const NewAdditionalContent = ({
     AUDIO: (
       <div className="space-y-1">
         <FocusSpan>Audio</FocusSpan>
-        <BannerInput
+        <input
+          type="file"
+          accept="video/*"
+          className="w-full file:rounded-full file:bg-primary file:p-2 file:hover:bg-primary-shadow file:hover:text-primary-tint file:border-primary-shadow file:text-primary-shadow"
           onChange={(e) => {
             const file = e.target?.files?.[0];
             if (file) {
@@ -129,7 +134,10 @@ export const NewAdditionalContent = ({
     FILE: (
       <div className="space-y-1">
         <FocusSpan>File</FocusSpan>
-        <BannerInput
+        <input
+          type="file"
+          accept="video/*"
+          className="w-full file:rounded-full file:bg-primary file:p-2 file:hover:bg-primary-shadow file:hover:text-primary-tint file:border-primary-shadow file:text-primary-shadow"
           onChange={(e) => {
             const file = e.target?.files?.[0];
             if (file) {

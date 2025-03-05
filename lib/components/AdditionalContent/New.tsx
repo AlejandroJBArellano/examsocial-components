@@ -223,7 +223,7 @@ export const NewAdditionalContent = ({
           theme="accent"
           rounded
           type="button"
-          onClick={() =>
+          onClick={() => {
             onSubmit({
               contentType,
               youtubeUrl: contentType === "YOUTUBE" ? youtubeUrl : undefined,
@@ -233,8 +233,17 @@ export const NewAdditionalContent = ({
               video: contentType === "VIDEO" ? video : undefined,
               audio: contentType === "AUDIO" ? audio : undefined,
               file: contentType === "FILE" ? file : undefined,
-            })
-          }
+            });
+
+            setContentType("YOUTUBE");
+            setYoutubeUrl("");
+            setText("");
+            setLink("");
+            setImage(undefined);
+            setVideo(undefined);
+            setAudio(undefined);
+            setFile(undefined);
+          }}
         >
           Save
         </Button>

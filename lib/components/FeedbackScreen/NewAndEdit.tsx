@@ -112,7 +112,10 @@ interface INewFeedbackScreen {
   onCancel: () => void;
 }
 
-const NewFeedbackScreen = ({ onSubmit, onCancel }: INewFeedbackScreen) => {
+export const NewFeedbackScreen = ({
+  onSubmit,
+  onCancel,
+}: INewFeedbackScreen) => {
   return (
     <Formik
       initialValues={{
@@ -165,4 +168,62 @@ const NewFeedbackScreen = ({ onSubmit, onCancel }: INewFeedbackScreen) => {
   );
 };
 
-export default NewFeedbackScreen;
+interface IEditFeedbackScreen {
+  feedback: IFeedback;
+  onSubmit: (values: IFeedback) => void;
+  onCancel: () => void;
+}
+
+export const EditFeedbackScreen = ({
+  feedback,
+  onSubmit,
+  onCancel,
+}: IEditFeedbackScreen) => {
+  return (
+    <Formik
+      initialValues={feedback}
+      onSubmit={onSubmit}
+      validationSchema={feedbackSchema}
+      validateOnChange
+    >
+      {(formik) => (
+        <div className="p-4 border rounded-lg shadow-right-sm shadow-black border-black space-y-6">
+          <h4 className="text-2xl leading-7 tracking-[0.48px] font-medium sentient">
+            Edit Thank You Screen
+          </h4>
+          <section className="space-y-4">
+            <article className="space-y-1">
+              <label className="block font-medium leading-5">Message</label>
+              <Textarea
+                className="w-full p-2 border rounded-lg"
+                placeholder="e.g., Congrats, you got a perfect score!"
+                name="message"
+                value={formik.values.message}
+                onChange={formik.handleChange}
+                error={!!formik.errors.message}
+              />
+              {formik.errors.message && (
+                <p className="text-feedback-error">{formik.errors.message}</p>
+              )}
+            </article>
+            <FeedbackConditionField />
+          </section>
+          <div className="flex justify-between items-center">
+            <Button rounded onClick={onCancel} type="button">
+              Cancel
+            </Button>
+            <Button
+              theme="accent"
+              type="button"
+              rounded
+              onClick={formik.submitForm}
+              disabled={!formik.isValid}
+            >
+              Save
+            </Button>
+          </div>
+        </div>
+      )}
+    </Formik>
+  );
+};

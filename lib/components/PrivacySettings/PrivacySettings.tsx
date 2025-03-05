@@ -163,17 +163,23 @@ const NewInvitee = ({ onSubmit }: INewInvitee) => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="flex gap-2 items-center">
+    <section className="flex gap-2 items-center">
       <Input
         placeholder="Email(s), separated by commas"
         className="w-full h-11"
         type="email"
         {...formik.getFieldProps("emails")}
       />
-      <Button theme="extra" type="submit">
+      <Button
+        theme="extra"
+        type="button"
+        onClick={async () => {
+          await formik.submitForm();
+        }}
+      >
         <FocusSpan>Invite</FocusSpan>
       </Button>
-    </form>
+    </section>
   );
 };
 

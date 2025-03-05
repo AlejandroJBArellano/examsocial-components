@@ -55,7 +55,7 @@ const ContentSet = ({
         target="_blank"
         rel="noreferrer"
       >
-        {content.file.name}
+        {(content.file as File).name}
       </a>
     ) : null,
   };

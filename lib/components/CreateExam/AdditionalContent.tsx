@@ -17,6 +17,9 @@ const ContentSet = ({
       <iframe
         src={content.youtubeUrl}
         className="w-full h-[200px] rounded-lg"
+        allowFullScreen
+        width={560}
+        height={315}
       ></iframe>
     ),
     TEXT: <p>{content.text}</p>,

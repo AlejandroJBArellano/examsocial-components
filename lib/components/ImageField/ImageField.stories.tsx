@@ -10,5 +10,7 @@ export default {
 type Story = StoryObj<typeof ImageField>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    children: "Image",
+  },
 };

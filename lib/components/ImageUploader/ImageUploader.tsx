@@ -2,7 +2,13 @@ import { Delete } from "@mui/icons-material";
 import { Button } from "../Button";
 import { Smoll, Span } from "../FontFaces";
 
-const ImageUploader = ({ image }: { image: File }) => {
+const ImageUploader = ({
+  image,
+  onDelete,
+}: {
+  image: File;
+  onDelete: () => void;
+}) => {
   return (
     <article className="p-2 flex items-center justify-between bg-white border-sm border-black">
       <div className="gap-2 flex items-center">
@@ -18,7 +24,7 @@ const ImageUploader = ({ image }: { image: File }) => {
         </div>
       </div>
       <Button theme="feedback-error" rounded className="p-2">
-        <Delete className="!w-6 !h-6" />
+        <Delete className="!w-6 !h-6" onClick={onDelete} />
       </Button>
     </article>
   );

@@ -23,7 +23,7 @@ const ImageUploader = ({
           </Smoll>
         </div>
       </div>
-      <Button theme="feedback-error" rounded className="p-2">
+      <Button type="button" theme="feedback-error" rounded className="p-2">
         <Delete className="!w-6 !h-6" onClick={onDelete} />
       </Button>
     </article>

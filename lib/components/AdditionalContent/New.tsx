@@ -20,6 +20,16 @@ type ContentTypes =
   | "AUDIO"
   | "FILE";
 
+const ContentTypeNamesMap = {
+  YOUTUBE: "YouTube URL",
+  TEXT: "Text",
+  LINK: "Link",
+  IMAGE: "Image",
+  VIDEO: "Video",
+  AUDIO: "Audio",
+  FILE: "File",
+};
+
 export const NewAdditionalContent = ({
   onSubmit,
   onCancel,
@@ -119,7 +129,9 @@ export const NewAdditionalContent = ({
     <section className="p-4 shadow-right rounded-lg shadow-black border border-black space-y-6">
       <Heading4>New Content</Heading4>
       <Select
-        text={contentType ? contentType : "Select content type"}
+        text={
+          contentType ? ContentTypeNamesMap[contentType] : "Select content type"
+        }
         container={container}
       >
         <Select.Option

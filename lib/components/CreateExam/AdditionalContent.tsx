@@ -29,7 +29,10 @@ export const AdditionalContent = () => {
         className="max-w-sm w-full"
       >
         <NewAdditionalContent
-          onSubmit={() => {}}
+          onSubmit={(values) => {
+            console.log(values);
+            dialogRef.current?.close();
+          }}
           onCancel={() => {
             dialogRef.current?.close();
           }}

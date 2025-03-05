@@ -234,9 +234,9 @@ export const NewAdditionalContent = ({
           onClick={() =>
             onSubmit({
               contentType,
-              youtubeUrl: contentType === "YOUTUBE" ? "" : undefined,
-              text: contentType === "TEXT" ? "" : undefined,
-              link: contentType === "LINK" ? "" : undefined,
+              youtubeUrl: contentType === "YOUTUBE" ? youtubeUrl : undefined,
+              text: contentType === "TEXT" ? text : undefined,
+              link: contentType === "LINK" ? link : undefined,
               image: contentType === "IMAGE" ? image : undefined,
               video: contentType === "VIDEO" ? video : undefined,
               audio: contentType === "AUDIO" ? audio : undefined,

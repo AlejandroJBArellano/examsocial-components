@@ -97,6 +97,41 @@ export const advancedSettingsSchema = Yup.object({
   }),
 });
 
+export const contentSchema = Yup.object({
+  contentType: Yup.string()
+    .oneOf(["YOUTUBE", "TEXT", "LINK", "IMAGE", "VIDEO", "AUDIO", "FILE"])
+    .required("Content type is required"),
+  youtubeUrl: Yup.string().when("contentType", {
+    is: "YOUTUBE",
+    then: (schema) =>
+      schema.url("Invalid URL").required("YouTube URL is required"),
+  }),
+  text: Yup.string().when("contentType", {
+    is: "TEXT",
+    then: (schema) => schema.required("Text is required"),
+  }),
+  link: Yup.string().when("contentType", {
+    is: "LINK",
+    then: (schema) => schema.url("Invalid URL").required("Link is required"),
+  }),
+  image: Yup.mixed().when("contentType", {
+    is: "IMAGE",
+    then: (schema) => schema.required("Image is required"),
+  }),
+  video: Yup.mixed().when("contentType", {
+    is: "VIDEO",
+    then: (schema) => schema.required("Video is required"),
+  }),
+  audio: Yup.mixed().when("contentType", {
+    is: "AUDIO",
+    then: (schema) => schema.required("Audio is required"),
+  }),
+  file: Yup.mixed().when("contentType", {
+    is: "FILE",
+    then: (schema) => schema.required("File is required"),
+  }),
+});
+
 export const examSchema = Yup.object({
   title: Yup.string().required("Title is required"),
   description: Yup.string().required("Description is required"),

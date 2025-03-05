@@ -133,13 +133,36 @@ export const contentSchema = Yup.object({
 });
 
 export const examSchema = Yup.object({
-  title: Yup.string().required("Title is required"),
-  description: Yup.string().required("Description is required"),
-  image: Yup.mixed().required("Image is required"),
+  title: Yup.string()
+    .required("Title is required")
+    .min(5, "Title must be at least 5 characters long"),
+  description: Yup.string()
+    .required("Description is required")
+    .min(10, "Description must be at least 10 characters long"),
+  image: Yup.mixed()
+    .required("Image is required")
+    .test(
+      "fileSize",
+      "File too large",
+      (value) => !value || (value instanceof File && value.size <= 1024 * 1024),
+    )
+    .test(
+      "fileType",
+      "Unsupported File Format",
+      (value) =>
+        !value ||
+        (value &&
+          ["image/jpeg", "image/png", "image/gif"].includes(
+            value instanceof File ? value.type : "",
+          )),
+    ),
   advancedSettings: advancedSettingsSchema,
-  contents: Yup.array().of(contentSchema).required(),
+  contents: Yup.array()
+    .of(contentSchema)
+    .required("Contents are required")
+    .min(1, "At least one content item is required"),
   questions: Yup.array()
     .of(questionSchema)
-    .required()
+    .required("Questions are required")
     .min(1, "At least one question is required"),
 });

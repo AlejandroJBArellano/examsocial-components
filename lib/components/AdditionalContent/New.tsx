@@ -120,7 +120,7 @@ export const NewAdditionalContent = ({
         <FocusSpan>Audio</FocusSpan>
         <input
           type="file"
-          accept="video/*"
+          accept="audio/*"
           className="w-full file:rounded-full file:bg-primary file:p-2 file:hover:bg-primary-shadow file:hover:text-primary-tint file:border-primary-shadow file:text-primary-shadow"
           onChange={(e) => {
             const file = e.target?.files?.[0];
@@ -136,7 +136,6 @@ export const NewAdditionalContent = ({
         <FocusSpan>File</FocusSpan>
         <input
           type="file"
-          accept="video/*"
           className="w-full file:rounded-full file:bg-primary file:p-2 file:hover:bg-primary-shadow file:hover:text-primary-tint file:border-primary-shadow file:text-primary-shadow"
           onChange={(e) => {
             const file = e.target?.files?.[0];

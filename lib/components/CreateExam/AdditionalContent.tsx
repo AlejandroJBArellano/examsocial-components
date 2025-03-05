@@ -25,7 +25,12 @@ const ContentSet = ({
     ),
     TEXT: <p>{content.text}</p>,
     LINK: (
-      <Anchor href={content.link} target="_blank" rel="noreferrer">
+      <Anchor
+        href={content.link}
+        target="_blank"
+        rel="noreferrer"
+        className="break-all"
+      >
         {content.link}
       </Anchor>
     ),
@@ -46,7 +51,7 @@ const ContentSet = ({
     AUDIO: content.audio ? (
       <audio
         src={content.audio ? URL.createObjectURL(content.audio as Blob) : ""}
-        className="w-full h-[200px] rounded-lg"
+        className="w-full rounded-lg"
         controls
       ></audio>
     ) : null,

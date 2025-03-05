@@ -2,10 +2,62 @@ import { Add } from "@mui/icons-material";
 import { useFormikContext } from "formik";
 import { useRef } from "react";
 import * as Yup from "yup";
-import { examSchema } from "../../schemas";
+import { contentSchema, examSchema } from "../../schemas";
 import { NewAdditionalContent } from "../AdditionalContent/New";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
+
+const ContentSet = ({
+  content,
+}: {
+  content: Yup.InferType<typeof contentSchema>;
+}) => {
+  const handleContent = {
+    YOUTUBE: (
+      <iframe
+        src={content.youtubeUrl}
+        className="w-full h-[200px] rounded-lg"
+      ></iframe>
+    ),
+    TEXT: <p>{content.text}</p>,
+    LINK: (
+      <a href={content.link} target="_blank" rel="noreferrer">
+        {content.link}
+      </a>
+    ),
+    IMAGE: content.image ? (
+      <img
+        src={content.image ? URL.createObjectURL(content.image) : ""}
+        alt="content"
+        className="w-full h-[200px] rounded-lg"
+      />
+    ) : null,
+    VIDEO: content.video ? (
+      <video
+        src={content.video ? URL.createObjectURL(content.video) : ""}
+        className="w-full h-[200px] rounded-lg"
+        controls
+      ></video>
+    ) : null,
+    AUDIO: content.audio ? (
+      <audio
+        src={content.audio ? URL.createObjectURL(content.audio) : ""}
+        className="w-full h-[200px] rounded-lg"
+        controls
+      ></audio>
+    ) : null,
+    FILE: content.file ? (
+      <a
+        href={content.file ? URL.createObjectURL(content.file) : ""}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {content.file.name}
+      </a>
+    ) : null,
+  };
+  return <div>{handleContent[content.contentType]}</div>;
+};
 
 export const AdditionalContent = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -15,7 +67,11 @@ export const AdditionalContent = () => {
       <h2 className="sentient font-bold text-[28px] leading-8 tracking-[0.56px]">
         Additional Content
       </h2>
-      <article className=""></article>
+      <article className="space-y-4">
+        {formik.values.contents.map((content, index) => (
+          <ContentSet key={index} content={content} />
+        ))}
+      </article>
       <Button
         onClick={() => {
           dialogRef.current?.showModal();

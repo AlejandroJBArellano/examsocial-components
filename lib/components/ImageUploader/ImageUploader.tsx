@@ -1,17 +1,20 @@
-import { Close } from "@mui/icons-material";
+import { Delete } from "@mui/icons-material";
+import { Button } from "../Button";
 import { Smoll, Span } from "../FontFaces";
 
 const ImageUploader = ({ image }: { image: File }) => {
   return (
-    <article className="p-2 flex items-center justify-between bg-primary-tint border-sm border-primary-shadow">
+    <article className="p-2 flex items-center justify-between bg-white border-sm border-black">
       <div className="gap-2 flex items-center">
         <img className="w-[81px] h-10" src={URL.createObjectURL(image)} />
         <div className="space-y-1">
-          <Span className="block text-primary-shadow">{image.name}</Span>
+          <Span className="block">{image.name}</Span>
           <Smoll>{image.size} mb.</Smoll>
         </div>
       </div>
-      <Close className="!w-6 !h-6 text-primary" />
+      <Button theme="feedback-error" rounded className="p-2">
+        <Delete className="!w-6 !h-6" />
+      </Button>
     </article>
   );
 };

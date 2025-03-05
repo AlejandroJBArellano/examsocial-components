@@ -1,4 +1,4 @@
-import { X } from "@mui/icons-material";
+import { Close } from "@mui/icons-material";
 import { Smoll, Span } from "../FontFaces";
 
 const ImageUploader = ({ image }: { image: File }) => {
@@ -11,7 +11,7 @@ const ImageUploader = ({ image }: { image: File }) => {
           <Smoll>{image.size} mb.</Smoll>
         </div>
       </div>
-      <X className="!w-6 !h-6 text-primary" />
+      <Close className="!w-6 !h-6 text-primary" />
     </article>
   );
 };

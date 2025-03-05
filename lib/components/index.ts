@@ -10,6 +10,7 @@ export * from "./Email";
 export * from "./FeedbackScreen";
 export * from "./FontFaces";
 export * from "./Helper";
+export * from "./ImageUploader";
 export * from "./IndexButton";
 export * from "./Input";
 export * from "./NewQuestion";

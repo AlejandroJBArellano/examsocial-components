@@ -26,36 +26,36 @@ const QuestionForm = ({
       </article>
       <Separator />
       <article className="space-y-3">
-        <label className="font-medium">Answers</label>
+        <label className="font-medium">Options</label>
         <FieldArray name="answers">
           {({ push, remove }) => (
             <>
-              {values.answers.map((answer, index) => (
+              {values.options.map((option, index) => (
                 <div key={index}>
                   <CreateAnswer
-                    answer={answer}
+                    answer={option}
                     name={`answers.${index}`}
                     onDelete={() => remove(index)}
                     setFieldValue={setFieldValue}
                   />
-                  {errors.answers && errors.answers[index] && (
+                  {errors.options && errors.options[index] && (
                     <div className="text-feedback-error">
-                      {!(typeof errors.answers === "string")
-                        ? typeof errors.answers[index] === "string"
-                          ? errors.answers[index]
-                          : typeof errors.answers[index] === "object" &&
-                              "text" in errors.answers[index]
-                            ? errors.answers[index].text
+                      {!(typeof errors.options === "string")
+                        ? typeof errors.options[index] === "string"
+                          ? errors.options[index]
+                          : typeof errors.options[index] === "object" &&
+                              "text" in errors.options[index]
+                            ? errors.options[index].text
                             : null
                         : null}
                     </div>
                   )}
                 </div>
               ))}
-              {typeof errors.answers === "string" && (
-                <div className="text-feedback-error">{errors.answers}</div>
+              {typeof errors.options === "string" && (
+                <div className="text-feedback-error">{errors.options}</div>
               )}
-              {values.answers.length < 4 && (
+              {values.options.length < 4 && (
                 <Button
                   type="button"
                   theme="light"

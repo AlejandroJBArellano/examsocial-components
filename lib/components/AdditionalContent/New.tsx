@@ -7,11 +7,6 @@ import { Input } from "../Input";
 import { Select } from "../Select";
 import { Textarea } from "../Textarea";
 
-interface INewAdditionalContent {
-  onSubmit: (values: { youtubeUrl: string; description: string }) => void;
-  onCancel: () => void;
-}
-
 type ContentTypes =
   | "YOUTUBE"
   | "TEXT"
@@ -20,6 +15,20 @@ type ContentTypes =
   | "VIDEO"
   | "AUDIO"
   | "FILE";
+
+interface INewAdditionalContent {
+  onSubmit: (values: {
+    contentType: ContentTypes;
+    youtubeUrl?: string;
+    text?: string;
+    link?: string;
+    image?: File;
+    video?: File;
+    audio?: File;
+    file?: File;
+  }) => void;
+  onCancel: () => void;
+}
 
 const ContentTypeNamesMap = {
   YOUTUBE: "YouTube URL",
@@ -35,8 +44,11 @@ export const NewAdditionalContent = ({
   onSubmit,
   onCancel,
 }: INewAdditionalContent) => {
-  const [contentType, setContentType] = useState<ContentTypes>();
+  const [contentType, setContentType] = useState<ContentTypes>("YOUTUBE");
   const [container, setContainer] = useState<HTMLElement>();
+  const [youtubeUrl, setYoutubeUrl] = useState<string>();
+  const [text, setText] = useState<string>();
+  const [link, setLink] = useState<string>();
   const [image, setImage] = useState<File>();
   const [video, setVideo] = useState<File>();
   const [audio, setAudio] = useState<File>();
@@ -53,7 +65,14 @@ export const NewAdditionalContent = ({
     YOUTUBE: (
       <div className="space-y-1">
         <FocusSpan>YouTube URL</FocusSpan>
-        <Input placeholder="https://youtu.be/?w=video" className="w-full" />
+        <Input
+          placeholder="https://youtu.be/?w=video"
+          className="w-full"
+          onChange={(e) => {
+            setYoutubeUrl(e.target.value);
+          }}
+          value={youtubeUrl}
+        />
       </div>
     ),
     TEXT: (
@@ -63,13 +82,24 @@ export const NewAdditionalContent = ({
           rows={4}
           className="w-full"
           placeholder="Add a description to your content. This will be shown to your students."
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
+          value={text}
         />
       </div>
     ),
     LINK: (
       <div className="space-y-1">
         <FocusSpan>Link</FocusSpan>
-        <Input placeholder="https://example.com" className="w-full" />
+        <Input
+          placeholder="https://example.com"
+          className="w-full"
+          onChange={(e) => {
+            setLink(e.target.value);
+          }}
+          value={link}
+        />
       </div>
     ),
     IMAGE: (
@@ -200,7 +230,19 @@ export const NewAdditionalContent = ({
         <Button
           theme="accent"
           rounded
-          onClick={() => onSubmit({ youtubeUrl: "", description: "" })}
+          type="button"
+          onClick={() =>
+            onSubmit({
+              contentType,
+              youtubeUrl: contentType === "YOUTUBE" ? "" : undefined,
+              text: contentType === "TEXT" ? "" : undefined,
+              link: contentType === "LINK" ? "" : undefined,
+              image: contentType === "IMAGE" ? image : undefined,
+              video: contentType === "VIDEO" ? video : undefined,
+              audio: contentType === "AUDIO" ? audio : undefined,
+              file: contentType === "FILE" ? file : undefined,
+            })
+          }
         >
           Save
         </Button>

@@ -58,51 +58,54 @@ const CreateExam = () => {
         console.log({ values });
       }}
     >
-      {({ isValid }) => (
-        <Form>
-          <header>
-            <Stepper
-              title="Create Exam"
-              steps={4}
-              activeStep={step}
-              onClickStep={(newStep) => {
-                setStep(newStep as keyof typeof steps);
-              }}
-              validation={{
-                1: true,
-                2: true,
-                3: true,
-                4: isValid,
-              }}
-            />
-          </header>
-          <main className="py-6 px-4">
-            <div className="space-y-6">{steps[step]}</div>
-            <footer className="flex items-center justify-between mt-4">
-              <Button
-                rounded
-                theme="light"
-                onClick={() => {
-                  if (step === 1) return;
-                  setStep((prev) => (prev - 1) as keyof typeof steps);
+      {({ isValid, errors }) => {
+        console.log({ errors });
+        return (
+          <Form>
+            <header>
+              <Stepper
+                title="Create Exam"
+                steps={4}
+                activeStep={step}
+                onClickStep={(newStep) => {
+                  setStep(newStep as keyof typeof steps);
                 }}
-              >
-                {step === 1 ? "Cancel" : "Previous"}
-              </Button>
-              <Button
-                rounded={!(step === 4)}
-                theme="accent"
-                onClick={() => {
-                  if (step === 4) return;
-                  setStep((prev) => (prev + 1) as keyof typeof steps);
+                validation={{
+                  1: true,
+                  2: true,
+                  3: true,
+                  4: isValid,
                 }}
-              >
-                {step === 4 ? "Finish" : "Next"}
-              </Button>
-            </footer>
-          </main>
-        </Form>
-      )}
+              />
+            </header>
+            <main className="py-6 px-4">
+              <div className="space-y-6">{steps[step]}</div>
+              <footer className="flex items-center justify-between mt-4">
+                <Button
+                  rounded
+                  theme="light"
+                  onClick={() => {
+                    if (step === 1) return;
+                    setStep((prev) => (prev - 1) as keyof typeof steps);
+                  }}
+                >
+                  {step === 1 ? "Cancel" : "Previous"}
+                </Button>
+                <Button
+                  rounded={!(step === 4)}
+                  theme="accent"
+                  onClick={() => {
+                    if (step === 4) return;
+                    setStep((prev) => (prev + 1) as keyof typeof steps);
+                  }}
+                >
+                  {step === 4 ? "Finish" : "Next"}
+                </Button>
+              </footer>
+            </main>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };

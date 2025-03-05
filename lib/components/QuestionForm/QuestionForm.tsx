@@ -27,14 +27,14 @@ const QuestionForm = ({
       <Separator />
       <article className="space-y-3">
         <label className="font-medium">Options</label>
-        <FieldArray name="answers">
+        <FieldArray name="options">
           {({ push, remove }) => (
             <>
               {values.options.map((option, index) => (
                 <div key={index}>
                   <CreateAnswer
                     answer={option}
-                    name={`answers.${index}`}
+                    name={`options.${index}`}
                     onDelete={() => remove(index)}
                     setFieldValue={setFieldValue}
                   />

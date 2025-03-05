@@ -200,7 +200,7 @@ const UploadCSV = ({ handleInvite }: IUploadCSV) => {
   };
 
   return (
-    <Button rounded className="w-full p-0">
+    <Button rounded className="w-full p-0" type="button">
       <label
         htmlFor="upload-csv"
         className="flex items-center gap-2 justify-center cursor-pointer py-2"

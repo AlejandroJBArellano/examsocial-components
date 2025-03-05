@@ -23,7 +23,11 @@ export const AdditionalContent = () => {
         <Add className="!w-5 !h-5" />
         <span className="font-medium">Add new section</span>
       </Button>
-      <Dialog innerRef={dialogRef} id="additional-content">
+      <Dialog
+        innerRef={dialogRef}
+        id="additional-content"
+        className="max-w-sm w-full"
+      >
         <NewAdditionalContent
           onSubmit={() => {}}
           onCancel={() => {

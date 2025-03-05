@@ -27,28 +27,28 @@ const ContentSet = ({
     ),
     IMAGE: content.image ? (
       <img
-        src={content.image ? URL.createObjectURL(content.image) : ""}
+        src={content.image ? URL.createObjectURL(content.image as Blob) : ""}
         alt="content"
         className="w-full h-[200px] rounded-lg"
       />
     ) : null,
     VIDEO: content.video ? (
       <video
-        src={content.video ? URL.createObjectURL(content.video) : ""}
+        src={content.video ? URL.createObjectURL(content.video as Blob) : ""}
         className="w-full h-[200px] rounded-lg"
         controls
       ></video>
     ) : null,
     AUDIO: content.audio ? (
       <audio
-        src={content.audio ? URL.createObjectURL(content.audio) : ""}
+        src={content.audio ? URL.createObjectURL(content.audio as Blob) : ""}
         className="w-full h-[200px] rounded-lg"
         controls
       ></audio>
     ) : null,
     FILE: content.file ? (
       <a
-        href={content.file ? URL.createObjectURL(content.file) : ""}
+        href={content.file ? URL.createObjectURL(content.file as Blob) : ""}
         target="_blank"
         rel="noreferrer"
       >

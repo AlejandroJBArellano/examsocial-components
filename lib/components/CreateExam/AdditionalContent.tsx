@@ -51,13 +51,13 @@ const ContentSet = ({
       ></audio>
     ) : null,
     FILE: content.file ? (
-      <a
+      <Anchor
         href={content.file ? URL.createObjectURL(content.file as Blob) : ""}
         target="_blank"
         rel="noreferrer"
       >
         {(content.file as File).name}
-      </a>
+      </Anchor>
     ) : null,
   };
   return (

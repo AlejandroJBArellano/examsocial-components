@@ -77,7 +77,7 @@ export const Questions = () => {
               ? values.questions[index]
               : {
                   question: "",
-                  answers: [],
+                  options: [],
                 }
           }
           onSubmit={(updatedQuestion) => {

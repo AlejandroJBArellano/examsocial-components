@@ -39,10 +39,10 @@ const QuestionSet = ({
       {viewOnly ? null : (
         <>
           <div className="space-y-2.5">
-            {(props as QuestionSetPropsEditable).answers.map((answer, i) => (
+            {(props as QuestionSetPropsEditable).options.map((option, i) => (
               <div key={i} className="flex justify-between items-center">
-                <p className="xl:text-lg xl:leading-6">{answer.text}</p>
-                {answer.correct ? (
+                <p className="xl:text-lg xl:leading-6">{option.text}</p>
+                {option.correct ? (
                   <Tag theme="feedback-success">Correct</Tag>
                 ) : null}
               </div>

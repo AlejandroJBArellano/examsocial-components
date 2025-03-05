@@ -30,6 +30,7 @@ const CreateExam = () => {
         title: "",
         description: "",
         questions: [],
+        contents: [],
         advancedSettings: {
           randomizeQuestionOrder: false,
           showCorrectAnswers: false,

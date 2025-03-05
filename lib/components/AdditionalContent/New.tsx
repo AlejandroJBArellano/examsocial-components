@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ContentTypes } from "../../types";
 import { BannerInput } from "../BannerInput";
 import { Button } from "../Button";
 import { FocusSpan, Heading4 } from "../FontFaces";
@@ -6,15 +7,6 @@ import { ImageField } from "../ImageField";
 import { Input } from "../Input";
 import { Select } from "../Select";
 import { Textarea } from "../Textarea";
-
-type ContentTypes =
-  | "YOUTUBE"
-  | "TEXT"
-  | "LINK"
-  | "IMAGE"
-  | "VIDEO"
-  | "AUDIO"
-  | "FILE";
 
 interface INewAdditionalContent {
   onSubmit: (values: {

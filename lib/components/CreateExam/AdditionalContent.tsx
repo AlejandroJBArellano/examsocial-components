@@ -1,11 +1,15 @@
 import { Add } from "@mui/icons-material";
+import { useFormikContext } from "formik";
 import { useRef } from "react";
+import * as Yup from "yup";
+import { examSchema } from "../../schemas";
 import { NewAdditionalContent } from "../AdditionalContent/New";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 
 export const AdditionalContent = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const formik = useFormikContext<Yup.InferType<typeof examSchema>>();
   return (
     <section className="space-y-6">
       <h2 className="sentient font-bold text-[28px] leading-8 tracking-[0.56px]">
@@ -31,6 +35,10 @@ export const AdditionalContent = () => {
         <NewAdditionalContent
           onSubmit={(values) => {
             console.log(values);
+            formik.setFieldValue("contents", [
+              ...(formik.values.contents || []),
+              values,
+            ]);
             dialogRef.current?.close();
           }}
           onCancel={() => {

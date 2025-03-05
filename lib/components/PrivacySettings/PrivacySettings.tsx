@@ -4,7 +4,7 @@ import { ChangeEvent } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { Button } from "../Button";
-import { FocusSpan, Span } from "../FontFaces";
+import { FocusSpan, Paragraph, Span } from "../FontFaces";
 import { Input } from "../Input";
 import { Select } from "../Select";
 import { Separator } from "../Separator";
@@ -90,7 +90,9 @@ const PrivacySettings = () => {
         ) : null}
       </>
     ),
-    PASSWORD: null,
+    PASSWORD: (
+      <Paragraph>The password will generate after you save the exam.</Paragraph>
+    ),
     LINK: null,
     ONLY_ME: null,
   };

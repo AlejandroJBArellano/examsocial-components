@@ -12,6 +12,7 @@ interface IStepperProps {
   time?: string;
   showDivision?: boolean;
   theme?: "primary" | "secondary";
+  validation?: Record<number, boolean>;
 }
 
 const Time = ({ children }: PropsWithChildren) => (
@@ -29,6 +30,7 @@ const Stepper = ({
   time,
   showDivision,
   theme = "primary",
+  validation,
 }: PropsWithChildren<IStepperProps>) => {
   return (
     <section
@@ -72,6 +74,7 @@ const Stepper = ({
               }}
               rounded
               key={index}
+              disabled={validation ? !validation[index + 1] : false}
               theme={activeStep === index + 1 ? "primary" : "light"}
             >
               <FocusSpan>{index + 1}</FocusSpan>

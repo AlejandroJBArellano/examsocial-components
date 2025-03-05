@@ -9,7 +9,12 @@ const ImageUploader = ({ image }: { image: File }) => {
         <img className="w-[81px] h-10" src={URL.createObjectURL(image)} />
         <div className="space-y-1">
           <Span className="block">{image.name}</Span>
-          <Smoll>{image.size} mb.</Smoll>
+          <Smoll>
+            {image.size / 1024 > 1024
+              ? (image.size / 1024 / 1024).toFixed(2)
+              : (image.size / 1024).toFixed(2)}{" "}
+            mb.
+          </Smoll>
         </div>
       </div>
       <Button theme="feedback-error" rounded className="p-2">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BannerInput } from "../BannerInput";
 import { Button } from "../Button";
 import { FocusSpan, Heading4 } from "../FontFaces";
+import { ImageField } from "../ImageField";
 import { Input } from "../Input";
 import { Select } from "../Select";
 import { Textarea } from "../Textarea";
@@ -71,19 +72,7 @@ export const NewAdditionalContent = ({
         <Input placeholder="https://example.com" className="w-full" />
       </div>
     ),
-    IMAGE: (
-      <div className="space-y-1">
-        <FocusSpan>Image</FocusSpan>
-        <BannerInput
-          onChange={(e) => {
-            const file = e.target?.files?.[0];
-            if (file) {
-              setImage(file);
-            }
-          }}
-        />
-      </div>
-    ),
+    IMAGE: <ImageField image={image} setImage={setImage} />,
     VIDEO: (
       <div className="space-y-1">
         <FocusSpan>Video</FocusSpan>

@@ -4,7 +4,7 @@ import ImageInput from "../ImageInput/ImageInput";
 import { ImageUploader } from "../ImageUploader";
 
 interface ImageFieldProps extends PropsWithChildren {
-  image: File | null;
+  image?: File;
   setImage: (image: File) => void;
   multiple?: false;
 }

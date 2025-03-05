@@ -23,7 +23,7 @@ const ContentSet = ({
         height={315}
       ></iframe>
     ),
-    TEXT: <p>{content.text}</p>,
+    TEXT: <p className="break-all">{content.text}</p>,
     LINK: (
       <Anchor
         href={content.link}

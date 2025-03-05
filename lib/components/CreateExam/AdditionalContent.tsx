@@ -38,13 +38,13 @@ const ContentSet = ({
       <img
         src={content.image ? URL.createObjectURL(content.image as Blob) : ""}
         alt="content"
-        className="aspect-video rounded-lg"
+        className="aspect-video h-40 rounded-lg"
       />
     ) : null,
     VIDEO: content.video ? (
       <video
         src={content.video ? URL.createObjectURL(content.video as Blob) : ""}
-        className="w-full h-[200px] rounded-lg"
+        className="aspect-video h-40 rounded-lg"
         controls
       ></video>
     ) : null,

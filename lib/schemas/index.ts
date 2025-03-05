@@ -11,11 +11,16 @@ export const questionSchema = Yup.object({
       }),
     )
     .required()
-    .min(1, "At least one option is required")
+    .min(2, "At least two options are required")
     .test(
       "at-least-one-correct",
       "At least one option must be correct",
       (options) => options?.some((option) => option.correct),
+    )
+    .test(
+      "at-least-one-incorrect",
+      "At least one option must be incorrect",
+      (options) => options?.some((option) => !option.correct),
     ),
 });
 

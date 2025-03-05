@@ -128,69 +128,74 @@ export const NewAdditionalContent = ({
   return (
     <section className="p-4 shadow-right rounded-lg shadow-black border border-black space-y-6">
       <Heading4>New Content</Heading4>
-      <Select
-        text={
-          contentType ? ContentTypeNamesMap[contentType] : "Select content type"
-        }
-        container={container}
-      >
-        <Select.Option
-          onClick={() => {
-            setContentType("YOUTUBE");
-          }}
-          checked={contentType === "YOUTUBE"}
+      <article className="space-y-1">
+        <FocusSpan>Content Type</FocusSpan>
+        <Select
+          text={
+            contentType
+              ? ContentTypeNamesMap[contentType]
+              : "Select content type"
+          }
+          container={container}
         >
-          YouTube URL
-        </Select.Option>
-        <Select.Option
-          onClick={() => {
-            setContentType("LINK");
-          }}
-          checked={contentType === "LINK"}
-        >
-          Link
-        </Select.Option>
-        <Select.Option
-          onClick={() => {
-            setContentType("TEXT");
-          }}
-          checked={contentType === "TEXT"}
-        >
-          Text
-        </Select.Option>
-        <Select.Option
-          onClick={() => {
-            setContentType("IMAGE");
-          }}
-          checked={contentType === "IMAGE"}
-        >
-          Image
-        </Select.Option>
-        <Select.Option
-          onClick={() => {
-            setContentType("VIDEO");
-          }}
-          checked={contentType === "VIDEO"}
-        >
-          Video
-        </Select.Option>
-        <Select.Option
-          onClick={() => {
-            setContentType("AUDIO");
-          }}
-          checked={contentType === "AUDIO"}
-        >
-          Audio
-        </Select.Option>
-        <Select.Option
-          onClick={() => {
-            setContentType("FILE");
-          }}
-          checked={contentType === "FILE"}
-        >
-          File
-        </Select.Option>
-      </Select>
+          <Select.Option
+            onClick={() => {
+              setContentType("YOUTUBE");
+            }}
+            checked={contentType === "YOUTUBE"}
+          >
+            YouTube URL
+          </Select.Option>
+          <Select.Option
+            onClick={() => {
+              setContentType("LINK");
+            }}
+            checked={contentType === "LINK"}
+          >
+            Link
+          </Select.Option>
+          <Select.Option
+            onClick={() => {
+              setContentType("TEXT");
+            }}
+            checked={contentType === "TEXT"}
+          >
+            Text
+          </Select.Option>
+          <Select.Option
+            onClick={() => {
+              setContentType("IMAGE");
+            }}
+            checked={contentType === "IMAGE"}
+          >
+            Image
+          </Select.Option>
+          <Select.Option
+            onClick={() => {
+              setContentType("VIDEO");
+            }}
+            checked={contentType === "VIDEO"}
+          >
+            Video
+          </Select.Option>
+          <Select.Option
+            onClick={() => {
+              setContentType("AUDIO");
+            }}
+            checked={contentType === "AUDIO"}
+          >
+            Audio
+          </Select.Option>
+          <Select.Option
+            onClick={() => {
+              setContentType("FILE");
+            }}
+            checked={contentType === "FILE"}
+          >
+            File
+          </Select.Option>
+        </Select>
+      </article>
       <article className="space-y-4">
         {contentType && ContentTypes[contentType]}
       </article>

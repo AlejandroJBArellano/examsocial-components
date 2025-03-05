@@ -77,6 +77,7 @@ const PrivacySettings = () => {
                 >
                   <Span>{invitee}</Span>
                   <Button
+                    type="button"
                     theme="feedback-error"
                     className="p-2"
                     onClick={() => handleRemoveInvitee(invitee)}

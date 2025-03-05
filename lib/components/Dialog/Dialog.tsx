@@ -11,7 +11,10 @@ const Dialog = ({
     <dialog
       {...props}
       ref={innerRef}
-      className="backdrop:bg-black/50 rounded-lg backdrop:backdrop-blur-md shadow-right-sm shadow-black"
+      className={
+        "backdrop:bg-black/50 rounded-lg backdrop:backdrop-blur-md shadow-right-sm shadow-black " +
+        props.className
+      }
     />
   );
 };

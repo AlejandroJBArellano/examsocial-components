@@ -40,24 +40,26 @@ export const Review = () => {
       </article>
       <article className="space-y-1">
         <Heading4>Questions</Heading4>
-        {formik.values.questions.map((question, index) => (
-          <QuestionSet
-            index={index}
-            onEdit={(index) => console.log(index)}
-            onDelete={(index) =>
-              formik.setFieldValue(
-                "questions",
-                formik.values.questions.filter((_, i) => i !== index),
-              )
-            }
-            key={index}
-            question={question.question}
-            options={question.options}
-          />
-        ))}
+        <div className="flex gap-4">
+          {formik.values.questions.map((question, index) => (
+            <QuestionSet
+              index={index}
+              onEdit={(index) => console.log(index)}
+              onDelete={(index) =>
+                formik.setFieldValue(
+                  "questions",
+                  formik.values.questions.filter((_, i) => i !== index),
+                )
+              }
+              key={index}
+              question={question.question}
+              options={question.options}
+            />
+          ))}
+        </div>
       </article>
       {formik.values.contents.length > 0 && (
-        <article className="space-y-">
+        <article className="space-y-1">
           <Heading4>Additional Content</Heading4>
           <div className="flex gap-4 [&>div]:flex [&>div]:gap-1">
             <div>

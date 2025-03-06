@@ -1,6 +1,7 @@
 import { Delete, Edit } from "@mui/icons-material";
 import { IQuestion } from "../../types";
 import { Button } from "../Button";
+import { Heading5, Span } from "../FontFaces";
 import { Tag } from "../Tag";
 
 type QuestionSetPropsEditable = IQuestion & {
@@ -29,19 +30,16 @@ const QuestionSet = ({
     <div
       className={
         (selected ? "bg-extra shadow-right shadow-black " : "bg-extra-tint ") +
-        "p-4 space-y-4 xl:p-5 xl:space-y-5 border rounded-md border-black"
+        "p-4 space-y-4 xl:p-5 xl:space-y-5 border rounded-md border-black w-80"
       }
     >
-      <h4 className="text-xl leading-6 font-medium sentient xl:text-2xl xl:leading-7 tracking-[0.48px]">
-        {question}
-      </h4>
-
+      <Heading5>{question}</Heading5>
       {viewOnly ? null : (
         <>
           <div className="space-y-2.5">
             {(props as QuestionSetPropsEditable).options.map((option, i) => (
               <div key={i} className="flex justify-between items-center">
-                <p className="xl:text-lg xl:leading-6">{option.text}</p>
+                <Span>{option.text}</Span>
                 {option.correct ? (
                   <Tag theme="feedback-success">Correct</Tag>
                 ) : null}

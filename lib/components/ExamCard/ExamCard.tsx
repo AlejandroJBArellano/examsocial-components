@@ -25,7 +25,7 @@ const ExamCard = ({
       <article className="space-y-1">
         <Heading4>{title}</Heading4>
         <img
-          className="h-[180px] rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1.00)] border-2 border-black"
+          className="w-full rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1.00)] border-2 border-black"
           src={image}
           alt={title}
         />

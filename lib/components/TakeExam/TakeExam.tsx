@@ -10,8 +10,10 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
     <main>
       <Stepper
         theme="secondary"
-        activeStep={1}
-        onClickStep={() => {}}
+        activeStep={selectedQuestion + 1}
+        onClickStep={(step) => {
+          setSelectedQuestion(step - 1);
+        }}
         steps={4}
         title="Take Exam"
         showDivision

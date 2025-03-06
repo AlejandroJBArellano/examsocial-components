@@ -24,7 +24,16 @@ const SelectedQuestion = ({ questions, onFinish }: ISelectedQuestion) => {
         </div>
         <div className="flex flex-auto flex-col gap-2">
           {question.options.map((option) => (
-            <AnswerOption key={option._id}>{option.text}</AnswerOption>
+            <AnswerOption
+              onClick={() => {
+                setSelectedOption(option._id!);
+              }}
+              key={option._id}
+              checked={selectedOption === option._id}
+              type={selectedOption === option._id ? "selectable" : undefined}
+            >
+              {option.text}
+            </AnswerOption>
           ))}
         </div>
       </article>

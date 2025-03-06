@@ -10,6 +10,7 @@ interface ISelectedQuestion {
   onFinish: () => void;
   selected: number;
   setSelected: (selected: (prev: number) => number) => void;
+  canJumpBetweenSteps?: boolean;
 }
 
 const SelectedQuestion = ({
@@ -17,6 +18,7 @@ const SelectedQuestion = ({
   onFinish,
   selected,
   setSelected,
+  canJumpBetweenSteps,
 }: ISelectedQuestion) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
@@ -50,7 +52,7 @@ const SelectedQuestion = ({
           theme="light"
           rounded
           onClick={() => setSelected((prev: number) => prev - 1)}
-          disabled={selected === 0}
+          disabled={selected === 0 || !canJumpBetweenSteps}
         >
           <FocusSpan>Previous</FocusSpan>
         </Button>

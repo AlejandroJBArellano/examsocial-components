@@ -16,7 +16,7 @@ interface IStepperProps {
 }
 
 const Time = ({ children }: PropsWithChildren) => (
-  <div className="flex gap-2 items-center">
+  <div className="flex items-center gap-2">
     <Heading3>{children}</Heading3>
     <Timer />
   </div>
@@ -36,13 +36,13 @@ const Stepper = ({
     <section
       className={
         cn(
-          " sentient border-b-gray-500 p-4 pt-3 space-y-3",
+          "sentient space-y-3 border-b-gray-500 p-4 pt-3",
           theme === "primary" ? "bg-primary-tint" : "bg-secondary-tint",
         ) + " border-b-sm"
       }
     >
       {theme === "primary" ? (
-        <article className="items-center flex justify-between">
+        <article className="flex items-center justify-between">
           <Heading2 className="text-primary-shadow">{title}</Heading2>
           {time && <Time>20:00</Time>}
         </article>
@@ -60,12 +60,12 @@ const Stepper = ({
                 {activeStep}/{steps}
               </Heading5>
             )}
-            {time && <Time>20:00</Time>}
+            {time && <Time>{time}</Time>}
           </article>
         </>
       )}
 
-      <article className="items-center flex justify-between">
+      <article className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           {[...Array(steps)].map((_, index) => (
             <Button

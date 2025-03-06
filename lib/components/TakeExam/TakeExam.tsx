@@ -14,7 +14,7 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
         onClickStep={(step) => {
           setSelectedQuestion(step - 1);
         }}
-        steps={4}
+        steps={exam.questions.length}
         title="Take Exam"
         showDivision
         time={"60"}

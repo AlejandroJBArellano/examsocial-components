@@ -21,7 +21,7 @@ const FeedbackConditionField = () => {
         <Input
           placeholder="0"
           type="number"
-          className="w-full h-11"
+          className="h-11 w-full"
           error={!!formik.errors.min}
           {...formik.getFieldProps("min")}
         />
@@ -29,7 +29,7 @@ const FeedbackConditionField = () => {
         <Input
           placeholder="100"
           type="number"
-          className="w-full h-11"
+          className="h-11 w-full"
           error={!!formik.errors.max}
           {...formik.getFieldProps("max")}
         />
@@ -38,7 +38,7 @@ const FeedbackConditionField = () => {
     EQUAL_TO: (
       <Input
         placeholder="100"
-        className="w-full h-11"
+        className="h-11 w-full"
         type="number"
         error={!!formik.errors.equal}
         {...formik.getFieldProps("equal")}
@@ -47,7 +47,7 @@ const FeedbackConditionField = () => {
     GREATER_THAN: (
       <Input
         placeholder="100"
-        className="w-full h-11"
+        className="h-11 w-full"
         type="number"
         error={!!formik.errors.gt}
         {...formik.getFieldProps("gt")}
@@ -56,7 +56,7 @@ const FeedbackConditionField = () => {
     LESS_THAN: (
       <Input
         placeholder="100"
-        className="w-full h-11"
+        className="h-11 w-full"
         type="number"
         error={!!formik.errors.lt}
         {...formik.getFieldProps("lt")}
@@ -72,7 +72,7 @@ const FeedbackConditionField = () => {
   }, []);
 
   return (
-    <article className="grid grid-cols-2 gap-4 items-end">
+    <article className="grid grid-cols-2 items-end gap-4">
       <div className="space-y-1">
         <label className="font-medium">Condition</label>
         <Select
@@ -133,13 +133,13 @@ export const NewFeedbackScreen = ({
       validateOnChange
     >
       {(formik) => (
-        <div className="p-4 border rounded-lg shadow-right-sm shadow-black border-black space-y-6">
+        <div className="space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
           <Heading4>Thank You Screen</Heading4>
           <section className="space-y-4">
             <article className="space-y-1">
               <FocusSpan>Message</FocusSpan>
               <Textarea
-                className="w-full p-2 border rounded-lg"
+                className="w-full rounded-lg border p-2"
                 placeholder="e.g., Congrats, you got a perfect score!"
                 name="message"
                 value={formik.values.message}
@@ -152,7 +152,7 @@ export const NewFeedbackScreen = ({
             </article>
             <FeedbackConditionField />
           </section>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <Button rounded onClick={onCancel} type="button">
               Cancel
             </Button>
@@ -191,13 +191,13 @@ export const EditFeedbackScreen = ({
       validateOnChange
     >
       {(formik) => (
-        <div className="p-4 border rounded-lg shadow-right-sm shadow-black border-black space-y-6">
+        <div className="space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
           <Heading4>Edit Thank You Screen</Heading4>
           <section className="space-y-4">
             <article className="space-y-1">
               <FocusSpan>Message</FocusSpan>
               <Textarea
-                className="w-full p-2 border rounded-lg"
+                className="w-full rounded-lg border p-2"
                 placeholder="e.g., Congrats, you got a perfect score!"
                 name="message"
                 value={formik.values.message}
@@ -210,7 +210,7 @@ export const EditFeedbackScreen = ({
             </article>
             <FeedbackConditionField />
           </section>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <Button rounded onClick={onCancel} type="button">
               Cancel
             </Button>

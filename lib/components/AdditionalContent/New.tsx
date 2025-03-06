@@ -40,7 +40,7 @@ export const NewAdditionalContent = ({
   const [youtubeUrl, setYoutubeUrl] = useState<string>();
   const [text, setText] = useState<string>();
   const [link, setLink] = useState<string>();
-  const [image, setImage] = useState<File>();
+  const [image, setImage] = useState<File | null>(null);
   const [video, setVideo] = useState<File>();
   const [audio, setAudio] = useState<File>();
   const [file, setFile] = useState<File>();
@@ -94,10 +94,7 @@ export const NewAdditionalContent = ({
       </div>
     ),
     IMAGE: (
-      <ImageField
-        image={image}
-        setImage={(image) => image && setImage(image)}
-      />
+      <ImageField image={image} setImage={(newImage) => setImage(newImage)} />
     ),
     VIDEO: (
       <div className="space-y-1">
@@ -236,7 +233,7 @@ export const NewAdditionalContent = ({
               youtubeUrl: contentType === "YOUTUBE" ? youtubeUrl : undefined,
               text: contentType === "TEXT" ? text : undefined,
               link: contentType === "LINK" ? link : undefined,
-              image: contentType === "IMAGE" ? image : undefined,
+              image: contentType === "IMAGE" ? image! : undefined,
               video: contentType === "VIDEO" ? video : undefined,
               audio: contentType === "AUDIO" ? audio : undefined,
               file: contentType === "FILE" ? file : undefined,
@@ -246,7 +243,7 @@ export const NewAdditionalContent = ({
             setYoutubeUrl("");
             setText("");
             setLink("");
-            setImage(undefined);
+            setImage(null);
             setVideo(undefined);
             setAudio(undefined);
             setFile(undefined);

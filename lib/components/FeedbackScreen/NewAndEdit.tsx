@@ -160,7 +160,10 @@ export const NewFeedbackScreen = ({
               theme="accent"
               type="button"
               rounded
-              onClick={formik.submitForm}
+              onClick={async () => {
+                await formik.submitForm();
+                formik.resetForm();
+              }}
               disabled={!formik.isValid}
             >
               Save

@@ -66,7 +66,7 @@ const ContentSet = ({
     ) : null,
   };
   return (
-    <section className="mx-auto flex justify-between gap-4 hover:bg-primary-tint md:justify-center md:py-6">
+    <section className="mx-auto flex justify-between gap-4 hover:bg-primary-tint md:justify-center md:rounded-lg md:py-6">
       <div className="max-w-xl">{handleContent[content.contentType]}</div>
       <DragIndicator className="!h-5 !w-5 cursor-move" />
     </section>

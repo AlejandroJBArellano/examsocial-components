@@ -128,7 +128,7 @@ export default {
           },
         },
         {
-          name: "EARTHY-TONES",
+          name: "EARTHY_TONES",
           extend: {
             colors: {
               primary: {

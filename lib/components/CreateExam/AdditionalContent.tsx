@@ -66,7 +66,7 @@ const ContentSet = ({
     ) : null,
   };
   return (
-    <section className="flex justify-between gap-4">
+    <section className="flex justify-between gap-4 hover:bg-primary-tint">
       {handleContent[content.contentType]}
       <DragIndicator className="!w-5 !h-5 cursor-move" />
     </section>

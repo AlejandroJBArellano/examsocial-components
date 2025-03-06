@@ -2,6 +2,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { questionSchema } from "../../schemas";
 import { Button } from "../Button";
+import { Heading4 } from "../FontFaces";
 import { QuestionForm } from "../QuestionForm";
 
 interface IEditQuestion {
@@ -22,12 +23,10 @@ const EditQuestion = ({ initialValues, onSubmit, onCancel }: IEditQuestion) => {
       validateOnBlur
     >
       {(props) => (
-        <div className="p-4 shadow-right shadow-black border border-black rounded-lg space-y-6">
-          <h2 className="text-2xl leading-7 sentient font-medium">
-            Edit Question
-          </h2>
+        <section className="space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
+          <Heading4>Edit Question</Heading4>
           <QuestionForm {...props} />
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <Button theme="light" rounded onClick={onCancel}>
               Cancel
             </Button>
@@ -43,7 +42,7 @@ const EditQuestion = ({ initialValues, onSubmit, onCancel }: IEditQuestion) => {
               Update
             </Button>
           </div>
-        </div>
+        </section>
       )}
     </Formik>
   );

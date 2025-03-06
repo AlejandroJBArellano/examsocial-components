@@ -2,6 +2,7 @@ import { Formik } from "formik";
 import { questionSchema } from "../../schemas";
 import { IQuestion } from "../../types";
 import { Button } from "../Button";
+import { Heading4 } from "../FontFaces";
 import { QuestionForm } from "../QuestionForm";
 
 interface INewQuestion {
@@ -23,9 +24,7 @@ const NewQuestion = ({ onSubmit, onCancel }: INewQuestion) => {
     >
       {(props) => (
         <section className="space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
-          <h2 className="sentient text-2xl font-medium leading-7">
-            New Question
-          </h2>
+          <Heading4>New Question</Heading4>
           <QuestionForm {...props} />
           <article className="flex items-center justify-between">
             <Button type="button" theme="light" rounded onClick={onCancel}>

@@ -7,7 +7,7 @@ const BannerInput = ({
 }) => (
   <label
     htmlFor="banner"
-    className="xl:h-46 flex h-36 max-w-[358px] cursor-pointer items-center justify-center rounded-md border border-black bg-secondary p-4 xl:max-w-[640px]"
+    className="flex aspect-video cursor-pointer items-center justify-center rounded-md border border-black bg-secondary p-4"
   >
     <div className="rounded-full border border-black bg-white p-2">
       <PhotoIcon data-testid="PhotoIcon" />

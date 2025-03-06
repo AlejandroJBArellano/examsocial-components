@@ -93,7 +93,7 @@ export default {
       },
       themes: [
         {
-          name: "INDUSTRIAL-EDGE",
+          name: "INDUSTRIAL_EDGE",
           extend: {
             colors: {
               primary: {
@@ -163,7 +163,7 @@ export default {
           },
         },
         {
-          name: "VIBRANT-ORCHID",
+          name: "VIBRANT_ORCHID",
           extend: {
             colors: {
               primary: {

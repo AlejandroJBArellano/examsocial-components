@@ -19,13 +19,13 @@ export const Review = () => {
   const formik = useFormikContext<Yup.InferType<typeof examSchema>>();
   return (
     <section className="space-y-4">
-      <article className="flex justify-between items-center">
+      <article className="flex items-center justify-between">
         <Heading3>Review</Heading3>
         <Button
           theme="extra"
           className="flex items-center justify-center gap-2"
         >
-          <Visibility className="!w-5 !h-5" />
+          <Visibility className="!h-5 !w-5" />
           <FocusSpan>Preview exam</FocusSpan>
         </Button>
       </article>
@@ -41,7 +41,7 @@ export const Review = () => {
       </article>
       <article className="space-y-1">
         <Heading4>Questions</Heading4>
-        <div className="gap-4 flex flex-nowrap overflow-x-auto">
+        <div className="flex flex-nowrap gap-4 overflow-x-auto">
           {formik.values.questions.map((question, index) => (
             <QuestionSet
               index={index}
@@ -64,7 +64,7 @@ export const Review = () => {
           <Heading4>Additional Content</Heading4>
           <div className="flex gap-4 [&>div]:flex [&>div]:gap-1">
             <div>
-              <ViewHeadline className="!w-6 !h-6" />
+              <ViewHeadline className="!h-6 !w-6" />
               <Span>
                 x
                 {
@@ -77,7 +77,7 @@ export const Review = () => {
               </Span>
             </div>
             <div>
-              <Photo className="!w-6 !h-6" />
+              <Photo className="!h-6 !w-6" />
               <Span>
                 x
                 {
@@ -88,7 +88,7 @@ export const Review = () => {
               </Span>
             </div>
             <div>
-              <SmartDisplay className="!w-6 !h-6" />
+              <SmartDisplay className="!h-6 !w-6" />
               <Span>
                 x
                 {
@@ -101,7 +101,7 @@ export const Review = () => {
               </Span>
             </div>
             <div>
-              <PlayArrow className="!w-6 !h-6" />
+              <PlayArrow className="!h-6 !w-6" />
               <Span>
                 x
                 {
@@ -112,7 +112,7 @@ export const Review = () => {
               </Span>
             </div>
             <div>
-              <Description className="!w-6 !h-6" />
+              <Description className="!h-6 !w-6" />
               <Span>
                 x
                 {
@@ -196,16 +196,16 @@ export const Review = () => {
           </div>
           <div>
             <Span>Theme</Span>
-            <div className="flex gap-2 ">
+            <div className="flex gap-2">
               <div
                 className={
                   "flex gap-1.5 " + formik.values.advancedSettings.theme
                 }
               >
-                <div className="size-5 border border-black rounded-full bg-primary"></div>
-                <div className="size-5 border border-black rounded-full bg-secondary"></div>
-                <div className="size-5 border border-black rounded-full bg-accent"></div>
-                <div className="size-5 border border-black rounded-full bg-extra"></div>
+                <div className="size-5 rounded-full border border-black bg-primary"></div>
+                <div className="size-5 rounded-full border border-black bg-secondary"></div>
+                <div className="size-5 rounded-full border border-black bg-accent"></div>
+                <div className="size-5 rounded-full border border-black bg-extra"></div>
               </div>
               <FocusSpan>
                 {toTitleCase(formik.values.advancedSettings.theme).replaceAll(

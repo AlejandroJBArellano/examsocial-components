@@ -32,7 +32,7 @@ export const AdvancedSettings = () => {
       </article>
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
-        <div className="flex flex-nowrap items-center gap-2 overflow-x-auto">
+        <div className="flex flex-nowrap gap-2 overflow-x-auto">
           <Button
             className="p-2"
             rounded

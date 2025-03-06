@@ -19,7 +19,7 @@ const FeedbackScreen = ({
   ...feedback
 }: FeedbackScreenProps) => {
   return (
-    <article className="w-72 space-y-4 rounded-md border border-black p-4 xl:space-y-5 xl:p-6">
+    <article className="w-full min-w-72 space-y-4 rounded-md border border-black p-4 xl:space-y-5 xl:p-6">
       <FocusSpan>{handleCondition(feedback)}</FocusSpan>
       <Paragraph>{feedback.message}</Paragraph>
       <div className="flex items-center justify-between">

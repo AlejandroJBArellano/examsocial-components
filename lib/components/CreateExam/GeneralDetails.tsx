@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { examSchema } from "../../schemas/index";
 import { BannerInput } from "../BannerInput";
 import { FocusSpan, Heading4 } from "../FontFaces";
+import { ImageUploader } from "../ImageUploader";
 import { Input } from "../Input";
 import { Textarea } from "../Textarea";
 
@@ -14,20 +15,20 @@ export const GeneralDetails = () => {
       <Heading4>General Details</Heading4>
       <article className="space-y-1">
         <FocusSpan>Banner</FocusSpan>
-        {values.image && (
-          <img
-            src={URL.createObjectURL(values.image as Blob)}
-            alt="Banner"
-            className="w-full object-cover"
+        {values.image ? (
+          <ImageUploader
+            image={values.image as File}
+            onDelete={() => setFieldValue("image", null)}
+          />
+        ) : (
+          <BannerInput
+            onChange={(e) => {
+              if (e.target.files) {
+                setFieldValue("image", e.target.files[0]);
+              }
+            }}
           />
         )}
-        <BannerInput
-          onChange={(e) => {
-            if (e.target.files) {
-              setFieldValue("image", e.target.files[0]);
-            }
-          }}
-        />
       </article>
       <article className="space-y-1">
         <FocusSpan>Title</FocusSpan>

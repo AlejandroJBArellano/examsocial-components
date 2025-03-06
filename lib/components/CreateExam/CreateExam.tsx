@@ -95,6 +95,7 @@ const CreateExam = () => {
                 <Button
                   rounded={!(step === 4)}
                   theme="accent"
+                  disabled={step === 3 && !isValid}
                   onClick={() => {
                     if (step === 4) return;
                     setStep((prev) => (prev + 1) as keyof typeof steps);

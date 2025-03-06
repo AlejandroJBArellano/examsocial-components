@@ -1,10 +1,9 @@
-import { useState } from "react";
+import * as Yup from "yup";
+import { examSchema } from "../../schemas";
 import { Stepper } from "../Stepper";
 import SelectedQuestion from "./SelectedQuestion";
 
-const TakeExam = () => {
-  const [questions, setQuestions] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
   return (
     <main>
       <Stepper
@@ -16,7 +15,7 @@ const TakeExam = () => {
         showDivision
         time={"60"}
       />
-      <SelectedQuestion />
+      <SelectedQuestion questions={exam.questions} onFinish={() => {}} />
     </main>
   );
 };

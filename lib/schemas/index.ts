@@ -3,11 +3,13 @@ import { FeedbackCondition } from "../constants";
 
 export const questionSchema = Yup.object({
   question: Yup.string().required("Question is required"),
+  _id: Yup.string().required(),
   options: Yup.array()
     .of(
       Yup.object({
         text: Yup.string().required("Option text is required"),
         correct: Yup.boolean(),
+        _id: Yup.string().required(),
       }),
     )
     .required()

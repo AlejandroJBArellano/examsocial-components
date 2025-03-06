@@ -102,7 +102,7 @@ export const NewAdditionalContent = ({
         <input
           type="file"
           accept="video/*"
-          className="w-full file:rounded-full file:bg-primary file:p-2 file:hover:bg-primary-shadow file:hover:text-primary-tint file:border-primary-shadow file:text-primary-shadow"
+          className="w-full file:rounded-full file:border-primary-shadow file:bg-primary file:p-2 file:text-primary-shadow file:hover:bg-primary-shadow file:hover:text-primary-tint"
           onChange={(e) => {
             const file = e.target?.files?.[0];
             if (file) {
@@ -118,7 +118,7 @@ export const NewAdditionalContent = ({
         <input
           type="file"
           accept="audio/*"
-          className="w-full file:rounded-full file:bg-primary file:p-2 file:hover:bg-primary-shadow file:hover:text-primary-tint file:border-primary-shadow file:text-primary-shadow"
+          className="w-full file:rounded-full file:border-primary-shadow file:bg-primary file:p-2 file:text-primary-shadow file:hover:bg-primary-shadow file:hover:text-primary-tint"
           onChange={(e) => {
             const file = e.target?.files?.[0];
             if (file) {
@@ -133,7 +133,7 @@ export const NewAdditionalContent = ({
         <FocusSpan>File</FocusSpan>
         <input
           type="file"
-          className="w-full file:rounded-full file:bg-primary file:p-2 file:hover:bg-primary-shadow file:hover:text-primary-tint file:border-primary-shadow file:text-primary-shadow"
+          className="w-full file:rounded-full file:border-primary-shadow file:bg-primary file:p-2 file:text-primary-shadow file:hover:bg-primary-shadow file:hover:text-primary-tint"
           onChange={(e) => {
             const file = e.target?.files?.[0];
             if (file) {
@@ -146,7 +146,7 @@ export const NewAdditionalContent = ({
   };
 
   return (
-    <section className="p-4 shadow-right rounded-lg shadow-black border border-black space-y-6">
+    <section className="space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
       <Heading4>New Content</Heading4>
       <article className="space-y-1">
         <FocusSpan>Content Type</FocusSpan>
@@ -219,7 +219,7 @@ export const NewAdditionalContent = ({
       <article className="space-y-4">
         {contentType && ContentTypes[contentType]}
       </article>
-      <article className="flex justify-between items-center">
+      <article className="flex items-center justify-between">
         <Button theme="light" rounded onClick={onCancel}>
           Cancel
         </Button>

@@ -17,7 +17,7 @@ const ContentSet = ({
     YOUTUBE: (
       <iframe
         src={content.youtubeUrl}
-        className="w-full h-[200px] rounded-lg"
+        className="h-[200px] w-full rounded-lg"
         allowFullScreen
         width={560}
         height={315}
@@ -68,7 +68,7 @@ const ContentSet = ({
   return (
     <section className="flex justify-between gap-4 hover:bg-primary-tint">
       {handleContent[content.contentType]}
-      <DragIndicator className="!w-5 !h-5 cursor-move" />
+      <DragIndicator className="!h-5 !w-5 cursor-move" />
     </section>
   );
 };
@@ -90,15 +90,15 @@ export const AdditionalContent = () => {
         }}
         theme="extra"
         rounded
-        className="w-full items-center flex gap-2 justify-center"
+        className="flex w-full items-center justify-center gap-2 md:mx-auto md:w-auto"
       >
-        <Add className="!w-5 !h-5" />
+        <Add className="!h-5 !w-5" />
         <span className="font-medium">Add new section</span>
       </Button>
       <Dialog
         innerRef={dialogRef}
         id="additional-content"
-        className="max-w-sm w-full"
+        className="w-full max-w-sm"
       >
         <NewAdditionalContent
           onSubmit={(values) => {

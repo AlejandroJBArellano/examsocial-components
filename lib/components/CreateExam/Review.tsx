@@ -127,8 +127,8 @@ export const Review = () => {
       )}
       <article className="space-y-1">
         <Heading4>Advanced Settings</Heading4>
-        <div className="space-y-3">
-          <div className="flex justify-between items-center">
+        <div className="space-y-3 [&>div]:flex [&>div]:justify-between">
+          <div>
             <Span>Randomize question order</Span>
             <FocusSpan
               className={
@@ -142,7 +142,7 @@ export const Review = () => {
                 : "No"}
             </FocusSpan>
           </div>
-          <div className="flex justify-between items-center">
+          <div>
             <Span>Show results at the end</Span>
             <FocusSpan
               className={
@@ -154,7 +154,7 @@ export const Review = () => {
               {formik.values.advancedSettings.showCorrectAnswers ? "Yes" : "No"}
             </FocusSpan>
           </div>
-          <div className="flex justify-between items-center">
+          <div>
             <Span>Send email report</Span>
             <FocusSpan
               className={
@@ -166,7 +166,7 @@ export const Review = () => {
               {formik.values.advancedSettings.sendEmailReport ? "Yes" : "No"}
             </FocusSpan>
           </div>
-          <div className="flex justify-between items-center">
+          <div>
             <Span>Leaderboard</Span>
             <FocusSpan
               className={
@@ -178,21 +178,42 @@ export const Review = () => {
               {formik.values.advancedSettings.leaderboard ? "Yes" : "No"}
             </FocusSpan>
           </div>
-          <div className="flex justify-between items-center">
+          <div>
             <Span>Number of attempts</Span>
             <FocusSpan>
               {formik.values.advancedSettings.numberOfAttempts}
             </FocusSpan>
           </div>
-          <div className="flex justify-between items-center">
+          <div>
             <Span>Price</Span>
             <FocusSpan>{formik.values.advancedSettings.price}</FocusSpan>
           </div>
-          <div className="flex justify-between items-center">
+          <div>
             <Span>Privacy</Span>
             <FocusSpan>
               {toTitleCase(formik.values.advancedSettings.privacy.setting)}
             </FocusSpan>
+          </div>
+          <div>
+            <Span>Theme</Span>
+            <div className="flex gap-2 ">
+              <div
+                className={
+                  "flex gap-1.5 " + formik.values.advancedSettings.theme
+                }
+              >
+                <div className="size-5 border border-black rounded-full bg-primary"></div>
+                <div className="size-5 border border-black rounded-full bg-secondary"></div>
+                <div className="size-5 border border-black rounded-full bg-accent"></div>
+                <div className="size-5 border border-black rounded-full bg-extra"></div>
+              </div>
+              <FocusSpan>
+                {toTitleCase(formik.values.advancedSettings.theme).replaceAll(
+                  "_",
+                  " ",
+                )}
+              </FocusSpan>
+            </div>
           </div>
         </div>
       </article>

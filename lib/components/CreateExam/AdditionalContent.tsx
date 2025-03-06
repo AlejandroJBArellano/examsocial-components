@@ -6,7 +6,7 @@ import { contentSchema, examSchema } from "../../schemas";
 import { NewAdditionalContent } from "../AdditionalContent/New";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
-import { Anchor } from "../FontFaces";
+import { Anchor, Heading3 } from "../FontFaces";
 
 const ContentSet = ({
   content,
@@ -78,9 +78,7 @@ export const AdditionalContent = () => {
   const formik = useFormikContext<Yup.InferType<typeof examSchema>>();
   return (
     <section className="space-y-6">
-      <h2 className="sentient font-bold text-[28px] leading-8 tracking-[0.56px]">
-        Additional Content
-      </h2>
+      <Heading3>Additional Content</Heading3>
       <article className="space-y-4">
         {formik.values.contents.map((content, index) => (
           <ContentSet key={index} content={content} />

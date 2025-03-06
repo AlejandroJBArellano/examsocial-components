@@ -33,7 +33,7 @@ const CreateExam = () => {
         contents: [],
         tags: [],
         advancedSettings: {
-          randomizeQuestionOrder: false,
+          randomizeQuestionOrder: true,
           showCorrectAnswers: false,
           sendEmailReport: false,
           leaderboard: false,

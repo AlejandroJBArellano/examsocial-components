@@ -24,7 +24,7 @@ export const AdvancedSettings = () => {
     useFormikContext<Yup.InferType<typeof examSchema>>();
 
   return (
-    <section className="space-y-4 [&>article]:space-y-1 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article>div]:flex [&>article>div]:items-center [&>article>div]:gap-2">
+    <section className="space-y-4 [&>article]:space-y-1 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article]:gap-2 [&>article>div]:flex [&>article>div]:items-center [&>article>div]:gap-2">
       <article className="flex items-center justify-between">
         <Heading4>Advanced Settings</Heading4>
         <PremiumBadge />

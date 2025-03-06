@@ -33,7 +33,7 @@ export const Heading3 = (
   <h3
     {...props}
     className={cn(
-      "text-[28px] font-medium font-['Sentient'] leading-loose tracking-wide xl:font-bold xl:text-[32px] xl:leading-10",
+      "text-[28px] font-bold font-['Sentient'] leading-loose tracking-wide xl:font-bold xl:text-[32px] xl:leading-10",
       props.className,
     )}
   />

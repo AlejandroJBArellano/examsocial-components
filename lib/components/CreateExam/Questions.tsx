@@ -6,6 +6,7 @@ import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { EditQuestion } from "../EditQuestion";
+import { Heading3 } from "../FontFaces";
 import { NewQuestion } from "../NewQuestion";
 import { QuestionSet } from "../QuestionSet";
 
@@ -24,9 +25,7 @@ export const Questions = () => {
 
   return (
     <section className="space-y-6">
-      <h2 className="sentient font-bold text-[28px] leading-8 tracking-[0.56px]">
-        Questions
-      </h2>
+      <Heading3>Questions</Heading3>
       <article className="space-y-4">
         {values.questions?.map((question, index) => (
           <QuestionSet

@@ -80,9 +80,9 @@ const CreateExam = () => {
                 }}
               />
             </header>
-            <main className="py-6 px-4 md:space-y-5 md:px-6 md:py-8">
+            <main className="px-4 py-6 md:space-y-5 md:px-6 md:py-8 lg:space-y-6 lg:px-7 lg:py-9 xl:px-8 xl:py-10">
               <div className="space-y-6">{steps[step]}</div>
-              <footer className="flex items-center justify-between md:justify-end gap-4 mt-4">
+              <footer className="mt-4 flex items-center justify-between gap-4 md:justify-end">
                 <Button
                   rounded
                   theme="light"

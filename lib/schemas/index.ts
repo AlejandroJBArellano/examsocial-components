@@ -97,6 +97,9 @@ export const advancedSettingsSchema = Yup.object({
         schema.min(0, "Must be at least 0").required("Required"),
     }),
   }),
+  theme: Yup.string()
+    .required("Required")
+    .oneOf(["WHITEBOARD", "INDUSTRIAL_EDGE", "EARTHY_TONES", "VIBRANT_ORCHID"]),
 });
 
 export const contentSchema = Yup.object({

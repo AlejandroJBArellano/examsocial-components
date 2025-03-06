@@ -51,6 +51,7 @@ const CreateExam = () => {
             minutes: 0,
             seconds: 0,
           },
+          theme: "WHITEBOARD",
         },
       }}
       validationSchema={examSchema}

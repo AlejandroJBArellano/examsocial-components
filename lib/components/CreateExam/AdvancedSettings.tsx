@@ -171,7 +171,11 @@ export const AdvancedSettings = () => {
       </article>
       <TimingSettings />
       <PrivacySettings />
-      <ThemeSettings onChange={() => {}} />
+      <ThemeSettings
+        onChange={(theme) => {
+          setFieldValue("advancedSettings.theme", theme);
+        }}
+      />
       <Dialog innerRef={dialogRef} id="advanced-settings">
         <NewFeedbackScreen
           onSubmit={(newFeedback) => {

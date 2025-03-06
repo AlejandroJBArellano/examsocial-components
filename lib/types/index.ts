@@ -11,3 +11,9 @@ export type ContentTypes =
   | "VIDEO"
   | "AUDIO"
   | "FILE";
+
+export type ThemeSetting =
+  | "WHITEBOARD"
+  | "INDUSTRIAL_EDGE"
+  | "EARTHY_TONES"
+  | "VIBRANT_ORCHID";

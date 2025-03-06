@@ -1,8 +1,7 @@
 import { useState } from "react";
+import { ThemeSetting } from "../../types";
 import { FocusSpan } from "../FontFaces";
 import { Select } from "../Select";
-
-export type ThemeSetting = "WHITEBOARD";
 
 const ThemeSettingsNameMap = {
   WHITEBOARD: "Whiteboard",

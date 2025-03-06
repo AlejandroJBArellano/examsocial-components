@@ -12,36 +12,6 @@ export default {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      colors: {
-        primary: {
-          DEFAULT: "#66E5FF",
-          shadow: "#047C95",
-          tint: "#EDFAFD",
-        },
-        secondary: {
-          DEFAULT: "#B9B2FF",
-          shadow: "#5647EB",
-          tint: "#F1F0FF",
-        },
-        accent: {
-          DEFAULT: "#FF5C96",
-          shadow: "#AD1F51",
-          tint: "#FFEBF2",
-        },
-        extra: {
-          DEFAULT: "#FFC34D",
-          shadow: "#E59800",
-          tint: "#FFF5E0",
-        },
-        feedback: {
-          success: "#19B244",
-          "success-tint": "#C9F8D7",
-          warning: "#F1DC1E",
-          "warning-tint": "#FBF6C5",
-          error: "#AD160B",
-          "error-tint": "#FBC9C5",
-        },
-      },
       borderWidth: {
         xs: "0.5px",
         sm: "1px",
@@ -85,5 +55,149 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-themer")({
+      defaultTheme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: "#66E5FF",
+              shadow: "#047C95",
+              tint: "#EDFAFD",
+            },
+            secondary: {
+              DEFAULT: "#B9B2FF",
+              shadow: "#5647EB",
+              tint: "#F1F0FF",
+            },
+            accent: {
+              DEFAULT: "#FF5C96",
+              shadow: "#AD1F51",
+              tint: "#FFEBF2",
+            },
+            extra: {
+              DEFAULT: "#FFC34D",
+              shadow: "#E59800",
+              tint: "#FFF5E0",
+            },
+            feedback: {
+              success: "#19B244",
+              "success-tint": "#C9F8D7",
+              warning: "#F1DC1E",
+              "warning-tint": "#FBF6C5",
+              error: "#AD160B",
+              "error-tint": "#FBC9C5",
+            },
+          },
+        },
+      },
+      themes: [
+        {
+          name: "INDUSTRIAL-EDGE",
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: "#66E5FF",
+                shadow: "#047C95",
+                tint: "#EDFAFD",
+              },
+              secondary: {
+                DEFAULT: "#B9B2FF",
+                shadow: "#5647EB",
+                tint: "#F1F0FF",
+              },
+              accent: {
+                DEFAULT: "#FF5C96",
+                shadow: "#AD1F51",
+                tint: "#FFEBF2",
+              },
+              extra: {
+                DEFAULT: "#FFC34D",
+                shadow: "#E59800",
+                tint: "#FFF5E0",
+              },
+              feedback: {
+                success: "#19B244",
+                "success-tint": "#C9F8D7",
+                warning: "#F1DC1E",
+                "warning-tint": "#FBF6C5",
+                error: "#AD160B",
+                "error-tint": "#FBC9C5",
+              },
+            },
+          },
+        },
+        {
+          name: "EARTHY-TONES",
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: "#66E5FF",
+                shadow: "#047C95",
+                tint: "#EDFAFD",
+              },
+              secondary: {
+                DEFAULT: "#B9B2FF",
+                shadow: "#5647EB",
+                tint: "#F1F0FF",
+              },
+              accent: {
+                DEFAULT: "#FF5C96",
+                shadow: "#AD1F51",
+                tint: "#FFEBF2",
+              },
+              extra: {
+                DEFAULT: "#FFC34D",
+                shadow: "#E59800",
+                tint: "#FFF5E0",
+              },
+              feedback: {
+                success: "#19B244",
+                "success-tint": "#C9F8D7",
+                warning: "#F1DC1E",
+                "warning-tint": "#FBF6C5",
+                error: "#AD160B",
+                "error-tint": "#FBC9C5",
+              },
+            },
+          },
+        },
+        {
+          name: "VIBRANT-ORCHID",
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: "#66E5FF",
+                shadow: "#047C95",
+                tint: "#EDFAFD",
+              },
+              secondary: {
+                DEFAULT: "#B9B2FF",
+                shadow: "#5647EB",
+                tint: "#F1F0FF",
+              },
+              accent: {
+                DEFAULT: "#FF5C96",
+                shadow: "#AD1F51",
+                tint: "#FFEBF2",
+              },
+              extra: {
+                DEFAULT: "#FFC34D",
+                shadow: "#E59800",
+                tint: "#FFF5E0",
+              },
+              feedback: {
+                success: "#19B244",
+                "success-tint": "#C9F8D7",
+                warning: "#F1DC1E",
+                "warning-tint": "#FBF6C5",
+                error: "#AD160B",
+                "error-tint": "#FBC9C5",
+              },
+            },
+          },
+        },
+      ],
+    }),
+  ],
 };

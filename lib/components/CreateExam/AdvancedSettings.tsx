@@ -25,21 +25,21 @@ export const AdvancedSettings = () => {
     useFormikContext<Yup.InferType<typeof examSchema>>();
 
   return (
-    <section className="space-y-4 [&>article]:space-y-1 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article]:gap-2 [&>article>div]:flex [&>article>div]:items-center [&>article>div]:gap-2">
+    <section className="space-y-4 [&>article>div]:flex [&>article>div]:items-center [&>article>div]:gap-2 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article]:gap-2 [&>article]:space-y-1">
       <article className="flex items-center justify-between">
         <Heading4>Advanced Settings</Heading4>
         <PremiumBadge />
       </article>
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-nowrap items-center gap-2 overflow-x-auto">
           <Button
             className="p-2"
             rounded
             onClick={() => dialogRef.current?.showModal()}
             type="button"
           >
-            <Add className="!w-8 !h-8" />
+            <Add className="!h-8 !w-8" />
           </Button>
           {values.advancedSettings.feedback?.map((feedback, index) => (
             <FeedbackScreen

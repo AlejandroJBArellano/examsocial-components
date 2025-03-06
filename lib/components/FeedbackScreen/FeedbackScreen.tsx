@@ -19,7 +19,7 @@ const FeedbackScreen = ({
   ...feedback
 }: FeedbackScreenProps) => {
   return (
-    <article className="p-4 space-y-4 border border-black rounded-md xl:space-y-5 xl:p-6">
+    <article className="w-72 space-y-4 rounded-md border border-black p-4 xl:space-y-5 xl:p-6">
       <FocusSpan>{handleCondition(feedback)}</FocusSpan>
       <Paragraph>{feedback.message}</Paragraph>
       <div className="flex items-center justify-between">
@@ -30,7 +30,7 @@ const FeedbackScreen = ({
           type="button"
           onClick={() => onDelete(feedback.index)}
         >
-          <Delete className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
+          <Delete className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
         </Button>
         <Button
           theme="light"
@@ -39,7 +39,7 @@ const FeedbackScreen = ({
           type="button"
           onClick={() => onEdit(feedback.index)}
         >
-          <Edit className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
+          <Edit className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
         </Button>
       </div>
     </article>

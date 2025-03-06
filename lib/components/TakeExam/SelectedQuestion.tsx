@@ -12,7 +12,7 @@ interface ISelectedQuestion {
 
 const SelectedQuestion = ({ questions, onFinish }: ISelectedQuestion) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const question = questions[currentQuestion];
   return (
@@ -26,11 +26,13 @@ const SelectedQuestion = ({ questions, onFinish }: ISelectedQuestion) => {
           {question.options.map((option) => (
             <AnswerOption
               onClick={() => {
-                setSelectedOption(option._id!);
+                setSelectedOptions((prev) => [...prev, option._id!]);
               }}
               key={option._id}
-              checked={selectedOption === option._id}
-              type={selectedOption === option._id ? "selectable" : undefined}
+              checked={selectedOptions.includes(option._id!)}
+              type={
+                selectedOptions.includes(option._id!) ? "selectable" : undefined
+              }
             >
               {option.text}
             </AnswerOption>
@@ -38,21 +40,25 @@ const SelectedQuestion = ({ questions, onFinish }: ISelectedQuestion) => {
         </div>
       </article>
       <article className="flex justify-between">
-        <Button theme="light" rounded>
+        <Button
+          theme="light"
+          rounded
+          onClick={() => setCurrentQuestion((prev) => prev - 1)}
+          disabled={currentQuestion === 0}
+        >
           <FocusSpan>Previous</FocusSpan>
         </Button>
         <Button
           rounded
           theme="accent"
           className="flex items-center justify-center gap-2"
-          disabled={!selectedOption}
+          disabled={selectedOptions.length === 0}
           onClick={() => {
             if (currentQuestion === questions.length - 1) {
               onFinish();
               return;
             }
             setCurrentQuestion(currentQuestion + 1);
-            setSelectedOption("");
           }}
         >
           {currentQuestion === questions.length - 1 ? (

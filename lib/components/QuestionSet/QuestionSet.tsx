@@ -30,7 +30,7 @@ const QuestionSet = ({
     <div
       className={
         (selected ? "bg-extra shadow-right shadow-black " : "bg-extra-tint ") +
-        "p-4 space-y-4 xl:p-5 xl:space-y-5 border rounded-md border-black w-80"
+        "p-4 space-y-4 xl:p-5 xl:space-y-5 border rounded-md border-black min-w-80 w-full"
       }
     >
       <Heading5>{question}</Heading5>

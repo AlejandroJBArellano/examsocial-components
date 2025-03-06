@@ -40,7 +40,7 @@ export const Review = () => {
       </article>
       <article className="space-y-1">
         <Heading4>Questions</Heading4>
-        <div className="flex gap-4">
+        <div className="gap-4 flex flex-nowrap overflow-x-auto">
           {formik.values.questions.map((question, index) => (
             <QuestionSet
               index={index}

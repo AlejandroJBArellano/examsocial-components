@@ -10,5 +10,18 @@ export default {
 type Story = StoryObj<typeof SelectedQuestion>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    questions: [
+      {
+        question: "What is the capital of France?",
+        options: [
+          { text: "Paris", correct: true },
+          { text: "London" },
+          { text: "Berlin" },
+          { text: "Madrid" },
+        ],
+        _id: "1",
+      },
+    ],
+  },
 };

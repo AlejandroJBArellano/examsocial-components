@@ -112,9 +112,9 @@ export default {
                 tint: "#FFFAEB",
               },
               extra: {
-                DEFAULT: "#FFC34D",
-                shadow: "#E59800",
-                tint: "#FFF5E0",
+                shadow: "#2D7676",
+                DEFAULT: "#3B9C9C",
+                tint: "#E9F7F7",
               },
               feedback: {
                 success: "#19B244",

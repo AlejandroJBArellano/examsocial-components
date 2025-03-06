@@ -12,10 +12,10 @@ import { Review } from "./Review";
 const CreateExam = () => {
   const steps = {
     1: (
-      <>
+      <div className="md:grid md:grid-cols-2 md:gap-6">
         <GeneralDetails />
         <AdvancedSettings />
-      </>
+      </div>
     ),
     2: <Questions />,
     3: <AdditionalContent />,
@@ -80,9 +80,9 @@ const CreateExam = () => {
                 }}
               />
             </header>
-            <main className="py-6 px-4">
+            <main className="py-6 px-4 md:space-y-5 md:px-6 md:py-8">
               <div className="space-y-6">{steps[step]}</div>
-              <footer className="flex items-center justify-between mt-4">
+              <footer className="flex items-center justify-between md:justify-end gap-4 mt-4">
                 <Button
                   rounded
                   theme="light"

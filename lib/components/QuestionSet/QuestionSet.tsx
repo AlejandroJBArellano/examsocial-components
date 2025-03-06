@@ -30,7 +30,7 @@ const QuestionSet = ({
     <div
       className={
         (selected ? "bg-extra shadow-right shadow-black " : "bg-extra-tint ") +
-        "p-4 space-y-4 xl:p-5 xl:space-y-5 border rounded-md border-black min-w-80 w-full"
+        "w-full min-w-[350px] max-w-sm space-y-4 rounded-md border border-black p-4 xl:space-y-5 xl:p-5"
       }
     >
       <Heading5>{question}</Heading5>
@@ -38,7 +38,7 @@ const QuestionSet = ({
         <>
           <div className="space-y-2.5">
             {(props as QuestionSetPropsEditable).options.map((option, i) => (
-              <div key={i} className="flex justify-between items-center">
+              <div key={i} className="flex items-center justify-between">
                 <Span>{option.text}</Span>
                 {option.correct ? (
                   <Tag theme="feedback-success">Correct</Tag>
@@ -46,7 +46,7 @@ const QuestionSet = ({
               </div>
             ))}
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <Button
               onClick={() => {
                 (props as QuestionSetPropsEditable).onDelete(
@@ -57,7 +57,7 @@ const QuestionSet = ({
               rounded
               className="p-2"
             >
-              <Delete className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
+              <Delete className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
             </Button>
             <Button
               onClick={() => {
@@ -69,7 +69,7 @@ const QuestionSet = ({
               rounded
               className="p-2"
             >
-              <Edit className="!w-8 !h-8 xl:!w-9 xl:!h-9" />
+              <Edit className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
             </Button>
           </div>
         </>

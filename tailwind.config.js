@@ -107,9 +107,9 @@ export default {
                 tint: "#E0F0FF",
               },
               accent: {
-                DEFAULT: "#FF5C96",
-                shadow: "#AD1F51",
-                tint: "#FFEBF2",
+                shadow: "#E0AC00",
+                DEFAULT: "#FFC300",
+                tint: "#FFFAEB",
               },
               extra: {
                 DEFAULT: "#FFC34D",

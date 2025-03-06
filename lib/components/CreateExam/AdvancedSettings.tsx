@@ -13,6 +13,7 @@ import { Input } from "../Input";
 import { PremiumBadge } from "../PremiumBadge";
 import { PrivacySettings } from "../PrivacySettings";
 import { Switch } from "../Switch";
+import { ThemeSettings } from "../ThemeSettings";
 import { TimingSettings } from "../TimingSettings";
 
 export const AdvancedSettings = () => {
@@ -170,7 +171,7 @@ export const AdvancedSettings = () => {
       </article>
       <TimingSettings />
       <PrivacySettings />
-      {/* <ThemeSettings onChange={() => {}} /> */}
+      <ThemeSettings onChange={() => {}} />
       <Dialog innerRef={dialogRef} id="advanced-settings">
         <NewFeedbackScreen
           onSubmit={(newFeedback) => {

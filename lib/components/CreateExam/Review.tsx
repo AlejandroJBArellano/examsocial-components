@@ -1,4 +1,11 @@
-import { Visibility } from "@mui/icons-material";
+import {
+  Description,
+  Photo,
+  PlayArrow,
+  SmartDisplay,
+  ViewHeadline,
+  Visibility,
+} from "@mui/icons-material";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas/index";
@@ -49,7 +56,72 @@ export const Review = () => {
           />
         ))}
       </article>
-      <Heading4>Additional Content</Heading4>
+      {formik.values.contents.length > 0 && (
+        <article className="space-y-">
+          <Heading4>Additional Content</Heading4>
+          <div className="flex gap-4 [&>div]:flex [&>div]:gap-1">
+            <div>
+              <ViewHeadline className="!w-6 !h-6" />
+              <Span>
+                x
+                {
+                  formik.values.contents.filter(
+                    (content) =>
+                      content.contentType === "TEXT" ||
+                      content.contentType === "LINK",
+                  ).length
+                }
+              </Span>
+            </div>
+            <div>
+              <Photo className="!w-6 !h-6" />
+              <Span>
+                x
+                {
+                  formik.values.contents.filter(
+                    (content) => content.contentType === "IMAGE",
+                  ).length
+                }
+              </Span>
+            </div>
+            <div>
+              <SmartDisplay className="!w-6 !h-6" />
+              <Span>
+                x
+                {
+                  formik.values.contents.filter(
+                    (content) =>
+                      content.contentType === "VIDEO" ||
+                      content.contentType === "YOUTUBE",
+                  ).length
+                }
+              </Span>
+            </div>
+            <div>
+              <PlayArrow className="!w-6 !h-6" />
+              <Span>
+                x
+                {
+                  formik.values.contents.filter(
+                    (content) => content.contentType === "AUDIO",
+                  ).length
+                }
+              </Span>
+            </div>
+            <div>
+              <Description className="!w-6 !h-6" />
+              <Span>
+                x
+                {
+                  formik.values.contents.filter(
+                    (content) => content.contentType === "FILE",
+                  ).length
+                }
+              </Span>
+            </div>
+          </div>
+        </article>
+      )}
       <article className="space-y-1">
         <Heading4>Advanced Settings</Heading4>
         <div className="space-y-3">

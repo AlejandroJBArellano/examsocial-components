@@ -97,9 +97,9 @@ export default {
           extend: {
             colors: {
               primary: {
-                DEFAULT: "#66E5FF",
-                shadow: "#047C95",
-                tint: "#EDFAFD",
+                DEFAULT: "#FF5733",
+                shadow: "#CC2400",
+                tint: "#FFEEEB",
               },
               secondary: {
                 DEFAULT: "#B9B2FF",

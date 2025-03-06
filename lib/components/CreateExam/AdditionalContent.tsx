@@ -17,7 +17,7 @@ const ContentSet = ({
     YOUTUBE: (
       <iframe
         src={content.youtubeUrl}
-        className="h-[200px] w-full rounded-lg"
+        className="aspect-video rounded-lg"
         allowFullScreen
         width={560}
         height={315}
@@ -66,8 +66,8 @@ const ContentSet = ({
     ) : null,
   };
   return (
-    <section className="flex justify-between gap-4 hover:bg-primary-tint">
-      {handleContent[content.contentType]}
+    <section className="mx-auto flex justify-between gap-4 hover:bg-primary-tint md:justify-center md:py-6">
+      <div className="max-w-xl">{handleContent[content.contentType]}</div>
       <DragIndicator className="!h-5 !w-5 cursor-move" />
     </section>
   );

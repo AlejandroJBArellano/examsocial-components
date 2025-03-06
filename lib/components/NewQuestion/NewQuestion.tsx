@@ -22,12 +22,12 @@ const NewQuestion = ({ onSubmit, onCancel }: INewQuestion) => {
       validateOnBlur
     >
       {(props) => (
-        <section className="p-4 shadow-right shadow-black border border-black rounded-lg space-y-6">
-          <h2 className="text-2xl leading-7 sentient font-medium">
+        <section className="space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
+          <h2 className="sentient text-2xl font-medium leading-7">
             New Question
           </h2>
           <QuestionForm {...props} />
-          <article className="flex justify-between items-center">
+          <article className="flex items-center justify-between">
             <Button type="button" theme="light" rounded onClick={onCancel}>
               Cancel
             </Button>

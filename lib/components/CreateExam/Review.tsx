@@ -9,6 +9,7 @@ import {
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas/index";
+import { toTitleCase } from "../../utils";
 import { Button } from "../Button";
 import ExamCard from "../ExamCard/ExamCard";
 import { FocusSpan, Heading3, Heading4, Span } from "../FontFaces";
@@ -190,7 +191,7 @@ export const Review = () => {
           <div className="flex justify-between items-center">
             <Span>Privacy</Span>
             <FocusSpan>
-              {formik.values.advancedSettings.privacy.setting}
+              {toTitleCase(formik.values.advancedSettings.privacy.setting)}
             </FocusSpan>
           </div>
         </div>

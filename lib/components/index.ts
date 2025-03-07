@@ -37,6 +37,7 @@ export * from "./ReviewQuestionSet";
 export * from "./SaveButton";
 export * from "./Select";
 export * from "./Separator";
+export * from "./SocialPost";
 export * from "./Stepper";
 export * from "./Switch";
 export * from "./Tab";

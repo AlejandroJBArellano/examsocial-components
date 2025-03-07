@@ -26,7 +26,6 @@ const SelectedQuestion = ({
 
   const question = questions[selected];
 
-  console.log(selectedOptions);
   return (
     <section className="h-full space-y-4 px-4 py-6">
       <article className="flex flex-col gap-5">

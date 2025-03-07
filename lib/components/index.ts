@@ -7,6 +7,7 @@ export * from "./Comment";
 export * from "./CreateAnswer";
 export * from "./EditQuestion";
 export * from "./Email";
+export * from "./FavoriteButton";
 export * from "./FeedbackScreen";
 export * from "./FontFaces";
 export * from "./Helper";

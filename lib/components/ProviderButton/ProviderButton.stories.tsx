@@ -6,16 +6,28 @@ const meta: Meta<typeof ProviderButton> = {
   component: ProviderButton,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Botones de inicio de sesión con proveedores externos. Tienen un redondeado personalizado de 10px y no tienen bordes.",
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {
     provider: {
       control: "select",
       options: ["facebook", "google", "apple", "x", "reddit"],
+      description: "Tipo de proveedor de autenticación",
     },
     size: {
       control: "radio",
       options: ["default", "large"],
+      description: "Tamaño del botón",
+    },
+    text: {
+      control: "text",
+      description: "Texto personalizado para el botón",
     },
   },
 };

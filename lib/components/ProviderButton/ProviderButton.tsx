@@ -149,7 +149,7 @@ const ProviderButton = ({
     <button
       type="button"
       className={cn(
-        "flex items-center justify-center rounded-sm border-2 border-black",
+        "flex items-center justify-center rounded-[10px]",
         config.bgColor,
         config.textColor,
         size === "default"

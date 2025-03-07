@@ -21,6 +21,19 @@ describe("ProviderButton", () => {
     expect(button).toHaveClass("text-white");
   });
 
+  it("applies rounded corners of 10px", () => {
+    render(<ProviderButton provider="facebook" />);
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("rounded-[10px]");
+  });
+
+  it("does not have a border", () => {
+    render(<ProviderButton provider="facebook" />);
+    const button = screen.getByRole("button");
+    expect(button).not.toHaveClass("border-2");
+    expect(button).not.toHaveClass("border-black");
+  });
+
   it("applies size-specific styles", () => {
     render(<ProviderButton provider="facebook" size="large" />);
     const button = screen.getByRole("button");

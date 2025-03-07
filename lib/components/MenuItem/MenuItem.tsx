@@ -15,7 +15,8 @@ export type MenuItemIcon =
   | "edit"
   | "delete"
   | "favorite"
-  | "bookmark";
+  | "bookmark"
+  | "home";
 
 // Props para el componente
 export interface MenuItemProps extends ComponentPropsWithoutRef<"button"> {
@@ -41,16 +42,22 @@ export interface MenuItemProps extends ComponentPropsWithoutRef<"button"> {
   isSelected?: boolean;
   /**
    * Si el elemento está comprimido (solo muestra el icono)
+   * Nota: Este valor puede ser anulado por los breakpoints responsive
    */
   isCompressed?: boolean;
   /**
-   * Texto del tooltip (solo visible en tamaños xl y 2xl cuando está comprimido)
+   * Texto del tooltip (visible cuando está comprimido)
    */
   tooltipText?: string;
   /**
    * Clase CSS personalizada
    */
   className?: string;
+  /**
+   * Si el componente debe ser responsive (cambia entre comprimido/expandido según breakpoints)
+   * Si es true, isCompressed solo se aplica en pantallas pequeñas
+   */
+  isResponsive?: boolean;
 }
 
 const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
@@ -64,14 +71,11 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
       isCompressed = false,
       tooltipText,
       className,
+      isResponsive = true,
       ...props
     },
     ref,
   ) => {
-    // Determinar si se debe mostrar el tooltip
-    const showTooltip =
-      (size === "xl" || size === "2xl") && isCompressed && tooltipText;
-
     // Configurar tamaños de icono según el tamaño del componente
     const iconSize = {
       default: 20,
@@ -84,18 +88,26 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
     const getContainerStyles = () => {
       // Estilos base según el tamaño
       const sizeStyles = {
-        default: isCompressed
-          ? "p-4 h-11 w-[70px]"
-          : "px-4 py-3 h-12 gap-2 justify-end items-center",
-        md: isCompressed
-          ? "p-6 h-[60px] w-[86px] gap-1"
-          : "px-6 py-4 h-14 gap-2 justify-end items-center",
-        xl: isCompressed
-          ? "p-7 h-[68px] w-[84px] gap-2"
-          : "px-7 py-5 h-[68px] gap-2 justify-end items-center",
-        "2xl": isCompressed
-          ? "p-8 h-20 w-24 gap-2"
-          : "px-8 py-6 h-20 gap-2 justify-end items-center",
+        default: "h-11 sm:h-12",
+        md: "h-[60px] sm:h-14",
+        xl: "h-[68px]",
+        "2xl": "h-20",
+      }[size];
+
+      // Estilos para el modo comprimido según el tamaño
+      const compressedStyles = {
+        default: "p-4 w-[70px]",
+        md: "p-6 w-[86px] gap-1",
+        xl: "p-7 w-[84px] gap-2",
+        "2xl": "p-8 w-24 gap-2",
+      }[size];
+
+      // Estilos para el modo expandido según el tamaño
+      const expandedStyles = {
+        default: "px-4 py-3 gap-2 justify-end items-center",
+        md: "px-6 py-4 gap-2 justify-end items-center",
+        xl: "px-7 py-5 gap-2 justify-end items-center",
+        "2xl": "px-8 py-6 gap-2 justify-end items-center",
       }[size];
 
       // Estilos según el tipo de contenido
@@ -108,12 +120,28 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
           : "bg-primary-tint"
         : "bg-white";
 
+      // Estilos responsive
+      const responsiveStyles = isResponsive
+        ? "flex-col items-center justify-center sm:flex-row"
+        : isCompressed
+          ? "flex-col items-center justify-center"
+          : "flex-row";
+
+      // Estilos de padding y ancho responsive
+      const responsivePaddingStyles = isResponsive
+        ? `${compressedStyles} sm:${expandedStyles}`
+        : isCompressed
+          ? compressedStyles
+          : expandedStyles;
+
       return cn(
         "flex",
-        isCompressed ? "flex-col items-center justify-center" : "flex-row",
+        responsiveStyles,
         sizeStyles,
+        responsivePaddingStyles,
         contentStyles,
         selectedStyles,
+        "transition-all duration-200",
         className,
       );
     };
@@ -139,6 +167,26 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
       );
     };
 
+    // Determinar si se debe mostrar el texto
+    const shouldShowText = () => {
+      if (isResponsive) {
+        // En modo responsive, el texto se oculta en móvil y se muestra en tablet/desktop
+        return "hidden sm:inline-block";
+      }
+      // En modo no responsive, depende del prop isCompressed
+      return isCompressed ? "hidden" : "inline-block";
+    };
+
+    // Determinar si se debe mostrar el tooltip
+    const shouldShowTooltip = () => {
+      if (isResponsive) {
+        // En modo responsive, mostrar tooltip solo en pantallas pequeñas
+        return (size === "xl" || size === "2xl") && tooltipText;
+      }
+      // En modo no responsive, mostrar tooltip solo si está comprimido
+      return (size === "xl" || size === "2xl") && isCompressed && tooltipText;
+    };
+
     // Renderizar el botón
     const button = (
       <button
@@ -149,6 +197,7 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
         data-selected={isSelected}
         data-compressed={isCompressed}
         data-content={content}
+        data-responsive={isResponsive}
         {...props}
       >
         {content === "cta" ? (
@@ -158,15 +207,15 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
               size={iconSize}
               className={getIconStyles()}
             />
-            {!isCompressed && (
-              <span className={getTextStyles()}>{children}</span>
-            )}
+            <span className={cn(getTextStyles(), shouldShowText())}>
+              {children}
+            </span>
           </>
         ) : (
           <>
-            {!isCompressed && (
-              <span className={getTextStyles()}>{children}</span>
-            )}
+            <span className={cn(getTextStyles(), shouldShowText())}>
+              {children}
+            </span>
             <MaterialSymbol
               icon={icon}
               size={iconSize}
@@ -178,7 +227,7 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
     );
 
     // Si se debe mostrar el tooltip, envolver el botón con el tooltip
-    if (showTooltip) {
+    if (shouldShowTooltip()) {
       return (
         <Tooltip trigger={button} side="right" align="center">
           {tooltipText}

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { vi } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import MenuItem from "./MenuItem";
 
 describe("MenuItem", () => {
@@ -12,31 +12,52 @@ describe("MenuItem", () => {
   });
 
   test("renders with different sizes", () => {
-    const { rerender } = render(<MenuItem size="default">Go Pro</MenuItem>);
+    const { rerender } = render(
+      <MenuItem size="default" isResponsive={false}>
+        Go Pro
+      </MenuItem>,
+    );
 
     let menuItem = screen.getByTestId("menu-item");
-    expect(menuItem).toHaveClass("h-12");
+    expect(menuItem).toHaveClass("h-11");
 
-    rerender(<MenuItem size="md">Go Pro</MenuItem>);
+    rerender(
+      <MenuItem size="md" isResponsive={false}>
+        Go Pro
+      </MenuItem>,
+    );
     menuItem = screen.getByTestId("menu-item");
-    expect(menuItem).toHaveClass("h-14");
+    expect(menuItem).toHaveClass("h-[60px]");
 
-    rerender(<MenuItem size="xl">Go Pro</MenuItem>);
+    rerender(
+      <MenuItem size="xl" isResponsive={false}>
+        Go Pro
+      </MenuItem>,
+    );
     menuItem = screen.getByTestId("menu-item");
     expect(menuItem).toHaveClass("h-[68px]");
 
-    rerender(<MenuItem size="2xl">Go Pro</MenuItem>);
+    rerender(
+      <MenuItem size="2xl" isResponsive={false}>
+        Go Pro
+      </MenuItem>,
+    );
     menuItem = screen.getByTestId("menu-item");
     expect(menuItem).toHaveClass("h-20");
   });
 
   test("renders in compressed mode", () => {
-    render(<MenuItem isCompressed>Go Pro</MenuItem>);
+    render(
+      <MenuItem isCompressed isResponsive={false}>
+        Go Pro
+      </MenuItem>,
+    );
 
     const menuItem = screen.getByTestId("menu-item");
     expect(menuItem).toHaveAttribute("data-compressed", "true");
     expect(menuItem).toHaveClass("flex-col");
-    expect(menuItem).not.toHaveTextContent("Go Pro");
+    expect(menuItem).toHaveClass("items-center");
+    expect(menuItem).toHaveClass("justify-center");
   });
 
   test("renders in selected state", () => {
@@ -83,7 +104,12 @@ describe("MenuItem", () => {
   test("renders with tooltip when appropriate", () => {
     // El tooltip solo se muestra en tamaños xl y 2xl cuando está comprimido
     render(
-      <MenuItem size="xl" isCompressed tooltipText="Create new item">
+      <MenuItem
+        size="xl"
+        isCompressed
+        tooltipText="Create new item"
+        isResponsive={false}
+      >
         Create
       </MenuItem>,
     );
@@ -92,5 +118,60 @@ describe("MenuItem", () => {
     // pero podemos verificar que el componente se renderiza correctamente
     const menuItem = screen.getByTestId("menu-item");
     expect(menuItem).toBeInTheDocument();
+  });
+
+  // Nuevas pruebas para el comportamiento responsive
+  test("renders with responsive mode enabled", () => {
+    render(<MenuItem isResponsive>Go Pro</MenuItem>);
+
+    const menuItem = screen.getByTestId("menu-item");
+    expect(menuItem).toHaveAttribute("data-responsive", "true");
+    expect(menuItem).toHaveClass("flex-col");
+    expect(menuItem).toHaveClass("sm:flex-row");
+  });
+
+  test("applies responsive styles correctly", () => {
+    render(
+      <MenuItem isResponsive size="md">
+        Go Pro
+      </MenuItem>,
+    );
+
+    const menuItem = screen.getByTestId("menu-item");
+    // Verificar clases responsive
+    expect(menuItem).toHaveClass("h-[60px]");
+    expect(menuItem).toHaveClass("sm:h-14");
+    expect(menuItem).toHaveClass("flex-col");
+    expect(menuItem).toHaveClass("sm:flex-row");
+    expect(menuItem).toHaveClass("items-center");
+    expect(menuItem).toHaveClass("justify-center");
+  });
+
+  test("hides text in small screens when responsive", () => {
+    render(<MenuItem isResponsive>Go Pro</MenuItem>);
+
+    const text = screen.getByText("Go Pro");
+    expect(text).toHaveClass("hidden");
+    expect(text).toHaveClass("sm:inline-block");
+  });
+
+  test("shows text in all screens when not responsive and not compressed", () => {
+    render(
+      <MenuItem isResponsive={false} isCompressed={false}>
+        Go Pro
+      </MenuItem>,
+    );
+
+    const text = screen.getByText("Go Pro");
+    expect(text).toHaveClass("inline-block");
+    expect(text).not.toHaveClass("hidden");
+  });
+
+  test("applies transition styles for smooth responsive changes", () => {
+    render(<MenuItem isResponsive>Go Pro</MenuItem>);
+
+    const menuItem = screen.getByTestId("menu-item");
+    expect(menuItem).toHaveClass("transition-all");
+    expect(menuItem).toHaveClass("duration-200");
   });
 });

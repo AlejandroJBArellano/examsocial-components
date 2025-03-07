@@ -38,12 +38,12 @@ export const Default: Story = {
       </ExamCard.Footer>
       <ExamCard.Actions>
         <ExamCard.Action
-          type="edit"
-          onClick={() => console.log("Edit clicked")}
-        />
-        <ExamCard.Action
           type="delete"
           onClick={() => console.log("Delete clicked")}
+        />
+        <ExamCard.Action
+          type="edit"
+          onClick={() => console.log("Edit clicked")}
         />
       </ExamCard.Actions>
     </ExamCard>
@@ -71,12 +71,12 @@ export const Medium: Story = {
       </ExamCard.Content>
       <ExamCard.Actions>
         <ExamCard.Action
-          type="edit"
-          onClick={() => console.log("Edit clicked")}
-        />
-        <ExamCard.Action
           type="delete"
           onClick={() => console.log("Delete clicked")}
+        />
+        <ExamCard.Action
+          type="edit"
+          onClick={() => console.log("Edit clicked")}
         />
       </ExamCard.Actions>
     </ExamCard>

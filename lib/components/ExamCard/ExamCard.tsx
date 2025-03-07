@@ -1,6 +1,7 @@
 import { Delete, Edit, Timer } from "@mui/icons-material";
 import React, { createContext, ReactNode, useContext } from "react";
 import { cn } from "../../utils";
+import { Button } from "../Button";
 import { Anchor, Heading4, Heading5, Heading6, Paragraph } from "../FontFaces";
 
 // Tipos para el contexto
@@ -269,18 +270,17 @@ interface ExamCardActionProps {
 
 const ExamCardAction = ({ onClick, type, className }: ExamCardActionProps) => {
   return (
-    <button
+    <Button
       onClick={onClick}
+      theme={type === "edit" ? "light" : "feedback-error"}
       className={cn(
-        "flex h-10 w-10 items-center justify-center rounded-md border-2 border-black shadow-right-sm transition-all hover:shadow-right xl:h-11 xl:w-11",
-        type === "edit" && "bg-white text-primary",
-        type === "delete" && "bg-feedback-error-tint text-feedback-error",
+        "flex h-10 w-10 items-center justify-center transition-all xl:h-11 xl:w-11",
         className,
       )}
     >
       {type === "edit" && <Edit />}
       {type === "delete" && <Delete />}
-    </button>
+    </Button>
   );
 };
 

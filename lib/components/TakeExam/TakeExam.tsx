@@ -51,6 +51,7 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
         setSelected={setSelectedQuestion}
         questions={exam.questions}
         onFinish={() => {}}
+        canJumpBetweenSteps
       />
     </main>
   );

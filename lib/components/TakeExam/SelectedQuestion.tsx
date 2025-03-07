@@ -20,9 +20,13 @@ const SelectedQuestion = ({
   setSelected,
   canJumpBetweenSteps,
 }: ISelectedQuestion) => {
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<
+    Record<string, string>
+  >({});
 
   const question = questions[selected];
+
+  console.log(selectedOptions);
   return (
     <section className="h-full space-y-4 px-4 py-6">
       <article className="flex flex-col gap-5">
@@ -34,12 +38,17 @@ const SelectedQuestion = ({
           {question.options.map((option) => (
             <AnswerOption
               onClick={() => {
-                setSelectedOptions((prev) => [...prev, option._id!]);
+                setSelectedOptions((prev) => ({
+                  ...prev,
+                  [question._id!]: option._id!,
+                }));
               }}
               key={option._id}
-              checked={selectedOptions.includes(option._id!)}
+              checked={selectedOptions[question._id!] === option._id}
               type={
-                selectedOptions.includes(option._id!) ? "selectable" : undefined
+                selectedOptions[question._id!] === option._id
+                  ? "selectable"
+                  : undefined
               }
             >
               {option.text}
@@ -66,7 +75,7 @@ const SelectedQuestion = ({
           rounded
           theme="accent"
           className="flex items-center justify-center gap-2"
-          disabled={selectedOptions.length === 0}
+          disabled={!selectedOptions[question._id!]}
           onClick={() => {
             if (selected === questions.length - 1) {
               onFinish();

@@ -5,7 +5,6 @@ import { cn } from "../../utils";
 import { ExamCard } from "../ExamCard";
 import { FocusSmoll, Smoll } from "../FontFaces";
 import { ProfilePlaceholder } from "../ProfilePlaceholder";
-import Review from "./Review";
 
 // Tipos para el contexto
 type SocialPostType = "examCreated" | "review" | "favoriteSaved";
@@ -168,7 +167,11 @@ const SocialPostReviewContent = ({
   // ya que el componente Review no acepta ese prop
   return (
     <div className={className}>
-      <Review exam={exam} />
+      <p>{content}</p>
+      <div>
+        <h4>{exam.title}</h4>
+        <img src={exam.image} alt={exam.title} />
+      </div>
     </div>
   );
 };

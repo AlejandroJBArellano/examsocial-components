@@ -13,11 +13,12 @@ export const Default: Story = {
     correct: false,
     question: {
       question: "What is the capital of France?",
-      answers: [
-        { text: "Paris", correct: true },
-        { text: "London" },
-        { text: "Berlin" },
-        { text: "Madrid" },
+      _id: "q1",
+      options: [
+        { text: "Paris", correct: true, _id: "o1" },
+        { text: "London", correct: false, _id: "o2" },
+        { text: "Berlin", correct: false, _id: "o3" },
+        { text: "Madrid", correct: false, _id: "o4" },
       ],
     },
   },

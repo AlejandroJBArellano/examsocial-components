@@ -31,20 +31,31 @@ export const Review = () => {
       </article>
       <article className="space-y-10">
         <Heading4>General Details</Heading4>
-        <ExamCard
-          title={formik.values.title}
-          description={formik.values.description}
-          tag="XD"
-          time="10 min"
-          image={URL.createObjectURL(formik.values.image as Blob)}
-        />
+        <ExamCard>
+          <ExamCard.Image
+            src={URL.createObjectURL(formik.values.image as Blob)}
+            alt={formik.values.title}
+          />
+          <ExamCard.Content>
+            <ExamCard.Title>{formik.values.title}</ExamCard.Title>
+            <ExamCard.Description>
+              {formik.values.description}
+            </ExamCard.Description>
+            <ExamCard.Footer>
+              <ExamCard.Tag>XD</ExamCard.Tag>
+              <ExamCard.Time>10 min</ExamCard.Time>
+            </ExamCard.Footer>
+          </ExamCard.Content>
+        </ExamCard>
       </article>
       <article className="space-y-1">
         <Heading4>Questions</Heading4>
         <div className="flex flex-nowrap gap-4 overflow-x-auto">
           {formik.values.questions.map((question, index) => (
             <QuestionSet
+              {...question}
               index={index}
+              key={index}
               onEdit={(index) => console.log(index)}
               onDelete={(index) =>
                 formik.setFieldValue(
@@ -52,9 +63,6 @@ export const Review = () => {
                   formik.values.questions.filter((_, i) => i !== index),
                 )
               }
-              key={index}
-              question={question.question}
-              options={question.options}
             />
           ))}
         </div>

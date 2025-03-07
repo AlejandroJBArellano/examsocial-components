@@ -72,10 +72,11 @@ export const Questions = () => {
       <Dialog innerRef={editDialogRef} className="w-full max-w-sm">
         <EditQuestion
           initialValues={
-            values.questions && index
+            values.questions && index !== null
               ? values.questions[index]
               : {
                   question: "",
+                  _id: `temp-${Date.now()}`,
                   options: [],
                 }
           }

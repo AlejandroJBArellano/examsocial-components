@@ -34,7 +34,7 @@ describe("Navbar", () => {
     const items = [
       {
         label: "Home",
-        icon: "home",
+        icon: "home" as MenuItemIcon,
       },
     ];
 
@@ -50,11 +50,11 @@ describe("Navbar", () => {
     const items = [
       {
         label: "Home",
-        icon: "home",
+        icon: "home" as MenuItemIcon,
       },
       {
         label: "Create",
-        icon: "list_alt_add",
+        icon: "list_alt_add" as MenuItemIcon,
         isCTA: true,
       },
     ];
@@ -72,7 +72,7 @@ describe("Navbar", () => {
     const items = [
       {
         label: "Home",
-        icon: "home",
+        icon: "home" as MenuItemIcon,
         onClick: handleClick,
       },
     ];
@@ -89,7 +89,7 @@ describe("Navbar", () => {
     const items = [
       {
         label: "Home",
-        icon: "home",
+        icon: "home" as MenuItemIcon,
       },
     ];
 

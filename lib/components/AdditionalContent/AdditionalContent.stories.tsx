@@ -11,24 +11,7 @@ type Story = StoryObj<typeof NewAdditionalContent>;
 
 export const Default: Story = {
   args: {
-    question: "What is the capital of Nigeria?",
-    options: [
-      {
-        text: "Lagos",
-        correct: false,
-      },
-      {
-        text: "Abuja",
-        correct: true,
-      },
-      {
-        text: "Kano",
-        correct: false,
-      },
-      {
-        text: "Ibadan",
-        correct: false,
-      },
-    ],
+    onSubmit: (values) => console.log(values),
+    onCancel: () => console.log("Cancelled"),
   },
 };

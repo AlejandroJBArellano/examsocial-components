@@ -1,7 +1,7 @@
 export interface IQuestion {
   question: string;
-  options: { text: string; correct?: boolean; _id?: string }[];
-  _id?: string;
+  options: { text: string; correct?: boolean; _id: string }[];
+  _id: string;
 }
 
 export type ContentTypes =

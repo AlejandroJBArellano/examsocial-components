@@ -11,8 +11,12 @@ type Story = StoryObj<typeof FeedbackScreen>;
 
 export const Default: Story = {
   args: {
-    title: "More than 90",
-    description:
+    message:
       "Your commitment to understanding AI is impressive. Keep up the great progress!",
+    condition: "GREATER_THAN",
+    gt: 90,
+    index: 0,
+    onEdit: (index) => console.log(`Edit feedback at index ${index}`),
+    onDelete: (index) => console.log(`Delete feedback at index ${index}`),
   },
 };

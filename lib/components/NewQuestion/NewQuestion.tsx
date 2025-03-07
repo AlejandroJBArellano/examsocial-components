@@ -15,6 +15,7 @@ const NewQuestion = ({ onSubmit, onCancel }: INewQuestion) => {
     <Formik
       initialValues={{
         question: "",
+        _id: `temp-${Date.now()}`,
         options: [] as IQuestion["options"],
       }}
       validationSchema={questionSchema}

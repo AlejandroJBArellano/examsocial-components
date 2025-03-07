@@ -17,6 +17,7 @@ export * from "./IndexButton";
 export * from "./Input";
 export * from "./MainContainer";
 export * from "./MenuItem";
+export * from "./Navbar";
 export * from "./NewQuestion";
 export * from "./Option";
 export * from "./Participants";

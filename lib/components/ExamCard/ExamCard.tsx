@@ -25,17 +25,17 @@ const ExamCard = ({
       <article className="space-y-1">
         <Heading4>{title}</Heading4>
         <img
-          className="w-full rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1.00)] border-2 border-black"
+          className="w-full rounded-lg border-2 border-black shadow-right-sm"
           src={image}
           alt={title}
         />
       </article>
       <Paragraph className="line-clamp-3">{description}</Paragraph>
-      <article className="flex justify-between items-center">
+      <article className="flex items-center justify-between">
         <Anchor className="text-accent-shadow" href={link}>
           {tag}
         </Anchor>
-        <div className="flex gap-2 items-center text-secondary-shadow">
+        <div className="flex items-center gap-2 text-secondary-shadow">
           <Timer />
           <Heading6>{time}</Heading6>
         </div>

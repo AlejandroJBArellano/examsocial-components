@@ -1,7 +1,14 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { ProviderButton } from ".";
+
+// Mock del componente FocusSpan
+vi.mock("../FontFaces/Spans", () => ({
+  FocusSpan: ({ children }: { children: React.ReactNode }) => (
+    <span data-testid="focus-span">{children}</span>
+  ),
+}));
 
 describe("ProviderButton", () => {
   it("renders correctly with default props", () => {
@@ -41,6 +48,21 @@ describe("ProviderButton", () => {
     expect(button).toHaveClass("px-4");
     expect(button).toHaveClass("py-4");
     expect(button).toHaveClass("text-lg");
+  });
+
+  it("applies responsive styles for xl breakpoint", () => {
+    render(<ProviderButton provider="facebook" />);
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("xl:p-4");
+    expect(button).toHaveClass("xl:h-14");
+    expect(button).toHaveClass("xl:gap-3");
+  });
+
+  it("uses FocusSpan for button text", () => {
+    render(<ProviderButton provider="facebook" />);
+    const focusSpan = screen.getByTestId("focus-span");
+    expect(focusSpan).toBeInTheDocument();
+    expect(focusSpan).toHaveTextContent("Sign In with Facebook");
   });
 
   it("applies custom className", () => {

@@ -9,7 +9,7 @@ const meta: Meta<typeof ProviderButton> = {
     docs: {
       description: {
         component:
-          "Botones de inicio de sesión con proveedores externos. Tienen un redondeado personalizado de 10px y no tienen bordes.",
+          "Botones de inicio de sesión con proveedores externos. Tienen un redondeado personalizado de 10px y no tienen bordes. En pantallas xl y superiores, tienen un padding de 4 unidades (p-4) y utilizan el componente FocusSpan para el texto.",
       },
     },
   },
@@ -112,6 +112,27 @@ export const AllProviders: Story = {
       <ProviderButton provider="apple" />
       <ProviderButton provider="x" />
       <ProviderButton provider="reddit" />
+    </div>
+  ),
+};
+
+export const ResponsiveDemo: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Este ejemplo muestra cómo se ve el componente en diferentes tamaños de pantalla. Redimensiona la ventana para ver los cambios.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div className="text-sm text-gray-500">
+        Tamaño por defecto (cambia a xl en pantallas grandes)
+      </div>
+      <ProviderButton provider="facebook" />
+      <div className="mt-4 text-sm text-gray-500">Tamaño grande</div>
+      <ProviderButton provider="facebook" size="large" />
     </div>
   ),
 };

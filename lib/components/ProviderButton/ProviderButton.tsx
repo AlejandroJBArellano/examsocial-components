@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "../../utils";
+import { FocusSpan } from "../FontFaces/Spans";
 
 export type ProviderType = "facebook" | "google" | "apple" | "x" | "reddit";
 
@@ -153,16 +154,18 @@ const ProviderButton = ({
         config.bgColor,
         config.textColor,
         size === "default"
-          ? "h-11 gap-2 px-3 py-3 text-base"
-          : "h-14 gap-3 px-4 py-4 text-lg",
+          ? "h-11 gap-2 px-3 py-3 text-base xl:h-14 xl:gap-3 xl:p-4"
+          : "h-14 gap-3 px-4 py-4 text-lg xl:p-4",
         className,
       )}
       {...props}
     >
-      <span className={size === "default" ? "h-5 w-5" : "h-6 w-6"}>
+      <span
+        className={size === "default" ? "h-5 w-5 xl:h-6 xl:w-6" : "h-6 w-6"}
+      >
         {buttonIcon}
       </span>
-      <span className="font-medium">{buttonText}</span>
+      <FocusSpan>{buttonText}</FocusSpan>
     </button>
   );
 };

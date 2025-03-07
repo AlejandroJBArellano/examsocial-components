@@ -8,10 +8,11 @@ Una biblioteca de componentes React para ExamSocial, construida con TypeScript, 
 2. [Instalación](#instalación)
 3. [Uso](#uso)
 4. [Componentes](#componentes)
-5. [Desarrollo](#desarrollo)
-6. [Testing](#testing)
-7. [Storybook](#storybook)
-8. [Construcción](#construcción)
+5. [Configuración de Tailwind](#configuración-de-tailwind)
+6. [Desarrollo](#desarrollo)
+7. [Testing](#testing)
+8. [Storybook](#storybook)
+9. [Construcción](#construcción)
 
 ## Introducción
 
@@ -106,6 +107,64 @@ La biblioteca incluye los siguientes componentes:
 - **FeedbackScreen**: Pantalla para mostrar feedback.
 - **MainContainer**: Contenedor principal para la aplicación.
 
+## Configuración de Tailwind
+
+La biblioteca exporta su configuración de Tailwind CSS para que puedas extenderla en tu proyecto. Esto te permite utilizar los mismos temas, colores y estilos que utiliza la biblioteca en tu aplicación.
+
+### Uso básico
+
+Para utilizar la configuración de Tailwind de ExamSocial Components en tu proyecto:
+
+```js
+// tailwind.config.js
+import { tailwindConfig } from 'examsocial-components';
+
+export default tailwindConfig;
+```
+
+### Extender la configuración
+
+Si deseas extender la configuración con tus propios estilos:
+
+```js
+// tailwind.config.js
+import { createTailwindConfig } from 'examsocial-components';
+
+export default createTailwindConfig({
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}', // Tus archivos
+  ],
+  theme: {
+    extend: {
+      // Tus extensiones de tema
+      colors: {
+        custom: '#ff0000',
+      },
+    },
+  },
+  plugins: [
+    // Tus plugins adicionales
+  ],
+});
+```
+
+### Temas disponibles
+
+La configuración de Tailwind incluye varios temas predefinidos que puedes utilizar:
+
+- **Default**: Tema por defecto
+- **INDUSTRIAL_EDGE**: Tema industrial con colores más fuertes
+- **EARTHY_TONES**: Tema con tonos terrosos y naturales
+- **VIBRANT_ORCHID**: Tema vibrante con colores púrpura
+
+Para cambiar entre temas, puedes utilizar las clases CSS proporcionadas por el plugin `tailwindcss-themer`:
+
+```html
+<div class="theme-INDUSTRIAL_EDGE">
+  <!-- Contenido con el tema INDUSTRIAL_EDGE -->
+</div>
+```
+
 ## Desarrollo
 
 Para desarrollar componentes adicionales o modificar los existentes:
@@ -142,10 +201,12 @@ examsocial-components/
 │   ├── schemas/         # Esquemas de validación
 │   ├── utils.ts         # Utilidades
 │   ├── constants.ts     # Constantes
+│   ├── tailwind.js      # Exportación de la configuración de Tailwind
 │   └── index.ts         # Punto de entrada principal
 ├── .storybook/          # Configuración de Storybook
 ├── node_modules/        # Dependencias
 ├── package.json         # Configuración del proyecto
+├── tailwind.config.js   # Configuración de Tailwind
 └── ...
 ```
 

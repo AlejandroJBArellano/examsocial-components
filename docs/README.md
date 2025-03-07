@@ -5,7 +5,8 @@ Bienvenido a la documentación de ExamSocial Components. Esta documentación pro
 ## Índice General
 
 1. [Introducción](../DOCUMENTATION.md) - Visión general del proyecto, instalación y uso
-2. [Guía de Contribución](../CONTRIBUTING.md) - Cómo contribuir al proyecto
+2. [Configuración de Tailwind](../DOCUMENTATION.md#configuración-de-tailwind) - Cómo utilizar y extender la configuración de Tailwind
+3. [Guía de Contribución](../CONTRIBUTING.md) - Cómo contribuir al proyecto
 
 ## Categorías de Componentes
 
@@ -15,6 +16,7 @@ Bienvenido a la documentación de ExamSocial Components. Esta documentación pro
 4. [Componentes de Exámenes](./EXAM-COMPONENTS.md) - Tarjetas de examen, creación de exámenes, etc.
 5. [Componentes Sociales](./SOCIAL-COMPONENTS.md) - Posts, comentarios, botones de favoritos, etc.
 6. [Componentes de Utilidades](./UTILITY-COMPONENTS.md) - Tooltips, diálogos, códigos QR, etc.
+7. [Configuración de Tailwind (Detallada)](./TAILWIND-CONFIG.md) - Guía completa de la configuración de Tailwind
 
 ## Estructura de la Documentación
 
@@ -39,6 +41,28 @@ npm install examsocial-components
 import { Button, Input } from 'examsocial-components';
 import 'examsocial-components/dist/style.css';
 ```
+
+### Uso de la configuración de Tailwind
+
+```js
+// tailwind.config.js
+import { tailwindConfig, createTailwindConfig } from 'examsocial-components';
+
+// Usar la configuración tal cual
+export default tailwindConfig;
+
+// O extenderla con tu propia configuración
+export default createTailwindConfig({
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      // Tus extensiones
+    }
+  }
+});
+```
+
+Para más detalles sobre la configuración de Tailwind, consulta la [documentación detallada](./TAILWIND-CONFIG.md).
 
 ## Desarrollo
 

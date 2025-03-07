@@ -9,7 +9,7 @@ export default {
     docs: {
       description: {
         component:
-          "Un componente de tarjeta de examen responsive que utiliza el patrón de Compound Components para mayor flexibilidad.",
+          "Un componente de tarjeta de examen responsive que utiliza el patrón de Compound Components para mayor flexibilidad. Los botones de acción siempre están visibles si se incluyen como children.",
       },
     },
   },
@@ -36,14 +36,36 @@ export const Default: Story = {
         <ExamCard.Tag href="#">Mathematics</ExamCard.Tag>
         <ExamCard.Time>1h 30m</ExamCard.Time>
       </ExamCard.Footer>
-      <ExamCard.Actions>
-        <ExamCard.Action
-          type="delete"
-          onClick={() => console.log("Delete clicked")}
+    </ExamCard>
+  ),
+};
+
+export const WithActions: Story = {
+  render: () => (
+    <ExamCard>
+      <ExamCard.Header>
+        <ExamCard.Title>Machine Learning</ExamCard.Title>
+        <ExamCard.Image
+          src="https://placehold.co/320x180"
+          alt="Machine Learning"
         />
+      </ExamCard.Header>
+      <ExamCard.Description>
+        This quiz aims to assess students' understanding of key mathematical
+        concepts and their ability to apply these concepts in solving problems.
+      </ExamCard.Description>
+      <ExamCard.Footer>
+        <ExamCard.Tag href="#">Mathematics</ExamCard.Tag>
+        <ExamCard.Time>1h 30m</ExamCard.Time>
+      </ExamCard.Footer>
+      <ExamCard.Actions>
         <ExamCard.Action
           type="edit"
           onClick={() => console.log("Edit clicked")}
+        />
+        <ExamCard.Action
+          type="delete"
+          onClick={() => console.log("Delete clicked")}
         />
       </ExamCard.Actions>
     </ExamCard>
@@ -71,12 +93,12 @@ export const Medium: Story = {
       </ExamCard.Content>
       <ExamCard.Actions>
         <ExamCard.Action
-          type="delete"
-          onClick={() => console.log("Delete clicked")}
-        />
-        <ExamCard.Action
           type="edit"
           onClick={() => console.log("Edit clicked")}
+        />
+        <ExamCard.Action
+          type="delete"
+          onClick={() => console.log("Delete clicked")}
         />
       </ExamCard.Actions>
     </ExamCard>
@@ -101,6 +123,16 @@ export const Small: Story = {
           <ExamCard.Time>1h 30m</ExamCard.Time>
         </ExamCard.Footer>
       </ExamCard.Content>
+      <ExamCard.Actions>
+        <ExamCard.Action
+          type="edit"
+          onClick={() => console.log("Edit clicked")}
+        />
+        <ExamCard.Action
+          type="delete"
+          onClick={() => console.log("Delete clicked")}
+        />
+      </ExamCard.Actions>
     </ExamCard>
   ),
 };
@@ -163,6 +195,16 @@ export const AllSizes: Story = {
             <ExamCard.Tag href="#">Mathematics</ExamCard.Tag>
             <ExamCard.Time>1h 30m</ExamCard.Time>
           </ExamCard.Footer>
+          <ExamCard.Actions>
+            <ExamCard.Action
+              type="edit"
+              onClick={() => console.log("Edit clicked")}
+            />
+            <ExamCard.Action
+              type="delete"
+              onClick={() => console.log("Delete clicked")}
+            />
+          </ExamCard.Actions>
         </ExamCard>
       </div>
 
@@ -185,6 +227,16 @@ export const AllSizes: Story = {
               <ExamCard.Time>1h 30m</ExamCard.Time>
             </ExamCard.Footer>
           </ExamCard.Content>
+          <ExamCard.Actions>
+            <ExamCard.Action
+              type="edit"
+              onClick={() => console.log("Edit clicked")}
+            />
+            <ExamCard.Action
+              type="delete"
+              onClick={() => console.log("Delete clicked")}
+            />
+          </ExamCard.Actions>
         </ExamCard>
       </div>
 
@@ -206,6 +258,16 @@ export const AllSizes: Story = {
               <ExamCard.Time>1h 30m</ExamCard.Time>
             </ExamCard.Footer>
           </ExamCard.Content>
+          <ExamCard.Actions>
+            <ExamCard.Action
+              type="edit"
+              onClick={() => console.log("Edit clicked")}
+            />
+            <ExamCard.Action
+              type="delete"
+              onClick={() => console.log("Delete clicked")}
+            />
+          </ExamCard.Actions>
         </ExamCard>
       </div>
     </div>

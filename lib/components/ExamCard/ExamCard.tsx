@@ -7,13 +7,11 @@ import { Anchor, Heading4, Heading5, Heading6, Paragraph } from "../FontFaces";
 // Tipos para el contexto
 type ExamCardSize = "default" | "md" | "sm";
 type ExamCardContextType = {
-  isHovering: boolean;
   size: ExamCardSize;
 };
 
 // Contexto para compartir estado entre componentes
 const ExamCardContext = createContext<ExamCardContextType>({
-  isHovering: false,
   size: "default",
 });
 
@@ -45,31 +43,18 @@ const ExamCard = ({
   onMouseLeave,
   ...props
 }: ExamCardProps & React.HTMLAttributes<HTMLDivElement>) => {
-  const [isHovering, setIsHovering] = React.useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-    onMouseEnter?.();
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-    onMouseLeave?.();
-  };
-
   return (
-    <ExamCardContext.Provider value={{ isHovering, size }}>
+    <ExamCardContext.Provider value={{ size }}>
       <div
         className={cn(
           "transition-shadow duration-300 ease-in-out",
           size === "default" && "space-y-3",
           size === "md" && "flex flex-row gap-4 md:gap-5",
           size === "sm" && "flex flex-col gap-2",
-          isHovering && "shadow-right",
           className,
         )}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
         {...props}
       >
         {children}
@@ -255,10 +240,6 @@ interface ExamCardActionsProps {
 }
 
 const ExamCardActions = ({ children, className }: ExamCardActionsProps) => {
-  const { isHovering } = useExamCardContext();
-
-  if (!isHovering) return null;
-
   return <div className={cn("flex gap-4", className)}>{children}</div>;
 };
 

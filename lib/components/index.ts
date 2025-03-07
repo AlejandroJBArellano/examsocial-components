@@ -22,6 +22,7 @@ export * from "./PremiumBadge";
 export * from "./PricingCard";
 export * from "./PricingComparisonCellWrapper";
 export * from "./ProfilePlaceholder";
+export * from "./ProviderButton";
 export * from "./QRCode";
 export * from "./QRCodeCard";
 export * from "./QuestionDetail";

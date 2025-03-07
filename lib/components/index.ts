@@ -16,6 +16,7 @@ export * from "./ImageUploader";
 export * from "./IndexButton";
 export * from "./Input";
 export * from "./MainContainer";
+export * from "./MenuItem";
 export * from "./NewQuestion";
 export * from "./Option";
 export * from "./Participants";

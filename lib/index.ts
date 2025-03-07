@@ -1,4 +1,5 @@
 import "react-material-symbols/rounded";
+import "./fonts.css";
 import "./index.css";
 
 // Export components

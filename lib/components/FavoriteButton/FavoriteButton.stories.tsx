@@ -8,6 +8,12 @@ const meta: Meta<typeof FavoriteButton> = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    tooltipSide: {
+      control: "select",
+      options: ["top", "right", "bottom", "left"],
+    },
+  },
 };
 
 export default meta;
@@ -34,6 +40,7 @@ export const Large: Story = {
     isFavorite: false,
     size: "large",
     tooltipText: "Add to favorites",
+    tooltipSide: "left",
   },
 };
 
@@ -42,5 +49,15 @@ export const LargeFavorited: Story = {
     isFavorite: true,
     size: "large",
     tooltipText: "Add to favorites",
+    tooltipSide: "left",
+  },
+};
+
+export const WithTooltipTop: Story = {
+  args: {
+    isFavorite: false,
+    size: "large",
+    tooltipText: "Add to favorites",
+    tooltipSide: "top",
   },
 };

@@ -2,6 +2,7 @@ import { ComponentPropsWithoutRef, useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
 import "react-material-symbols/rounded";
 import { cn } from "../../utils";
+import { Tooltip } from "../Tooltip";
 
 interface FavoriteButtonProps extends ComponentPropsWithoutRef<"button"> {
   /**
@@ -20,6 +21,10 @@ interface FavoriteButtonProps extends ComponentPropsWithoutRef<"button"> {
    * Tooltip text
    */
   tooltipText?: string;
+  /**
+   * Tooltip position
+   */
+  tooltipSide?: "top" | "right" | "bottom" | "left";
 }
 
 const FavoriteButton = ({
@@ -27,6 +32,7 @@ const FavoriteButton = ({
   onFavoriteChange,
   size = "default",
   tooltipText = "Add to favorites",
+  tooltipSide = "left",
   className,
   ...props
 }: FavoriteButtonProps) => {
@@ -41,43 +47,46 @@ const FavoriteButton = ({
     props.onClick?.(e);
   };
 
-  return (
-    <div className="relative">
-      <button
-        type="button"
-        data-testid="favorite-button"
-        {...props}
-        onClick={handleClick}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        className={cn(
-          "flex items-center justify-center rounded-md border-2 border-black",
-          size === "default" ? "h-10 w-10 p-2" : "h-11 w-11 p-2",
-          favorite
-            ? isHovering
-              ? "bg-white"
-              : "bg-accent-tint"
-            : isHovering
-              ? "bg-accent-tint"
-              : "bg-white",
-          className,
-        )}
-      >
-        <MaterialSymbol
-          icon="favorite"
-          size={size === "default" ? 20 : 24}
-          fill={favorite || isHovering}
-          className={
-            favorite || isHovering ? "text-accent-shadow" : "text-black"
-          }
-        />
-      </button>
-      {isHovering && size === "large" && (
-        <div className="absolute left-0 top-full mt-1 rounded-md bg-extra p-1 text-sm">
-          {tooltipText}
-        </div>
+  const buttonElement = (
+    <button
+      type="button"
+      data-testid="favorite-button"
+      {...props}
+      onClick={handleClick}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      className={cn(
+        "flex items-center justify-center rounded-md border-2 border-black",
+        size === "default" ? "h-10 w-10 p-2" : "h-11 w-11 p-2",
+        favorite
+          ? isHovering
+            ? "bg-white"
+            : "bg-accent-tint"
+          : isHovering
+            ? "bg-accent-tint"
+            : "bg-white",
+        className,
       )}
-    </div>
+    >
+      <MaterialSymbol
+        icon="favorite"
+        size={size === "default" ? 20 : 24}
+        fill={favorite || isHovering}
+        className={favorite || isHovering ? "text-accent-shadow" : "text-black"}
+      />
+    </button>
+  );
+
+  // Si no hay texto de tooltip o el tamaño no es large, solo devolvemos el botón
+  if (!tooltipText || size !== "large") {
+    return buttonElement;
+  }
+
+  // Si hay texto de tooltip y el tamaño es large, envolvemos el botón con el tooltip
+  return (
+    <Tooltip trigger={buttonElement} side={tooltipSide} align="center">
+      {tooltipText}
+    </Tooltip>
   );
 };
 

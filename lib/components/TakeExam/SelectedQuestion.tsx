@@ -51,7 +51,13 @@ const SelectedQuestion = ({
         <Button
           theme="light"
           rounded
-          onClick={() => setSelected((prev: number) => prev - 1)}
+          onClick={() => {
+            if (selected === 0) return;
+            if (canJumpBetweenSteps) {
+              setSelected((prev: number) => prev - 1);
+              return;
+            }
+          }}
           disabled={selected === 0 || !canJumpBetweenSteps}
         >
           <FocusSpan>Previous</FocusSpan>

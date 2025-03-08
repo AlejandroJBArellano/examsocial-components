@@ -6,6 +6,12 @@ const meta: Meta<typeof Icon> = {
   component: Icon,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Icon is a component that displays Material Symbols icons. It supports different variants, sizes, and colors.",
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {

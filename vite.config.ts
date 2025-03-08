@@ -9,7 +9,6 @@ import {
 import { join, resolve } from "path";
 import tailwindcss from "tailwindcss";
 import { defineConfig } from "vite";
-import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import dts from "vite-plugin-dts";
 
 // Función para copiar directorios recursivamente
@@ -52,15 +51,22 @@ export default defineConfig({
           "react-dom": "ReactDOM",
           tailwindcss: "tailwindcss",
         },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === "style.css") return "tailwind.css";
+          return assetInfo.name || "";
+        },
       },
     },
     sourcemap: true,
     emptyOutDir: true,
+    // Asegurarse de que los estilos CSS se generen como archivos separados
+    cssCodeSplit: true,
   },
   plugins: [
     react(),
     dts({ rollupTypes: true }),
-    cssInjectedByJsPlugin(),
+    // Comentamos este plugin para que los estilos no se inyecten en el JS
+    // cssInjectedByJsPlugin(),
     {
       name: "copy-fonts",
       closeBundle() {

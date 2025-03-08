@@ -1,6 +1,6 @@
 {
   "name": "examsocial-components",
-  "version": "0.1.11-mvp",
+  "version": "0.1.12-mvp",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
@@ -16,7 +16,8 @@
     },
     "./dist/style.css": "./dist/style.css",
     "./fonts/*": "./dist/fonts/*",
-    "./fonts.css": "./dist/fonts.css"
+    "./fonts.css": "./dist/fonts.css",
+    "./tailwind.css": "./dist/tailwind.css"
   },
   "scripts": {
     "dev": "vite",

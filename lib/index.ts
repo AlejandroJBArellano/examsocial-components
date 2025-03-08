@@ -1,6 +1,8 @@
 import "react-material-symbols/rounded";
-import "./fonts.css";
 import "./index.css";
+
+import "./fonts/Satoshi_Complete/Fonts/WEB/css/satoshi.css";
+import "./fonts/Sentient_Complete/Fonts/WEB/css/sentient.css";
 
 // Export components
 export * from "./components/index";

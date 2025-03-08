@@ -1,5 +1,6 @@
 import { Form, Formik } from "formik";
 import { useState } from "react";
+import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
@@ -9,7 +10,11 @@ import { GeneralDetails } from "./GeneralDetails";
 import { Questions } from "./Questions";
 import { Review } from "./Review";
 
-const CreateExam = () => {
+interface CreateExamProps {
+  onSubmit: (values: Yup.InferType<typeof examSchema>) => void;
+}
+
+const CreateExam = ({ onSubmit }: CreateExamProps) => {
   const steps = {
     1: (
       <div className="md:grid md:grid-cols-2 md:gap-6">
@@ -32,6 +37,7 @@ const CreateExam = () => {
         questions: [],
         contents: [],
         tags: [],
+        image: "",
         advancedSettings: {
           randomizeQuestionOrder: true,
           showCorrectAnswers: false,
@@ -56,9 +62,7 @@ const CreateExam = () => {
       }}
       validationSchema={examSchema}
       validateOnMount
-      onSubmit={(values) => {
-        console.log({ values });
-      }}
+      onSubmit={onSubmit}
     >
       {({ isValid, errors }) => {
         console.log({ errors });

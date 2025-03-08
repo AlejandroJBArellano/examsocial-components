@@ -5,6 +5,16 @@ import ImageInput from "./ImageInput";
 export default {
   title: "Components/ImageInput",
   component: ImageInput,
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "ImageInput is a component that allows users to upload and preview images. It supports drag and drop functionality and displays a preview of the selected image.",
+      },
+    },
+  },
+  tags: ["autodocs"],
 } as Meta;
 
 type Story = StoryObj<typeof ImageInput>;

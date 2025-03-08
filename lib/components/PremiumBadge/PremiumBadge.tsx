@@ -1,5 +1,5 @@
-import { WorkspacePremium } from "@mui/icons-material";
 import { cn } from "../../utils";
+import { Icon } from "../Icon";
 
 const PremiumBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
   const dimensions = {
@@ -17,12 +17,15 @@ const PremiumBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
   return (
     <div
       className={
-        "items-center rounded-md cursor-pointer select-none inline-flex gap-1 text-secondary-tint hover:shadow-right-sm hover:shadow-secondary bg-secondary-shadow " +
+        "inline-flex cursor-pointer select-none items-center gap-1 rounded-md bg-secondary-shadow text-secondary-tint hover:shadow-right-sm hover:shadow-secondary " +
         dimensions[size].container
       }
     >
       <span className={cn("", dimensions[size].text)}>Get With Pro</span>
-      <WorkspacePremium className={cn("!w-4 !h-4", dimensions[size].icon)} />
+      <Icon
+        name="workspace_premium"
+        className={cn("!h-4 !w-4", dimensions[size].icon)}
+      />
     </div>
   );
 };

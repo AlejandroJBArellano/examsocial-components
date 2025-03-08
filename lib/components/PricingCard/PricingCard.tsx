@@ -1,6 +1,6 @@
-import { CheckCircle, NewReleases } from "@mui/icons-material";
 import { PropsWithChildren } from "react";
 import { cn } from "../../utils";
+import { Icon } from "../Icon";
 
 type PricingMode = "monthly" | "yearly" | "lifetime" | "basic";
 
@@ -84,9 +84,9 @@ const PricingComparisonCell = ({
   return (
     <div className="flex items-center gap-1 leading-5">
       {special ? (
-        <NewReleases className="h-7 w-7" />
+        <Icon name="new_releases" className="h-7 w-7" />
       ) : (
-        <CheckCircle className="h-7 w-7" />
+        <Icon name="check_circle" className="h-7 w-7" />
       )}
       {children}
     </div>

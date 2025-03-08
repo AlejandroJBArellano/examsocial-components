@@ -1,5 +1,4 @@
 import clsx, { ClassValue } from "clsx";
-import "react-material-symbols/rounded";
 import { twMerge } from "tailwind-merge";
 import * as Yup from "yup";
 import { feedbackSchema } from "./schemas";

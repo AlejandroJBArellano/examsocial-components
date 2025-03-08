@@ -1,40 +1,29 @@
-import { MaterialSymbol } from "react-material-symbols";
 import { Button } from "../Button";
+import { Heading3, Heading5 } from "../FontFaces";
 
 const Participant = () => (
-  <div className="flex gap-6 items-center py-4">
+  <div className="flex items-center gap-6 py-4">
     <img
       src="https://picsum.photos/48"
       alt="user"
-      className="w-12 h-12 rounded-full"
+      className="h-12 w-12 rounded-full"
     />
-    <h5 className="text-[24px] flex flex-auto font-medium leading-7 tracking-[0.48px] sentient">
-      John Doe
-    </h5>
-    <h3 className="sentient text-[32px] leading-10 font-bold tracking-[0.64px] text-feedback-success">
-      15/25
-    </h3>
+    <Heading5>John Doe</Heading5>
+    <Heading3 className="text-feedback-success">15/25</Heading3>
     <Button
       theme="extra"
       rounded
-      className="p-2 flex items-center justify-center"
+      className="flex items-center justify-center p-2"
     >
-      <MaterialSymbol
-        icon="article_shortcut"
-        fill
-        size={24}
-        className="h-6 w-6"
-      />
+      {/* <ArticleShortcut className="h-6 w-6" /> */}
     </Button>
   </div>
 );
 
 const Participants = () => {
   return (
-    <section className="shadow-right p-8 border-sm border-black rounded-md space-y-8">
-      <h3 className="text-[32px] font-bold leading-8 tracking-[0.64px] sentient">
-        Participants
-      </h3>
+    <section className="space-y-8 rounded-md border-sm border-black p-8 shadow-right">
+      <Heading3>Participants</Heading3>
       <div className="divide-y-sm divide-black">
         <Participant />
         <Participant />

@@ -1,4 +1,3 @@
-import "react-material-symbols/rounded";
 import "./index.css";
 
 import "./fonts/Satoshi_Complete/Fonts/WEB/css/satoshi.css";

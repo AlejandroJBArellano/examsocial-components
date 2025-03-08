@@ -1,31 +1,31 @@
-import { Delete, Edit } from "@mui/icons-material";
 import { AnswerOption } from "../AnswerOption";
 import { Button } from "../Button";
+import { Icon } from "../Icon";
 
 const QuestionDetail = () => {
   return (
-    <section className="shadow-right p-8 border-sm border-black rounded-md space-y-8">
+    <section className="space-y-8 rounded-md border-sm border-black p-8 shadow-right">
       <article className="flex gap-6">
-        <h3 className="text-[32px] font-bold leading-8 tracking-[0.64px] sentient">
+        <h3 className="sentient text-[32px] font-bold leading-8 tracking-[0.64px]">
           Which of the following is a correct way to create a writable store in
           Svelte?
         </h3>
-        <div className="flex flex-col gap-4 items-center">
+        <div className="flex flex-col items-center gap-4">
           <Button rounded className="p-2">
-            <Edit className="!w-6 !h-6" />
+            <Icon name="edit" className="!h-6 !w-6" />
           </Button>
           <Button theme="feedback-error" rounded className="p-2">
-            <Delete className="!w-6 !h-6" />
+            <Icon name="delete" className="!h-6 !w-6" />
           </Button>
         </div>
       </article>
       <article>
-        <div className="flex gap-6 ">
+        <div className="flex gap-6">
           <AnswerOption checked type="viewOnly">
             import {"{writable}"} from 'svelte/store'; {"\n "}
             const store = writable([]);
           </AnswerOption>
-          <div className="flex gap-2 items-center justify-center">
+          <div className="flex items-center justify-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
@@ -48,7 +48,7 @@ const QuestionDetail = () => {
                 fill="#DBFAE4"
               />
             </svg>
-            <h3 className="sentient text-[32px] leading-10 font-bold tracking-[0.64px]">
+            <h3 className="sentient text-[32px] font-bold leading-10 tracking-[0.64px]">
               25%
             </h3>
           </div>

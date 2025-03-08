@@ -6,6 +6,12 @@ const meta: Meta<typeof FavoriteButton> = {
   component: FavoriteButton,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "FavoriteButton is a component that allows users to mark items as favorites. It changes state when clicked and can display a tooltip with customizable text and position.",
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {

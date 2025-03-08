@@ -1,5 +1,5 @@
-import { Grade } from "@mui/icons-material";
 import { FocusSmoll, FocusSpan, Smoll } from "../FontFaces";
+import { Icon } from "../Icon";
 import { ProfilePlaceholder } from "../ProfilePlaceholder";
 
 interface IReviewSocialPost {
@@ -21,11 +21,11 @@ const Review = ({ exam }: IReviewSocialPost) => {
           <div className="flex gap-1 text-gray-600">
             <Smoll>Left a</Smoll>
             <div className="flex items-center text-extra-shadow">
-              <Grade className="!size-2.5" />
-              <Grade className="!size-2.5" />
-              <Grade className="!size-2.5" />
-              <Grade className="!size-2.5" />
-              <Grade className="!size-2.5" />
+              <Icon name="grade" className="!size-2.5" />
+              <Icon name="grade" className="!size-2.5" />
+              <Icon name="grade" className="!size-2.5" />
+              <Icon name="grade" className="!size-2.5" />
+              <Icon name="grade" className="!size-2.5" />
             </div>
             <Smoll>review</Smoll>
           </div>

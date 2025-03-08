@@ -8,7 +8,6 @@ import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
 import { EditFeedbackScreen } from "../FeedbackScreen/NewAndEdit";
 import { FocusSpan, Heading4 } from "../FontFaces";
 import { Helper } from "../Helper";
-import { Icon } from "../Icon";
 import { Input } from "../Input";
 import { PremiumBadge } from "../PremiumBadge";
 import { PrivacySettings } from "../PrivacySettings";
@@ -33,14 +32,15 @@ export const AdvancedSettings = () => {
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
         <div className="flex flex-nowrap gap-2 overflow-x-auto">
-          <Button
-            className="mb-1 mr-1 flex items-center gap-2 p-2"
+          <Button.Icon
+            className="mb-1 mr-1"
             rounded
             onClick={() => dialogRef.current?.showModal()}
             type="button"
+            size={24}
           >
-            <Icon name="add" size={24} />
-          </Button>
+            add
+          </Button.Icon>
           {values.advancedSettings.feedback?.map((feedback, index) => (
             <FeedbackScreen
               key={feedback.condition}

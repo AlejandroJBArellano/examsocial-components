@@ -44,7 +44,10 @@ interface IconButtonProps extends ButtonProps {
 
 const IconButton = (props: IconButtonProps) => {
   return (
-    <Button {...props}>
+    <Button
+      {...props}
+      className={"flex items-center justify-center p-2 " + props.className}
+    >
       <Icon
         name={props.children as string}
         size={props.size}

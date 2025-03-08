@@ -1,12 +1,7 @@
-import {
-  FavoriteBorderOutlined,
-  Grade,
-  StarHalf,
-  StarOutlineSharp,
-} from "@mui/icons-material";
 import { formatDistanceToNow } from "date-fns";
 import { PropsWithChildren } from "react";
 import { Button } from "../Button";
+import { Icon } from "../Icon";
 import ProfilePlaceholder from "../ProfilePlaceholder/ProfilePlaceholder";
 
 interface ICommentProps {
@@ -26,17 +21,17 @@ const Comment = ({
 }: PropsWithChildren<ICommentProps>) => {
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
   return (
-    <section className="space-y-2 mb-4" data-testid="comment">
-      <article className="flex justify-between items-center">
-        <div className="flex gap-1 items-center">
+    <section className="mb-4 space-y-2" data-testid="comment">
+      <article className="flex items-center justify-between">
+        <div className="flex items-center gap-1">
           {user.avatar ? (
             <img
               src={user.avatar}
               alt="avatar"
-              className="w-6 h-6 rounded-full"
+              className="h-6 w-6 rounded-full"
             />
           ) : (
-            <span className="w-6 h-6">
+            <span className="h-6 w-6">
               <ProfilePlaceholder gender="male" />
             </span>
           )}
@@ -49,20 +44,24 @@ const Comment = ({
       <article className="flex justify-between">
         <div>
           <p className="text-xs font-bold">Rating:</p>
-          <div className="text-secondary-shadow flex">
+          <div className="flex text-secondary-shadow">
             {[...Array(5)].map((_, index) => {
               if (rating >= index + 1) {
-                return <Grade key={index} className="!h-5 !w-5" />;
+                return <Icon name="grade" key={index} className="!h-5 !w-5" />;
               } else if (rating > index && rating < index + 1) {
-                return <StarHalf key={index} className="!h-5 !w-5" />;
+                return (
+                  <Icon name="star_half" key={index} className="!h-5 !w-5" />
+                );
               } else {
-                return <StarOutlineSharp key={index} className="!h-5 !w-5" />;
+                return (
+                  <Icon name="star_outline" key={index} className="!h-5 !w-5" />
+                );
               }
             })}
           </div>
         </div>
         <Button rounded theme="light">
-          <FavoriteBorderOutlined />
+          <Icon name="favorite_border" />
         </Button>
       </article>
     </section>

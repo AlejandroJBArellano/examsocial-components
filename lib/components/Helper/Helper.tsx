@@ -1,6 +1,6 @@
-import { Help } from "@mui/icons-material";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { PropsWithChildren } from "react";
+import { Icon } from "../Icon";
 
 interface IHelper extends PropsWithChildren {
   align: "start" | "center" | "end";
@@ -13,12 +13,12 @@ const Helper = ({ align, side, children }: IHelper) => {
       <Tooltip.Root delayDuration={0}>
         <Tooltip.Trigger asChild>
           <button className="text-gray-700 hover:text-black">
-            <Help />
+            <Icon name="help" />
           </button>
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className="bg-extra max-w-xs border-sm rounded border-black py-1 px-2 text-xs"
+            className="max-w-xs rounded border-sm border-black bg-extra px-2 py-1 text-xs"
             sideOffset={3}
             align={align}
             side={side}

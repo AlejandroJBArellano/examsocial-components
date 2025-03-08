@@ -6,6 +6,12 @@ const meta: Meta<typeof Tooltip> = {
   component: Tooltip,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Tooltip is a component that displays additional information when hovering over an element. It supports different positions, alignments, and can be customized with various styles.",
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {

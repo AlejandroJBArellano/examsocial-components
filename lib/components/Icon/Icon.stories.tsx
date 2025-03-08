@@ -13,9 +13,10 @@ const meta: Meta<typeof Icon> = {
       control: "text",
       description: "The name of the Material Symbol icon",
     },
-    filled: {
-      control: "boolean",
-      description: "Whether the icon should be filled",
+    variant: {
+      control: "select",
+      options: ["filled", "outlined", "sharp"],
+      description: "The variant of the icon",
     },
     weight: {
       control: { type: "range", min: 100, max: 700, step: 100 },
@@ -38,9 +39,7 @@ type Story = StoryObj<typeof Icon>;
 export const Default: Story = {
   args: {
     name: "home",
-    filled: false,
-    weight: 400,
-    grade: 0,
+    variant: "rounded",
     size: 24,
   },
 };
@@ -48,9 +47,7 @@ export const Default: Story = {
 export const Filled: Story = {
   args: {
     name: "favorite",
-    filled: true,
-    weight: 400,
-    grade: 0,
+    variant: "rounded",
     size: 24,
   },
 };
@@ -58,7 +55,7 @@ export const Filled: Story = {
 export const Bold: Story = {
   args: {
     name: "settings",
-    filled: false,
+    variant: "outlined",
     weight: 700,
     grade: 0,
     size: 24,
@@ -68,7 +65,7 @@ export const Bold: Story = {
 export const Large: Story = {
   args: {
     name: "star",
-    filled: true,
+    variant: "sharp",
     weight: 400,
     grade: 0,
     size: 40,

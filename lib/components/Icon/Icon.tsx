@@ -11,9 +11,9 @@ export interface IconProps {
    */
   className?: string;
   /**
-   * Fill variant (default: false)
+   * Variant of the icon
    */
-  filled?: boolean;
+  variant?: "rounded" | "outlined" | "sharp";
   /**
    * Weight of the icon (100-700, default: 400)
    */
@@ -30,7 +30,15 @@ export interface IconProps {
    * Optional click handler
    */
   onClick?: (event: React.MouseEvent<HTMLSpanElement>) => void;
+
+  filled?: boolean;
 }
+
+const variantMap = {
+  rounded: "material-symbols-rounded",
+  outlined: "material-symbols-outlined",
+  sharp: "material-symbols-sharp",
+};
 
 /**
  * Icon component that uses Material Symbols
@@ -38,19 +46,16 @@ export interface IconProps {
 export const Icon: React.FC<IconProps> = ({
   name,
   className,
-  filled = false,
-  weight = 400,
-  grade = 0,
+  variant = "outlined",
   size = 24,
   onClick,
+  weight = 400,
+  grade = 0,
+  filled,
 }) => {
   return (
     <span
-      className={cn(
-        "material-symbols",
-        filled ? "material-symbols-filled" : "material-symbols-outlined",
-        className,
-      )}
+      className={cn("material-symbols", variantMap[variant], className)}
       style={{
         fontVariationSettings: `'FILL' ${filled ? 1 : 0}, 'wght' ${weight}, 'GRAD' ${grade}, 'opsz' ${size}`,
         fontSize: `${size}px`,

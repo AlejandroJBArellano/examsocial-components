@@ -1,4 +1,3 @@
-import { Add } from "@mui/icons-material";
 import { useFormikContext } from "formik";
 import { useRef, useState } from "react";
 import * as Yup from "yup";
@@ -9,6 +8,7 @@ import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
 import { EditFeedbackScreen } from "../FeedbackScreen/NewAndEdit";
 import { FocusSpan, Heading4 } from "../FontFaces";
 import { Helper } from "../Helper";
+import { Icon } from "../Icon";
 import { Input } from "../Input";
 import { PremiumBadge } from "../PremiumBadge";
 import { PrivacySettings } from "../PrivacySettings";
@@ -39,7 +39,7 @@ export const AdvancedSettings = () => {
             onClick={() => dialogRef.current?.showModal()}
             type="button"
           >
-            <Add className="!h-8 !w-8" />
+            <Icon name="add" className="!h-8 !w-8" />
           </Button>
           {values.advancedSettings.feedback?.map((feedback, index) => (
             <FeedbackScreen

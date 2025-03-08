@@ -1,5 +1,6 @@
 @import "./fonts/Sentient_Complete/Fonts/WEB/css/sentient.css";
 @import "./fonts/Satoshi_Complete/Fonts/WEB/css/satoshi.css";
+@import 'material-symbols';
 
 @tailwind base;
 @tailwind components;

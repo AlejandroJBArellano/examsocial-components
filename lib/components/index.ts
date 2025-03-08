@@ -14,6 +14,7 @@ export * from "./FeaturesCarousel";
 export * from "./FeedbackScreen";
 export * from "./FontFaces";
 export * from "./Helper";
+export * from "./Icon";
 export * from "./ImageField";
 export * from "./ImageUploader";
 export * from "./IndexButton";

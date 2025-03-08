@@ -10,7 +10,7 @@ const meta: Meta<typeof Navbar> = {
     docs: {
       description: {
         component:
-          "Navbar es un componente de barra de navegación responsive que se adapta automáticamente a diferentes tamaños de pantalla. En pantallas pequeñas, los elementos se muestran comprimidos (solo iconos), mientras que en pantallas más grandes se muestran expandidos (iconos y texto).",
+          "Navbar is a responsive navigation bar component that automatically adapts to different screen sizes. On small screens, elements are displayed in a compressed format (icons only), while on larger screens they are shown expanded (icons and text).",
       },
     },
   },

@@ -1,7 +1,7 @@
-import { Photo } from "@mui/icons-material";
 import React from "react";
 import { Button } from "../Button";
 import { FocusSpan } from "../FontFaces";
+import { Icon } from "../Icon";
 
 const ImageInput = (
   props: React.DetailedHTMLProps<
@@ -16,7 +16,7 @@ const ImageInput = (
     <label
       draggable
       htmlFor="newImage"
-      className="p-4 border xl:p-7 xl:border-dashed cursor-pointer w-full h-28 xl:h-auto border-black rounded-lg flex items-center justify-center"
+      className="flex h-28 w-full cursor-pointer items-center justify-center rounded-lg border border-black p-4 xl:h-auto xl:border-dashed xl:p-7"
     >
       <input
         accept="image/*"
@@ -25,11 +25,11 @@ const ImageInput = (
         className="hidden"
         {...props}
       />
-      <Button rounded className="p-2 flex xl:hidden" onClick={onClick}>
-        <Photo className="!w-5 !h-5" />
+      <Button rounded className="flex p-2 xl:hidden" onClick={onClick}>
+        <Icon name="photo" className="!h-5 !w-5" />
       </Button>
-      <div className="space-y-2 hidden xl:grid gap-2 justify-center text-center items-center">
-        <Photo className="!w-10 !h-10 mx-auto" />
+      <div className="hidden items-center justify-center gap-2 space-y-2 text-center xl:grid">
+        <Icon name="photo" className="mx-auto !h-10 !w-10" />
         {/* TODO: 
         <Span>Drag and drop your images here to upload</Span>
         <Span>or</Span> 

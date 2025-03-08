@@ -9,7 +9,7 @@ export default {
     docs: {
       description: {
         component:
-          "Un componente de tarjeta de examen responsive que utiliza el patrón de Compound Components para mayor flexibilidad. Los botones de acción siempre están visibles si se incluyen como children.",
+          "A responsive exam card component that uses the Compound Components pattern for greater flexibility. Action buttons are always visible if included as children.",
       },
     },
   },

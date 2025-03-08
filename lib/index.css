@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
-    font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi', sans-serif;
 }
 
 .sentient {
-     font-family: 'Sentient', sans-serif;
+  font-family: 'Sentient', sans-serif;
 }
 
 /* Chrome, Safari, Edge, Opera */

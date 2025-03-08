@@ -6,12 +6,10 @@ const PremiumBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
     small: {
       container: "px-2 py-1",
       text: "text-xs font-bold xl:text-sm xl:leading:4",
-      icon: "!w-4 !h-4 xl:!w-6 xl:!h-6",
     },
     big: {
       container: "px-5 py-3",
       text: "text-base leading-5 font-medium xl:text-lg xl:leading-6",
-      icon: "!w-4 !h-4 xl:!w-6 xl:!h-6",
     },
   };
   return (
@@ -23,8 +21,10 @@ const PremiumBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
     >
       <span className={cn("", dimensions[size].text)}>Get With Pro</span>
       <Icon
+        grade={200}
+        variant="rounded"
         name="workspace_premium"
-        className={cn("!h-4 !w-4", dimensions[size].icon)}
+        size={size === "big" ? 24 : 20}
       />
     </div>
   );

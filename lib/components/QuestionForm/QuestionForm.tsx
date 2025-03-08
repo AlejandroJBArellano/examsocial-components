@@ -1,5 +1,6 @@
 import { Add } from "@mui/icons-material";
 import { Field, FieldArray, FormikProps } from "formik";
+import { v4 as uuidv4 } from "uuid";
 import * as Yup from "yup";
 import { questionSchema } from "../../schemas";
 import { Button } from "../Button";
@@ -61,7 +62,9 @@ const QuestionForm = ({
                   theme="light"
                   rounded
                   className="mx-auto flex items-center justify-center p-2"
-                  onClick={() => push({ text: "", correct: false })}
+                  onClick={() =>
+                    push({ text: "", correct: false, _id: uuidv4() })
+                  }
                 >
                   <Add className="!h-5 !w-5" />
                 </Button>

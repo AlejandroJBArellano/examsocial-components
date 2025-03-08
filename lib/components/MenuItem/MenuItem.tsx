@@ -1,16 +1,6 @@
-import {
-  Add,
-  Bookmark,
-  Delete,
-  Edit,
-  Favorite,
-  Home,
-  ListAltOutlined,
-  Replay,
-  WorkspacePremium,
-} from "@mui/icons-material";
 import { ComponentPropsWithoutRef, ReactNode, forwardRef } from "react";
 import { cn } from "../../utils";
+import { Icon } from "../Icon";
 import { Tooltip } from "../Tooltip";
 
 // Tipos para el componente
@@ -28,15 +18,15 @@ export type MenuItemIcon =
   | "home";
 
 const Icons: Record<MenuItemIcon, ReactNode> = {
-  workspace_premium: <WorkspacePremium />,
-  list_alt_add: <ListAltOutlined />,
-  replay: <Replay />,
-  add: <Add />,
-  edit: <Edit />,
-  delete: <Delete />,
-  favorite: <Favorite />,
-  bookmark: <Bookmark />,
-  home: <Home />,
+  workspace_premium: <Icon name="workspace_premium" />,
+  list_alt_add: <Icon name="list_alt" />,
+  replay: <Icon name="replay" />,
+  add: <Icon name="add" />,
+  edit: <Icon name="edit" />,
+  delete: <Icon name="delete" />,
+  favorite: <Icon name="favorite" />,
+  bookmark: <Icon name="bookmark" />,
+  home: <Icon name="home" />,
 };
 
 // Props para el componente

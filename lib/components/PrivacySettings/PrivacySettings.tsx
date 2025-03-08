@@ -1,10 +1,10 @@
-import { PersonRemove, UploadFile } from "@mui/icons-material";
 import { useFormik, useFormikContext } from "formik";
 import { ChangeEvent } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { FocusSpan, Paragraph, Span } from "../FontFaces";
+import { Icon } from "../Icon";
 import { Input } from "../Input";
 import { Select } from "../Select";
 import { Separator } from "../Separator";
@@ -82,7 +82,7 @@ const PrivacySettings = () => {
                     className="p-2"
                     onClick={() => handleRemoveInvitee(invitee)}
                   >
-                    <PersonRemove />
+                    <Icon name="person_remove" />
                   </Button>
                 </div>
               ),
@@ -211,7 +211,7 @@ const UploadCSV = ({ handleInvite }: IUploadCSV) => {
         htmlFor="upload-csv"
         className="flex cursor-pointer items-center justify-center gap-2 py-2"
       >
-        <UploadFile />
+        <Icon name="upload_file" />
         <FocusSpan>Upload .csv</FocusSpan>
         <input
           type="file"

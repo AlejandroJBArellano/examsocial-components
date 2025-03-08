@@ -6,6 +6,12 @@ const meta: Meta<typeof IconExample> = {
   component: IconExample,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "IconExample is a demonstration component that showcases how to use the Icon component in different contexts and with various configurations.",
+      },
+    },
   },
   tags: ["autodocs"],
 };

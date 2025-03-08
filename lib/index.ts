@@ -1,10 +1,7 @@
 import "./index.css";
 
-import "./fonts/Satoshi_Complete/Fonts/WEB/css/satoshi.css";
-import "./fonts/Sentient_Complete/Fonts/WEB/css/sentient.css";
-
 // Export components
-export * from "./components/index";
+export * from "./components";
 
 // Export utilities
 export * from "./utils";
@@ -15,14 +12,13 @@ export * from "./types";
 // Export Tailwind configuration
 // Note: We use a re-export pattern to maintain TypeScript compatibility
 // while still exporting the JavaScript Tailwind config
-export { createTailwindConfig, default as tailwindConfig } from "./tailwind";
 
 /**
  * Para importar los estilos procesados de Tailwind en tu aplicación:
  *
+ * En tu archivo principal (por ejemplo, main.js, index.js, App.js)
  * ```js
- * // En tu archivo principal (por ejemplo, main.js, index.js, App.js)
- * import 'examsocial-components/tailwind.css';
+ * import 'examsocial-components/index.css';
  * ```
  *
  * Esto importará todos los estilos de Tailwind ya procesados, sin necesidad

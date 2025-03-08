@@ -1,13 +1,17 @@
+@import "./fonts/Sentient_Complete/Fonts/WEB/css/sentient.css";
+@import "./fonts/Satoshi_Complete/Fonts/WEB/css/satoshi.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 * {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi';
 }
 
 .sentient {
-  font-family: 'Sentient', sans-serif;
+  font-family: 'Sentient';
 }
 
 /* Chrome, Safari, Edge, Opera */

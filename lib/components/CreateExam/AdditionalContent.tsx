@@ -2,7 +2,7 @@ import { Add, DragIndicator } from "@mui/icons-material";
 import { useFormikContext } from "formik";
 import { useRef } from "react";
 import * as Yup from "yup";
-import { contentSchema, examSchema } from "../../schemas";
+import { contentSchema, examSchema } from "../../schemas/schemas";
 import { NewAdditionalContent } from "../AdditionalContent/New";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";

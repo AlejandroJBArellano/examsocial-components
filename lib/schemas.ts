@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { FeedbackCondition } from "../constants";
+import { FeedbackCondition } from "./constants";
 
 export const questionSchema = Yup.object({
   question: Yup.string().required("Question is required"),

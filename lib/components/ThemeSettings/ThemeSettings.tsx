@@ -18,7 +18,7 @@ const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
   const [themeSetting, setThemeSetting] = useState<ThemeSetting>("WHITEBOARD");
   return (
     <section className="space-y-4">
-      <article className="flex justify-between items-center">
+      <article className="flex items-center justify-between">
         <FocusSpan>Theme</FocusSpan>
         <div className="w-1/2">
           <Select text={ThemeSettingsNameMap[themeSetting]}>
@@ -43,10 +43,10 @@ const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
           (themeSetting === "WHITEBOARD" ? "" : themeSetting)
         }
       >
-        <div className="rounded-md border border-black bg-primary size-[77.5px]" />
-        <div className="rounded-md border border-black bg-secondary size-[77.5px]" />
-        <div className="rounded-md border border-black bg-accent size-[77.5px]" />
-        <div className="rounded-md border border-black bg-extra size-[77.5px]" />
+        <div className="size-[77.5px] rounded-md border border-black bg-primary" />
+        <div className="size-[77.5px] rounded-md border border-black bg-secondary" />
+        <div className="size-[77.5px] rounded-md border border-black bg-accent" />
+        <div className="size-[77.5px] rounded-md border border-black bg-extra" />
       </article>
     </section>
   );

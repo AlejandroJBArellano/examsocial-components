@@ -60,10 +60,10 @@ const QuestionForm = ({
                   type="button"
                   theme="light"
                   rounded
-                  className="p-2 mx-auto flex items-center justify-center"
+                  className="mx-auto flex items-center justify-center p-2"
                   onClick={() => push({ text: "", correct: false })}
                 >
-                  <Add className="!w-5 !h-5" />
+                  <Add className="!h-5 !w-5" />
                 </Button>
               )}
             </>

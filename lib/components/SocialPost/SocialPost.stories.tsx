@@ -9,7 +9,7 @@ const meta: Meta<typeof SocialPost> = {
     docs: {
       description: {
         component:
-          "SocialPost es un componente que muestra diferentes tipos de publicaciones sociales, como la creación de un examen, una reseña o un examen guardado en favoritos.",
+          "SocialPost is a component that displays different types of social posts, such as exam creation, a review, or an exam saved to favorites.",
       },
     },
   },

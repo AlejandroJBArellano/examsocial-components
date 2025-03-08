@@ -1,14 +1,13 @@
 import { Close } from "@mui/icons-material";
 import { Button } from "../Button";
+import { Heading4 } from "../FontFaces";
 import { ReviewQuestionSet } from "../ReviewQuestionSet";
 
 const UserAnswers = () => {
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h3 className="sentient text-[28px] font-medium leading-8 tracking-[0.56px]">
-          Justin Anderson's Answers
-        </h3>
+        <Heading4>Justin Anderson's Answers</Heading4>
         <Button theme="light" className="p-2" rounded>
           <Close className="!h-6 !w-6" />
         </Button>

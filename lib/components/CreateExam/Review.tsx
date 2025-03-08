@@ -8,7 +8,7 @@ import {
 } from "@mui/icons-material";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
-import { examSchema } from "../../schemas/index";
+import { examSchema } from "../../schemas";
 import { toTitleCase } from "../../utils";
 import { Button } from "../Button";
 import ExamCard from "../ExamCard/ExamCard";

@@ -1,6 +1,6 @@
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
-import { examSchema } from "../../schemas/index";
+import { examSchema } from "../../schemas";
 import { BannerInput } from "../BannerInput";
 import { FocusSpan, Heading4 } from "../FontFaces";
 import { ImageUploader } from "../ImageUploader";

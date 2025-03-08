@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import { resolve } from "path";
 import postcss from "postcss";
 
 const config: StorybookConfig = {
@@ -25,6 +26,16 @@ const config: StorybookConfig = {
   framework: {
     name: "@storybook/react-vite",
     options: {},
+  },
+  viteFinal: async (config) => {
+    // Add path aliases
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        "@": resolve(__dirname, "../lib"),
+      };
+    }
+    return config;
   },
 };
 export default config;

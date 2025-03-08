@@ -9,7 +9,7 @@ const meta: Meta<typeof SaveButton> = {
     docs: {
       description: {
         component:
-          "SaveButton es un componente que permite a los usuarios guardar elementos en una colección. Cambia de estado al hacer clic y muestra un tooltip en tamaño grande.",
+          "SaveButton is a component that allows users to save items to a collection. It changes state when clicked and displays a tooltip in large size.",
       },
     },
   },

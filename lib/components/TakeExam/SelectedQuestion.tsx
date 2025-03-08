@@ -1,9 +1,9 @@
-import { ArrowForward, SportsScore } from "@mui/icons-material";
 import { useState } from "react";
 import { IQuestion } from "../../types";
 import { AnswerOption } from "../AnswerOption";
 import { Button } from "../Button";
 import { FocusSpan, Heading3, Heading6 } from "../FontFaces";
+import { Icon } from "../Icon";
 
 interface ISelectedQuestion {
   questions: IQuestion[];
@@ -84,9 +84,9 @@ const SelectedQuestion = ({
           }}
         >
           {selected === questions.length - 1 ? (
-            <SportsScore />
+            <Icon name="sports_score" />
           ) : (
-            <ArrowForward />
+            <Icon name="arrow_forward" />
           )}
           <FocusSpan>
             {selected === questions.length - 1 ? "Finish" : "Next"}

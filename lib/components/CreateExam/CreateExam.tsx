@@ -17,7 +17,7 @@ interface CreateExamProps {
 const CreateExam = ({ onSubmit }: CreateExamProps) => {
   const steps = {
     1: (
-      <div className="md:grid md:grid-cols-2 md:gap-6">
+      <div className="grid gap-6 md:grid-cols-2">
         <GeneralDetails />
         <AdvancedSettings />
       </div>
@@ -105,6 +105,7 @@ const CreateExam = ({ onSubmit }: CreateExamProps) => {
                     if (step === 4) return;
                     setStep((prev) => (prev + 1) as keyof typeof steps);
                   }}
+                  type={step === 4 ? "submit" : "button"}
                 >
                   {step === 4 ? "Finish" : "Next"}
                 </Button>

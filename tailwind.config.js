@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindThemer from "tailwindcss-themer";
+
 export default {
   content: ["./lib/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -56,7 +58,7 @@ export default {
     },
   },
   plugins: [
-    require("tailwindcss-themer")({
+    tailwindThemer({
       defaultTheme: {
         extend: {
           colors: {

@@ -1,6 +1,6 @@
-import { Favorite } from "@mui/icons-material";
 import { ComponentPropsWithoutRef, useState } from "react";
 import { cn } from "../../utils";
+import { Icon } from "../Icon";
 import { Tooltip } from "../Tooltip";
 
 interface FavoriteButtonProps extends ComponentPropsWithoutRef<"button"> {
@@ -67,7 +67,8 @@ const FavoriteButton = ({
         className,
       )}
     >
-      <Favorite
+      <Icon
+        name="favorite"
         className={favorite || isHovering ? "text-accent-shadow" : "text-black"}
       />
     </button>

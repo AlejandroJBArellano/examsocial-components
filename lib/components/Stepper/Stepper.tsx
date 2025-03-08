@@ -1,8 +1,8 @@
-import { Flag, Timer } from "@mui/icons-material";
 import { PropsWithChildren } from "react";
 import { cn } from "../../utils";
 import { Button } from "../Button";
 import { FocusSpan, Heading2, Heading3, Heading5 } from "../FontFaces";
+import { Icon } from "../Icon";
 
 interface IStepperProps {
   activeStep: number;
@@ -19,7 +19,7 @@ interface IStepperProps {
 const Time = ({ children }: PropsWithChildren) => (
   <div className="flex items-center gap-2">
     <Heading3>{children}</Heading3>
-    <Timer />
+    <Icon name="timer" />
   </div>
 );
 
@@ -53,7 +53,7 @@ const Stepper = ({
           <article className="flex items-center justify-between">
             <Heading2 className="text-secondary-shadow">{title}</Heading2>
             <Button theme="feedback-error" rounded className="p-2">
-              <Flag />
+              <Icon name="flag" />
             </Button>
           </article>
           <article className="flex items-center justify-between">

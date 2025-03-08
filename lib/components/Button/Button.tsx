@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef } from "react";
 import { cn } from "../../utils";
+import { Icon } from "../Icon";
 
 interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   rounded?: boolean;
@@ -25,14 +26,32 @@ const Button = ({ rounded, theme, ...props }: ButtonProps) => {
       data-testid="button"
       {...props}
       className={cn(
-        `border px-4 py-2 shadow-right-sm duration-300 ease-out hover:shadow-right hover:transition-all
-        disabled:cursor-not-allowed disabled:shadow-none xl:px-6 xl:text-2xl xl:font-medium xl:shadow-right xl:hover:shadow-right-lg  xl:disabled:hover:shadow-none`,
+        `border px-4 py-2 shadow-right-sm duration-300 ease-out hover:shadow-right hover:transition-all disabled:cursor-not-allowed disabled:shadow-none xl:px-6 xl:text-2xl xl:font-medium xl:shadow-right xl:hover:shadow-right-lg xl:disabled:hover:shadow-none`,
         classTheme[theme || "light"],
         rounded ? "rounded-full" : "rounded-md",
-        props.className
+        props.className,
       )}
     />
   );
 };
 
 export default Button;
+
+interface IconButtonProps extends ButtonProps {
+  size: number;
+  filled?: boolean;
+}
+
+const IconButton = (props: IconButtonProps) => {
+  return (
+    <Button {...props}>
+      <Icon
+        name={props.children as string}
+        size={props.size}
+        filled={props.filled}
+      />
+    </Button>
+  );
+};
+
+Button.Icon = IconButton;

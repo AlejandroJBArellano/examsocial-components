@@ -1,6 +1,5 @@
 import { Button } from "../Button";
 import { Smoll, Span } from "../FontFaces";
-import { Icon } from "../Icon";
 
 const ImageUploader = ({
   image,
@@ -23,15 +22,17 @@ const ImageUploader = ({
           </Smoll>
         </div>
       </div>
-      <Button
+      <Button.Icon
         type="button"
         theme="feedback-error"
         rounded
-        className="p-2"
+        className="flex items-center justify-center p-2"
         onClick={onDelete}
+        filled
+        size={24}
       >
-        <Icon name="delete" className="!h-6 !w-6" />
-      </Button>
+        delete
+      </Button.Icon>
     </article>
   );
 };

@@ -1,9 +1,9 @@
-import { Delete, Edit } from "@mui/icons-material";
 import * as Yup from "yup";
 import { feedbackSchema } from "../../schemas";
 import { handleCondition } from "../../utils";
 import { Button } from "../Button";
 import { FocusSpan, Paragraph } from "../FontFaces";
+import { Icon } from "../Icon";
 
 type Feedback = Yup.InferType<typeof feedbackSchema>;
 
@@ -30,7 +30,7 @@ const FeedbackScreen = ({
           type="button"
           onClick={() => onDelete(feedback.index)}
         >
-          <Delete className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
+          <Icon name="delete" className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
         </Button>
         <Button
           theme="light"
@@ -39,7 +39,7 @@ const FeedbackScreen = ({
           type="button"
           onClick={() => onEdit(feedback.index)}
         >
-          <Edit className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
+          <Icon name="edit" className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
         </Button>
       </div>
     </article>

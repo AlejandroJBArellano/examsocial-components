@@ -1,4 +1,3 @@
-import { Add, DragIndicator } from "@mui/icons-material";
 import { useFormikContext } from "formik";
 import { useRef } from "react";
 import * as Yup from "yup";
@@ -7,6 +6,7 @@ import { NewAdditionalContent } from "../AdditionalContent/New";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { Anchor, Heading3 } from "../FontFaces";
+import { Icon } from "../Icon";
 
 const ContentSet = ({
   content,
@@ -68,7 +68,7 @@ const ContentSet = ({
   return (
     <section className="mx-auto flex justify-between gap-4 hover:bg-primary-tint md:justify-center md:rounded-lg md:py-6">
       <div className="max-w-xl">{handleContent[content.contentType]}</div>
-      <DragIndicator className="!h-5 !w-5 cursor-move" />
+      <Icon name="drag_indicator" className="!h-5 !w-5 cursor-move" />
     </section>
   );
 };
@@ -92,7 +92,7 @@ export const AdditionalContent = () => {
         rounded
         className="flex w-full items-center justify-center gap-2 md:mx-auto md:w-auto"
       >
-        <Add className="!h-5 !w-5" />
+        <Icon name="add" className="!h-5 !w-5" />
         <span className="font-medium">Add new section</span>
       </Button>
       <Dialog

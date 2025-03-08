@@ -1,7 +1,7 @@
-import { Delete, Edit } from "@mui/icons-material";
 import { IQuestion } from "../../types";
 import { Button } from "../Button";
 import { Heading5, Span } from "../FontFaces";
+import { Icon } from "../Icon";
 import { Tag } from "../Tag";
 
 type QuestionSetPropsEditable = IQuestion & {
@@ -57,7 +57,7 @@ const QuestionSet = ({
               rounded
               className="p-2"
             >
-              <Delete className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
+              <Icon name="delete" className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
             </Button>
             <Button
               onClick={() => {
@@ -69,7 +69,7 @@ const QuestionSet = ({
               rounded
               className="p-2"
             >
-              <Edit className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
+              <Icon name="edit" className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
             </Button>
           </div>
         </>

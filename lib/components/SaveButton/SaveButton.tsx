@@ -1,6 +1,6 @@
-import { Bookmark } from "@mui/icons-material";
 import { ComponentPropsWithoutRef, useState } from "react";
 import { cn } from "../../utils";
+import { Icon } from "../Icon";
 import { Tooltip } from "../Tooltip";
 
 interface SaveButtonProps extends ComponentPropsWithoutRef<"button"> {
@@ -67,7 +67,8 @@ const SaveButton = ({
         className,
       )}
     >
-      <Bookmark
+      <Icon
+        name="bookmark"
         className={saved || isHovering ? "text-accent-shadow" : "text-black"}
       />
     </button>

@@ -68,5 +68,7 @@ export const Default: Story = {
         _id: uuidv4(),
       },
     ],
+    selected: 0,
+    setSelected: () => {},
   },
 };

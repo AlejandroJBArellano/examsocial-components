@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Rating from "./Rating";
 
 export default {
-  title: "Components/Rating",
+  title: "Components/ExamDetail/Rating",
   component: Rating,
 } as Meta;
 

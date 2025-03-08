@@ -10,7 +10,5 @@ export default {
 type Story = StoryObj<typeof ImageInput>;
 
 export const Default: Story = {
-  args: {
-    children: "Image",
-  },
+  args: {},
 };

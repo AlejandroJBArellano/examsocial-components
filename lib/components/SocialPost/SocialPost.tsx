@@ -1,8 +1,8 @@
-import { Favorite, Grade } from "@mui/icons-material";
 import React, { createContext, ReactNode, useContext } from "react";
 import { cn } from "../../utils";
 import { ExamCard } from "../ExamCard";
 import { FocusSmoll, Smoll } from "../FontFaces";
+import { Icon } from "../Icon";
 import { ProfilePlaceholder } from "../ProfilePlaceholder";
 
 // Tipos para el contexto
@@ -111,11 +111,11 @@ const SocialPostHeader = ({
 
           {showStars && (
             <div className="flex items-center text-amber-500">
-              <Grade className="!size-4" />
-              <Grade className="!size-4" />
-              <Grade className="!size-4" />
-              <Grade className="!size-4" />
-              <Grade className="!size-4" />
+              <Icon name="grade" className="!size-4" />
+              <Icon name="grade" className="!size-4" />
+              <Icon name="grade" className="!size-4" />
+              <Icon name="grade" className="!size-4" />
+              <Icon name="grade" className="!size-4" />
             </div>
           )}
 
@@ -197,7 +197,7 @@ const SocialPostFavoriteSavedContent = ({
         <div className="flex items-center gap-1">
           <Smoll className="text-zinc-500">Saved in</Smoll>
           <FocusSmoll className="text-accent">{collectionName}</FocusSmoll>
-          <Favorite className="text-accent" />
+          <Icon name="favorite" className="text-accent" />
         </div>
         <FocusSmoll>{title}</FocusSmoll>
       </div>

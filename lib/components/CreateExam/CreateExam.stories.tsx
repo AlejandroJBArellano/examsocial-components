@@ -19,5 +19,7 @@ export default {
 type Story = StoryObj<typeof CreateExam>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    onSubmit: () => {},
+  },
 };

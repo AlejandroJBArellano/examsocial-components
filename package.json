@@ -42,7 +42,6 @@
     "formik": "^2.4.6",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-material-symbols": "^4.4.0",
     "react-qrcode-logo": "^3.0.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-themer": "^4.1.1",

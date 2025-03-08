@@ -1,6 +1,5 @@
+import { Bookmark } from "@mui/icons-material";
 import { ComponentPropsWithoutRef, useState } from "react";
-import { MaterialSymbol } from "react-material-symbols";
-import "react-material-symbols/rounded";
 import { cn } from "../../utils";
 import { Tooltip } from "../Tooltip";
 
@@ -68,10 +67,7 @@ const SaveButton = ({
         className,
       )}
     >
-      <MaterialSymbol
-        icon="bookmark"
-        size={size === "default" ? 20 : 24}
-        fill={saved || isHovering}
+      <Bookmark
         className={saved || isHovering ? "text-accent-shadow" : "text-black"}
       />
     </button>

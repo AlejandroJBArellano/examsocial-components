@@ -1,5 +1,5 @@
+import { Delete } from "@mui/icons-material";
 import { Field } from "formik";
-import { MaterialSymbol } from "react-material-symbols";
 import { AnswerToggle, Button, Input } from "../";
 
 const CreateAnswer = ({
@@ -24,7 +24,7 @@ const CreateAnswer = ({
         type="button"
         onClick={onDelete}
       >
-        <MaterialSymbol icon="delete" fill size={20} className="h-5 w-5" />
+        <Delete className="h-5 w-5" />
       </Button>
       <Field
         as={Input}

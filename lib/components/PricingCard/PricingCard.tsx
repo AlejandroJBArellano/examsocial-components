@@ -1,5 +1,5 @@
+import { CheckCircle, NewReleases } from "@mui/icons-material";
 import { PropsWithChildren } from "react";
-import { MaterialSymbol } from "react-material-symbols";
 import { cn } from "../../utils";
 
 type PricingMode = "monthly" | "yearly" | "lifetime" | "basic";
@@ -20,7 +20,7 @@ const Pricing = ({ children, mode = "basic" }: PricingProps) => {
     <section
       className={cn(
         "space-y-6 rounded-xl border-black px-4 py-5 xl:space-y-8 xl:rounded-xl xl:p-6",
-        modes[mode]
+        modes[mode],
       )}
     >
       {children}
@@ -84,14 +84,9 @@ const PricingComparisonCell = ({
   return (
     <div className="flex items-center gap-1 leading-5">
       {special ? (
-        <MaterialSymbol className="h-7 w-7" size={28} icon="new_releases" />
+        <NewReleases className="h-7 w-7" />
       ) : (
-        <MaterialSymbol
-          className="h-7 w-7"
-          size={28}
-          fill
-          icon="check_circle"
-        />
+        <CheckCircle className="h-7 w-7" />
       )}
       {children}
     </div>

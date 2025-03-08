@@ -1,6 +1,5 @@
+import { Favorite } from "@mui/icons-material";
 import { ComponentPropsWithoutRef, useState } from "react";
-import { MaterialSymbol } from "react-material-symbols";
-import "react-material-symbols/rounded";
 import { cn } from "../../utils";
 import { Tooltip } from "../Tooltip";
 
@@ -68,10 +67,7 @@ const FavoriteButton = ({
         className,
       )}
     >
-      <MaterialSymbol
-        icon="favorite"
-        size={size === "default" ? 20 : 24}
-        fill={favorite || isHovering}
+      <Favorite
         className={favorite || isHovering ? "text-accent-shadow" : "text-black"}
       />
     </button>

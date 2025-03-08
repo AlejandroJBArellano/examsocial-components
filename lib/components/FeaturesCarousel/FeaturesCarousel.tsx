@@ -1,6 +1,5 @@
+import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { useState } from "react";
-import { MaterialSymbol } from "react-material-symbols";
-import "react-material-symbols/rounded";
 import { cn } from "../../utils";
 
 // Tipos para el componente
@@ -105,12 +104,12 @@ const FeaturesCarousel = ({
         {currentFeatures.map((feature, index) => (
           <div key={index} className="flex flex-col">
             <div className="flex items-center gap-2">
-              <MaterialSymbol
+              {/* <MaterialSymbol
                 icon={feature.icon}
                 size={24}
                 className="text-primary"
                 aria-hidden="true"
-              />
+              /> */}
               <span className="text-base font-medium text-primary">
                 {feature.name}
               </span>
@@ -131,11 +130,7 @@ const FeaturesCarousel = ({
             className="rounded-full p-1 transition-colors hover:bg-gray-100"
             aria-label="Previous slide"
           >
-            <MaterialSymbol
-              icon="navigate_before"
-              size={20}
-              className="text-zinc-700"
-            />
+            <NavigateBefore className="text-zinc-700" />
           </button>
 
           {/* Indicadores de diapositiva */}
@@ -162,11 +157,7 @@ const FeaturesCarousel = ({
             className="rounded-full p-1 transition-colors hover:bg-gray-100"
             aria-label="Next slide"
           >
-            <MaterialSymbol
-              icon="navigate_next"
-              size={20}
-              className="text-zinc-700"
-            />
+            <NavigateNext className="text-zinc-700" />
           </button>
         </div>
       )}

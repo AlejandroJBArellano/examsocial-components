@@ -1,6 +1,15 @@
+import {
+  Add,
+  Bookmark,
+  Delete,
+  Edit,
+  Favorite,
+  Home,
+  ListAltOutlined,
+  Replay,
+  WorkspacePremium,
+} from "@mui/icons-material";
 import { ComponentPropsWithoutRef, ReactNode, forwardRef } from "react";
-import { MaterialSymbol } from "react-material-symbols";
-import "react-material-symbols/rounded";
 import { cn } from "../../utils";
 import { Tooltip } from "../Tooltip";
 
@@ -17,6 +26,18 @@ export type MenuItemIcon =
   | "favorite"
   | "bookmark"
   | "home";
+
+const Icons: Record<MenuItemIcon, ReactNode> = {
+  workspace_premium: <WorkspacePremium />,
+  list_alt_add: <ListAltOutlined />,
+  replay: <Replay />,
+  add: <Add />,
+  edit: <Edit />,
+  delete: <Delete />,
+  favorite: <Favorite />,
+  bookmark: <Bookmark />,
+  home: <Home />,
+};
 
 // Props para el componente
 export interface MenuItemProps extends ComponentPropsWithoutRef<"button"> {
@@ -77,12 +98,12 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
     ref,
   ) => {
     // Configurar tamaños de icono según el tamaño del componente
-    const iconSize = {
-      default: 20,
-      md: 24,
-      xl: 28,
-      "2xl": 32,
-    }[size];
+    // const iconSize = {
+    //   default: 20,
+    //   md: 24,
+    //   xl: 28,
+    //   "2xl": 32,
+    // }[size];
 
     // Configurar estilos según el estado y tamaño
     const getContainerStyles = () => {
@@ -160,12 +181,12 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
     };
 
     // Configurar estilos de icono
-    const getIconStyles = () => {
-      return cn(
-        isSelected ? "text-black" : "text-zinc-700",
-        content === "cta" && "text-black",
-      );
-    };
+    // const getIconStyles = () => {
+    //   return cn(
+    //     isSelected ? "text-black" : "text-zinc-700",
+    //     content === "cta" && "text-black",
+    //   );
+    // };
 
     // Determinar si se debe mostrar el texto
     const shouldShowText = () => {
@@ -202,11 +223,8 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
       >
         {content === "cta" ? (
           <>
-            <MaterialSymbol
-              icon={icon}
-              size={iconSize}
-              className={getIconStyles()}
-            />
+            {Icons[icon]}
+
             <span className={cn(getTextStyles(), shouldShowText())}>
               {children}
             </span>
@@ -216,11 +234,7 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
             <span className={cn(getTextStyles(), shouldShowText())}>
               {children}
             </span>
-            <MaterialSymbol
-              icon={icon}
-              size={iconSize}
-              className={getIconStyles()}
-            />
+            {Icons[icon]}
           </>
         )}
       </button>

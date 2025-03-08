@@ -1,6 +1,8 @@
 import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { useState } from "react";
 import { cn } from "../../utils";
+import { FocusSpan, Heading6, Span } from "../FontFaces";
+import { Icon } from "../Icon";
 
 // Tipos para el componente
 export type FeaturesCarouselType = "cancel" | "subscribe";
@@ -97,26 +99,22 @@ const FeaturesCarousel = ({
       aria-label="Features carousel"
     >
       {/* Título */}
-      <h3 className="text-lg font-medium tracking-wider">{title}</h3>
+      <Heading6>{title}</Heading6>
 
       {/* Lista de características */}
       <div className="flex flex-col gap-4">
         {currentFeatures.map((feature, index) => (
           <div key={index} className="flex flex-col">
             <div className="flex items-center gap-2">
-              {/* <MaterialSymbol
-                icon={feature.icon}
+              <Icon
+                name={feature.icon}
                 size={24}
                 className="text-primary"
                 aria-hidden="true"
-              /> */}
-              <span className="text-base font-medium text-primary">
-                {feature.name}
-              </span>
+              />
+              <FocusSpan>{feature.name}</FocusSpan>
             </div>
-            <p className="mt-1 text-base text-zinc-700">
-              {feature.description}
-            </p>
+            <Span>{feature.description}</Span>
           </div>
         ))}
       </div>

@@ -9,7 +9,7 @@ const meta: Meta<typeof MainContainer> = {
     docs: {
       description: {
         component:
-          "MainContainer es un componente que muestra información principal con funcionalidad de 'read more/less' para textos largos. Incluye acciones como favoritos, guardar en colección y botones.",
+          "MainContainer is a component that displays main information with 'read more/less' functionality for long texts. It includes actions such as favorites, save to collection, and buttons.",
       },
     },
   },

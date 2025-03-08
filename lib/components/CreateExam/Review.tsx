@@ -1,11 +1,3 @@
-import {
-  Description,
-  Photo,
-  PlayArrow,
-  SmartDisplay,
-  ViewHeadline,
-  Visibility,
-} from "@mui/icons-material";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
@@ -13,6 +5,7 @@ import { toTitleCase } from "../../utils";
 import { Button } from "../Button";
 import ExamCard from "../ExamCard/ExamCard";
 import { FocusSpan, Heading3, Heading4, Span } from "../FontFaces";
+import { Icon } from "../Icon";
 import { QuestionSet } from "../QuestionSet";
 
 export const Review = () => {
@@ -25,7 +18,7 @@ export const Review = () => {
           theme="extra"
           className="flex items-center justify-center gap-2"
         >
-          <Visibility className="!h-5 !w-5" />
+          <Icon name="visibility" className="!h-5 !w-5" />
           <FocusSpan>Preview exam</FocusSpan>
         </Button>
       </article>
@@ -72,7 +65,7 @@ export const Review = () => {
           <Heading4>Additional Content</Heading4>
           <div className="flex gap-4 [&>div]:flex [&>div]:gap-1">
             <div>
-              <ViewHeadline className="!h-6 !w-6" />
+              <Icon name="view_headline" className="!h-6 !w-6" />
               <Span>
                 x
                 {
@@ -85,7 +78,7 @@ export const Review = () => {
               </Span>
             </div>
             <div>
-              <Photo className="!h-6 !w-6" />
+              <Icon name="photo" className="!h-6 !w-6" />
               <Span>
                 x
                 {
@@ -96,7 +89,7 @@ export const Review = () => {
               </Span>
             </div>
             <div>
-              <SmartDisplay className="!h-6 !w-6" />
+              <Icon name="smart_display" className="!h-6 !w-6" />
               <Span>
                 x
                 {
@@ -109,7 +102,7 @@ export const Review = () => {
               </Span>
             </div>
             <div>
-              <PlayArrow className="!h-6 !w-6" />
+              <Icon name="play_arrow" className="!h-6 !w-6" />
               <Span>
                 x
                 {
@@ -120,7 +113,7 @@ export const Review = () => {
               </Span>
             </div>
             <div>
-              <Description className="!h-6 !w-6" />
+              <Icon name="description" className="!h-6 !w-6" />
               <Span>
                 x
                 {

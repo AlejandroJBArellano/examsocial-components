@@ -1,4 +1,4 @@
-import PhotoIcon from "@mui/icons-material/Photo";
+import { Icon } from "../Icon";
 
 const BannerInput = ({
   onChange,
@@ -10,7 +10,7 @@ const BannerInput = ({
     className="flex aspect-video cursor-pointer items-center justify-center rounded-md border border-black bg-secondary p-4"
   >
     <div className="rounded-full border border-black bg-white p-2">
-      <PhotoIcon data-testid="PhotoIcon" />
+      <Icon name="photo" data-testid="PhotoIcon" />
     </div>
     <input
       id="banner"

@@ -1,6 +1,5 @@
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import DoNotDisturbOnIcon from "@mui/icons-material/DoNotDisturbOn";
 import { cn } from "../../utils";
+import { Icon } from "../Icon";
 
 const PricingComparisonCell = ({ contains }: { contains?: boolean }) => {
   const className = cn(
@@ -8,9 +7,17 @@ const PricingComparisonCell = ({ contains }: { contains?: boolean }) => {
     contains ? "text-feedback-success" : "text-zinc-500",
   );
   return contains ? (
-    <CheckCircleIcon data-testid="CheckCircleIcon" className={className} />
+    <Icon
+      name="check_circle"
+      data-testid="CheckCircleIcon"
+      className={className}
+    />
   ) : (
-    <DoNotDisturbOnIcon data-testid="DoNotDisturbOnIcon" className={className} />
+    <Icon
+      name="do_not_disturb_on"
+      data-testid="DoNotDisturbOnIcon"
+      className={className}
+    />
   );
 };
 

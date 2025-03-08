@@ -1,8 +1,8 @@
-import { Delete, Edit, Timer } from "@mui/icons-material";
 import React, { createContext, ReactNode, useContext } from "react";
 import { cn } from "../../utils";
 import { Button } from "../Button";
 import { Anchor, Heading4, Heading5, Heading6, Paragraph } from "../FontFaces";
+import { Icon } from "../Icon";
 
 // Tipos para el contexto
 type ExamCardSize = "default" | "md" | "sm";
@@ -228,7 +228,7 @@ const ExamCardTime = ({ children, className }: ExamCardTimeProps) => {
     <div
       className={cn("flex items-center gap-2 text-secondary-shadow", className)}
     >
-      <Timer />
+      <Icon name="timer" />
       <Heading6>{children}</Heading6>
     </div>
   );
@@ -252,15 +252,11 @@ interface ExamCardActionProps {
 const ExamCardAction = ({ onClick, type, className }: ExamCardActionProps) => {
   return (
     <Button
-      onClick={onClick}
       theme={type === "edit" ? "light" : "feedback-error"}
-      className={cn(
-        "flex h-10 w-10 items-center justify-center transition-all xl:h-11 xl:w-11",
-        className,
-      )}
+      onClick={onClick}
+      className={cn("flex h-8 w-8 items-center justify-center", className)}
     >
-      {type === "edit" && <Edit />}
-      {type === "delete" && <Delete />}
+      {type === "edit" ? <Icon name="edit" /> : <Icon name="delete" />}
     </Button>
   );
 };

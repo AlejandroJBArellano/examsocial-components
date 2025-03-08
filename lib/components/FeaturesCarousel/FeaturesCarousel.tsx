@@ -1,4 +1,3 @@
-import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { useState } from "react";
 import { cn } from "../../utils";
 import { FocusSpan, Heading6, Span } from "../FontFaces";
@@ -128,7 +127,7 @@ const FeaturesCarousel = ({
             className="rounded-full p-1 transition-colors hover:bg-gray-100"
             aria-label="Previous slide"
           >
-            <NavigateBefore className="text-zinc-700" />
+            <Icon name="navigate_before" className="text-zinc-700" />
           </button>
 
           {/* Indicadores de diapositiva */}
@@ -155,7 +154,7 @@ const FeaturesCarousel = ({
             className="rounded-full p-1 transition-colors hover:bg-gray-100"
             aria-label="Next slide"
           >
-            <NavigateNext className="text-zinc-700" />
+            <Icon name="navigate_next" className="text-zinc-700" />
           </button>
         </div>
       )}

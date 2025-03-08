@@ -1,8 +1,8 @@
-import { Check, KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { useState } from "react";
 import * as Yup from "yup";
 import { questionSchema } from "../../schemas";
 import { Heading5, Smoll } from "../FontFaces";
+import { Icon } from "../Icon";
 
 interface IReviewQuestionSet {
   question: Yup.InferType<typeof questionSchema>;
@@ -14,7 +14,7 @@ const ReviewQuestionSet = ({ question }: IReviewQuestionSet) => {
   return (
     <div className="space-y-4 rounded-md border-sm border-black bg-gray-50 p-4 hover:shadow-right-sm hover:shadow-black">
       <div className="flex items-center gap-2 text-xl font-medium leading-6 tracking-[0.4px] text-feedback-success">
-        <Check className="!h-6 !w-6" />
+        <Icon name="check" className="!h-6 !w-6" />
         <Heading5>{question.question}</Heading5>
       </div>
       <div className="space-y-2">
@@ -29,9 +29,9 @@ const ReviewQuestionSet = ({ question }: IReviewQuestionSet) => {
         >
           <Smoll>Show all options</Smoll>
           {showOptions ? (
-            <KeyboardArrowUp className="!h-3 !w-3" />
+            <Icon name="keyboard_arrow_up" size={12} />
           ) : (
-            <KeyboardArrowDown className="!h-3 !w-3" />
+            <Icon name="keyboard_arrow_down" size={12} />
           )}
         </button>
         {showOptions && (

@@ -1,9 +1,8 @@
 "use client";
 
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Button } from "../Button";
+import { Icon } from "../Icon";
 import { OptionSelect } from "./Option.tsx";
 
 interface SelectProps extends DropdownMenu.DropdownMenuProps {
@@ -23,8 +22,14 @@ const Select = (props: SelectProps) => {
           className="flex w-full items-center justify-between outline-none group-data-[state=open]:border-accent-shadow group-data-[state=open]:shadow-accent-shadow"
         >
           {props.text}
-          <KeyboardArrowDownIcon className="!hidden group-data-[state=closed]:!inline-block" />
-          <KeyboardArrowUpIcon className="!hidden group-data-[state=open]:!inline-block group-data-[state=open]:text-accent-shadow" />
+          <Icon
+            name="keyboard_arrow_down"
+            className="!hidden group-data-[state=closed]:!inline-block"
+          />
+          <Icon
+            name="keyboard_arrow_up"
+            className="!hidden group-data-[state=open]:!inline-block group-data-[state=open]:text-accent-shadow"
+          />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal container={props.container}>

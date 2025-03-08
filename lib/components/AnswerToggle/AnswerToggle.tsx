@@ -1,11 +1,8 @@
-import CheckIcon from "@mui/icons-material/Check";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { cn } from "../../utils";
+import { Icon } from "../Icon";
 
-const AnswerToggle = ({
-  className,
-  ...props
-}: Checkbox.CheckboxProps) => {
+const AnswerToggle = ({ className, ...props }: Checkbox.CheckboxProps) => {
   return (
     <Checkbox.Root
       {...props}
@@ -18,7 +15,11 @@ const AnswerToggle = ({
       )}
     >
       <Checkbox.Indicator className="flex h-5 w-5 place-items-center xl:h-6 xl:w-6">
-        <CheckIcon data-testid="CheckIcon" className="aspect-square h-5 w-5 xl:h-6 xl:w-6" />
+        <Icon
+          name="check"
+          data-testid="CheckIcon"
+          className="aspect-square h-5 w-5 xl:h-6 xl:w-6"
+        />
       </Checkbox.Indicator>
     </Checkbox.Root>
   );

@@ -1,7 +1,7 @@
 import { cn } from "@/utils";
-import CheckIcon from "@mui/icons-material/Check";
 import { CheckboxItem } from "@radix-ui/react-dropdown-menu";
 import { ComponentPropsWithoutRef } from "react";
+import { Icon } from "../Icon";
 
 export const OptionSelect = (
   props: ComponentPropsWithoutRef<typeof CheckboxItem>,
@@ -17,7 +17,7 @@ export const OptionSelect = (
         props.className,
       )}
     >
-      <CheckIcon className="h-4 w-4 text-white" />
+      <Icon name="check" size={16} className="text-white" />
       {props.children}
     </CheckboxItem>
   );

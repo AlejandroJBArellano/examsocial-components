@@ -1,11 +1,8 @@
-import CheckIcon from "@mui/icons-material/Check";
 import * as CheckboxElement from "@radix-ui/react-checkbox";
 import { cn } from "../../utils";
+import { Icon } from "../Icon";
 
- const Checkbox = ({
-  className,
-  ...props
-}: CheckboxElement.CheckboxProps) => {
+const Checkbox = ({ className, ...props }: CheckboxElement.CheckboxProps) => {
   return (
     <CheckboxElement.Root
       {...props}
@@ -18,7 +15,7 @@ import { cn } from "../../utils";
       )}
     >
       <CheckboxElement.Indicator className="flex h-4 w-4 place-items-center">
-        <CheckIcon className="h-4 w-4" />
+        <Icon name="check" className="h-4 w-4" />
       </CheckboxElement.Indicator>
     </CheckboxElement.Root>
   );

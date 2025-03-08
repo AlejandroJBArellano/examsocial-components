@@ -9,7 +9,7 @@ const meta: Meta<typeof FeaturesCarousel> = {
     docs: {
       description: {
         component:
-          "FeaturesCarousel es un componente que muestra un carrusel de características con dos variantes: 'cancel' y 'subscribe'.",
+          "FeaturesCarousel is a component that displays a carousel of features with two variants: 'cancel' and 'subscribe'.",
       },
     },
   },

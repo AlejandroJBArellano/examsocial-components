@@ -26,20 +26,20 @@ const FeedbackScreen = ({
         <Button
           theme="feedback-error"
           rounded
-          className="p-2 xl:p-2"
+          className="flex items-center justify-center p-2"
           type="button"
           onClick={() => onDelete(feedback.index)}
         >
-          <Icon name="delete" className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
+          <Icon name="delete" size={24} />
         </Button>
         <Button
           theme="light"
           rounded
-          className="p-2 xl:p-2"
+          className="flex items-center justify-center p-2"
           type="button"
           onClick={() => onEdit(feedback.index)}
         >
-          <Icon name="edit" className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
+          <Icon name="edit" size={24} />
         </Button>
       </div>
     </article>

@@ -22,6 +22,7 @@ const PremiumBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
       <span className={cn("", dimensions[size].text)}>Get With Pro</span>
       <Icon
         grade={200}
+        filled
         variant="rounded"
         name="workspace_premium"
         size={size === "big" ? 24 : 20}

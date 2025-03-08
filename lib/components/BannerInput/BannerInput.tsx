@@ -9,8 +9,14 @@ const BannerInput = ({
     htmlFor="banner"
     className="flex aspect-video cursor-pointer items-center justify-center rounded-md border border-black bg-secondary p-4"
   >
-    <div className="rounded-full border border-black bg-white p-2">
-      <Icon name="photo" data-testid="PhotoIcon" />
+    <div className="flex items-center justify-center rounded-full border border-black bg-white p-2">
+      <Icon
+        filled
+        name="photo"
+        data-testid="PhotoIcon"
+        size={20}
+        variant="sharp"
+      />
     </div>
     <input
       id="banner"

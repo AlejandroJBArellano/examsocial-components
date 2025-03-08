@@ -4,8 +4,8 @@ import postcss from "postcss";
 import { fileURLToPath } from "url";
 
 // Create __dirname equivalent for ESM
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename_from_url = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename_from_url);
 
 const config: StorybookConfig = {
   stories: ["../lib/components/**/*.stories.@(mdx|js|jsx|mjs|ts|tsx)"],

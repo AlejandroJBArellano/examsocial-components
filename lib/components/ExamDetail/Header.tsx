@@ -1,5 +1,5 @@
-import { Grade, Timer } from "@mui/icons-material";
 import { Anchor, Heading3, Heading5, Heading6 } from "../FontFaces";
+import { Icon } from "../Icon";
 import BannerExam from "./Banner";
 
 const HeaderExam = () => {
@@ -22,12 +22,12 @@ const HeaderExam = () => {
         </div>
         <div className="flex justify-between">
           <div className="flex items-center gap-2 text-secondary-shadow">
-            <Timer className="!size-8" />
+            <Icon name="timer" className="!size-8" />
             <Heading3>2 hours</Heading3>
           </div>
           <div className="flex items-center gap-1">
             <Heading5>4.9</Heading5>
-            <Grade className="!size-8 text-extra" />
+            <Icon name="grade" className="!size-8 text-extra" />
           </div>
         </div>
       </div>

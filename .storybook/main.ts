@@ -1,11 +1,15 @@
 import type { StorybookConfig } from "@storybook/react-vite";
-import { resolve } from "path";
+import { dirname, resolve } from "path";
 import postcss from "postcss";
+import { fileURLToPath } from "url";
+
+// Create __dirname equivalent for ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const config: StorybookConfig = {
   stories: ["../lib/components/**/*.stories.@(mdx|js|jsx|mjs|ts|tsx)"],
   addons: [
-    "@storybook/addon-onboarding",
     "@storybook/addon-essentials",
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",

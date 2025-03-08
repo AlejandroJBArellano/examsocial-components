@@ -9,7 +9,7 @@ const meta: Meta<typeof MenuItem> = {
     docs: {
       description: {
         component:
-          "MenuItem es un componente que representa un elemento de menú con diferentes estados, tamaños y contenidos. Puede mostrar un icono y texto, o solo un icono en modo comprimido. Ahora incluye soporte para responsividad automática utilizando los breakpoints de Tailwind.",
+          "MenuItem is a component that represents a menu item with different states, sizes, and contents. It can display an icon and text, or just an icon in compressed mode. It now includes support for automatic responsiveness using Tailwind breakpoints.",
       },
     },
   },

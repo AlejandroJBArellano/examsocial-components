@@ -1,4 +1,3 @@
-import { Add } from "@mui/icons-material";
 import { useFormikContext } from "formik";
 import { useEffect, useRef, useState } from "react";
 import * as Yup from "yup";
@@ -7,6 +6,7 @@ import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { EditQuestion } from "../EditQuestion";
 import { Heading3 } from "../FontFaces";
+import { Icon } from "../Icon";
 import { NewQuestion } from "../NewQuestion";
 import { QuestionSet } from "../QuestionSet";
 
@@ -52,7 +52,7 @@ export const Questions = () => {
         rounded
         className="flex w-full items-center justify-center gap-2 md:mx-auto md:w-auto"
       >
-        <Add className="!h-5 !w-5" />
+        <Icon name="add" className="!h-5 !w-5" />
         <span className="font-medium">Add new question</span>
       </Button>
       <Dialog innerRef={dialogRef} className="w-full max-w-sm">

@@ -4,6 +4,16 @@ import CreateExam from "./CreateExam";
 export default {
   title: "Components/CreateExam",
   component: CreateExam,
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "CreateExam is a component that provides a user interface for creating new exams. It includes form fields and validation for exam creation.",
+      },
+    },
+  },
+  tags: ["autodocs"],
 } as Meta<typeof CreateExam>;
 
 type Story = StoryObj<typeof CreateExam>;

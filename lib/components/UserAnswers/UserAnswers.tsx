@@ -1,6 +1,6 @@
-import { Close } from "@mui/icons-material";
 import { Button } from "../Button";
 import { Heading4 } from "../FontFaces";
+import { Icon } from "../Icon";
 import { ReviewQuestionSet } from "../ReviewQuestionSet";
 
 const UserAnswers = () => {
@@ -9,7 +9,7 @@ const UserAnswers = () => {
       <div className="flex items-center justify-between">
         <Heading4>Justin Anderson's Answers</Heading4>
         <Button theme="light" className="p-2" rounded>
-          <Close className="!h-6 !w-6" />
+          <Icon name="close" className="!h-6 !w-6" />
         </Button>
       </div>
       <div className="grid gap-x-6 gap-y-4 xl:grid-cols-2">

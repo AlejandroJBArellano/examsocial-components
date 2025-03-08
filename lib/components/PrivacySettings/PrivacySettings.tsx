@@ -73,7 +73,7 @@ const PrivacySettings = () => {
               (invitee, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between w-full"
+                  className="flex w-full items-center justify-between"
                 >
                   <Span>{invitee}</Span>
                   <Button
@@ -100,7 +100,7 @@ const PrivacySettings = () => {
 
   return (
     <section className="space-y-4">
-      <article className="flex justify-between items-center">
+      <article className="flex items-center justify-between">
         <FocusSpan>Privacy</FocusSpan>
         <div className="w-1/2">
           <Select text={PrivacySettingsNameMap[privacySetting]}>
@@ -163,10 +163,10 @@ const NewInvitee = ({ onSubmit }: INewInvitee) => {
   });
 
   return (
-    <section className="flex gap-2 items-center">
+    <section className="flex items-center gap-2">
       <Input
         placeholder="Email(s), separated by commas"
-        className="w-full h-11"
+        className="h-11 w-full"
         type="email"
         {...formik.getFieldProps("emails")}
       />
@@ -209,7 +209,7 @@ const UploadCSV = ({ handleInvite }: IUploadCSV) => {
     <Button rounded className="w-full p-0" type="button">
       <label
         htmlFor="upload-csv"
-        className="flex items-center gap-2 justify-center cursor-pointer py-2"
+        className="flex cursor-pointer items-center justify-center gap-2 py-2"
       >
         <UploadFile />
         <FocusSpan>Upload .csv</FocusSpan>

@@ -43,8 +43,8 @@ const TimingSettings = () => {
     NONE: null,
     CUSTOM: null,
     TOTAL: (
-      <article className="flex items-center gap-4 w-full">
-        <div className="space-y-1 w-1/2">
+      <article className="flex w-full items-center gap-4">
+        <div className="w-1/2 space-y-1">
           <FocusSpan>Hours</FocusSpan>
           <Input
             type="number"
@@ -55,7 +55,7 @@ const TimingSettings = () => {
             }
           />
         </div>
-        <div className="space-y-1 w-1/2">
+        <div className="w-1/2 space-y-1">
           <FocusSpan>Minutes</FocusSpan>
           <Input
             type="number"
@@ -69,8 +69,8 @@ const TimingSettings = () => {
       </article>
     ),
     PER_QUESTION: (
-      <article className="flex items-center gap-4 w-full">
-        <div className="space-y-1 w-1/2">
+      <article className="flex w-full items-center gap-4">
+        <div className="w-1/2 space-y-1">
           <FocusSpan>Minutes</FocusSpan>
           <Input
             type="number"
@@ -81,7 +81,7 @@ const TimingSettings = () => {
             }
           />
         </div>
-        <div className="space-y-1 w-1/2">
+        <div className="w-1/2 space-y-1">
           <FocusSpan>Seconds</FocusSpan>
           <Input
             type="number"
@@ -99,7 +99,7 @@ const TimingSettings = () => {
   return (
     <section className="space-y-4">
       <article className="space-y-1">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <FocusSpan>Timing</FocusSpan>
           <div className="w-1/2">
             <Select text={TimingSettingsNameMap[timingSetting]}>
@@ -130,7 +130,7 @@ const TimingSettings = () => {
             </Select>
           </div>
         </div>
-        <Smoll className="text-end block">
+        <Smoll className="block text-end">
           {TimingSettingsDescriptionMap[timingSetting]}
         </Smoll>
       </article>

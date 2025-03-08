@@ -1,31 +1,31 @@
-import { Replay } from "@mui/icons-material";
 import { Button } from "../Button";
 import { FocusSpan, Heading3 } from "../FontFaces";
+import { Icon } from "../Icon";
 
 const ResultTakeExam = () => {
   return (
-    <div className="p-6 space-y-6">
-      <div className="w-[171px] h-[171px] relative mx-auto">
-        <div className="w-[171px] h-[171px] left-0 top-0 absolute bg-[#65e4ff] rounded-full border border-[#037c95]" />
-        <div className="w-[171px] h-[171px] left-0 top-[-0px] absolute bg-[#edfafd] rounded-full" />
-        <div className="w-[100px] left-[35.50px] top-[51.50px] absolute text-center text-black text-4xl font-bold font-['Sentient'] leading-[48px] tracking-wide">
+    <div className="space-y-6 p-6">
+      <div className="relative mx-auto h-[171px] w-[171px]">
+        <div className="absolute left-0 top-0 h-[171px] w-[171px] rounded-full border border-[#037c95] bg-[#65e4ff]" />
+        <div className="absolute left-0 top-[-0px] h-[171px] w-[171px] rounded-full bg-[#edfafd]" />
+        <div className="absolute left-[35.50px] top-[51.50px] w-[100px] text-center font-['Sentient'] text-4xl font-bold leading-[48px] tracking-wide text-black">
           75%
         </div>
-        <div className="w-[100px] left-[35.50px] top-[99.50px] absolute text-center text-black text-lg font-medium font-['Satoshi'] leading-tight tracking-tight">
+        <div className="absolute left-[35.50px] top-[99.50px] w-[100px] text-center font-['Satoshi'] text-lg font-medium leading-tight tracking-tight text-black">
           15/20
         </div>
       </div>
-      <Heading3 className="text-primary-shadow text-center leading-[32px]">
+      <Heading3 className="text-center leading-[32px] text-primary-shadow">
         Congrats! You have approved this exam.
       </Heading3>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <FocusSpan>Attempts left: 2</FocusSpan>
         <Button
           theme="extra"
           rounded
           className="flex items-center justify-center gap-2"
         >
-          <Replay className="!size-5" width={20} height={20} />
+          <Icon name="replay" className="!size-5" />
           <FocusSpan>Retry</FocusSpan>
         </Button>
       </div>

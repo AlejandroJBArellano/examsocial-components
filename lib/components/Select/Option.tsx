@@ -1,11 +1,11 @@
 import CheckIcon from "@mui/icons-material/Check";
-import {
-    CheckboxItem,
-    MenuCheckboxItemProps,
-} from "@radix-ui/react-dropdown-menu";
+import { CheckboxItem } from "@radix-ui/react-dropdown-menu";
+import { ComponentPropsWithoutRef } from "react";
 import { cn } from "../../utils";
 
-export const OptionSelect = (props: MenuCheckboxItemProps) => {
+export const OptionSelect = (
+  props: ComponentPropsWithoutRef<typeof CheckboxItem>,
+) => {
   return (
     <CheckboxItem
       {...props}

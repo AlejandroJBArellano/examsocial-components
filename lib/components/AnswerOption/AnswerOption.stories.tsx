@@ -5,6 +5,16 @@ import AnswerOption from "./AnswerOption";
 export default {
   title: "Components/AnswerOption",
   component: AnswerOption,
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "AnswerOption is a component that displays an answer option in a question. It can be selectable, selected, or disabled.",
+      },
+    },
+  },
+  tags: ["autodocs"],
 } as Meta;
 
 type Story = StoryObj<typeof AnswerOption>;

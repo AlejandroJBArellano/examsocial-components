@@ -12,8 +12,8 @@ const Helper = ({ align, side, children }: IHelper) => {
     <Tooltip.Provider>
       <Tooltip.Root delayDuration={0}>
         <Tooltip.Trigger asChild>
-          <button className="text-gray-700 hover:text-black">
-            <Icon name="help" />
+          <button className="flex items-center justify-center text-gray-700 hover:text-black">
+            <Icon name="help" size={20} />
           </button>
         </Tooltip.Trigger>
         <Tooltip.Portal>

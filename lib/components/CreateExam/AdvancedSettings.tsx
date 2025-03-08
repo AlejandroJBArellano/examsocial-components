@@ -34,12 +34,12 @@ export const AdvancedSettings = () => {
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
         <div className="flex flex-nowrap gap-2 overflow-x-auto">
           <Button
-            className="p-2"
+            className="mb-1 mr-1 flex items-center gap-2 p-2"
             rounded
             onClick={() => dialogRef.current?.showModal()}
             type="button"
           >
-            <Icon name="add" className="!h-8 !w-8" />
+            <Icon name="add" size={24} />
           </Button>
           {values.advancedSettings.feedback?.map((feedback, index) => (
             <FeedbackScreen

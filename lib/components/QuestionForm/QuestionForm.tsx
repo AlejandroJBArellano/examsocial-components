@@ -1,10 +1,10 @@
-import { Add } from "@mui/icons-material";
 import { Field, FieldArray, FormikProps } from "formik";
 import { v4 as uuidv4 } from "uuid";
 import * as Yup from "yup";
 import { questionSchema } from "../../schemas";
 import { Button } from "../Button";
 import { CreateAnswer } from "../CreateAnswer";
+import { Icon } from "../Icon";
 import { Input } from "../Input";
 import { Separator } from "../Separator";
 
@@ -66,7 +66,7 @@ const QuestionForm = ({
                     push({ text: "", correct: false, _id: uuidv4() })
                   }
                 >
-                  <Add className="!h-5 !w-5" />
+                  <Icon name="add" className="!h-5 !w-5" />
                 </Button>
               )}
             </>

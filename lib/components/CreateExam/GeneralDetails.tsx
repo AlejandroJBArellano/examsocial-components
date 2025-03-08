@@ -8,7 +8,7 @@ import { Input } from "../Input";
 import { Textarea } from "../Textarea";
 
 export const GeneralDetails = () => {
-  const { getFieldProps, values, setFieldValue } =
+  const { getFieldProps, values, setFieldValue, errors } =
     useFormikContext<Yup.InferType<typeof examSchema>>();
   return (
     <section className="space-y-4">
@@ -29,6 +29,9 @@ export const GeneralDetails = () => {
             }}
           />
         )}
+        {errors.image && (
+          <p className="text-sm text-red-500">{errors.image.toString()}</p>
+        )}
       </article>
       <article className="space-y-1">
         <FocusSpan>Title</FocusSpan>
@@ -36,7 +39,11 @@ export const GeneralDetails = () => {
           placeholder="The title of your exam"
           className="w-full"
           {...getFieldProps("title")}
+          error={!!errors.title}
         />
+        {errors.title && (
+          <p className="text-sm text-red-500">{errors.title.toString()}</p>
+        )}
       </article>
       <article className="space-y-1">
         <FocusSpan>Description</FocusSpan>
@@ -44,7 +51,13 @@ export const GeneralDetails = () => {
           placeholder="A brief description of your exam"
           className="w-full"
           {...getFieldProps("description")}
+          error={!!errors.description}
         />
+        {errors.description && (
+          <p className="text-sm text-red-500">
+            {errors.description.toString()}
+          </p>
+        )}
       </article>
     </section>
   );

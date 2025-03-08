@@ -1,6 +1,6 @@
-import { Delete } from "@mui/icons-material";
 import { Field } from "formik";
 import { AnswerToggle, Button, Input } from "../";
+import { Icon } from "../Icon";
 
 const CreateAnswer = ({
   name,
@@ -24,7 +24,7 @@ const CreateAnswer = ({
         type="button"
         onClick={onDelete}
       >
-        <Delete className="h-5 w-5" />
+        <Icon name="delete" className="h-5 w-5" />
       </Button>
       <Field
         as={Input}

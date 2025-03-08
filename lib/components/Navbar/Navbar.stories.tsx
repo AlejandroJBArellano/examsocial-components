@@ -1,5 +1,5 @@
-import { Person } from "@mui/icons-material";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Icon } from "../Icon";
 import Navbar from "./Navbar";
 
 const meta: Meta<typeof Navbar> = {
@@ -24,7 +24,7 @@ type Story = StoryObj<typeof Navbar>;
 const ProfileComponent = () => (
   <div className="flex items-center gap-2">
     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-200">
-      <Person className="text-zinc-700" />
+      <Icon name="person" className="text-zinc-700" />
     </div>
   </div>
 );

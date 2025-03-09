@@ -55,7 +55,7 @@ export const Navbar = ({ items, profileComponent, className }: NavbarProps) => {
   return (
     <nav
       className={cn(
-        "flex w-full flex-row items-center justify-between bg-white",
+        "mb-4 flex w-full items-center justify-between bg-white",
         "px-4 py-2 shadow-sm sm:px-6",
         className,
       )}

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Icon } from "../Icon";
+import { ProfilePlaceholder } from "../ProfilePlaceholder";
 import Navbar from "./Navbar";
 
 const meta: Meta<typeof Navbar> = {
@@ -53,7 +54,7 @@ export const Default: Story = {
         tooltipText: "Create new exam",
       },
     ],
-    profileComponent: <ProfileComponent />,
+    profileComponent: <ProfilePlaceholder gender="male" />,
   },
   parameters: {
     docs: {

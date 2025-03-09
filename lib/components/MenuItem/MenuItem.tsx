@@ -58,8 +58,8 @@ const MenuItem = forwardRef<HTMLAnchorElement, MenuItemProps>(
           "flex border-sm border-gray-600 px-4 py-1 text-gray-600 hover:border-gray-900 hover:text-gray-900 data-[selected]:border-primary-shadow data-[selected]:bg-primary-tint data-[selected]:text-primary-shadow md:px-6 md:py-2 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6" +
           (isCTA ? CTAClasses : "") +
           (isCompressed
-            ? " w-full min-w-80 flex-row-reverse items-center gap-2"
-            : " flex-col place-items-center")
+            ? " flex-col place-items-center"
+            : " w-full min-w-80 flex-row-reverse items-center gap-2")
         }
         data-testid="menu-item"
         data-selected={isSelected ? "true" : undefined}
@@ -68,9 +68,9 @@ const MenuItem = forwardRef<HTMLAnchorElement, MenuItemProps>(
       >
         <Icon name={icon} filled size={20} />
         {isCompressed ? (
-          <Heading5>{children}</Heading5>
-        ) : (
           <Smoll className="xl:hidden">{children}</Smoll>
+        ) : (
+          <Heading5>{children}</Heading5>
         )}
       </a>
     );

@@ -1,6 +1,7 @@
 import React, { createContext, ReactNode, useContext } from "react";
 import { cn } from "../../utils";
 import { Button } from "../Button";
+import { ButtonTheme } from "../Button/Button";
 import { Anchor, Heading4, Heading5, Heading6, Paragraph } from "../FontFaces";
 import { Icon } from "../Icon";
 
@@ -250,14 +251,17 @@ interface ExamCardActionProps {
 }
 
 const ExamCardAction = ({ onClick, type, className }: ExamCardActionProps) => {
-  return (
-    <Button
-      theme={type === "edit" ? "light" : "feedback-error"}
-      onClick={onClick}
-      className={cn("flex h-8 w-8 items-center justify-center", className)}
-    >
-      {type === "edit" ? <Icon name="edit" /> : <Icon name="delete" />}
-    </Button>
+  const props = {
+    theme: type === "edit" ? "light" : ("feedback-error" as ButtonTheme),
+    size: 20,
+    onClick,
+    className,
+    filled: true,
+  };
+  return type === "edit" ? (
+    <Button.Icon {...props}>edit</Button.Icon>
+  ) : (
+    <Button.Icon {...props}>delete</Button.Icon>
   );
 };
 

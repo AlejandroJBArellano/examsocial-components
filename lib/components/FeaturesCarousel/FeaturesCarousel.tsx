@@ -82,15 +82,6 @@ const FeaturesCarousel = ({
     setCurrentSlide(slideIndex);
   };
 
-  // Funciones para navegar a la diapositiva anterior o siguiente
-  const goToPrevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
-  };
-
-  const goToNextSlide = () => {
-    setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-  };
-
   return (
     <div
       className={cn("flex flex-col gap-5 rounded-lg bg-white p-5", className)}
@@ -108,7 +99,7 @@ const FeaturesCarousel = ({
               <Icon
                 name={feature.icon}
                 size={24}
-                className="text-primary"
+                className="text-secondary-shadow"
                 aria-hidden="true"
               />
               <FocusSpan>{feature.name}</FocusSpan>
@@ -118,44 +109,23 @@ const FeaturesCarousel = ({
         ))}
       </div>
 
-      {/* Controles de navegación */}
+      {/* Indicadores de diapositiva */}
       {totalSlides > 1 && (
-        <div className="flex items-center justify-between">
-          {/* Botón anterior */}
-          <button
-            onClick={goToPrevSlide}
-            className="rounded-full p-1 transition-colors hover:bg-gray-100"
-            aria-label="Previous slide"
-          >
-            <Icon name="navigate_before" className="text-zinc-700" />
-          </button>
-
-          {/* Indicadores de diapositiva */}
-          <div className="flex justify-center gap-2">
-            {Array.from({ length: totalSlides }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={cn(
-                  "h-4 rounded-full transition-all",
-                  index === currentSlide
-                    ? "w-8 bg-accent"
-                    : "bg-accent-light w-4",
-                )}
-                aria-label={`Go to slide ${index + 1}`}
-                aria-current={index === currentSlide ? "true" : "false"}
-              />
-            ))}
-          </div>
-
-          {/* Botón siguiente */}
-          <button
-            onClick={goToNextSlide}
-            className="rounded-full p-1 transition-colors hover:bg-gray-100"
-            aria-label="Next slide"
-          >
-            <Icon name="navigate_next" className="text-zinc-700" />
-          </button>
+        <div className="flex gap-2">
+          {Array.from({ length: totalSlides }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={cn(
+                "h-4 rounded-full transition-all",
+                index === currentSlide
+                  ? "w-8 bg-secondary-shadow"
+                  : "w-4 bg-secondary",
+              )}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-current={index === currentSlide ? "true" : "false"}
+            />
+          ))}
         </div>
       )}
     </div>

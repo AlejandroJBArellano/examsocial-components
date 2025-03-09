@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "../Button";
 import Header from "./Header";
 
 const meta: Meta<typeof Header> = {
@@ -26,7 +27,9 @@ export const Default: Story = {
 export const WithCustomButtonText: Story = {
   render: () => (
     <div className="bg-white">
-      <Header buttonText="Sign Up" />
+      <Header>
+        <Button theme="accent">Sign Up</Button>
+      </Header>
     </div>
   ),
 };
@@ -34,7 +37,9 @@ export const WithCustomButtonText: Story = {
 export const WithCustomTheme: Story = {
   render: () => (
     <div className="bg-white">
-      <Header buttonText="Login" buttonTheme="primary" />
+      <Header>
+        <Button theme="primary">Login</Button>
+      </Header>
     </div>
   ),
 };
@@ -42,7 +47,9 @@ export const WithCustomTheme: Story = {
 export const WithoutButton: Story = {
   render: () => (
     <div className="bg-white">
-      <Header showButton={false} />
+      <Header>
+        <Button theme="accent">Sign Up</Button>
+      </Header>
     </div>
   ),
 };
@@ -62,7 +69,9 @@ export const AllVariants: Story = {
           Header with Custom Button Text
         </h3>
         <div className="bg-white p-4">
-          <Header buttonText="Sign Up" />
+          <Header>
+            <Button theme="accent">Sign Up</Button>
+          </Header>
         </div>
       </div>
 
@@ -71,14 +80,18 @@ export const AllVariants: Story = {
           Header with Primary Button Theme
         </h3>
         <div className="bg-white p-4">
-          <Header buttonText="Login" buttonTheme="primary" />
+          <Header>
+            <Button theme="primary">Login</Button>
+          </Header>
         </div>
       </div>
 
       <div className="overflow-hidden rounded-md border">
         <h3 className="bg-gray-100 p-2 font-medium">Header without Button</h3>
         <div className="bg-white p-4">
-          <Header showButton={false} />
+          <Header>
+            <Button theme="accent">Sign Up</Button>
+          </Header>
         </div>
       </div>
     </div>

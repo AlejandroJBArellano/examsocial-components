@@ -2,9 +2,16 @@ import { ComponentPropsWithoutRef } from "react";
 import { cn } from "../../utils";
 import { Icon } from "../Icon";
 
+export type ButtonTheme =
+  | "extra"
+  | "light"
+  | "accent"
+  | "feedback-error"
+  | "primary";
+
 interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   rounded?: boolean;
-  theme?: "extra" | "light" | "accent" | "feedback-error" | "primary";
+  theme?: ButtonTheme;
 }
 
 const Button = ({ rounded, theme, ...props }: ButtonProps) => {
@@ -25,6 +32,7 @@ const Button = ({ rounded, theme, ...props }: ButtonProps) => {
     <button
       data-testid="button"
       {...props}
+      type={props.type || "button"}
       className={cn(
         `border px-4 py-2 shadow-right-sm duration-300 ease-out hover:shadow-right hover:transition-all disabled:cursor-not-allowed disabled:shadow-none xl:px-6 xl:text-2xl xl:font-medium xl:shadow-right xl:hover:shadow-right-lg xl:disabled:hover:shadow-none`,
         classTheme[theme || "light"],

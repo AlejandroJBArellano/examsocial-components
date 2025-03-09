@@ -14,7 +14,7 @@ const Logo = (props: React.SVGProps<SVGSVGElement>) => {
       <path
         id="Logo"
         fillRule="evenodd"
-        clip-rule="evenodd"
+        clipRule="evenodd"
         d="M44 0.741821H0V32.3384H16.9734V39.2581H44V0.741821Z"
         fill="url(#pattern0_521_5014)"
       />

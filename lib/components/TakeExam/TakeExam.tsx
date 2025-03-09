@@ -48,7 +48,7 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
         showDivision
         time={new Date(time * 1000).toISOString().substr(11, 8)}
       >
-        Take Exam
+        {exam.title}
       </Stepper>
       <SelectedQuestion
         selected={selectedQuestion}

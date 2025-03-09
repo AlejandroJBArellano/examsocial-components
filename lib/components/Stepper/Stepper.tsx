@@ -33,7 +33,7 @@ interface IStepperProps {
 const Time = ({ children }: PropsWithChildren) => (
   <div className="flex items-center gap-2">
     <Heading3>{children}</Heading3>
-    <Icon name="timer" />
+    <Icon name="timer" filled />
   </div>
 );
 
@@ -75,9 +75,15 @@ const Stepper = ({
         <>
           <article className="flex items-center justify-between">
             <Heading2 className="text-secondary-shadow">{children}</Heading2>
-            <Button theme="feedback-error" rounded className="p-2">
-              <Icon name="flag" />
-            </Button>
+            <Tooltip
+              trigger={
+                <Button.Icon filled theme="feedback-error" rounded size={20}>
+                  Flag
+                </Button.Icon>
+              }
+            >
+              Report Exam
+            </Tooltip>
           </article>
           <article className="flex items-center justify-between">
             {showDivision && (

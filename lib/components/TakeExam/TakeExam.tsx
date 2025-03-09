@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { Stepper } from "../Stepper";
+import { Step } from "../Stepper/Stepper";
 import SelectedQuestion from "./SelectedQuestion";
 
 const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
@@ -33,19 +34,22 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
     return () => clearInterval(timer);
   }, [exam.advancedSettings.timing]);
 
+  const steps: Step[] = exam.questions.map((_, index) => ({
+    id: index + 1,
+    status: "pending",
+  }));
+
   return (
     <main>
       <Stepper
         theme="secondary"
         activeStep={selectedQuestion + 1}
-        onClickStep={(step) => {
-          setSelectedQuestion(step - 1);
-        }}
-        steps={exam.questions.length}
-        title="Take Exam"
+        steps={steps}
         showDivision
         time={new Date(time * 1000).toISOString().substr(11, 8)}
-      />
+      >
+        Take Exam
+      </Stepper>
       <SelectedQuestion
         selected={selectedQuestion}
         setSelected={setSelectedQuestion}

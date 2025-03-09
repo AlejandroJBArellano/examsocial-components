@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { cn } from "../../utils";
 import MenuItem, { MenuItemIcon } from "../MenuItem";
 
 export interface NavbarItem {
@@ -51,24 +50,18 @@ export interface NavbarProps {
  * - En móvil: Muestra los elementos comprimidos (solo iconos)
  * - En tablet/desktop: Muestra los elementos expandidos (iconos y texto)
  */
-export const Navbar = ({ items, profileComponent, className }: NavbarProps) => {
+export const Navbar = ({ items }: NavbarProps) => {
   return (
-    <nav
-      className={cn(
-        "mb-4 flex w-full items-center justify-between bg-white",
-        "px-4 py-2 shadow-sm sm:px-6",
-        className,
-      )}
-    >
+    <nav>
       {/* Lista de elementos de navegación */}
-      <ul className="flex flex-row gap-1 sm:gap-2">
+      <ul className="mb-4 flex px-4">
+        <li className="flex h-full w-4 border-y-sm border-black" key={-1} />
         {items.map((item, index) => (
           <li key={index}>
             <MenuItem
               icon={item.icon}
               isSelected={item.isSelected}
-              content={item.isCTA ? "cta" : "default"}
-              isResponsive
+              isCTA={item.isCTA}
               tooltipText={item.tooltipText}
               onClick={item.onClick}
             >
@@ -76,12 +69,11 @@ export const Navbar = ({ items, profileComponent, className }: NavbarProps) => {
             </MenuItem>
           </li>
         ))}
+        <li
+          className="flex h-full w-4 border-y-sm border-black"
+          key={items.length}
+        />
       </ul>
-
-      {/* Componente de perfil (si existe) */}
-      {profileComponent && (
-        <div className="flex items-center">{profileComponent}</div>
-      )}
     </nav>
   );
 };

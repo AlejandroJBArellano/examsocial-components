@@ -80,12 +80,17 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
       return (size === "xl" || size === "2xl") && isCompressed && tooltipText;
     };
 
+    const CTAClasses = ` !text-black bg-accent hover:shadow-right ${isSelected ? "" : "shadow-right"}`;
+
     // Renderizar el botón
     const button = (
       <button
         ref={ref}
         type="button"
-        className="flex flex-col border-sm border-gray-600 px-4 py-1 text-gray-600 hover:border-gray-900 hover:text-gray-900 data-[selected='true']:border-primary-shadow data-[selected='true']:bg-primary-tint data-[selected='true']:text-primary-shadow md:px-6 md:py-2 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6"
+        className={
+          "flex flex-col border-sm border-gray-600 px-4 py-1 text-gray-600 hover:border-gray-900 hover:text-gray-900 data-[selected='true']:border-primary-shadow data-[selected='true']:bg-primary-tint data-[selected='true']:text-primary-shadow md:px-6 md:py-2 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6" +
+          (isCTA ? CTAClasses : "")
+        }
         data-testid="menu-item"
         data-selected={isSelected ? "true" : "false"}
         data-compressed={isCompressed}

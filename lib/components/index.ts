@@ -1,5 +1,6 @@
 export * from "./AnswerOption";
 export * from "./AnswerToggle";
+export * from "./Back";
 export * from "./BannerInput";
 export * from "./Button";
 export * from "./Checkbox";

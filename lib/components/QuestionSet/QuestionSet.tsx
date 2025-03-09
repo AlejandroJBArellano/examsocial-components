@@ -1,7 +1,6 @@
 import { IQuestion } from "../../types";
 import { Button } from "../Button";
 import { Heading5, Span } from "../FontFaces";
-import { Icon } from "../Icon";
 import { Tag } from "../Tag";
 
 type QuestionSetPropsEditable = IQuestion & {
@@ -47,7 +46,7 @@ const QuestionSet = ({
             ))}
           </div>
           <div className="flex items-center justify-between">
-            <Button
+            <Button.Icon
               onClick={() => {
                 (props as QuestionSetPropsEditable).onDelete(
                   (props as QuestionSetPropsEditable).index,
@@ -56,10 +55,12 @@ const QuestionSet = ({
               theme="feedback-error"
               rounded
               className="p-2"
+              size={32}
+              filled
             >
-              <Icon name="delete" className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
-            </Button>
-            <Button
+              delete
+            </Button.Icon>
+            <Button.Icon
               onClick={() => {
                 (props as QuestionSetPropsEditable).onEdit(
                   (props as QuestionSetPropsEditable).index,
@@ -68,9 +69,11 @@ const QuestionSet = ({
               theme="light"
               rounded
               className="p-2"
+              size={32}
+              filled
             >
-              <Icon name="edit" className="!h-8 !w-8 xl:!h-9 xl:!w-9" />
-            </Button>
+              edit
+            </Button.Icon>
           </div>
         </>
       )}

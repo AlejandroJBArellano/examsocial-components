@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
-import { MenuItemIcon } from "../MenuItem";
 import Navbar from "./Navbar";
 
 describe("Navbar", () => {
@@ -8,16 +7,21 @@ describe("Navbar", () => {
     const items = [
       {
         label: "Home",
-        icon: "home" as MenuItemIcon,
+        icon: "home",
         isSelected: true,
       },
       {
         label: "Library",
-        icon: "bookmark" as MenuItemIcon,
+        icon: "bookmark",
       },
     ];
 
-    render(<Navbar items={items} />);
+    render(
+      <Navbar
+        items={items}
+        profileInfo={{ gender: "male", name: "John Doe" }}
+      />,
+    );
 
     const navElement = screen.getByRole("navigation");
     expect(navElement).toBeInTheDocument();
@@ -34,13 +38,16 @@ describe("Navbar", () => {
     const items = [
       {
         label: "Home",
-        icon: "home" as MenuItemIcon,
+        icon: "home",
       },
     ];
 
-    const ProfileComponent = () => <div data-testid="profile">Profile</div>;
-
-    render(<Navbar items={items} profileComponent={<ProfileComponent />} />);
+    render(
+      <Navbar
+        items={items}
+        profileInfo={{ gender: "male", name: "John Doe" }}
+      />,
+    );
 
     const profileElement = screen.getByTestId("profile");
     expect(profileElement).toBeInTheDocument();
@@ -50,16 +57,21 @@ describe("Navbar", () => {
     const items = [
       {
         label: "Home",
-        icon: "home" as MenuItemIcon,
+        icon: "home",
       },
       {
         label: "Create",
-        icon: "list_alt_add" as MenuItemIcon,
+        icon: "list_alt_add",
         isCTA: true,
       },
     ];
 
-    render(<Navbar items={items} />);
+    render(
+      <Navbar
+        items={items}
+        profileInfo={{ gender: "female", name: "Jane Doe" }}
+      />,
+    );
 
     const menuItems = screen.getAllByTestId("menu-item");
 
@@ -72,12 +84,17 @@ describe("Navbar", () => {
     const items = [
       {
         label: "Home",
-        icon: "home" as MenuItemIcon,
+        icon: "home",
         onClick: handleClick,
       },
     ];
 
-    render(<Navbar items={items} />);
+    render(
+      <Navbar
+        items={items}
+        profileInfo={{ gender: "male", name: "John Doe" }}
+      />,
+    );
 
     const menuItem = screen.getByTestId("menu-item");
     menuItem.click();
@@ -89,11 +106,16 @@ describe("Navbar", () => {
     const items = [
       {
         label: "Home",
-        icon: "home" as MenuItemIcon,
+        icon: "home",
       },
     ];
 
-    render(<Navbar items={items} className="custom-class" />);
+    render(
+      <Navbar
+        items={items}
+        profileInfo={{ gender: "male", name: "John Doe" }}
+      />,
+    );
 
     const navElement = screen.getByRole("navigation");
     expect(navElement).toHaveClass("custom-class");

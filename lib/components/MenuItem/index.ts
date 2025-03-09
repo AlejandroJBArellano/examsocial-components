@@ -1,7 +1,2 @@
-export { default } from "./MenuItem";
-export type {
-  MenuItemContent,
-  MenuItemIcon,
-  MenuItemProps,
-  MenuItemSize,
-} from "./MenuItem";
+export * from "./MenuItem";
+export { default as MenuItem } from "./MenuItem";

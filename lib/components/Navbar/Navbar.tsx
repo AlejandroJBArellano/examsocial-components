@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
-import MenuItem from "../MenuItem";
+import { MenuItem } from "../MenuItem";
 import Profile from "../Profile/Profile";
 import { ProfilePlaceholderGender } from "../ProfilePlaceholder/ProfilePlaceholder";
 

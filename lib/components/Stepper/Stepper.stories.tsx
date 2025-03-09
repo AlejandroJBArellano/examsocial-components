@@ -10,24 +10,24 @@ type Story = StoryObj<typeof Stepper>;
 
 export const Default: Story = {
   args: {
-    steps: 5,
+    steps: Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })),
     activeStep: 2,
-    onClickStep: (step: number) => alert(`Step ${step} clicked`),
+    onSelectStep: (step: number) => alert(`Step ${step} clicked`),
   },
 };
 
 export const FirstStepActive: Story = {
   args: {
-    steps: 5,
+    steps: Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })),
     activeStep: 1,
-    onClickStep: (step: number) => alert(`Step ${step} clicked`),
+    onSelectStep: (step: number) => alert(`Step ${step} clicked`),
   },
 };
 
 export const LastStepActive: Story = {
   args: {
-    steps: 5,
+    steps: Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })),
     activeStep: 5,
-    onClickStep: (step: number) => alert(`Step ${step} clicked`),
+    onSelectStep: (step: number) => alert(`Step ${step} clicked`),
   },
 };

@@ -1,6 +1,6 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { Icon } from "../Icon";
-import MenuItem from "../MenuItem";
+import { MenuItem } from "../MenuItem";
 
 interface IMenuItem {
   icon: string;

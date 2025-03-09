@@ -1,33 +1,33 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
-import FeaturesCarousel, { IconType } from "./FeaturesCarousel";
+import FeaturesCarousel from "./FeaturesCarousel";
 
 // Datos de ejemplo para las pruebas
 const testFeatures = [
   {
     name: "Feature 1",
     description: "Description 1",
-    icon: "school" as IconType,
+    icon: "school",
   },
   {
     name: "Feature 2",
     description: "Description 2",
-    icon: "analytics" as IconType,
+    icon: "analytics",
   },
   {
     name: "Feature 3",
     description: "Description 3",
-    icon: "palette" as IconType,
+    icon: "palette",
   },
   {
     name: "Feature 4",
     description: "Description 4",
-    icon: "download" as IconType,
+    icon: "download",
   },
   {
     name: "Feature 5",
     description: "Description 5",
-    icon: "group" as IconType,
+    icon: "group",
   },
 ];
 

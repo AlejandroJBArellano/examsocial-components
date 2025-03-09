@@ -54,8 +54,8 @@ export const Navbar = ({ items }: NavbarProps) => {
   return (
     <nav>
       {/* Lista de elementos de navegación */}
-      <ul className="mb-4 flex px-4">
-        <li className="flex w-4 border-y-sm border-black" key={-1} />
+      <ul className="mb-4 flex w-full">
+        <li className="flex w-4 flex-auto border-y-sm border-black" key={-1} />
         {items.map((item, index) => (
           <li key={index}>
             <MenuItem
@@ -69,7 +69,10 @@ export const Navbar = ({ items }: NavbarProps) => {
             </MenuItem>
           </li>
         ))}
-        <li className="flex w-4 border-y-sm border-black" key={items.length} />
+        <li
+          className="flex w-4 flex-auto border-y-sm border-black"
+          key={items.length}
+        />
       </ul>
     </nav>
   );

@@ -18,7 +18,7 @@ export const Review = () => {
           theme="extra"
           className="flex items-center justify-center gap-2"
         >
-          <Icon name="visibility" className="!h-5 !w-5" />
+          <Icon name="visibility" size={20} filled />
           <FocusSpan>Preview exam</FocusSpan>
         </Button>
       </article>

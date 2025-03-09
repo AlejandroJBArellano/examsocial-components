@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Result from "./Result";
 
 export default {
-  title: "Components/Result",
+  title: "Components/TakeExam/Result",
   component: Result,
 } as Meta;
 

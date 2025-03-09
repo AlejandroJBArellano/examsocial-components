@@ -15,10 +15,11 @@ const ImageUploader = ({
         <div className="space-y-1">
           <Span className="block">{image.name}</Span>
           <Smoll>
-            {image.size / 1024 > 1024
-              ? (image.size / 1024 / 1024).toFixed(2)
-              : (image.size / 1024).toFixed(2)}{" "}
-            mb.
+            {image.size > 1024 * 1024 * 1024
+              ? (image.size / 1024 / 1024 / 1024).toFixed(2) + " GB"
+              : image.size > 1024 * 1024
+                ? (image.size / 1024 / 1024).toFixed(2) + " MB"
+                : (image.size / 1024).toFixed(2) + " KB"}
           </Smoll>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { formatDistanceToNow } from "date-fns";
 import { PropsWithChildren } from "react";
 import { Button } from "../Button";
+import { FocusSmoll, FocusSpan, Paragraph, Smoll } from "../FontFaces";
 import { Icon } from "../Icon";
 import ProfilePlaceholder from "../ProfilePlaceholder/ProfilePlaceholder";
 
@@ -36,33 +37,31 @@ const Comment = ({
             </span>
           )}
 
-          <span className="text-base font-medium leading-5">{user.name}</span>
+          <FocusSpan className="text-base font-medium leading-5">
+            {user.name}
+          </FocusSpan>
         </div>
-        <span className="text-xs">{timeAgo}</span>
+        <Smoll>{timeAgo}</Smoll>
       </article>
-      <article className="font-light">{children}</article>
-      <article className="flex justify-between">
+      <Paragraph className="font-light">{children}</Paragraph>
+      <article className="flex items-center justify-between">
         <div>
-          <p className="text-xs font-bold">Rating:</p>
+          <FocusSmoll>Rating:</FocusSmoll>
           <div className="flex text-secondary-shadow">
             {[...Array(5)].map((_, index) => {
               if (rating >= index + 1) {
-                return <Icon name="grade" key={index} className="!h-5 !w-5" />;
+                return <Icon name="grade" key={index} size={20} />;
               } else if (rating > index && rating < index + 1) {
-                return (
-                  <Icon name="star_half" key={index} className="!h-5 !w-5" />
-                );
+                return <Icon name="star_half" key={index} size={20} />;
               } else {
-                return (
-                  <Icon name="star_outline" key={index} className="!h-5 !w-5" />
-                );
+                return <Icon name="star_outline" key={index} size={20} />;
               }
             })}
           </div>
         </div>
-        <Button rounded theme="light">
-          <Icon name="favorite_border" />
-        </Button>
+        <Button.Icon rounded theme="light" size={20}>
+          favorite_border
+        </Button.Icon>
       </article>
     </section>
   );

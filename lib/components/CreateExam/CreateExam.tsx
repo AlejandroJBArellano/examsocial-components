@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
+import { Step } from "../Stepper/Stepper";
 import { AdditionalContent } from "./AdditionalContent";
 import { AdvancedSettings } from "./AdvancedSettings";
 import { GeneralDetails } from "./GeneralDetails";
@@ -66,23 +67,60 @@ const CreateExam = ({ onSubmit }: CreateExamProps) => {
     >
       {({ isValid, errors }) => {
         console.log({ errors });
+        const isValidGeneralDetails = !(
+          errors.title &&
+          errors.description &&
+          errors.image
+        );
+        const isValidQuestions = errors.questions?.length === 0;
+        const isValidContents = errors.contents?.length === 0;
+        const isValidAdvancedSettings =
+          Object.values(errors.advancedSettings ?? {}).length === 0;
+
+        const stepsForStepper: Step[] = [
+          {
+            id: 1,
+            status:
+              isValidGeneralDetails && isValidAdvancedSettings
+                ? "completed"
+                : "error",
+            tooltip: "General details",
+          },
+          {
+            id: 2,
+            status: isValidQuestions ? "completed" : "error",
+            tooltip: "Questions of the exam",
+          },
+          {
+            id: 3,
+            status: isValidContents ? "completed" : "error",
+            tooltip: "Additional content",
+          },
+          {
+            id: 4,
+            status: isValid ? "completed" : "disabled",
+            tooltip: "Review exam",
+          },
+        ];
+
+        const activeStep = stepsForStepper.find(
+          (stepElement) => stepElement.id === step,
+        );
+
         return (
           <Form>
             <header>
               <Stepper
-                title="Create Exam"
-                steps={4}
+                allowManualStepChange
                 activeStep={step}
-                onClickStep={(newStep) => {
-                  setStep(newStep as keyof typeof steps);
+                steps={stepsForStepper}
+                onSelectStep={(id) => {
+                  if (id === step) return;
+                  setStep(id as keyof typeof steps);
                 }}
-                validation={{
-                  1: true,
-                  2: true,
-                  3: true,
-                  4: isValid,
-                }}
-              />
+              >
+                Create Exam
+              </Stepper>
             </header>
             <main className="px-4 py-6 md:space-y-5 md:px-6 md:py-8 lg:space-y-6 lg:px-7 lg:py-9 xl:px-8 xl:py-10">
               <div className="space-y-6 md:space-y-5">{steps[step]}</div>
@@ -100,7 +138,10 @@ const CreateExam = ({ onSubmit }: CreateExamProps) => {
                 <Button
                   rounded={!(step === 4)}
                   theme="accent"
-                  disabled={step === 3 && !isValid}
+                  disabled={
+                    activeStep!.status === "disabled" ||
+                    activeStep!.status === "error"
+                  }
                   onClick={() => {
                     if (step === 4) return;
                     setStep((prev) => (prev + 1) as keyof typeof steps);

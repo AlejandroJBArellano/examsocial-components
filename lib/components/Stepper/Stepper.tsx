@@ -1,18 +1,33 @@
 import { PropsWithChildren } from "react";
 import { cn } from "../../utils";
 import { Button } from "../Button";
+import { ButtonTheme } from "../Button/Button";
 import { FocusSpan, Heading2, Heading3, Heading5 } from "../FontFaces";
 import { Icon } from "../Icon";
+import { Tooltip } from "../Tooltip";
+
+export type StepStatus =
+  | "pending"
+  | "completed"
+  | "error"
+  | "warning"
+  | "disabled";
+
+export interface Step {
+  id: number;
+  icon?: React.ReactNode;
+  status?: StepStatus;
+  tooltip?: string;
+}
 
 interface IStepperProps {
   activeStep: number;
-  steps: number;
-  onClickStep: (step: number) => void;
-  title: string;
+  onSelectStep?: (id: number) => void;
+  allowManualStepChange?: boolean;
   time?: string;
   showDivision?: boolean;
   theme?: "primary" | "secondary";
-  validation?: Record<number, boolean>;
+  steps: Step[];
 }
 
 const Time = ({ children }: PropsWithChildren) => (
@@ -25,13 +40,21 @@ const Time = ({ children }: PropsWithChildren) => (
 const Stepper = ({
   steps,
   activeStep,
-  onClickStep,
-  title,
+  onSelectStep,
+  allowManualStepChange = false,
   time,
   showDivision,
   theme = "primary",
-  validation,
+  children,
 }: PropsWithChildren<IStepperProps>) => {
+  const themeStep = {
+    warning: "extra",
+    error: "feedback-error",
+    pending: theme,
+    completed: "extra",
+    disabled: "light",
+  };
+
   return (
     <section
       className={
@@ -43,13 +66,13 @@ const Stepper = ({
     >
       {theme === "primary" ? (
         <article className="flex items-center justify-between">
-          <Heading2 className="text-primary-shadow">{title}</Heading2>
+          <Heading2 className="text-primary-shadow">{children}</Heading2>
           {time && <Time>20:00</Time>}
         </article>
       ) : (
         <>
           <article className="flex items-center justify-between">
-            <Heading2 className="text-secondary-shadow">{title}</Heading2>
+            <Heading2 className="text-secondary-shadow">{children}</Heading2>
             <Button theme="feedback-error" rounded className="p-2">
               <Icon name="flag" />
             </Button>
@@ -57,7 +80,7 @@ const Stepper = ({
           <article className="flex items-center justify-between">
             {showDivision && (
               <Heading5>
-                {activeStep}/{steps}
+                {activeStep}/{steps.length}
               </Heading5>
             )}
             {time && <Time>{time}</Time>}
@@ -67,25 +90,44 @@ const Stepper = ({
 
       <article className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          {[...Array(steps)].map((_, index) => (
-            <Button
-              onClick={() => {
-                onClickStep(index + 1);
-              }}
-              rounded
-              key={index}
-              disabled={
-                validation && !validation[index + 1] && index + 1 !== activeStep
-              }
-              theme={activeStep === index + 1 ? "primary" : "light"}
-            >
-              <FocusSpan>{index + 1}</FocusSpan>
-            </Button>
-          ))}
+          {steps.map((step, index) => {
+            const Child =
+              step.status === "completed" ? (
+                <Button.Icon size={20} theme="extra" rounded>
+                  check
+                </Button.Icon>
+              ) : (
+                <Button
+                  onClick={() => {
+                    if (allowManualStepChange) {
+                      onSelectStep?.(step.id);
+                    }
+                  }}
+                  rounded
+                  key={index}
+                  theme={
+                    (step.status
+                      ? themeStep[step.status]
+                      : "light") as ButtonTheme
+                  }
+                  disabled={step.status === "disabled"}
+                >
+                  <FocusSpan>{step.id}</FocusSpan>
+                </Button>
+              );
+
+            return step.tooltip ? (
+              <Tooltip trigger={Child} side="bottom">
+                {step.tooltip}
+              </Tooltip>
+            ) : (
+              Child
+            );
+          })}
         </div>
         {theme === "primary" && showDivision && (
           <Heading5>
-            {activeStep}/{steps}
+            {activeStep}/{steps.length}
           </Heading5>
         )}
       </article>

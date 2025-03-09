@@ -60,6 +60,22 @@ export const feedbackSchema = Yup.object({
   ),
 });
 
+export const timingSchema = Yup.object({
+  setting: Yup.string().required("Required"),
+  hours: Yup.number().when("setting", {
+    is: (val: string) => val === "TOTAL",
+    then: (schema) => schema.min(0, "Must be at least 0").required("Required"),
+  }),
+  minutes: Yup.number().when("setting", {
+    is: (val: string) => val === "TOTAL" || val === "PER_QUESTION",
+    then: (schema) => schema.min(0, "Must be at least 0").required("Required"),
+  }),
+  seconds: Yup.number().when("setting", {
+    is: (val: string) => val === "PER_QUESTION",
+    then: (schema) => schema.min(0, "Must be at least 0").required("Required"),
+  }),
+});
+
 export const advancedSettingsSchema = Yup.object({
   randomizeQuestionOrder: Yup.boolean(),
   showCorrectAnswers: Yup.boolean(),
@@ -81,24 +97,7 @@ export const advancedSettingsSchema = Yup.object({
       then: (schema) => schema.required("Required"),
     }),
   }),
-  timing: Yup.object({
-    setting: Yup.string().required("Required"),
-    hours: Yup.number().when("setting", {
-      is: (val: string) => val === "TOTAL",
-      then: (schema) =>
-        schema.min(0, "Must be at least 0").required("Required"),
-    }),
-    minutes: Yup.number().when("setting", {
-      is: (val: string) => val === "TOTAL" || val === "PER_QUESTION",
-      then: (schema) =>
-        schema.min(0, "Must be at least 0").required("Required"),
-    }),
-    seconds: Yup.number().when("setting", {
-      is: (val: string) => val === "PER_QUESTION",
-      then: (schema) =>
-        schema.min(0, "Must be at least 0").required("Required"),
-    }),
-  }),
+  timing: timingSchema,
   theme: Yup.string()
     .required("Required")
     .oneOf(["WHITEBOARD", "INDUSTRIAL_EDGE", "EARTHY_TONES", "VIBRANT_ORCHID"]),

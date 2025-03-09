@@ -46,7 +46,13 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
         activeStep={selectedQuestion + 1}
         steps={steps}
         showDivision
-        time={new Date(time * 1000).toISOString().substr(11, 8)}
+        time={
+          ["PER_QUESTION", "CUSTOM"].includes(
+            exam.advancedSettings.timing.setting,
+          )
+            ? new Date(time * 1000).toISOString().substr(14, 5)
+            : new Date(time * 1000).toISOString().substr(11, 8)
+        }
       >
         {exam.title}
       </Stepper>

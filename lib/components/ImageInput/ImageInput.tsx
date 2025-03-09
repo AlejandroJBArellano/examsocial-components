@@ -35,7 +35,7 @@ const ImageInput = (
         photo
       </Button.Icon>
       <div className="hidden items-center justify-center gap-2 space-y-2 text-center xl:grid">
-        <Icon name="photo" size={20} filled />
+        <Icon name="photo" size={24} filled />
         {/* TODO: 
         <Span>Drag and drop your images here to upload</Span>
         <Span>or</Span> 

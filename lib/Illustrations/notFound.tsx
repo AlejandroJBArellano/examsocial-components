@@ -1,4 +1,4 @@
-export function NotFoundIllustration() {
+export default function NotFoundIllustration() {
   return (
     <>
       <svg

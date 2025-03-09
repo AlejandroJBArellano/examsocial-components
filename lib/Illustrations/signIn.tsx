@@ -1,4 +1,4 @@
-export function SignInIllustration() {
+export default function SignInIllustration() {
   return (
     <svg
       width="358"

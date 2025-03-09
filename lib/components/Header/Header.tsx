@@ -1,4 +1,4 @@
-import Logo from "@/Illustrations/logo";
+import Logo from "@/illustrations/logo";
 import { PropsWithChildren } from "react";
 
 const Header = ({ children }: PropsWithChildren) => {

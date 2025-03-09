@@ -5,7 +5,7 @@ export default {
   title: "Components/CreateExam",
   component: CreateExam,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
     docs: {
       description: {
         component:

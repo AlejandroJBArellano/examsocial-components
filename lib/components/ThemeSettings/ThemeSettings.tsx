@@ -39,14 +39,14 @@ const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
       </article>
       <article
         className={
-          "flex items-center gap-4 " +
-          (themeSetting === "WHITEBOARD" ? "" : themeSetting)
+          (themeSetting === "WHITEBOARD" ? "" : themeSetting) +
+          " ml-auto grid w-full max-w-80 grid-cols-4 items-center gap-4 overflow-x-auto"
         }
       >
-        <div className="size-[77.5px] rounded-md border border-black bg-primary" />
-        <div className="size-[77.5px] rounded-md border border-black bg-secondary" />
-        <div className="size-[77.5px] rounded-md border border-black bg-accent" />
-        <div className="size-[77.5px] rounded-md border border-black bg-extra" />
+        <div className="aspect-square rounded-md border border-black bg-primary" />
+        <div className="aspect-square rounded-md border border-black bg-secondary" />
+        <div className="aspect-square rounded-md border border-black bg-accent" />
+        <div className="aspect-square rounded-md border border-black bg-extra" />
       </article>
     </section>
   );

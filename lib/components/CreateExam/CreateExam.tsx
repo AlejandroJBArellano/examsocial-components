@@ -115,8 +115,8 @@ const CreateExam = ({ onSubmit, onCancel }: CreateExamProps) => {
         );
 
         return (
-          <Form>
-            <header>
+          <Form className="h-full min-h-screen w-full max-w-screen-2xl">
+            <header className="sticky top-0 z-10 bg-white">
               <Stepper
                 allowManualStepChange
                 activeStep={step}

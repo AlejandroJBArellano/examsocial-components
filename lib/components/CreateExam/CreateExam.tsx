@@ -118,7 +118,6 @@ const CreateExam = ({ onSubmit, onCancel }: CreateExamProps) => {
                 activeStep={step}
                 steps={stepsForStepper}
                 onSelectStep={(id) => {
-                  if (id === step) return;
                   setStep(id as keyof typeof steps);
                 }}
               >

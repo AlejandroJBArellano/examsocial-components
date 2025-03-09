@@ -41,7 +41,7 @@ const Stepper = ({
   steps,
   activeStep,
   onSelectStep,
-  allowManualStepChange = false,
+  allowManualStepChange,
   time,
   showDivision,
   theme = "primary",
@@ -54,6 +54,8 @@ const Stepper = ({
     completed: "extra",
     disabled: "light",
   };
+
+  console.log({ allowManualStepChange });
 
   return (
     <section
@@ -93,12 +95,24 @@ const Stepper = ({
           {steps.map((step) => {
             const Child =
               step.status === "completed" ? (
-                <Button.Icon size={20} theme="extra" rounded key={step.id}>
+                <Button.Icon
+                  onClick={() => {
+                    if (step.status === "disabled") return;
+                    if (allowManualStepChange) {
+                      onSelectStep?.(step.id);
+                    }
+                  }}
+                  size={20}
+                  theme="extra"
+                  rounded
+                  key={step.id}
+                >
                   check
                 </Button.Icon>
               ) : (
                 <Button
                   onClick={() => {
+                    if (step.status === "disabled") return;
                     if (allowManualStepChange) {
                       onSelectStep?.(step.id);
                     }

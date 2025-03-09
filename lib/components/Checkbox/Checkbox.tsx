@@ -14,8 +14,8 @@ const Checkbox = ({ className, ...props }: CheckboxElement.CheckboxProps) => {
         className,
       )}
     >
-      <CheckboxElement.Indicator className="flex h-4 w-4 place-items-center">
-        <Icon name="check" className="h-4 w-4" />
+      <CheckboxElement.Indicator className="flex size-5 place-items-center">
+        <Icon name="check" size={20} />
       </CheckboxElement.Indicator>
     </CheckboxElement.Root>
   );

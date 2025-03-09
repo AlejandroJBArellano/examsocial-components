@@ -3,7 +3,6 @@ import { feedbackSchema } from "../../schemas";
 import { handleCondition } from "../../utils";
 import { Button } from "../Button";
 import { FocusSpan, Paragraph } from "../FontFaces";
-import { Icon } from "../Icon";
 
 type Feedback = Yup.InferType<typeof feedbackSchema>;
 
@@ -23,24 +22,26 @@ const FeedbackScreen = ({
       <FocusSpan>{handleCondition(feedback)}</FocusSpan>
       <Paragraph>{feedback.message}</Paragraph>
       <div className="flex items-center justify-between">
-        <Button
+        <Button.Icon
           theme="feedback-error"
           rounded
-          className="flex items-center justify-center p-2"
+          size={24}
           type="button"
+          filled
           onClick={() => onDelete(feedback.index)}
         >
-          <Icon name="delete" size={24} />
-        </Button>
-        <Button
+          delete
+        </Button.Icon>
+        <Button.Icon
           theme="light"
           rounded
-          className="flex items-center justify-center p-2"
+          size={24}
           type="button"
+          filled
           onClick={() => onEdit(feedback.index)}
         >
-          <Icon name="edit" size={24} />
-        </Button>
+          edit
+        </Button.Icon>
       </div>
     </article>
   );

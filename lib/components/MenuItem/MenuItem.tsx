@@ -55,7 +55,7 @@ const MenuItem = forwardRef<HTMLAnchorElement, MenuItemProps>(
       <a
         ref={ref}
         className={
-          "flex border-sm border-gray-600 px-4 py-1 text-gray-600 hover:border-gray-900 hover:text-gray-900 data-[selected]:border-primary-shadow data-[selected]:bg-primary-tint data-[selected]:text-primary-shadow md:px-6 md:py-2 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6" +
+          "flex cursor-pointer border-sm border-gray-600 px-4 py-1 text-gray-600 hover:border-gray-900 hover:text-gray-900 data-[selected]:border-primary-shadow data-[selected]:bg-primary-tint data-[selected]:text-primary-shadow md:px-6 md:py-2 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6" +
           (isCTA ? CTAClasses : "") +
           (isCompressed
             ? " flex-col place-items-center"

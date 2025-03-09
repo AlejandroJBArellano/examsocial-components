@@ -66,7 +66,7 @@ const CreateExam = ({ onSubmit, onCancel }: CreateExamProps) => {
       validateOnMount
       onSubmit={onSubmit}
     >
-      {({ isValid, errors }) => {
+      {({ isValid, errors, values }) => {
         const isValidGeneralDetails = !(
           errors.title &&
           errors.description &&
@@ -96,7 +96,11 @@ const CreateExam = ({ onSubmit, onCancel }: CreateExamProps) => {
           },
           {
             id: 3,
-            status: isValidContents ? "completed" : "error",
+            status: isValidContents
+              ? values.contents.length > 0
+                ? "completed"
+                : "pending"
+              : "error",
             tooltip: "Additional content",
           },
           {

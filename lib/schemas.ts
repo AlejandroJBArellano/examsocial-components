@@ -165,10 +165,7 @@ export const examSchema = Yup.object({
           )),
     ),
   advancedSettings: advancedSettingsSchema,
-  contents: Yup.array()
-    .of(contentSchema)
-    .required("Contents are required")
-    .min(1, "At least one content item is required"),
+  contents: Yup.array().of(contentSchema).required("Contents are required"),
   questions: Yup.array()
     .of(questionSchema)
     .required("Questions are required")

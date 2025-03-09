@@ -13,9 +13,10 @@ import { Review } from "./Review";
 
 interface CreateExamProps {
   onSubmit: (values: Yup.InferType<typeof examSchema>) => void;
+  onCancel: () => void;
 }
 
-const CreateExam = ({ onSubmit }: CreateExamProps) => {
+const CreateExam = ({ onSubmit, onCancel }: CreateExamProps) => {
   const steps = {
     1: (
       <div className="grid gap-6 md:grid-cols-2">
@@ -66,16 +67,18 @@ const CreateExam = ({ onSubmit }: CreateExamProps) => {
       onSubmit={onSubmit}
     >
       {({ isValid, errors }) => {
-        console.log({ errors });
         const isValidGeneralDetails = !(
           errors.title &&
           errors.description &&
           errors.image
         );
-        const isValidQuestions = errors.questions?.length === 0;
-        const isValidContents = errors.contents?.length === 0;
+
         const isValidAdvancedSettings =
           Object.values(errors.advancedSettings ?? {}).length === 0;
+
+        const isValidQuestions = !errors.questions;
+
+        const isValidContents = !errors.contents;
 
         const stepsForStepper: Step[] = [
           {
@@ -98,7 +101,7 @@ const CreateExam = ({ onSubmit }: CreateExamProps) => {
           },
           {
             id: 4,
-            status: isValid ? "completed" : "disabled",
+            status: isValid ? "pending" : "disabled",
             tooltip: "Review exam",
           },
         ];
@@ -129,7 +132,7 @@ const CreateExam = ({ onSubmit }: CreateExamProps) => {
                   rounded
                   theme="light"
                   onClick={() => {
-                    if (step === 1) return;
+                    if (step === 1) return onCancel();
                     setStep((prev) => (prev - 1) as keyof typeof steps);
                   }}
                 >

@@ -90,10 +90,10 @@ const Stepper = ({
 
       <article className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          {steps.map((step, index) => {
+          {steps.map((step) => {
             const Child =
               step.status === "completed" ? (
-                <Button.Icon size={20} theme="extra" rounded>
+                <Button.Icon size={20} theme="extra" rounded key={step.id}>
                   check
                 </Button.Icon>
               ) : (
@@ -103,8 +103,8 @@ const Stepper = ({
                       onSelectStep?.(step.id);
                     }
                   }}
+                  key={step.id}
                   rounded
-                  key={index}
                   theme={
                     (step.status
                       ? themeStep[step.status]
@@ -117,7 +117,7 @@ const Stepper = ({
               );
 
             return step.tooltip ? (
-              <Tooltip trigger={Child} side="bottom">
+              <Tooltip key={step.id} trigger={Child} side="bottom">
                 {step.tooltip}
               </Tooltip>
             ) : (

@@ -25,11 +25,17 @@ const ImageInput = (
         className="hidden"
         {...props}
       />
-      <Button rounded className="flex p-2 xl:hidden" onClick={onClick}>
-        <Icon name="photo" className="!h-5 !w-5" />
-      </Button>
+      <Button.Icon
+        rounded
+        size={24}
+        filled
+        className="flex p-2 xl:hidden"
+        onClick={onClick}
+      >
+        photo
+      </Button.Icon>
       <div className="hidden items-center justify-center gap-2 space-y-2 text-center xl:grid">
-        <Icon name="photo" className="mx-auto !h-10 !w-10" />
+        <Icon name="photo" size={20} filled />
         {/* TODO: 
         <Span>Drag and drop your images here to upload</Span>
         <Span>or</Span> 

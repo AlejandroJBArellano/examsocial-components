@@ -21,7 +21,7 @@ const meta: Meta<typeof Icon> = {
     },
     variant: {
       control: "select",
-      options: ["filled", "outlined", "sharp"],
+      options: ["outlined", "sharp", "rounded"],
       description: "The variant of the icon",
     },
     weight: {
@@ -35,6 +35,10 @@ const meta: Meta<typeof Icon> = {
     size: {
       control: { type: "range", min: 16, max: 48, step: 4 },
       description: "The size of the icon in pixels",
+    },
+    filled: {
+      control: "boolean",
+      description: "Whether the icon is filled",
     },
   },
 };

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { IQuestion } from "../../types";
 import { AnswerOption } from "../AnswerOption";
 import { Button } from "../Button";
@@ -8,9 +7,11 @@ import { Icon } from "../Icon";
 interface ISelectedQuestion {
   questions: IQuestion[];
   onFinish: () => void;
+  onSelectOption: (questionId: string, optionId: string) => void;
   selected: number;
   setSelected: (selected: (prev: number) => number) => void;
   canJumpBetweenSteps?: boolean;
+  recordQuestionSelectedOptions: Record<string, string>;
 }
 
 const SelectedQuestion = ({
@@ -18,12 +19,10 @@ const SelectedQuestion = ({
   onFinish,
   selected,
   setSelected,
+  onSelectOption,
   canJumpBetweenSteps,
+  recordQuestionSelectedOptions,
 }: ISelectedQuestion) => {
-  const [selectedOptions, setSelectedOptions] = useState<
-    Record<string, string>
-  >({});
-
   const question = questions[selected];
 
   return (
@@ -37,15 +36,14 @@ const SelectedQuestion = ({
           {question.options.map((option) => (
             <AnswerOption
               onClick={() => {
-                setSelectedOptions((prev) => ({
-                  ...prev,
-                  [question._id!]: option._id!,
-                }));
+                onSelectOption(question._id!, option._id!);
               }}
               key={option._id}
-              checked={selectedOptions[question._id!] === option._id}
+              checked={
+                recordQuestionSelectedOptions[question._id!] === option._id
+              }
               type={
-                selectedOptions[question._id!] === option._id
+                recordQuestionSelectedOptions[question._id!] === option._id
                   ? "selectable"
                   : undefined
               }
@@ -74,7 +72,7 @@ const SelectedQuestion = ({
           rounded
           theme="accent"
           className="flex items-center justify-center gap-2"
-          disabled={!selectedOptions[question._id!]}
+          disabled={!recordQuestionSelectedOptions[question._id!]}
           onClick={() => {
             if (selected === questions.length - 1) {
               onFinish();

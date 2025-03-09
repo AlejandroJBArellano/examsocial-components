@@ -50,7 +50,7 @@ const Stepper = ({
   const themeStep = {
     warning: "extra",
     error: "feedback-error",
-    pending: theme,
+    pending: "primary",
     completed: "extra",
     disabled: "light",
   };

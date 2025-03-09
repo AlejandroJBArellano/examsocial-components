@@ -6,6 +6,8 @@ import { Step } from "../Stepper/Stepper";
 import SelectedQuestion from "./SelectedQuestion";
 
 const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
+  const [recordQuestionSelectedOptions, setRecordQuestionSelectedOptions] =
+    useState<Record<string, string>>({});
   const [selectedQuestion, setSelectedQuestion] = useState(0);
   const [time, setTime] = useState(0);
 
@@ -36,7 +38,9 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
 
   const steps: Step[] = exam.questions.map((_, index) => ({
     id: index + 1,
-    status: "pending",
+    status: recordQuestionSelectedOptions[exam.questions[index]._id!]
+      ? "completed"
+      : "pending",
   }));
 
   return (
@@ -57,10 +61,19 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
         {exam.title}
       </Stepper>
       <SelectedQuestion
+        recordQuestionSelectedOptions={recordQuestionSelectedOptions}
+        onSelectOption={(questionId, optionId) => {
+          setRecordQuestionSelectedOptions((prev) => ({
+            ...prev,
+            [questionId]: optionId,
+          }));
+        }}
         selected={selectedQuestion}
         setSelected={setSelectedQuestion}
         questions={exam.questions}
-        onFinish={() => {}}
+        onFinish={() => {
+          console.log(recordQuestionSelectedOptions);
+        }}
         canJumpBetweenSteps
       />
     </main>

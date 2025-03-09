@@ -28,6 +28,7 @@ interface IStepperProps {
   showDivision?: boolean;
   theme?: "primary" | "secondary";
   steps: Step[];
+  onReportExam?: () => void;
 }
 
 const Time = ({ children }: PropsWithChildren) => (
@@ -46,6 +47,7 @@ const Stepper = ({
   showDivision,
   theme = "primary",
   children,
+  onReportExam,
 }: PropsWithChildren<IStepperProps>) => {
   const themeStep = {
     warning: "extra",
@@ -54,8 +56,6 @@ const Stepper = ({
     completed: "extra",
     disabled: "light",
   };
-
-  console.log({ allowManualStepChange });
 
   return (
     <section
@@ -77,7 +77,13 @@ const Stepper = ({
             <Heading2 className="text-secondary-shadow">{children}</Heading2>
             <Tooltip
               trigger={
-                <Button.Icon filled theme="feedback-error" rounded size={20}>
+                <Button.Icon
+                  onClick={onReportExam}
+                  filled
+                  theme="feedback-error"
+                  rounded
+                  size={20}
+                >
                   Flag
                 </Button.Icon>
               }

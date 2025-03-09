@@ -1,3 +1,4 @@
+import { IQuestion } from "@/types";
 import { useState } from "react";
 import { cn } from "../../utils";
 import { Button } from "../Button";
@@ -40,11 +41,6 @@ enum ReportStep {
   QUESTION = "QUESTION",
 }
 
-type Question = {
-  question: string;
-  id: string;
-};
-
 const labels = {
   [ReportStep.REASON]:
     "Please, select the reason why you are reporting this exam from the list below:",
@@ -57,8 +53,7 @@ const ReportExam = ({
   onCancel,
   onSubmit,
 }: {
-  questions: Question[];
-
+  questions: IQuestion[];
   onCancel: () => void;
   onSubmit: (reason: string, questions: string[]) => void;
 }) => {
@@ -84,8 +79,8 @@ const ReportExam = ({
               <label
                 htmlFor={reason.key}
                 className={cn(
-                  "cursor-pointer rounded-full h-6 w-6 box-border border border-accent",
-                  selectedReason === reason.key ? "bg-accent" : "bg-white"
+                  "box-border h-6 w-6 cursor-pointer rounded-full border border-accent",
+                  selectedReason === reason.key ? "bg-accent" : "bg-white",
                 )}
               />
               <label htmlFor={reason.key}>{reason.label}</label>
@@ -102,7 +97,7 @@ const ReportExam = ({
             </label>
             <Textarea
               id="other"
-              className="w-full h-24 p-2 border border-black rounded-md"
+              className="h-24 w-full rounded-md border border-black p-2"
               placeholder="Write in detail why you think this exam violates the TOS of ExamSocial"
             />
           </div>
@@ -112,20 +107,20 @@ const ReportExam = ({
     [ReportStep.QUESTION]: (
       <article className="space-y-2">
         <ul className="space-y-4">
-          {questions.map(({ question, id }) => (
-            <li key={id} className="flex items-center gap-2">
+          {questions.map(({ question, _id }) => (
+            <li key={_id} className="flex items-center gap-2">
               <Checkbox
-                id={id}
+                id={_id}
                 checked={selectedQuestions.includes(question)}
                 onCheckedChange={() =>
                   setSelectedQuestions((prev) =>
                     prev.includes(question)
                       ? prev.filter((item) => item !== question)
-                      : [...prev, question]
+                      : [...prev, question],
                   )
                 }
               />
-              <label htmlFor={id}>{question}</label>
+              <label htmlFor={_id}>{question}</label>
             </li>
           ))}
         </ul>
@@ -134,9 +129,9 @@ const ReportExam = ({
   };
 
   return (
-    <section className="p-4 border border-black rounded-md space-y-6">
+    <section className="space-y-6 rounded-md border border-black p-4">
       <article className="space-y-2">
-        <h2 className="sentient text-2xl leading-7 font-medium tracking-[0.48px]">
+        <h2 className="sentient text-2xl font-medium leading-7 tracking-[0.48px]">
           Report Exam
         </h2>
         <p className="text-base leading-5">{labels[step]}</p>

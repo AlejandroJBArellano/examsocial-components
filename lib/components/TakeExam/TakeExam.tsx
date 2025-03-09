@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
+import { Dialog } from "../Dialog";
+import { ReportExam } from "../ReportExam";
 import { Stepper } from "../Stepper";
 import { Step } from "../Stepper/Stepper";
 import SelectedQuestion from "./SelectedQuestion";
 
 const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
+  const reportExamDialogRef = useRef<HTMLDialogElement>(null);
+
   const [recordQuestionSelectedOptions, setRecordQuestionSelectedOptions] =
     useState<Record<string, string>>({});
   const [selectedQuestion, setSelectedQuestion] = useState(0);
@@ -57,6 +61,9 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
             ? new Date(time * 1000).toISOString().substr(14, 5)
             : new Date(time * 1000).toISOString().substr(11, 8)
         }
+        onReportExam={() => {
+          reportExamDialogRef.current?.showModal();
+        }}
       >
         {exam.title}
       </Stepper>
@@ -76,6 +83,15 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
         }}
         canJumpBetweenSteps
       />
+      <Dialog innerRef={reportExamDialogRef}>
+        <ReportExam
+          questions={exam.questions}
+          onCancel={() => {
+            reportExamDialogRef.current?.close();
+          }}
+          onSubmit={() => {}}
+        />
+      </Dialog>
     </main>
   );
 };

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import FeaturesCarousel, { IconType } from "./FeaturesCarousel";
+import FeaturesCarousel from "./FeaturesCarousel";
 
 const meta: Meta<typeof FeaturesCarousel> = {
-  title: "Components/FeaturesCarousel",
+  title: "Components/CTA/FeaturesCarousel",
   component: FeaturesCarousel,
   parameters: {
     layout: "centered",
@@ -24,42 +24,42 @@ const sampleFeatures = [
   {
     name: "Unlimited Exams",
     description: "Create as many exams as you want without any limitations.",
-    icon: "school" as IconType,
+    icon: "school",
   },
   {
     name: "Advanced Analytics",
     description: "Get detailed insights about your students' performance.",
-    icon: "analytics" as IconType,
+    icon: "analytics",
   },
   {
     name: "Custom Branding",
     description: "Add your own logo and colors to your exams.",
-    icon: "palette" as IconType,
+    icon: "palette",
   },
   {
     name: "Export Results",
     description: "Download exam results in various formats.",
-    icon: "download" as IconType,
+    icon: "download",
   },
   {
     name: "Collaboration",
     description: "Work with other teachers on the same exam.",
-    icon: "group" as IconType,
+    icon: "group",
   },
   {
     name: "Question Bank",
     description: "Access a library of pre-made questions.",
-    icon: "library_books" as IconType,
+    icon: "library_books",
   },
   {
     name: "AI Question Generator",
     description: "Generate questions automatically using AI.",
-    icon: "smart_toy" as IconType,
+    icon: "smart_toy",
   },
   {
     name: "Priority Support",
     description: "Get help from our support team faster.",
-    icon: "support_agent" as IconType,
+    icon: "support_agent",
   },
 ];
 

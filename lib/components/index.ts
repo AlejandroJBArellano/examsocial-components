@@ -21,6 +21,7 @@ export * from "./ImageField";
 export * from "./ImageUploader";
 export * from "./IndexButton";
 export * from "./Input";
+export * from "./Library";
 export * from "./MainContainer";
 export * from "./MenuItem";
 export * from "./Navbar";

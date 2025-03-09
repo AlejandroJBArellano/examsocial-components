@@ -1,7 +1,7 @@
 import { Button } from "../Button";
-import FeaturesCarousel, { Feature } from "../FeaturesCarousel";
 import { FocusSpan, Heading4 } from "../FontFaces";
 import { Icon } from "../Icon";
+import { Feature, FeaturesCarousel } from "./";
 
 interface ProfileCardSubscriptionProps {
   features: Feature[];

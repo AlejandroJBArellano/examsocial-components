@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
-import { IconType } from "../FeaturesCarousel/FeaturesCarousel";
 import ProfileCardSubscription from "./ProfileCardSubscription";
 
 // Sample features data for testing
@@ -8,17 +7,17 @@ const testFeatures = [
   {
     name: "Feature 1",
     description: "Description 1",
-    icon: "school" as IconType,
+    icon: "school",
   },
   {
     name: "Feature 2",
     description: "Description 2",
-    icon: "analytics" as IconType,
+    icon: "analytics",
   },
   {
     name: "Feature 3",
     description: "Description 3",
-    icon: "palette" as IconType,
+    icon: "palette",
   },
 ];
 

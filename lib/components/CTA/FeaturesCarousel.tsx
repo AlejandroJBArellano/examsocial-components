@@ -8,17 +8,6 @@ export type FeaturesCarouselType = "cancel" | "subscribe";
 
 // Tipo para los iconos de Material Symbols
 // Esto es una simplificación, ya que hay muchos iconos disponibles
-export type IconType =
-  | "school"
-  | "analytics"
-  | "palette"
-  | "download"
-  | "group"
-  | "library_books"
-  | "smart_toy"
-  | "support_agent"
-  | "navigate_before"
-  | "navigate_next";
 
 export interface Feature {
   /**
@@ -32,7 +21,7 @@ export interface Feature {
   /**
    * Icono de la característica
    */
-  icon: IconType;
+  icon: string;
 }
 
 export interface FeaturesCarouselProps {

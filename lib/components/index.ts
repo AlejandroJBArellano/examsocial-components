@@ -12,7 +12,6 @@ export * from "./EditQuestion";
 export * from "./Email";
 export * from "./ExamCard";
 export * from "./FavoriteButton";
-export * from "./FeaturesCarousel";
 export * from "./FeedbackScreen";
 export * from "./FontFaces";
 export * from "./Header";

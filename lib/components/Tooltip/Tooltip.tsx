@@ -38,7 +38,7 @@ const Tooltip = ({
         <RadixTooltip.Trigger asChild>{trigger}</RadixTooltip.Trigger>
         <RadixTooltip.Portal>
           <RadixTooltip.Content
-            className={`max-w-xs rounded border-sm border-black bg-extra px-2 py-1 text-xs ${contentClassName}`}
+            className={`z-50 max-w-xs rounded border-sm border-black bg-extra px-2 py-1 text-xs ${contentClassName}`}
             sideOffset={3}
             align={align}
             side={side}

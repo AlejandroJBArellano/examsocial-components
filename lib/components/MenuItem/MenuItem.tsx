@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
-import { Smoll } from "../FontFaces";
+import { Heading5, Smoll } from "../FontFaces";
 import { Icon } from "../Icon";
 import { Tooltip } from "../Tooltip";
 
@@ -30,7 +30,6 @@ export interface MenuItemProps extends ComponentPropsWithoutRef<"a"> {
    * Clase CSS personalizada
    */
   className?: string;
-
   /**
    * Si el elemento es un CTA
    */
@@ -56,8 +55,11 @@ const MenuItem = forwardRef<HTMLAnchorElement, MenuItemProps>(
       <a
         ref={ref}
         className={
-          "flex flex-col place-items-center border-sm border-gray-600 px-4 py-1 text-gray-600 hover:border-gray-900 hover:text-gray-900 data-[selected]:border-primary-shadow data-[selected]:bg-primary-tint data-[selected]:text-primary-shadow md:px-6 md:py-2 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6" +
-          (isCTA ? CTAClasses : "")
+          "flex border-sm border-gray-600 px-4 py-1 text-gray-600 hover:border-gray-900 hover:text-gray-900 data-[selected]:border-primary-shadow data-[selected]:bg-primary-tint data-[selected]:text-primary-shadow md:px-6 md:py-2 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6" +
+          (isCTA ? CTAClasses : "") +
+          (isCompressed
+            ? " w-full min-w-80 flex-row-reverse items-center gap-2"
+            : " flex-col place-items-center")
         }
         data-testid="menu-item"
         data-selected={isSelected ? "true" : undefined}
@@ -65,7 +67,11 @@ const MenuItem = forwardRef<HTMLAnchorElement, MenuItemProps>(
         {...props}
       >
         <Icon name={icon} filled size={20} />
-        <Smoll className="xl:hidden">{children}</Smoll>
+        {isCompressed ? (
+          <Heading5>{children}</Heading5>
+        ) : (
+          <Smoll className="xl:hidden">{children}</Smoll>
+        )}
       </a>
     );
 

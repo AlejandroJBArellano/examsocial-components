@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
 import MenuItem from "../MenuItem";
+import Profile from "../Profile/Profile";
+import { ProfilePlaceholderGender } from "../ProfilePlaceholder/ProfilePlaceholder";
 
 export interface NavbarItem {
   /**
@@ -33,14 +34,14 @@ export interface NavbarProps {
    * Elementos de navegación
    */
   items: NavbarItem[];
+
   /**
-   * Componente de perfil a mostrar en la barra de navegación
+   * Información del perfil
    */
-  profileComponent?: ReactNode;
-  /**
-   * Clase CSS personalizada
-   */
-  className?: string;
+  profileInfo: {
+    gender: ProfilePlaceholderGender;
+    name: string;
+  };
 }
 
 /**
@@ -50,7 +51,7 @@ export interface NavbarProps {
  * - En móvil: Muestra los elementos comprimidos (solo iconos)
  * - En tablet/desktop: Muestra los elementos expandidos (iconos y texto)
  */
-export const Navbar = ({ items }: NavbarProps) => {
+export const Navbar = ({ items, profileInfo }: NavbarProps) => {
   return (
     <nav className="mb-4 flex justify-center border-y-sm border-black px-4 md:justify-between">
       <ul className="flex [&>li>button]:border-y-0">
@@ -68,6 +69,11 @@ export const Navbar = ({ items }: NavbarProps) => {
           </li>
         ))}
       </ul>
+      <Profile
+        gender={profileInfo.gender}
+        name={profileInfo.name}
+        className="size-9 md:size-11 xl:size-12 2xl:size-13"
+      />
     </nav>
   );
 };

@@ -43,6 +43,10 @@ export const Default: Story = {
         tooltipText: "Create new exam",
       },
     ],
+    profileInfo: {
+      gender: "male",
+      name: "John Doe",
+    },
   },
   parameters: {
     docs: {
@@ -77,6 +81,10 @@ export const WithoutProfile: Story = {
         isCTA: true,
       },
     ],
+    profileInfo: {
+      gender: "male",
+      name: "John Doe",
+    },
   },
   parameters: {
     docs: {
@@ -118,6 +126,10 @@ export const WithManyItems: Story = {
         isCTA: true,
       },
     ],
+    profileInfo: {
+      gender: "male",
+      name: "John Doe",
+    },
   },
   parameters: {
     docs: {
@@ -156,6 +168,10 @@ export const WithTooltips: Story = {
         tooltipText: "Create new exam",
       },
     ],
+    profileInfo: {
+      gender: "male",
+      name: "John Doe",
+    },
   },
   parameters: {
     docs: {

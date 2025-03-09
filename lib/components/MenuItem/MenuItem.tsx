@@ -17,18 +17,6 @@ export type MenuItemIcon =
   | "bookmark"
   | "home";
 
-const Icons: Record<MenuItemIcon, ReactNode> = {
-  workspace_premium: <Icon name="workspace_premium" />,
-  list_alt_add: <Icon name="list_alt" />,
-  replay: <Icon name="replay" />,
-  add: <Icon name="add" />,
-  edit: <Icon name="edit" />,
-  delete: <Icon name="delete" />,
-  favorite: <Icon name="favorite" />,
-  bookmark: <Icon name="bookmark" />,
-  home: <Icon name="home" />,
-};
-
 // Props para el componente
 export interface MenuItemProps extends ComponentPropsWithoutRef<"button"> {
   /**
@@ -64,6 +52,11 @@ export interface MenuItemProps extends ComponentPropsWithoutRef<"button"> {
    * Clase CSS personalizada
    */
   className?: string;
+
+  /**
+   * Si el elemento es un CTA
+   */
+  isCTA?: boolean;
 }
 
 const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
@@ -77,15 +70,11 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
       isCompressed = false,
       tooltipText,
       className,
+      isCTA,
       ...props
     },
     ref,
   ) => {
-    // Determinar si se debe mostrar el texto
-    const shouldShowText = () => {
-      return isCompressed ? "hidden" : "hidden sm:inline-block";
-    };
-
     // Determinar si se debe mostrar el tooltip
     const shouldShowTooltip = () => {
       return (size === "xl" || size === "2xl") && isCompressed && tooltipText;
@@ -111,7 +100,12 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
     // Si se debe mostrar el tooltip, envolver el botón con el tooltip
     if (shouldShowTooltip()) {
       return (
-        <Tooltip trigger={button} side="right" align="center">
+        <Tooltip
+          trigger={button}
+          side="right"
+          align="center"
+          theme={isCTA ? "accent" : undefined}
+        >
           {tooltipText}
         </Tooltip>
       );

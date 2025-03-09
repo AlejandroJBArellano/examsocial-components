@@ -22,6 +22,8 @@ interface TooltipProps extends PropsWithChildren {
    * Retraso antes de mostrar el tooltip (en ms)
    */
   delayDuration?: number;
+
+  theme?: "accent" | "primary" | "secondary" | "extra";
 }
 
 const Tooltip = ({
@@ -31,6 +33,7 @@ const Tooltip = ({
   trigger,
   contentClassName = "",
   delayDuration = 0,
+  theme = "extra",
 }: TooltipProps) => {
   return (
     <RadixTooltip.Provider>
@@ -38,7 +41,7 @@ const Tooltip = ({
         <RadixTooltip.Trigger asChild>{trigger}</RadixTooltip.Trigger>
         <RadixTooltip.Portal>
           <RadixTooltip.Content
-            className={`z-50 max-w-xs rounded border-sm border-black bg-extra px-2 py-1 text-xs ${contentClassName}`}
+            className={`z-50 max-w-xs rounded border-sm border-black px-2 py-1 text-xs ${contentClassName} bg-${theme}`}
             sideOffset={3}
             align={align}
             side={side}

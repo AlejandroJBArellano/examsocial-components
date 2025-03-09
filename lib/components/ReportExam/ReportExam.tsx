@@ -1,8 +1,8 @@
 import { IQuestion } from "@/types";
 import { useState } from "react";
-import { cn } from "../../utils";
 import { Button } from "../Button";
 import { Checkbox } from "../Checkbox";
+import { RadioGroup } from "../RadioGroup";
 import { Textarea } from "../Textarea";
 
 const reasons = [
@@ -61,32 +61,21 @@ const ReportExam = ({
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
 
+  const radioItems = reasons.map((reason) => ({
+    value: reason.key,
+    label: reason.label,
+  }));
+
   const steps = {
     [ReportStep.REASON]: (
       <article className="space-y-2">
-        <ul className="space-y-4">
-          {reasons.map((reason) => (
-            <li key={reason.key} className="flex items-center gap-2">
-              <input
-                type="radio"
-                className="hidden"
-                name="reason"
-                value={reason.key}
-                id={reason.key}
-                checked={selectedReason === reason.key}
-                onChange={() => setSelectedReason(reason.key)}
-              />
-              <label
-                htmlFor={reason.key}
-                className={cn(
-                  "box-border h-6 w-6 cursor-pointer rounded-full border border-accent",
-                  selectedReason === reason.key ? "bg-accent" : "bg-white",
-                )}
-              />
-              <label htmlFor={reason.key}>{reason.label}</label>
-            </li>
-          ))}
-        </ul>
+        <RadioGroup
+          items={radioItems}
+          value={selectedReason || ""}
+          onValueChange={setSelectedReason}
+          orientation="vertical"
+          className="space-y-4"
+        />
         {selectedReason === "OTHER" && (
           <div className="ml-8">
             <label
@@ -161,6 +150,7 @@ const ReportExam = ({
               onSubmit(selectedReason!, selectedQuestions);
             }
           }}
+          disabled={!selectedReason}
         >
           {step === ReportStep.REASON ? "Next" : "Submit"}
         </Button>

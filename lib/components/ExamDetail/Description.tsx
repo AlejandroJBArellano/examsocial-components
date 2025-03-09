@@ -1,6 +1,5 @@
 import { Button } from "../Button";
 import { FocusSpan, Paragraph } from "../FontFaces";
-import { Icon } from "../Icon";
 
 const ExamDescription = () => {
   return (
@@ -9,14 +8,14 @@ const ExamDescription = () => {
         Welcome to the Svelte 5 Quiz! This quiz is designed to test your
         knowledge and understanding of Svelte
       </Paragraph>
-      <div className="flex justify-between">
+      <div className="flex items-end justify-between">
         <div className="flex gap-3">
-          <Button theme="light" className="bg-transparent p-2">
-            <Icon name="favorite" className="!size-5" />
-          </Button>
-          <Button theme="light" className="bg-transparent p-2">
-            <Icon name="bookmark" className="!size-5" />
-          </Button>
+          <Button.Icon theme="light" className="bg-transparent p-2" size={20}>
+            favorite
+          </Button.Icon>
+          <Button.Icon theme="light" className="bg-transparent p-2" size={20}>
+            bookmark
+          </Button.Icon>
         </div>
         <Button theme="accent">
           <FocusSpan>Start exam</FocusSpan>

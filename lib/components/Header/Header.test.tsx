@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
+import { Button } from "../Button";
+import Menu from "../Menu/Menu";
 import Header from "./Header";
 
 // Mock the Logo component
@@ -38,21 +40,33 @@ describe("Header", () => {
   });
 
   test("renders with custom button text", () => {
-    render(<Header buttonText="Sign Up" />);
+    render(
+      <Header>
+        <Button theme="accent">Sign Up</Button>
+      </Header>,
+    );
 
     const button = screen.getByTestId("mock-button");
     expect(button).toHaveTextContent("Sign Up");
   });
 
   test("renders with custom button theme", () => {
-    render(<Header buttonTheme="primary" />);
+    render(
+      <Header>
+        <Button theme="primary">Login</Button>
+      </Header>,
+    );
 
     const button = screen.getByTestId("mock-button");
     expect(button).toHaveAttribute("data-theme", "primary");
   });
 
   test("does not render button when showButton is false", () => {
-    render(<Header showButton={false} />);
+    render(
+      <Header>
+        <Menu items={[]} />
+      </Header>,
+    );
 
     // Logo should still be rendered
     const logo = screen.getByTestId("mock-logo");
@@ -64,7 +78,11 @@ describe("Header", () => {
   });
 
   test("renders with all custom props", () => {
-    render(<Header buttonText="Login" buttonTheme="light" />);
+    render(
+      <Header>
+        <Menu items={[]} />
+      </Header>,
+    );
 
     const button = screen.getByTestId("mock-button");
     expect(button).toHaveTextContent("Login");

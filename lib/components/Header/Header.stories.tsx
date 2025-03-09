@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../Button";
+import Menu from "../Menu/Menu";
 import Header from "./Header";
 
 const meta: Meta<typeof Header> = {
@@ -44,11 +45,19 @@ export const WithCustomTheme: Story = {
   ),
 };
 
-export const WithoutButton: Story = {
+export const WithMenu: Story = {
   render: () => (
     <div className="bg-white">
       <Header>
-        <Button theme="accent">Sign Up</Button>
+        <Menu
+          items={[
+            {
+              icon: "workspace_premium",
+              label: "Go Pro",
+              href: "#",
+            },
+          ]}
+        />
       </Header>
     </div>
   ),
@@ -88,11 +97,15 @@ export const AllVariants: Story = {
 
       <div className="overflow-hidden rounded-md border">
         <h3 className="bg-gray-100 p-2 font-medium">Header without Button</h3>
-        <div className="bg-white p-4">
-          <Header>
-            <Button theme="accent">Sign Up</Button>
-          </Header>
-        </div>
+        <Menu
+          items={[
+            {
+              icon: "workspace_premium",
+              label: "Go Pro",
+              href: "#",
+            },
+          ]}
+        />
       </div>
     </div>
   ),

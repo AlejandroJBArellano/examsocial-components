@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import MenuItem, { MenuItemIcon } from "../MenuItem";
+import MenuItem from "../MenuItem";
 
 export interface NavbarItem {
   /**
@@ -9,7 +9,7 @@ export interface NavbarItem {
   /**
    * Icono a mostrar
    */
-  icon: MenuItemIcon;
+  icon: string;
   /**
    * Si el elemento está seleccionado
    */
@@ -52,7 +52,7 @@ export interface NavbarProps {
  */
 export const Navbar = ({ items }: NavbarProps) => {
   return (
-    <nav className="mb-4 flex justify-center border-y-sm border-black">
+    <nav className="mb-4 flex justify-center border-y-sm border-black px-4 md:justify-between">
       <ul className="flex [&>li>button]:border-y-0">
         {items.map((item, index) => (
           <li key={index}>

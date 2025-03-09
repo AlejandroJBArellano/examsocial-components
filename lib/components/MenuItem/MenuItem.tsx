@@ -6,16 +6,6 @@ import { Tooltip } from "../Tooltip";
 // Tipos para el componente
 export type MenuItemSize = "default" | "md" | "xl" | "2xl";
 export type MenuItemContent = "default" | "cta";
-export type MenuItemIcon =
-  | "workspace_premium"
-  | "list_alt_add"
-  | "replay"
-  | "add"
-  | "edit"
-  | "delete"
-  | "favorite"
-  | "bookmark"
-  | "home";
 
 // Props para el componente
 export interface MenuItemProps extends ComponentPropsWithoutRef<"button"> {
@@ -26,7 +16,7 @@ export interface MenuItemProps extends ComponentPropsWithoutRef<"button"> {
   /**
    * Icono a mostrar
    */
-  icon?: MenuItemIcon;
+  icon?: string;
   /**
    * Tamaño del elemento de menú
    */

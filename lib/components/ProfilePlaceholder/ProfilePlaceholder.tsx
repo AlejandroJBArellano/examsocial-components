@@ -5,13 +5,14 @@ import {
   MaleUnfilled,
 } from "../../Illustrations/profilePlaceholder";
 
-const ProfilePlaceholder = ({
-  gender,
-  filled,
-}: {
-  gender: "male" | "female";
+export type ProfilePlaceholderGender = "male" | "female";
+
+export interface ProfilePlaceholderProps {
+  gender: ProfilePlaceholderGender;
   filled?: boolean;
-}) => {
+}
+
+const ProfilePlaceholder = ({ gender, filled }: ProfilePlaceholderProps) => {
   const genders = {
     male: {
       unfilled: MaleUnfilled,

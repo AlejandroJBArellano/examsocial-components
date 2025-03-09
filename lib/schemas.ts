@@ -159,9 +159,17 @@ export const examSchema = Yup.object({
       (value) =>
         !value ||
         (value &&
-          ["image/jpeg", "image/png", "image/gif"].includes(
-            value instanceof File ? value.type : "",
-          )),
+          [
+            "image/jpeg",
+            "image/png",
+            "image/gif",
+            "image/webp",
+            "image/svg+xml",
+            "image/avif",
+            "image/heic",
+            "image/heif",
+            "image/hevc",
+          ].includes(value instanceof File ? value.type : "")),
     ),
   advancedSettings: advancedSettingsSchema,
   contents: Yup.array().of(contentSchema).required("Contents are required"),

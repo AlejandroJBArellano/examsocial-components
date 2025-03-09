@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { questionSchema } from "../../schemas";
 import { Button } from "../Button";
 import { CreateAnswer } from "../CreateAnswer";
-import { Icon } from "../Icon";
 import { Input } from "../Input";
 import { Separator } from "../Separator";
 
@@ -57,7 +56,7 @@ const QuestionForm = ({
                 <div className="text-feedback-error">{errors.options}</div>
               )}
               {values.options.length < 4 && (
-                <Button
+                <Button.Icon
                   type="button"
                   theme="light"
                   rounded
@@ -65,9 +64,11 @@ const QuestionForm = ({
                   onClick={() =>
                     push({ text: "", correct: false, _id: uuidv4() })
                   }
+                  size={20}
+                  filled
                 >
-                  <Icon name="add" className="!h-5 !w-5" />
-                </Button>
+                  add
+                </Button.Icon>
               )}
             </>
           )}

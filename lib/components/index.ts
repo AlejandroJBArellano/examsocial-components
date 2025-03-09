@@ -36,6 +36,7 @@ export * from "./QuestionDetail";
 export * from "./QuestionForm";
 export * from "./QuestionList";
 export * from "./QuestionSet";
+export * from "./RadioGroup";
 export * from "./ReportExam";
 export * from "./ReviewQuestionSet";
 export * from "./SaveButton";

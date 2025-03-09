@@ -1,12 +1,9 @@
+import { ComponentPropsWithoutRef } from "react";
 import MenuItem from "../MenuItem";
 import Profile from "../Profile/Profile";
 import { ProfilePlaceholderGender } from "../ProfilePlaceholder/ProfilePlaceholder";
 
-export interface NavbarItem {
-  /**
-   * Texto del elemento de navegación
-   */
-  label: string;
+export interface NavbarItem extends ComponentPropsWithoutRef<"a"> {
   /**
    * Icono a mostrar
    */
@@ -19,10 +16,6 @@ export interface NavbarItem {
    * Si el elemento es de tipo CTA (Call to Action)
    */
   isCTA?: boolean;
-  /**
-   * Función a ejecutar al hacer clic en el elemento
-   */
-  onClick?: () => void;
   /**
    * Texto del tooltip (visible cuando está comprimido)
    */
@@ -57,15 +50,7 @@ export const Navbar = ({ items, profileInfo }: NavbarProps) => {
       <ul className="flex divide-x-sm divide-gray-600 [&>li>button]:border-0">
         {items.map((item, index) => (
           <li key={index}>
-            <MenuItem
-              icon={item.icon}
-              isSelected={item.isSelected}
-              isCTA={item.isCTA}
-              tooltipText={item.tooltipText}
-              onClick={item.onClick}
-            >
-              {item.label}
-            </MenuItem>
+            <MenuItem {...item}>{item.children}</MenuItem>
           </li>
         ))}
       </ul>

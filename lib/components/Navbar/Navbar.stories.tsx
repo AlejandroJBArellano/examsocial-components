@@ -24,20 +24,20 @@ export const Default: Story = {
   args: {
     items: [
       {
-        label: "Home",
+        children: "Home",
         icon: "home",
         isSelected: true,
       },
       {
-        label: "Library",
+        children: "Library",
         icon: "bookmark",
       },
       {
-        label: "History",
+        children: "History",
         icon: "replay",
       },
       {
-        label: "Create",
+        children: "Create",
         icon: "list_alt_add",
         isCTA: true,
         tooltipText: "Create new exam",
@@ -63,20 +63,20 @@ export const WithoutProfile: Story = {
   args: {
     items: [
       {
-        label: "Home",
+        children: "Home",
         icon: "home",
         isSelected: true,
       },
       {
-        label: "Library",
+        children: "Library",
         icon: "bookmark",
       },
       {
-        label: "History",
+        children: "History",
         icon: "replay",
       },
       {
-        label: "Create",
+        children: "Create",
         icon: "list_alt_add",
         isCTA: true,
       },
@@ -100,28 +100,28 @@ export const WithManyItems: Story = {
   args: {
     items: [
       {
-        label: "Home",
+        children: "Home",
         icon: "home",
         isSelected: true,
       },
       {
-        label: "Library",
+        children: "Library",
         icon: "bookmark",
       },
       {
-        label: "History",
+        children: "History",
         icon: "replay",
       },
       {
-        label: "Settings",
+        children: "Settings",
         icon: "edit",
       },
       {
-        label: "Favorites",
+        children: "Favorites",
         icon: "favorite",
       },
       {
-        label: "Create",
+        children: "Create",
         icon: "list_alt_add",
         isCTA: true,
       },
@@ -146,23 +146,23 @@ export const WithTooltips: Story = {
   args: {
     items: [
       {
-        label: "Home",
+        children: "Home",
         icon: "home",
         isSelected: true,
         tooltipText: "Go to home page",
       },
       {
-        label: "Library",
+        children: "Library",
         icon: "bookmark",
         tooltipText: "View your library",
       },
       {
-        label: "History",
+        children: "History",
         icon: "replay",
         tooltipText: "View your history",
       },
       {
-        label: "Create",
+        children: "Create",
         icon: "list_alt_add",
         isCTA: true,
         tooltipText: "Create new exam",

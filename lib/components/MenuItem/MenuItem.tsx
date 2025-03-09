@@ -104,7 +104,7 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
         {...props}
       >
         <Icon name={icon} filled size={20} />
-        <Smoll>{children}</Smoll>
+        <Smoll className="xl:hidden">{children}</Smoll>
       </button>
     );
 

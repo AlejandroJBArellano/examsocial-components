@@ -84,7 +84,7 @@ const FeaturesCarousel = ({
 
   return (
     <div
-      className={cn("flex flex-col gap-5 rounded-lg bg-white p-5", className)}
+      className={cn("flex flex-col gap-5 rounded-lg", className)}
       role="region"
       aria-label="Features carousel"
     >
@@ -95,13 +95,8 @@ const FeaturesCarousel = ({
       <div className="flex flex-col gap-4">
         {currentFeatures.map((feature, index) => (
           <div key={index} className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <Icon
-                name={feature.icon}
-                size={24}
-                className="text-secondary-shadow"
-                aria-hidden="true"
-              />
+            <div className="flex items-center gap-2 text-secondary-shadow">
+              <Icon name={feature.icon} size={24} aria-hidden="true" filled />
               <FocusSpan>{feature.name}</FocusSpan>
             </div>
             <Span>{feature.description}</Span>

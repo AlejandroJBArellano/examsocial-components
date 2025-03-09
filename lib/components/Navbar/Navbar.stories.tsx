@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Icon } from "../Icon";
-import { ProfilePlaceholder } from "../ProfilePlaceholder";
 import Navbar from "./Navbar";
 
 const meta: Meta<typeof Navbar> = {
@@ -20,15 +18,6 @@ const meta: Meta<typeof Navbar> = {
 
 export default meta;
 type Story = StoryObj<typeof Navbar>;
-
-// Componente de perfil de ejemplo
-const ProfileComponent = () => (
-  <div className="flex items-center gap-2">
-    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-200">
-      <Icon name="person" className="text-zinc-700" />
-    </div>
-  </div>
-);
 
 // Historia por defecto
 export const Default: Story = {
@@ -54,7 +43,6 @@ export const Default: Story = {
         tooltipText: "Create new exam",
       },
     ],
-    profileComponent: <ProfilePlaceholder gender="male" />,
   },
   parameters: {
     docs: {
@@ -130,7 +118,6 @@ export const WithManyItems: Story = {
         isCTA: true,
       },
     ],
-    profileComponent: <ProfileComponent />,
   },
   parameters: {
     docs: {
@@ -169,7 +156,6 @@ export const WithTooltips: Story = {
         tooltipText: "Create new exam",
       },
     ],
-    profileComponent: <ProfileComponent />,
   },
   parameters: {
     docs: {

@@ -69,7 +69,6 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
       isSelected = false,
       isCompressed = false,
       tooltipText,
-      className,
       isCTA,
       ...props
     },

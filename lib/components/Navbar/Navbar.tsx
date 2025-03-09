@@ -52,10 +52,8 @@ export interface NavbarProps {
  */
 export const Navbar = ({ items }: NavbarProps) => {
   return (
-    <nav>
-      {/* Lista de elementos de navegación */}
-      <ul className="mb-4 flex w-full">
-        <li className="flex w-4 flex-auto border-y-sm border-black" key={-1} />
+    <nav className="mb-4 flex justify-center border-y-sm border-black">
+      <ul className="flex [&>li>button]:border-y-0">
         {items.map((item, index) => (
           <li key={index}>
             <MenuItem
@@ -69,10 +67,6 @@ export const Navbar = ({ items }: NavbarProps) => {
             </MenuItem>
           </li>
         ))}
-        <li
-          className="flex w-4 flex-auto border-y-sm border-black"
-          key={items.length}
-        />
       </ul>
     </nav>
   );

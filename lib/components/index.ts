@@ -23,6 +23,7 @@ export * from "./IndexButton";
 export * from "./Input";
 export * from "./Library";
 export * from "./MainContainer";
+export * from "./Menu";
 export * from "./MenuItem";
 export * from "./Navbar";
 export * from "./NewQuestion";

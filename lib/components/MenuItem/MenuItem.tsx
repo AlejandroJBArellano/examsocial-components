@@ -69,7 +69,7 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
       return (size === "xl" || size === "2xl") && isCompressed && tooltipText;
     };
 
-    const CTAClasses = ` !text-black bg-accent hover:shadow-right ${isSelected ? "" : "shadow-right"}`;
+    const CTAClasses = ` !text-black border-black bg-accent ${isSelected ? "hover:shadow-right" : "shadow-right-sm hover:border hover:shadow-right"}`;
 
     // Renderizar el botón
     const button = (

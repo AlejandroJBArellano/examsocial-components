@@ -36,22 +36,24 @@ export const WithValue: Story = {
 export const WithLeftIcon: Story = {
   args: {
     placeholder: "Search...",
-    LeftIcon: <Icon name="search" className="h-5 w-5" />,
+    LeftIcon: <Icon name="search" size={24} />,
   },
 };
 
 export const WithRightIcon: Story = {
   args: {
     placeholder: "Enter email",
-    RightIcon: <Icon name="mail" className="h-5 w-5" />,
+    RightIcon: <Icon name="mail" size={24} />,
+    className: "w-full",
   },
 };
 
 export const WithBothIcons: Story = {
   args: {
     placeholder: "Search...",
-    LeftIcon: <Icon name="search" className="h-5 w-5" />,
-    RightIcon: <Icon name="x" className="h-5 w-5" />,
+    LeftIcon: <Icon name="search" size={24} />,
+    RightIcon: <Icon name="close" size={24} />,
+    className: "w-full",
   },
 };
 
@@ -66,7 +68,8 @@ export const WithErrorAndIcon: Story = {
   args: {
     placeholder: "Enter text here",
     error: true,
-    RightIcon: <Icon name="alert-triangle" className="h-5 w-5" />,
+    RightIcon: <Icon name="warning" size={24} />,
+    className: "w-full",
   },
 };
 
@@ -89,7 +92,7 @@ export const AllVariants: Story = {
         <p className="mb-2 text-sm font-medium">With Left Icon</p>
         <Input
           placeholder="Search..."
-          LeftIcon={<Icon name="search" className="h-5 w-5" />}
+          LeftIcon={<Icon name="search" size={24} />}
         />
       </div>
 
@@ -97,7 +100,8 @@ export const AllVariants: Story = {
         <p className="mb-2 text-sm font-medium">With Right Icon</p>
         <Input
           placeholder="Enter email"
-          RightIcon={<Icon name="mail" className="h-5 w-5" />}
+          className="w-full"
+          RightIcon={<Icon name="mail" size={24} />}
         />
       </div>
 
@@ -105,22 +109,24 @@ export const AllVariants: Story = {
         <p className="mb-2 text-sm font-medium">With Both Icons</p>
         <Input
           placeholder="Search..."
-          LeftIcon={<Icon name="search" className="h-5 w-5" />}
-          RightIcon={<Icon name="x" className="h-5 w-5" />}
+          className="w-full"
+          LeftIcon={<Icon name="search" size={24} />}
+          RightIcon={<Icon name="close" size={24} />}
         />
       </div>
 
       <div>
         <p className="mb-2 text-sm font-medium">Error State</p>
-        <Input placeholder="Invalid input" error={true} />
+        <Input placeholder="Invalid input" error />
       </div>
 
       <div>
         <p className="mb-2 text-sm font-medium">Error with Icon</p>
         <Input
           placeholder="Invalid input"
-          error={true}
-          RightIcon={<Icon name="alert-triangle" className="h-5 w-5" />}
+          error
+          className="w-full"
+          RightIcon={<Icon name="warning" size={24} />}
         />
       </div>
 

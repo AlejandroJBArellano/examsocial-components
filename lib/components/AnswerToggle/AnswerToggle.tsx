@@ -15,11 +15,7 @@ const AnswerToggle = ({ className, ...props }: Checkbox.CheckboxProps) => {
       )}
     >
       <Checkbox.Indicator className="flex h-5 w-5 place-items-center xl:h-6 xl:w-6">
-        <Icon
-          name="check"
-          data-testid="CheckIcon"
-          className="aspect-square h-5 w-5 xl:h-6 xl:w-6"
-        />
+        <Icon name="check" data-testid="CheckIcon" size={20} />
       </Checkbox.Indicator>
     </Checkbox.Root>
   );

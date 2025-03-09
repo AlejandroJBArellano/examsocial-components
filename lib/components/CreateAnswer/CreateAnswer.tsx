@@ -1,6 +1,5 @@
 import { Field } from "formik";
 import { AnswerToggle, Button, Input } from "../";
-import { Icon } from "../Icon";
 
 const CreateAnswer = ({
   name,
@@ -18,14 +17,16 @@ const CreateAnswer = ({
 }) => {
   return (
     <article className="flex w-full items-center gap-2">
-      <Button
+      <Button.Icon
         theme="feedback-error"
         className="h-10 p-2"
         type="button"
         onClick={onDelete}
+        size={20}
+        filled
       >
-        <Icon name="delete" className="h-5 w-5" />
-      </Button>
+        delete
+      </Button.Icon>
       <Field
         as={Input}
         placeholder="e.g., Paris"

@@ -31,10 +31,12 @@ export interface NavbarProps {
   /**
    * Información del perfil
    */
-  profileInfo: {
+  profileInfo?: {
     gender: ProfilePlaceholderGender;
     name: string;
   };
+
+  children?: React.ReactNode;
 }
 
 /**
@@ -44,7 +46,7 @@ export interface NavbarProps {
  * - En móvil: Muestra los elementos comprimidos (solo iconos)
  * - En tablet/desktop: Muestra los elementos expandidos (iconos y texto)
  */
-export const Navbar = ({ items, profileInfo }: NavbarProps) => {
+export const Navbar = ({ items, profileInfo, children }: NavbarProps) => {
   return (
     <nav className="mb-4 flex justify-center border-y-sm border-black px-4 md:justify-between">
       <ul className="flex divide-x-sm divide-gray-600 [&>li>a]:border-0">
@@ -63,11 +65,17 @@ export const Navbar = ({ items, profileInfo }: NavbarProps) => {
           </li>
         ))}
       </ul>
-      <Profile
-        gender={profileInfo.gender}
-        name={profileInfo.name}
-        className="size-9 md:size-11 xl:size-12 2xl:size-13"
-      />
+      {profileInfo ? (
+        <Profile
+          gender={profileInfo.gender}
+          name={profileInfo.name}
+          className="size-9 md:size-11 xl:size-12 2xl:size-13"
+        />
+      ) : (
+        <button className="group border-x-sm border-gray-600 px-4 hover:border-black md:px-6 md:py-1 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6">
+          {children}
+        </button>
+      )}
     </nav>
   );
 };

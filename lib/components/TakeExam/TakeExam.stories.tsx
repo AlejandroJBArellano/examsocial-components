@@ -52,7 +52,7 @@ export const Default: Story = {
       questions: [
         {
           _id: "q1",
-          question: "What is 2 + 2?",
+          title: "What is 2 + 2?",
           options: [
             { _id: "q1o1", text: "3", correct: false },
             { _id: "q1o2", text: "4", correct: true },
@@ -60,7 +60,7 @@ export const Default: Story = {
         },
         {
           _id: "q2",
-          question: "What is the capital of France?",
+          title: "What is the capital of France?",
           options: [
             { _id: "q2o1", text: "Berlin", correct: false },
             { _id: "q2o2", text: "Madrid", correct: false },
@@ -70,7 +70,7 @@ export const Default: Story = {
         },
         {
           _id: "q3",
-          question: "Which planet is known as the Red Planet?",
+          title: "Which planet is known as the Red Planet?",
           options: [
             { _id: "q3o1", text: "Earth", correct: false },
             { _id: "q3o2", text: "Mars", correct: true },
@@ -80,7 +80,7 @@ export const Default: Story = {
         },
         {
           _id: "q4",
-          question: "What is the largest ocean on Earth?",
+          title: "What is the largest ocean on Earth?",
           options: [
             { _id: "q4o1", text: "Atlantic Ocean", correct: false },
             { _id: "q4o2", text: "Indian Ocean", correct: false },

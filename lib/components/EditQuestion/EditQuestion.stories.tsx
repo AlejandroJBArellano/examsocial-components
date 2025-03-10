@@ -12,7 +12,7 @@ type Story = StoryObj<typeof EditQuestion>;
 export const Default: Story = {
   args: {
     initialValues: {
-      question: "What is the capital of France?",
+      title: "What is the capital of France?",
       _id: "q1",
       options: [
         { text: "Paris", correct: true, _id: "o1" },

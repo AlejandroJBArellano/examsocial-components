@@ -17,11 +17,11 @@ const QuestionForm = ({
       <article className="space-y-1">
         <label className="font-medium">Question</label>
         <Field
-          name="question"
+          name="title"
           as={Input}
           placeholder="Type your question here..."
           className="w-full"
-          error={errors.question}
+          error={errors.title}
         />
       </article>
       <Separator />

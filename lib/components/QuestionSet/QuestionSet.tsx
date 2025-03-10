@@ -1,9 +1,9 @@
-import { IQuestion } from "../../types";
+import { Question } from "../../types";
 import { Button } from "../Button";
 import { Heading5, Span } from "../FontFaces";
 import { Tag } from "../Tag";
 
-type QuestionSetPropsEditable = IQuestion & {
+type QuestionSetPropsEditable = Question & {
   onDelete: (index: number) => void;
   onEdit: (index: number) => void;
   index: number;
@@ -13,7 +13,7 @@ type QuestionSetPropsEditable = IQuestion & {
 
 type QuestionSetPropsViewOnly = {
   viewOnly: true;
-  question: string;
+  title: string;
   selected?: boolean;
 };
 
@@ -21,7 +21,7 @@ type QuestionSetProps = QuestionSetPropsEditable | QuestionSetPropsViewOnly;
 
 const QuestionSet = ({
   viewOnly = false,
-  question,
+  title,
   selected,
   ...props
 }: QuestionSetProps) => {
@@ -32,7 +32,7 @@ const QuestionSet = ({
         "w-full min-w-[350px] max-w-sm space-y-4 rounded-md border border-black p-4 xl:space-y-5 xl:p-5"
       }
     >
-      <Heading5>{question}</Heading5>
+      <Heading5>{title}</Heading5>
       {viewOnly ? null : (
         <>
           <div className="space-y-2.5">

@@ -12,7 +12,7 @@ export const Default: Story = {
   args: {
     correct: false,
     question: {
-      question: "What is the capital of France?",
+      title: "What is the capital of France?",
       _id: "q1",
       options: [
         { text: "Paris", correct: true, _id: "o1" },

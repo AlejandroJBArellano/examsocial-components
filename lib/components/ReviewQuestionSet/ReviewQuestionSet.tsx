@@ -15,7 +15,7 @@ const ReviewQuestionSet = ({ question }: IReviewQuestionSet) => {
     <div className="space-y-4 rounded-md border-sm border-black bg-gray-50 p-4 hover:shadow-right-sm hover:shadow-black">
       <div className="flex items-center gap-2 text-xl font-medium leading-6 tracking-[0.4px] text-feedback-success">
         <Icon name="check" className="!h-6 !w-6" />
-        <Heading5>{question.question}</Heading5>
+        <Heading5>{question.title}</Heading5>
       </div>
       <div className="space-y-2">
         <div>

@@ -75,7 +75,7 @@ export const Questions = () => {
             values.questions && index !== null
               ? values.questions[index]
               : {
-                  question: "",
+                  title: "",
                   _id: `temp-${Date.now()}`,
                   options: [],
                 }

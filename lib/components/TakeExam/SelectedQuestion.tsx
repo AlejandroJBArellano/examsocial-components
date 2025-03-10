@@ -1,11 +1,11 @@
-import { IQuestion } from "../../types";
+import { Question } from "../../types";
 import { AnswerOption } from "../AnswerOption";
 import { Button } from "../Button";
 import { FocusSpan, Heading3, Heading6 } from "../FontFaces";
 import { Icon } from "../Icon";
 
 interface ISelectedQuestion {
-  questions: IQuestion[];
+  questions: Question[];
   onFinish: () => void;
   onSelectOption: (questionId: string, optionId: string) => void;
   selected: number;
@@ -30,7 +30,7 @@ const SelectedQuestion = ({
       <article className="flex flex-col gap-5">
         <div className="space-y-1">
           <Heading6>Question {selected + 1}</Heading6>
-          <Heading3>{question.question}</Heading3>
+          <Heading3>{question.title}</Heading3>
         </div>
         <div className="flex flex-auto flex-col gap-2">
           {question.options.map((option) => (

@@ -11,7 +11,7 @@ type Story = StoryObj<typeof QuestionSet>;
 
 export const Default: Story = {
   args: {
-    question: "What is the capital of Nigeria?",
+    title: "What is the capital of Nigeria?",
     _id: "q1",
     options: [
       {

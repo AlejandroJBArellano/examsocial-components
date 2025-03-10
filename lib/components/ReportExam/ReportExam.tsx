@@ -1,4 +1,4 @@
-import { IQuestion } from "@/types";
+import { Question } from "@/types";
 import { useState } from "react";
 import { Button } from "../Button";
 import { Checkbox } from "../Checkbox";
@@ -53,7 +53,7 @@ const ReportExam = ({
   onCancel,
   onSubmit,
 }: {
-  questions: IQuestion[];
+  questions: Question[];
   onCancel: () => void;
   onSubmit: (reason: string, questions: string[]) => void;
 }) => {
@@ -96,20 +96,20 @@ const ReportExam = ({
     [ReportStep.QUESTION]: (
       <article className="space-y-2">
         <ul className="space-y-4">
-          {questions.map(({ question, _id }) => (
+          {questions.map(({ title, _id }) => (
             <li key={_id} className="flex items-center gap-2">
               <Checkbox
                 id={_id}
-                checked={selectedQuestions.includes(question)}
+                checked={selectedQuestions.includes(title)}
                 onCheckedChange={() =>
                   setSelectedQuestions((prev) =>
-                    prev.includes(question)
-                      ? prev.filter((item) => item !== question)
-                      : [...prev, question],
+                    prev.includes(title)
+                      ? prev.filter((item) => item !== title)
+                      : [...prev, title],
                   )
                 }
               />
-              <label htmlFor={_id}>{question}</label>
+              <label htmlFor={_id}>{title}</label>
             </li>
           ))}
         </ul>

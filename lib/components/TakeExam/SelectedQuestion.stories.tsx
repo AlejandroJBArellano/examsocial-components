@@ -14,7 +14,7 @@ export const Default: Story = {
   args: {
     questions: [
       {
-        question: "What is the capital of France?",
+        title: "What is the capital of France?",
         options: [
           { text: "Paris", correct: true, _id: uuidv4() },
           { text: "London", _id: uuidv4() },
@@ -24,7 +24,7 @@ export const Default: Story = {
         _id: uuidv4(),
       },
       {
-        question: "What is the largest planet in our solar system?",
+        title: "What is the largest planet in our solar system?",
         options: [
           { text: "Jupiter", correct: true, _id: uuidv4() },
           { text: "Saturn", _id: uuidv4() },
@@ -34,7 +34,7 @@ export const Default: Story = {
         _id: uuidv4(),
       },
       {
-        question: "What is the chemical symbol for water?",
+        title: "What is the chemical symbol for water?",
         options: [
           { text: "H2O", correct: true, _id: uuidv4() },
           { text: "O2", _id: uuidv4() },
@@ -44,7 +44,7 @@ export const Default: Story = {
         _id: uuidv4(),
       },
       {
-        question: "Who wrote 'Romeo and Juliet'?",
+        title: "Who wrote 'Romeo and Juliet'?",
         options: [
           { text: "William Shakespeare", correct: true, _id: uuidv4() },
           { text: "Charles Dickens", _id: uuidv4() },
@@ -54,7 +54,7 @@ export const Default: Story = {
         _id: uuidv4(),
       },
       {
-        question: "What is the speed of light?",
+        title: "What is the speed of light?",
         options: [
           {
             text: "299,792,458 meters per second",

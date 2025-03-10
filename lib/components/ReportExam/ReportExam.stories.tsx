@@ -17,7 +17,7 @@ export const Default: Story = {
     questions: [
       {
         _id: "1",
-        question: "Is this exam non-educational?",
+        title: "Is this exam non-educational?",
         options: [
           { text: "Yes", _id: "1-1" },
           { text: "No", _id: "1-2" },
@@ -25,7 +25,7 @@ export const Default: Story = {
       },
       {
         _id: "2",
-        question: "Does this exam contain false information?",
+        title: "Does this exam contain false information?",
         options: [
           { text: "Yes", _id: "2-1" },
           { text: "No", _id: "2-2" },
@@ -33,7 +33,7 @@ export const Default: Story = {
       },
       {
         _id: "3",
-        question: "Does this exam contain explicit content?",
+        title: "Does this exam contain explicit content?",
         options: [
           { text: "Yes", _id: "3-1" },
           { text: "No", _id: "3-2" },
@@ -41,7 +41,7 @@ export const Default: Story = {
       },
       {
         _id: "4",
-        question: "Does this exam contain hateful or offensive content?",
+        title: "Does this exam contain hateful or offensive content?",
         options: [
           { text: "Yes", _id: "4-1" },
           { text: "No", _id: "4-2" },
@@ -49,7 +49,7 @@ export const Default: Story = {
       },
       {
         _id: "5",
-        question: "Is this exam spam?",
+        title: "Is this exam spam?",
         options: [
           { text: "Yes", _id: "5-1" },
           { text: "No", _id: "5-2" },
@@ -57,7 +57,7 @@ export const Default: Story = {
       },
       {
         _id: "6",
-        question: "Does this exam contain copyright infringement?",
+        title: "Does this exam contain copyright infringement?",
         options: [
           { text: "Yes", _id: "6-1" },
           { text: "No", _id: "6-2" },
@@ -65,7 +65,7 @@ export const Default: Story = {
       },
       {
         _id: "7",
-        question: "Please provide more information",
+        title: "Please provide more information",
         options: [
           { text: "Yes", _id: "7-1" },
           { text: "No", _id: "7-2" },

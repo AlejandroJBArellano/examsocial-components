@@ -15,7 +15,7 @@ const UserAnswers = () => {
       <div className="grid gap-x-6 gap-y-4 xl:grid-cols-2">
         <ReviewQuestionSet
           question={{
-            question: "What is the capital of France?",
+            title: "What is the capital of France?",
             _id: "q1",
             options: [
               { text: "Paris", correct: true, _id: "o1" },
@@ -27,7 +27,7 @@ const UserAnswers = () => {
         />
         <ReviewQuestionSet
           question={{
-            question: "What is the capital of France?",
+            title: "What is the capital of France?",
             _id: "q2",
             options: [
               { text: "Paris", correct: true, _id: "o5" },
@@ -39,7 +39,7 @@ const UserAnswers = () => {
         />
         <ReviewQuestionSet
           question={{
-            question: "What is the capital of France?",
+            title: "What is the capital of France?",
             _id: "q3",
             options: [
               { text: "Paris", correct: true, _id: "o9" },
@@ -51,7 +51,7 @@ const UserAnswers = () => {
         />
         <ReviewQuestionSet
           question={{
-            question: "What is the capital of France?",
+            title: "What is the capital of France?",
             _id: "q4",
             options: [
               { text: "Paris", correct: true, _id: "o13" },
@@ -63,7 +63,7 @@ const UserAnswers = () => {
         />
         <ReviewQuestionSet
           question={{
-            question: "What is the capital of France?",
+            title: "What is the capital of France?",
             _id: "q5",
             options: [
               { text: "Paris", correct: true, _id: "o17" },

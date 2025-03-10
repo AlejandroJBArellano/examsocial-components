@@ -1,8 +1,7 @@
-export interface IQuestion {
-  question: string;
-  options: { text: string; correct?: boolean; _id: string }[];
-  _id: string;
-}
+import * as Yup from "yup";
+import { questionSchema } from "./schemas";
+
+export type Question = Yup.InferType<typeof questionSchema>;
 
 export type ContentTypes =
   | "YOUTUBE"

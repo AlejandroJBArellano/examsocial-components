@@ -2,7 +2,7 @@ import * as Yup from "yup";
 import { FeedbackCondition } from "./constants";
 
 export const questionSchema = Yup.object({
-  question: Yup.string().required("Question is required"),
+  title: Yup.string().required("Question is required"),
   _id: Yup.string().required(),
   options: Yup.array()
     .of(

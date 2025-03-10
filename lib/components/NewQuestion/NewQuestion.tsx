@@ -1,12 +1,12 @@
 import { Formik } from "formik";
 import { questionSchema } from "../../schemas";
-import { IQuestion } from "../../types";
+import { Question } from "../../types";
 import { Button } from "../Button";
 import { Heading4 } from "../FontFaces";
 import { QuestionForm } from "../QuestionForm";
 
 interface INewQuestion {
-  onSubmit: (values: IQuestion) => void;
+  onSubmit: (values: Question) => void;
   onCancel: () => void;
 }
 
@@ -14,9 +14,9 @@ const NewQuestion = ({ onSubmit, onCancel }: INewQuestion) => {
   return (
     <Formik
       initialValues={{
-        question: "",
+        title: "",
         _id: `temp-${Date.now()}`,
-        options: [] as IQuestion["options"],
+        options: [] as Question["options"],
       }}
       validationSchema={questionSchema}
       validateOnChange

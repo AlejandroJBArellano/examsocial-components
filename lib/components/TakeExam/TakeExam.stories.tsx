@@ -14,7 +14,6 @@ export const Default: Story = {
     exam: {
       title: "Sample Exam",
       description: "This is a sample exam description.",
-      tags: ["sample", "exam"],
       image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA",
       advancedSettings: {
         randomizeQuestionOrder: true,

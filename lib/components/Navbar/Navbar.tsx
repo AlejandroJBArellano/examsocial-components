@@ -57,7 +57,9 @@ export const Navbar = ({ items, profileInfo }: NavbarProps) => {
                 : "") + " cursor-pointer"
             }
           >
-            <MenuItem {...item}>{item.children}</MenuItem>
+            <MenuItem isCompressed {...item}>
+              {item.children}
+            </MenuItem>
           </li>
         ))}
       </ul>

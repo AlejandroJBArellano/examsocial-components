@@ -181,9 +181,7 @@ export const Review = () => {
           </div>
           <div>
             <Span>Number of attempts</Span>
-            <FocusSpan>
-              {formik.values.advancedSettings.numberOfAttempts}
-            </FocusSpan>
+            <FocusSpan>{formik.values.advancedSettings.maxAttempts}</FocusSpan>
           </div>
           <div>
             <Span>Price</Span>

@@ -81,9 +81,7 @@ export const advancedSettingsSchema = Yup.object({
   showCorrectAnswers: Yup.boolean(),
   sendEmailReport: Yup.boolean(),
   leaderboard: Yup.boolean(),
-  numberOfAttempts: Yup.number()
-    .min(1, "Must be at least 1")
-    .required("Required"),
+  maxAttempts: Yup.number().min(1, "Must be at least 1").required("Required"),
   price: Yup.number().min(0, "Must be at least 0").required("Required"),
   feedback: Yup.array().of(feedbackSchema),
   privacy: Yup.object({
@@ -145,7 +143,6 @@ export const examSchema = Yup.object({
   description: Yup.string()
     .required("Description is required")
     .min(10, "Description must be at least 10 characters long"),
-  tags: Yup.array().of(Yup.string()).required("Tags are required"),
   image: Yup.mixed()
     .required("Image is required")
     .test(

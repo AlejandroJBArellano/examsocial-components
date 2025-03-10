@@ -21,7 +21,7 @@ export const Default: Story = {
         showCorrectAnswers: false,
         sendEmailReport: true,
         leaderboard: true,
-        numberOfAttempts: 3,
+        maxAttempts: 3,
         price: 0,
         feedback: [
           {

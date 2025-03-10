@@ -151,7 +151,7 @@ export const AdvancedSettings = () => {
           placeholder="3"
           containerClassName="flex-initial"
           className="w-20"
-          {...getFieldProps("numberOfAttempts")}
+          {...getFieldProps("maxAttempts")}
         />
       </article>
       <article className="w-full">

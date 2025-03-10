@@ -36,16 +36,15 @@ const CreateExam = ({ onSubmit, onCancel }: CreateExamProps) => {
       initialValues={{
         title: "",
         description: "",
+        image: "",
         questions: [],
         contents: [],
-        tags: [],
-        image: "",
         advancedSettings: {
           randomizeQuestionOrder: true,
           showCorrectAnswers: false,
           sendEmailReport: false,
           leaderboard: false,
-          numberOfAttempts: 3,
+          maxAttempts: 3,
           price: 0,
           feedback: [],
           privacy: {

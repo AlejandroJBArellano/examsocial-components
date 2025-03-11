@@ -177,25 +177,29 @@ const Actions: FC<{ onEdit?: () => void; onDelete?: () => void }> = ({
 }) => {
   return (
     <div className="flex items-center gap-4" aria-label="Question actions">
-      <Button.Icon
-        rounded
-        size={24}
-        filled
-        onClick={onEdit}
-        aria-label="Edit question"
-      >
-        edit
-      </Button.Icon>
-      <Button.Icon
-        theme="feedback-error"
-        rounded
-        size={24}
-        filled
-        onClick={onDelete}
-        aria-label="Delete question"
-      >
-        delete
-      </Button.Icon>
+      {onEdit && (
+        <Button.Icon
+          rounded
+          size={24}
+          filled
+          onClick={onEdit}
+          aria-label="Edit question"
+        >
+          edit
+        </Button.Icon>
+      )}
+      {onDelete && (
+        <Button.Icon
+          theme="feedback-error"
+          rounded
+          size={24}
+          filled
+          onClick={onDelete}
+          aria-label="Delete question"
+        >
+          delete
+        </Button.Icon>
+      )}
     </div>
   );
 };

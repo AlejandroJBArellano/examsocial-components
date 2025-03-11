@@ -1,8 +1,8 @@
-import { action } from "@storybook/addon-actions";
-import type { Meta, StoryObj } from "@storybook/react";
-import QuestionDetail from "./QuestionDetail";
+import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { AnswerOptionType, QuestionDetail } from "./index";
 
-export default {
+const meta: Meta<typeof QuestionDetail> = {
   title: "Components/QuestionDetail",
   component: QuestionDetail,
   parameters: {
@@ -10,85 +10,315 @@ export default {
     docs: {
       description: {
         component:
-          "QuestionDetail component displays a question with answer options and additional controls for editing and deleting.",
+          "A flexible component for displaying quiz questions with answer options, implementing the compound component pattern.",
       },
     },
   },
+  tags: ["autodocs"],
   argTypes: {
-    questionText: {
-      control: "text",
-      description: "The text of the question to display",
-    },
     showCorrectAnswer: {
       control: "boolean",
-      description: "Whether to display the correct answer indicator",
+      description: "Whether to show which answer is correct",
+      defaultValue: true,
     },
     correctPercentage: {
       control: { type: "range", min: 0, max: 100, step: 1 },
-      description: "Percentage of users who answered correctly",
+      description: "Percentage of users who got the answer correct",
+      defaultValue: 25,
     },
-    onEdit: {
-      action: "edited",
-      description: "Callback when edit button is clicked",
-    },
-    onDelete: {
-      action: "deleted",
-      description: "Callback when delete button is clicked",
-    },
+    onEdit: { action: "edit clicked" },
+    onDelete: { action: "delete clicked" },
   },
-  args: {
-    onEdit: action("edit clicked"),
-    onDelete: action("delete clicked"),
-  },
-} as Meta<typeof QuestionDetail>;
+};
 
+export default meta;
 type Story = StoryObj<typeof QuestionDetail>;
 
-/**
- * Default story showing the QuestionDetail component with default props
- */
+// Sample options for all stories
+const sampleOptions: AnswerOptionType[] = [
+  {
+    id: "1",
+    content:
+      'import {"{writable}"} from \'svelte/store\'; {"\n"} const store = writable([]);',
+    isCorrect: true,
+    percentage: 42,
+  },
+  {
+    id: "2",
+    content:
+      "import { useState } from 'react'; {\"\\n\"} const [state, setState] = useState([]);",
+    isCorrect: false,
+    percentage: 30,
+  },
+  {
+    id: "3",
+    content:
+      "import { reactive } from 'vue'; {\"\\n\"} const state = reactive([]);",
+    isCorrect: false,
+    percentage: 28,
+  },
+];
+
+// Basic story with props
 export const Default: Story = {
   args: {
-    children:
-      "Which of the following is a correct way to create a writable store in Svelte?",
+    children: "Which code snippet creates a store in Svelte?",
+    showCorrectAnswer: true,
+    correctPercentage: 42,
+    options: sampleOptions,
   },
 };
 
-/**
- * Shows the QuestionDetail with a custom question text
- */
-export const CustomQuestion: Story = {
+// With correct answer hidden
+export const HiddenAnswer: Story = {
   args: {
-    children: "What is the capital of France?",
-  },
-};
-
-/**
- * Shows the QuestionDetail with a high success rate
- */
-export const HighSuccessRate: Story = {
-  args: {
-    correctPercentage: 95,
-    children: "What is the capital of France?",
-  },
-};
-
-/**
- * Shows the QuestionDetail with a low success rate
- */
-export const LowSuccessRate: Story = {
-  args: {
-    correctPercentage: 5,
-    children: "What is the capital of France?",
-  },
-};
-
-/**
- * Shows the QuestionDetail without the percentage indicator
- */
-export const WithoutPercentage: Story = {
-  args: {
+    children: "Which code snippet creates a store in Svelte?",
     showCorrectAnswer: false,
-    children: "What is the capital of France?",
+    correctPercentage: 42,
+    options: sampleOptions,
+  },
+};
+
+// With interactive toggle for showing answers
+const InteractiveTemplate = () => {
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <button
+          className="rounded bg-blue-500 px-4 py-2 text-white"
+          onClick={() => setShowAnswer(!showAnswer)}
+        >
+          {showAnswer ? "Hide" : "Show"} Correct Answer
+        </button>
+      </div>
+      <QuestionDetail
+        options={sampleOptions}
+        showCorrectAnswer={showAnswer}
+        correctPercentage={42}
+      >
+        Which code snippet creates a store in Svelte?
+      </QuestionDetail>
+    </div>
+  );
+};
+
+export const Interactive: Story = {
+  render: () => <InteractiveTemplate />,
+};
+
+// Using compound component pattern
+const CompoundPatternTemplate = () => (
+  <QuestionDetail showCorrectAnswer={true}>
+    <QuestionDetail.Header
+      onEdit={() => console.log("Edit")}
+      onDelete={() => console.log("Delete")}
+    >
+      Which code snippet creates a store in Svelte?
+    </QuestionDetail.Header>
+    <QuestionDetail.Options>
+      {sampleOptions.map((option) => (
+        <QuestionDetail.Option key={option.id} id={option.id} />
+      ))}
+    </QuestionDetail.Options>
+  </QuestionDetail>
+);
+
+export const CompoundPattern: Story = {
+  render: () => <CompoundPatternTemplate />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This example demonstrates using the compound component pattern for more flexibility and control over the component structure.",
+      },
+    },
+  },
+};
+
+// With custom question and options
+const CustomContentTemplate = () => {
+  const customOptions: AnswerOptionType[] = [
+    {
+      id: "1",
+      content: (
+        <div className="flex items-center gap-2">
+          <div className="h-4 w-4 rounded-full bg-blue-500" />
+          <span>Option with custom styling</span>
+        </div>
+      ),
+      isCorrect: true,
+      percentage: 55,
+    },
+    {
+      id: "2",
+      content: (
+        <div className="flex items-center gap-2">
+          <div className="h-4 w-4 rounded-full bg-red-500" />
+          <span>Another custom option</span>
+        </div>
+      ),
+      isCorrect: false,
+      percentage: 45,
+    },
+  ];
+
+  return (
+    <QuestionDetail
+      options={customOptions}
+      showCorrectAnswer={true}
+      correctPercentage={55}
+    >
+      <span className="flex items-center gap-2">
+        <span className="text-blue-500">●</span> Question with custom content
+      </span>
+    </QuestionDetail>
+  );
+};
+
+export const CustomContent: Story = {
+  render: () => <CustomContentTemplate />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The component supports rich content using React nodes for both questions and answer options.",
+      },
+    },
+  },
+};
+
+// Multiple questions comparison
+const MultipleQuestionsTemplate = () => {
+  const programmingOptions: AnswerOptionType[] = [
+    {
+      id: "p1",
+      content: "JavaScript",
+      isCorrect: true,
+      percentage: 60,
+    },
+    {
+      id: "p2",
+      content: "Java",
+      isCorrect: false,
+      percentage: 25,
+    },
+    {
+      id: "p3",
+      content: "Python",
+      isCorrect: false,
+      percentage: 15,
+    },
+  ];
+
+  const mathOptions: AnswerOptionType[] = [
+    {
+      id: "m1",
+      content: "9",
+      isCorrect: false,
+      percentage: 15,
+    },
+    {
+      id: "m2",
+      content: "6",
+      isCorrect: true,
+      percentage: 75,
+    },
+    {
+      id: "m3",
+      content: "3",
+      isCorrect: false,
+      percentage: 10,
+    },
+  ];
+
+  return (
+    <div className="space-y-8">
+      <QuestionDetail
+        options={programmingOptions}
+        showCorrectAnswer={true}
+        correctPercentage={60}
+      >
+        Which language is primarily used for web development?
+      </QuestionDetail>
+
+      <QuestionDetail
+        options={mathOptions}
+        showCorrectAnswer={true}
+        correctPercentage={75}
+      >
+        What is 2 × 3?
+      </QuestionDetail>
+    </div>
+  );
+};
+
+export const MultipleQuestions: Story = {
+  render: () => <MultipleQuestionsTemplate />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Multiple questions can be displayed together to create a quiz or assessment interface.",
+      },
+    },
+  },
+};
+
+// Error state
+const MissingOptionTemplate = () => {
+  const [options] = useState<AnswerOptionType[]>([
+    {
+      id: "1",
+      content: "This is the only option",
+      isCorrect: true,
+      percentage: 100,
+    },
+  ]);
+
+  return (
+    <QuestionDetail options={options} showCorrectAnswer={true}>
+      Question with missing selected option
+    </QuestionDetail>
+  );
+};
+
+export const MissingOption: Story = {
+  render: () => <MissingOptionTemplate />,
+  parameters: {
+    docs: {
+      description: {
+        story: "The component gracefully handles missing options.",
+      },
+    },
+  },
+};
+
+// Mobile view (narrow container)
+const MobileViewTemplate = () => (
+  <div className="w-80">
+    <QuestionDetail
+      options={sampleOptions}
+      showCorrectAnswer={true}
+      correctPercentage={42}
+    >
+      Which code snippet creates a store in Svelte?
+    </QuestionDetail>
+  </div>
+);
+
+export const MobileView: Story = {
+  render: () => <MobileViewTemplate />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Example of how the component looks on mobile devices with limited width.",
+      },
+    },
+    viewport: {
+      defaultViewport: "mobile1",
+    },
   },
 };

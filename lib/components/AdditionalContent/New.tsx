@@ -9,7 +9,7 @@ import { Textarea } from "../Textarea";
 
 interface INewAdditionalContent {
   onSubmit: (values: {
-    contentType: ContentTypes;
+    type: ContentTypes;
     youtubeUrl?: string;
     text?: string;
     link?: string;
@@ -35,7 +35,7 @@ export const NewAdditionalContent = ({
   onSubmit,
   onCancel,
 }: INewAdditionalContent) => {
-  const [contentType, setContentType] = useState<ContentTypes>("YOUTUBE");
+  const [type, setContentType] = useState<ContentTypes>("YOUTUBE");
   const [container, setContainer] = useState<HTMLElement>();
   const [youtubeUrl, setYoutubeUrl] = useState<string>();
   const [text, setText] = useState<string>();
@@ -151,18 +151,14 @@ export const NewAdditionalContent = ({
       <article className="space-y-1">
         <FocusSpan>Content Type</FocusSpan>
         <Select
-          text={
-            contentType
-              ? ContentTypeNamesMap[contentType]
-              : "Select content type"
-          }
+          text={type ? ContentTypeNamesMap[type] : "Select content type"}
           container={container}
         >
           <Select.Option
             onClick={() => {
               setContentType("YOUTUBE");
             }}
-            checked={contentType === "YOUTUBE"}
+            checked={type === "YOUTUBE"}
           >
             YouTube URL
           </Select.Option>
@@ -170,7 +166,7 @@ export const NewAdditionalContent = ({
             onClick={() => {
               setContentType("LINK");
             }}
-            checked={contentType === "LINK"}
+            checked={type === "LINK"}
           >
             Link
           </Select.Option>
@@ -178,7 +174,7 @@ export const NewAdditionalContent = ({
             onClick={() => {
               setContentType("TEXT");
             }}
-            checked={contentType === "TEXT"}
+            checked={type === "TEXT"}
           >
             Text
           </Select.Option>
@@ -186,7 +182,7 @@ export const NewAdditionalContent = ({
             onClick={() => {
               setContentType("IMAGE");
             }}
-            checked={contentType === "IMAGE"}
+            checked={type === "IMAGE"}
           >
             Image
           </Select.Option>
@@ -194,7 +190,7 @@ export const NewAdditionalContent = ({
             onClick={() => {
               setContentType("VIDEO");
             }}
-            checked={contentType === "VIDEO"}
+            checked={type === "VIDEO"}
           >
             Video
           </Select.Option>
@@ -202,7 +198,7 @@ export const NewAdditionalContent = ({
             onClick={() => {
               setContentType("AUDIO");
             }}
-            checked={contentType === "AUDIO"}
+            checked={type === "AUDIO"}
           >
             Audio
           </Select.Option>
@@ -210,15 +206,13 @@ export const NewAdditionalContent = ({
             onClick={() => {
               setContentType("FILE");
             }}
-            checked={contentType === "FILE"}
+            checked={type === "FILE"}
           >
             File
           </Select.Option>
         </Select>
       </article>
-      <article className="space-y-4">
-        {contentType && ContentTypes[contentType]}
-      </article>
+      <article className="space-y-4">{type && ContentTypes[type]}</article>
       <article className="flex items-center justify-between">
         <Button theme="light" rounded onClick={onCancel}>
           Cancel
@@ -229,14 +223,14 @@ export const NewAdditionalContent = ({
           type="button"
           onClick={() => {
             onSubmit({
-              contentType,
-              youtubeUrl: contentType === "YOUTUBE" ? youtubeUrl : undefined,
-              text: contentType === "TEXT" ? text : undefined,
-              link: contentType === "LINK" ? link : undefined,
-              image: contentType === "IMAGE" ? image! : undefined,
-              video: contentType === "VIDEO" ? video : undefined,
-              audio: contentType === "AUDIO" ? audio : undefined,
-              file: contentType === "FILE" ? file : undefined,
+              type,
+              youtubeUrl: type === "YOUTUBE" ? youtubeUrl : undefined,
+              text: type === "TEXT" ? text : undefined,
+              link: type === "LINK" ? link : undefined,
+              image: type === "IMAGE" ? image! : undefined,
+              video: type === "VIDEO" ? video : undefined,
+              audio: type === "AUDIO" ? audio : undefined,
+              file: type === "FILE" ? file : undefined,
             });
 
             setContentType("YOUTUBE");

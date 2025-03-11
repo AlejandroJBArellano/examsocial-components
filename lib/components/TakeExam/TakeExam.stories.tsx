@@ -44,7 +44,7 @@ export const Default: Story = {
       },
       contents: [
         {
-          contentType: "TEXT",
+          type: "TEXT",
           text: "Welcome to the exam!",
         },
       ],

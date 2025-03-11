@@ -5,7 +5,7 @@ const meta: Meta<typeof BannerInput> = {
   title: "Components/BannerInput",
   component: BannerInput,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
     docs: {
       description: {
         component:

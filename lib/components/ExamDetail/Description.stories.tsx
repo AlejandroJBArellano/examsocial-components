@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Heading3 } from "../FontFaces";
 import Description from "./Description";
 
 const meta: Meta<typeof Description> = {
@@ -45,17 +46,6 @@ export const WithLongDescription: Story = {
   },
 };
 
-// Story with XL size
-export const XLSize: Story = {
-  args: {
-    description: longText,
-    onStartExam: () => console.log("Start exam clicked"),
-    onFavorite: () => console.log("Favorite clicked"),
-    onBookmark: () => console.log("Bookmark clicked"),
-    size: "xl",
-  },
-};
-
 // Story with favorite active
 export const WithFavoriteActive: Story = {
   args: {
@@ -63,6 +53,7 @@ export const WithFavoriteActive: Story = {
     onStartExam: () => console.log("Start exam clicked"),
     onFavorite: () => console.log("Favorite clicked"),
     onBookmark: () => console.log("Bookmark clicked"),
+    favorite: true,
   },
 };
 
@@ -73,15 +64,16 @@ export const WithBookmarkActive: Story = {
     onStartExam: () => console.log("Start exam clicked"),
     onFavorite: () => console.log("Favorite clicked"),
     onBookmark: () => console.log("Bookmark clicked"),
+    saved: true,
   },
 };
 
 // Story showing all variants
 export const AllVariants: Story = {
   render: () => (
-    <div className="flex flex-col gap-8">
+    <section className="flex flex-col gap-4 [&>*]:space-y-4 [&>*]:border-b-sm [&>*]:border-black [&>*]:p-4">
       <div>
-        <h3 className="mb-2 font-bold">Default</h3>
+        <Heading3>Default</Heading3>
         <Description
           description="This is a description for a Svelte 5 exam."
           onStartExam={() => console.log("Start exam clicked")}
@@ -91,7 +83,7 @@ export const AllVariants: Story = {
       </div>
 
       <div>
-        <h3 className="mb-2 font-bold">Long Description</h3>
+        <Heading3>Long Description</Heading3>
         <Description
           description={longText}
           onStartExam={() => console.log("Start exam clicked")}
@@ -99,17 +91,26 @@ export const AllVariants: Story = {
           onBookmark={() => console.log("Bookmark clicked")}
         />
       </div>
-
       <div>
-        <h3 className="mb-2 font-bold">XL Size</h3>
+        <Heading3>Favorite Active</Heading3>
         <Description
           description={longText}
           onStartExam={() => console.log("Start exam clicked")}
           onFavorite={() => console.log("Favorite clicked")}
           onBookmark={() => console.log("Bookmark clicked")}
-          size="xl"
+          favorite={true}
         />
       </div>
-    </div>
+      <div>
+        <Heading3>Bookmark Active</Heading3>
+        <Description
+          description={longText}
+          onStartExam={() => console.log("Start exam clicked")}
+          onFavorite={() => console.log("Favorite clicked")}
+          onBookmark={() => console.log("Bookmark clicked")}
+          saved={true}
+        />
+      </div>
+    </section>
   ),
 };

@@ -1,16 +1,10 @@
-import { ReactNode, useState } from "react";
+import { ComponentPropsWithoutRef, ReactNode, useState } from "react";
 import { cn } from "../../utils";
 import { Button } from "../Button";
-import { FavoriteButton } from "../FavoriteButton";
-import { FocusSpan } from "../FontFaces";
-import { SaveButton } from "../SaveButton";
-
-// Types
-type MainContainerSize = "default" | "xl";
+import { FocusParagraph, FocusSpan, Paragraph } from "../FontFaces";
 
 // Context
 type MainContainerContextType = {
-  size: MainContainerSize;
   isOpen: boolean;
   toggleOpen: () => void;
 };
@@ -22,7 +16,8 @@ export interface ExamDescriptionProps {
   onFavorite: () => void;
   onBookmark: () => void;
   className?: string;
-  size?: MainContainerSize;
+  favorite?: boolean;
+  saved?: boolean;
 }
 
 // Props for subcomponents
@@ -41,15 +36,9 @@ interface MainContainerActionProps {
   type: "favorite" | "bookmark";
   onClick?: () => void;
   className?: string;
-  isFavorite?: boolean;
-  isSaved?: boolean;
+  favorite?: boolean;
+  saved?: boolean;
   tooltipText?: string;
-}
-
-interface MainContainerButtonProps {
-  onClick?: () => void;
-  children: ReactNode;
-  className?: string;
 }
 
 // Context creation
@@ -76,7 +65,8 @@ const ExamDescription = ({
   onFavorite,
   onBookmark,
   className,
-  size = "default",
+  favorite,
+  saved,
 }: ExamDescriptionProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -87,12 +77,11 @@ const ExamDescription = ({
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 rounded bg-primary-tint p-6",
-        size === "xl" ? "xl:gap-6 xl:p-6" : "",
+        "flex flex-col gap-6 rounded bg-primary-tint p-6 xl:gap-6 xl:p-6",
         className,
       )}
     >
-      <MainContainerContext.Provider value={{ size, isOpen, toggleOpen }}>
+      <MainContainerContext.Provider value={{ isOpen, toggleOpen }}>
         <ExamDescription.Description>{description}</ExamDescription.Description>
         <ExamDescription.Footer>
           <ExamDescription.Actions>
@@ -100,11 +89,13 @@ const ExamDescription = ({
               type="favorite"
               onClick={onFavorite}
               tooltipText="Add to favorites"
+              favorite={favorite}
             />
             <ExamDescription.Action
               type="bookmark"
               onClick={onBookmark}
               tooltipText="Bookmark exam"
+              saved={saved}
             />
           </ExamDescription.Actions>
           <ExamDescription.Button onClick={onStartExam}>
@@ -122,7 +113,7 @@ const MainContainerDescription = ({
   className,
   truncateAt = 150,
 }: MainContainerDescriptionProps) => {
-  const { isOpen, toggleOpen, size } = useMainContainerContext();
+  const { isOpen, toggleOpen } = useMainContainerContext();
 
   // Convert children to string if possible
   const content = typeof children === "string" ? children : "";
@@ -137,23 +128,13 @@ const MainContainerDescription = ({
 
   return (
     <div className={cn("flex flex-col", className)}>
-      <p
-        className={cn(
-          "text-base font-light leading-6",
-          size === "xl" ? "xl:text-lg xl:leading-7" : "",
-        )}
-      >
-        {shouldTruncate ? displayText : children}
-      </p>
+      <Paragraph>{shouldTruncate ? displayText : children}</Paragraph>
       {content.length > truncateAt && (
         <button
           onClick={toggleOpen}
-          className={cn(
-            "mt-1 self-start font-medium text-primary-shadow",
-            size === "xl" ? "xl:text-lg" : "text-base",
-          )}
+          className={cn("mt-1 self-start text-primary-shadow")}
         >
-          {isOpen ? "Read less" : "Read more"}
+          <FocusParagraph>{isOpen ? "Read less" : "Read more"}</FocusParagraph>
         </button>
       )}
     </div>
@@ -171,54 +152,37 @@ const MainContainerAction = ({
   type,
   onClick,
   className,
-  isFavorite = false,
-  isSaved = false,
-  tooltipText,
+  favorite: isFavorite = false,
+  saved: isSaved = false,
 }: MainContainerActionProps) => {
-  const { size } = useMainContainerContext();
-
   if (type === "favorite") {
     return (
-      <FavoriteButton
-        isFavorite={isFavorite}
-        onFavoriteChange={onClick}
-        size={size === "xl" ? "large" : "default"}
-        tooltipText={tooltipText || "Add to favorites"}
+      <Button.Action
+        name="favorite"
+        selected={isFavorite}
+        onClick={onClick}
         className={className}
       />
     );
   }
 
   return (
-    <SaveButton
-      isSaved={isSaved}
-      onSaveChange={onClick}
-      size={size === "xl" ? "large" : "default"}
-      tooltipText={tooltipText || "Add to collection"}
+    <Button.Action
+      name="bookmark"
+      selected={isSaved}
+      onClick={onClick}
       className={className}
     />
   );
 };
 
 const MainContainerButton = ({
-  onClick,
   children,
-  className,
-}: MainContainerButtonProps) => {
-  const { size } = useMainContainerContext();
-
+  ...props
+}: ComponentPropsWithoutRef<"button">) => {
   return (
-    <Button
-      onClick={onClick}
-      theme="accent"
-      rounded={false}
-      className={cn(
-        "font-medium",
-        size === "xl" ? "xl:px-6 xl:py-2 xl:text-lg" : "px-4 py-2 text-base",
-        className,
-      )}
-    >
-      {children}
+    <Button theme="accent" rounded={false} {...props}>
+      <FocusSpan>{children}</FocusSpan>
     </Button>
   );
 };

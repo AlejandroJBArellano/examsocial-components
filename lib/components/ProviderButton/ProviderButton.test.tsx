@@ -83,6 +83,14 @@ describe("ProviderButton", () => {
     expect(button).toHaveAttribute("aria-label", "Sign in with Facebook");
   });
 
+  it("renders GitHub provider correctly", () => {
+    render(<ProviderButton provider="github" />);
+    const button = screen.getByRole("button");
+    expect(screen.getByText("Sign In with GitHub")).toBeInTheDocument();
+    expect(button).toHaveClass("bg-white");
+    expect(button).toHaveClass("text-black/80");
+  });
+
   it("renders all provider types correctly", () => {
     const { unmount } = render(<ProviderButton provider="facebook" />);
     expect(screen.getByText("Sign In with Facebook")).toBeInTheDocument();
@@ -102,5 +110,9 @@ describe("ProviderButton", () => {
 
     render(<ProviderButton provider="reddit" />);
     expect(screen.getByText("Sign In with Reddit")).toBeInTheDocument();
+    unmount();
+
+    render(<ProviderButton provider="github" />);
+    expect(screen.getByText("Sign In with GitHub")).toBeInTheDocument();
   });
 });

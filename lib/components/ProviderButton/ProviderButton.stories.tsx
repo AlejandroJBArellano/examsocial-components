@@ -17,7 +17,7 @@ const meta: Meta<typeof ProviderButton> = {
   argTypes: {
     provider: {
       control: "select",
-      options: ["facebook", "google", "apple", "x", "reddit"],
+      options: ["facebook", "google", "apple", "x", "reddit", "github"],
       description: "Tipo de proveedor de autenticación",
     },
     size: {
@@ -70,6 +70,13 @@ export const Reddit: Story = {
   },
 };
 
+export const GitHub: Story = {
+  args: {
+    provider: "github",
+    size: "default",
+  },
+};
+
 export const Large: Story = {
   args: {
     provider: "facebook",
@@ -112,6 +119,7 @@ export const AllProviders: Story = {
       <ProviderButton provider="apple" />
       <ProviderButton provider="x" />
       <ProviderButton provider="reddit" />
+      <ProviderButton provider="github" />
     </div>
   ),
 };

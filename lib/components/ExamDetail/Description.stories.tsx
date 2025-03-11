@@ -5,6 +5,10 @@ import Description from "./Description";
 export default {
   title: "Components/ExamDetail/Description",
   component: Description,
+  tags: ["autodocs"],
+  parameters: {
+    layout: "fullscreen",
+  },
 } as Meta;
 
 type Story = StoryObj<typeof Description>;

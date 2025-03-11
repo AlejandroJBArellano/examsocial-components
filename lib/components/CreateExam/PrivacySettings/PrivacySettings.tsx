@@ -1,13 +1,13 @@
 import { useFormik, useFormikContext } from "formik";
 import { ChangeEvent } from "react";
 import * as Yup from "yup";
-import { examSchema } from "../../schemas";
-import { Button } from "../Button";
-import { FocusSpan, Paragraph, Span } from "../FontFaces";
-import { Icon } from "../Icon";
-import { Input } from "../Input";
-import { Select } from "../Select";
-import { Separator } from "../Separator";
+import { examSchema } from "../../../schemas";
+import { Button } from "../../Button";
+import { FocusSpan, Paragraph, Span } from "../../FontFaces";
+import { Icon } from "../../Icon";
+import { Input } from "../../Input";
+import { Select } from "../../Select";
+import { Separator } from "../../Separator";
 
 export type PrivacySetting =
   | "ONLY_ME"

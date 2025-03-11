@@ -10,10 +10,10 @@ import { FocusSpan, Heading4 } from "../FontFaces";
 import { Helper } from "../Helper";
 import { Input } from "../Input";
 import { PremiumBadge } from "../PremiumBadge";
-import { PrivacySettings } from "../PrivacySettings";
 import { Switch } from "../Switch";
-import { ThemeSettings } from "../ThemeSettings";
-import { TimingSettings } from "../TimingSettings";
+import { PrivacySettings } from "./PrivacySettings";
+import { ThemeSettings } from "./ThemeSettings";
+import { TimingSettings } from "./TimingSettings";
 
 export const AdvancedSettings = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);

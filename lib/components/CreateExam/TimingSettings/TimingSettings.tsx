@@ -1,9 +1,9 @@
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
-import { examSchema } from "../../schemas";
-import { FocusSpan, Smoll } from "../FontFaces";
-import { Input } from "../Input";
-import { Select } from "../Select";
+import { examSchema } from "../../../schemas";
+import { FocusSpan, Smoll } from "../../FontFaces";
+import { Input } from "../../Input";
+import { Select } from "../../Select";
 
 export type TimingSetting = "NONE" | "TOTAL" | "PER_QUESTION" | "CUSTOM";
 

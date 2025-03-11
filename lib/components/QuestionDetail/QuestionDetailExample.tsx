@@ -6,22 +6,19 @@ const QuestionDetailExample: React.FC = () => {
   const [options] = useState<AnswerOptionType[]>([
     {
       id: "1",
-      content:
-        'import {"{writable}"} from \'svelte/store\'; {"\n"} const store = writable([]);',
+      text: 'import {"{writable}"} from \'svelte/store\'; {"\n"} const store = writable([]);',
       correct: true,
       percentage: 42,
     },
     {
       id: "2",
-      content:
-        "import { useState } from 'react'; {\"\n\"} const [state, setState] = useState([]);",
+      text: "import { useState } from 'react'; {\"\n\"} const [state, setState] = useState([]);",
       correct: false,
       percentage: 30,
     },
     {
       id: "3",
-      content:
-        "import { reactive } from 'vue'; {\"\n\"} const state = reactive([]);",
+      text: "import { reactive } from 'vue'; {\"\n\"} const state = reactive([]);",
       correct: false,
       percentage: 28,
     },

@@ -13,7 +13,7 @@ const StoryOption: React.FC<{
   const options: AnswerOptionType[] = [
     {
       id,
-      content: children,
+      text: children,
       correct: isCorrect,
       percentage,
     },

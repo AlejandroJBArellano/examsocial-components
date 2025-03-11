@@ -19,7 +19,7 @@ export interface AnswerOptionType {
   /** Unique identifier for the option */
   id: string;
   /** Content to display for this option (can be text or React nodes) */
-  content: ReactNode;
+  text: ReactNode;
   /** Whether this option is the correct answer */
   correct: boolean;
   /** Percentage of users who selected this option */
@@ -35,10 +35,6 @@ interface QuestionDetailContextType {
   options: AnswerOptionType[];
   /** ID of the currently selected option */
   selectedOptionId: string | null;
-  /** Whether to show which answer is correct */
-  showCorrectAnswer: boolean;
-  /** Percentage of users who got the answer correct */
-  correctPercentage: number;
   /** Function to select an option */
   selectOption: (id: string) => void;
 }
@@ -68,16 +64,6 @@ const useQuestionDetail = () => {
  * Props for the QuestionDetail component
  */
 interface QuestionDetailProps extends PropsWithChildren {
-  /**
-   * Whether the correct answer is shown
-   * @default true
-   */
-  showCorrectAnswer?: boolean;
-  /**
-   * Percentage of users who got the answer correct
-   * @default 25
-   */
-  correctPercentage?: number;
   /**
    * Callback for edit button click
    */
@@ -125,21 +111,12 @@ const QuestionDetail: FC<QuestionDetailProps> & {
   Question: typeof Question;
   Actions: typeof Actions;
   Header: typeof Header;
-} = ({
-  children,
-  showCorrectAnswer = true,
-  correctPercentage = 25,
-  onEdit,
-  onDelete,
-  options = [],
-}) => {
+} = ({ children, onEdit, onDelete, options = [] }) => {
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
 
   const contextValue = {
     options,
     selectedOptionId,
-    showCorrectAnswer,
-    correctPercentage,
     selectOption: (id: string) => setSelectedOptionId(id),
   };
 
@@ -261,7 +238,7 @@ const Option: FC<{ id: string }> = ({ id }) => {
           type={option.correct ? "viewOnly" : "default"}
           onClick={() => selectOption(id)}
         >
-          {option.content}
+          {option.text}
         </AnswerOption>
       </div>
       <div

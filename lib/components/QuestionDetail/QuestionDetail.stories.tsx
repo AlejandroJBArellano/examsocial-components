@@ -16,16 +16,6 @@ const meta: Meta<typeof QuestionDetail> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    showCorrectAnswer: {
-      control: "boolean",
-      description: "Whether to show which answer is correct",
-      defaultValue: true,
-    },
-    correctPercentage: {
-      control: { type: "range", min: 0, max: 100, step: 1 },
-      description: "Percentage of users who got the answer correct",
-      defaultValue: 25,
-    },
     onEdit: { action: "edit clicked" },
     onDelete: { action: "delete clicked" },
   },
@@ -38,22 +28,19 @@ type Story = StoryObj<typeof QuestionDetail>;
 const sampleOptions: AnswerOptionType[] = [
   {
     id: "1",
-    content:
-      'import {"{writable}"} from \'svelte/store\'; {"\n"} const store = writable([]);',
+    text: 'import {"{writable}"} from \'svelte/store\'; {"\n"} const store = writable([]);',
     correct: true,
     percentage: 42,
   },
   {
     id: "2",
-    content:
-      "import { useState } from 'react'; {\"\\n\"} const [state, setState] = useState([]);",
+    text: "import { useState } from 'react'; {\"\\n\"} const [state, setState] = useState([]);",
     correct: false,
     percentage: 30,
   },
   {
     id: "3",
-    content:
-      "import { reactive } from 'vue'; {\"\\n\"} const state = reactive([]);",
+    text: "import { reactive } from 'vue'; {\"\\n\"} const state = reactive([]);",
     correct: false,
     percentage: 28,
   },
@@ -63,49 +50,8 @@ const sampleOptions: AnswerOptionType[] = [
 export const Default: Story = {
   args: {
     children: "Which code snippet creates a store in Svelte?",
-    showCorrectAnswer: true,
-    correctPercentage: 42,
     options: sampleOptions,
   },
-};
-
-// With correct answer hidden
-export const HiddenAnswer: Story = {
-  args: {
-    children: "Which code snippet creates a store in Svelte?",
-    showCorrectAnswer: false,
-    correctPercentage: 42,
-    options: sampleOptions,
-  },
-};
-
-// With interactive toggle for showing answers
-const InteractiveTemplate = () => {
-  const [showAnswer, setShowAnswer] = useState(false);
-
-  return (
-    <div className="space-y-4">
-      <div>
-        <button
-          className="rounded bg-blue-500 px-4 py-2 text-white"
-          onClick={() => setShowAnswer(!showAnswer)}
-        >
-          {showAnswer ? "Hide" : "Show"} Correct Answer
-        </button>
-      </div>
-      <QuestionDetail
-        options={sampleOptions}
-        showCorrectAnswer={showAnswer}
-        correctPercentage={42}
-      >
-        Which code snippet creates a store in Svelte?
-      </QuestionDetail>
-    </div>
-  );
-};
-
-export const Interactive: Story = {
-  render: () => <InteractiveTemplate />,
 };
 
 // Using compound component pattern
@@ -142,7 +88,7 @@ const CustomContentTemplate = () => {
   const customOptions: AnswerOptionType[] = [
     {
       id: "1",
-      content: (
+      text: (
         <div className="flex items-center gap-2">
           <div className="h-4 w-4 rounded-full bg-blue-500" />
           <span>Option with custom styling</span>
@@ -153,7 +99,7 @@ const CustomContentTemplate = () => {
     },
     {
       id: "2",
-      content: (
+      text: (
         <div className="flex items-center gap-2">
           <div className="h-4 w-4 rounded-full bg-red-500" />
           <span>Another custom option</span>
@@ -165,11 +111,7 @@ const CustomContentTemplate = () => {
   ];
 
   return (
-    <QuestionDetail
-      options={customOptions}
-      showCorrectAnswer={true}
-      correctPercentage={55}
-    >
+    <QuestionDetail options={customOptions}>
       <span className="flex items-center gap-2">
         <span className="text-blue-500">●</span> Question with custom content
       </span>
@@ -194,19 +136,19 @@ const MultipleQuestionsTemplate = () => {
   const programmingOptions: AnswerOptionType[] = [
     {
       id: "p1",
-      content: "JavaScript",
+      text: "JavaScript",
       correct: true,
       percentage: 60,
     },
     {
       id: "p2",
-      content: "Java",
+      text: "Java",
       correct: false,
       percentage: 25,
     },
     {
       id: "p3",
-      content: "Python",
+      text: "Python",
       correct: false,
       percentage: 15,
     },
@@ -215,19 +157,19 @@ const MultipleQuestionsTemplate = () => {
   const mathOptions: AnswerOptionType[] = [
     {
       id: "m1",
-      content: "9",
+      text: "9",
       correct: false,
       percentage: 15,
     },
     {
       id: "m2",
-      content: "6",
+      text: "6",
       correct: true,
       percentage: 75,
     },
     {
       id: "m3",
-      content: "3",
+      text: "3",
       correct: false,
       percentage: 10,
     },
@@ -235,21 +177,11 @@ const MultipleQuestionsTemplate = () => {
 
   return (
     <div className="space-y-8">
-      <QuestionDetail
-        options={programmingOptions}
-        showCorrectAnswer={true}
-        correctPercentage={60}
-      >
+      <QuestionDetail options={programmingOptions}>
         Which language is primarily used for web development?
       </QuestionDetail>
 
-      <QuestionDetail
-        options={mathOptions}
-        showCorrectAnswer={true}
-        correctPercentage={75}
-      >
-        What is 2 × 3?
-      </QuestionDetail>
+      <QuestionDetail options={mathOptions}>What is 2 × 3?</QuestionDetail>
     </div>
   );
 };
@@ -271,14 +203,14 @@ const MissingOptionTemplate = () => {
   const [options] = useState<AnswerOptionType[]>([
     {
       id: "1",
-      content: "This is the only option",
+      text: "This is the only option",
       correct: true,
       percentage: 100,
     },
   ]);
 
   return (
-    <QuestionDetail options={options} showCorrectAnswer={true}>
+    <QuestionDetail options={options}>
       Question with missing selected option
     </QuestionDetail>
   );
@@ -298,11 +230,7 @@ export const MissingOption: Story = {
 // Mobile view (narrow container)
 const MobileViewTemplate = () => (
   <div className="w-80">
-    <QuestionDetail
-      options={sampleOptions}
-      showCorrectAnswer={true}
-      correctPercentage={42}
-    >
+    <QuestionDetail options={sampleOptions}>
       Which code snippet creates a store in Svelte?
     </QuestionDetail>
   </div>

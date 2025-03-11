@@ -2,6 +2,8 @@
 
 Gracias por tu interés en contribuir a ExamSocial Components. Esta guía te ayudará a entender el proceso de contribución y cómo desarrollar nuevos componentes para la biblioteca.
 
+> **Importante**: Antes de comenzar, por favor lee y familiarízate con los [Estándares de Código](./CODING_STANDARDS.md) que deben ser seguidos en este proyecto.
+
 ## Índice
 
 1. [Configuración del Entorno](#configuración-del-entorno)
@@ -10,6 +12,7 @@ Gracias por tu interés en contribuir a ExamSocial Components. Esta guía te ayu
 4. [Testing](#testing)
 5. [Documentación con Storybook](#documentación-con-storybook)
 6. [Pull Requests](#pull-requests)
+7. [Estándares de Código](#estándares-de-código)
 
 ## Configuración del Entorno
 
@@ -228,3 +231,16 @@ export const Primary: Story = {
 - Utiliza los hooks y utilidades existentes cuando sea posible
 - Mantén los componentes simples y enfocados en una sola responsabilidad
 - Documenta las props de los componentes con comentarios o en las historias de Storybook 
+
+## Estándares de Código
+
+Hemos establecido estándares de código detallados para este proyecto. Por favor, consulta [CODING_STANDARDS.md](./CODING_STANDARDS.md) para obtener información completa sobre:
+
+- Estándares generales de codificación
+- Requisitos específicos para componentes
+- Patrón compuesto para el desarrollo de componentes
+- Requisitos para pruebas y stories
+- Convenciones de nomenclatura
+- Consideraciones de rendimiento
+- Accesibilidad
+- Requisitos de documentación 

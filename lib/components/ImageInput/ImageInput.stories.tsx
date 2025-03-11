@@ -6,7 +6,7 @@ export default {
   title: "Components/ImageInput",
   component: ImageInput,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
     docs: {
       description: {
         component:

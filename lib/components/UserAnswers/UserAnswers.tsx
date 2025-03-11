@@ -1,78 +1,38 @@
+import { ReactNode } from "react";
 import { Button } from "../Button";
 import { Heading4 } from "../FontFaces";
-import { ReviewQuestionSet } from "../ReviewQuestionSet";
 
-const UserAnswers = () => {
+export interface UserAnswersProps {
+  /**
+   * The name of the user whose answers are displayed
+   */
+  userName: string;
+
+  /**
+   * The children to be rendered in the grid layout
+   */
+  children: ReactNode;
+
+  /**
+   * Optional callback function when the close button is clicked
+   */
+  onClose?: () => void;
+}
+
+/**
+ * UserAnswers component displays a user's answers in a responsive grid layout
+ * with a header showing the user's name and a close button.
+ */
+const UserAnswers = ({ userName, children, onClose }: UserAnswersProps) => {
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <Heading4>Justin Anderson's Answers</Heading4>
-        <Button.Icon theme="light" rounded size={24}>
+        <Heading4>{userName}'s Answers</Heading4>
+        <Button.Icon theme="light" rounded size={24} onClick={onClose}>
           close
         </Button.Icon>
       </div>
-      <div className="grid gap-x-6 gap-y-4 xl:grid-cols-2">
-        <ReviewQuestionSet
-          question={{
-            title: "What is the capital of France?",
-            _id: "q1",
-            options: [
-              { text: "Paris", correct: true, _id: "o1" },
-              { text: "London", correct: false, _id: "o2" },
-              { text: "Berlin", correct: false, _id: "o3" },
-              { text: "Madrid", correct: false, _id: "o4" },
-            ],
-          }}
-        />
-        <ReviewQuestionSet
-          question={{
-            title: "What is the capital of France?",
-            _id: "q2",
-            options: [
-              { text: "Paris", correct: true, _id: "o5" },
-              { text: "London", correct: false, _id: "o6" },
-              { text: "Berlin", correct: false, _id: "o7" },
-              { text: "Madrid", correct: false, _id: "o8" },
-            ],
-          }}
-        />
-        <ReviewQuestionSet
-          question={{
-            title: "What is the capital of France?",
-            _id: "q3",
-            options: [
-              { text: "Paris", correct: true, _id: "o9" },
-              { text: "London", correct: false, _id: "o10" },
-              { text: "Berlin", correct: false, _id: "o11" },
-              { text: "Madrid", correct: false, _id: "o12" },
-            ],
-          }}
-        />
-        <ReviewQuestionSet
-          question={{
-            title: "What is the capital of France?",
-            _id: "q4",
-            options: [
-              { text: "Paris", correct: true, _id: "o13" },
-              { text: "London", correct: false, _id: "o14" },
-              { text: "Berlin", correct: false, _id: "o15" },
-              { text: "Madrid", correct: false, _id: "o16" },
-            ],
-          }}
-        />
-        <ReviewQuestionSet
-          question={{
-            title: "What is the capital of France?",
-            _id: "q5",
-            options: [
-              { text: "Paris", correct: true, _id: "o17" },
-              { text: "London", correct: false, _id: "o18" },
-              { text: "Berlin", correct: false, _id: "o19" },
-              { text: "Madrid", correct: false, _id: "o20" },
-            ],
-          }}
-        />
-      </div>
+      <div className="grid gap-x-6 gap-y-4 xl:grid-cols-2">{children}</div>
     </div>
   );
 };

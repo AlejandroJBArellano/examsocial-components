@@ -32,7 +32,7 @@ Para utilizar los componentes en tu aplicación React, importa los componentes n
 
 ```jsx
 import { Button, Input, Select } from 'examsocial-components';
-import 'examsocial-components/dist/style.css'; // Importa los estilos
+import "examsocial-components/index.css"; // Importa los estilos
 
 function App() {
   return (

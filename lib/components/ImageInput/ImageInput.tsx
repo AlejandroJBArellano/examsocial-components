@@ -16,7 +16,7 @@ const ImageInput = (
     <label
       draggable
       htmlFor="newImage"
-      className="flex h-28 w-full cursor-pointer items-center justify-center rounded-lg border border-black p-4 xl:h-auto xl:border-dashed xl:p-7"
+      className="flex h-36 w-full max-w-sm cursor-pointer items-center justify-center rounded-lg border border-black p-4 xl:h-auto xl:max-w-2xl xl:border-dashed xl:p-7"
     >
       <input
         accept="image/*"

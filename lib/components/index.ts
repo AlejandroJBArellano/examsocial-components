@@ -4,6 +4,7 @@ export * from "./Back";
 export * from "./BannerInput";
 export * from "./Button";
 export * from "./Checkbox";
+export * from "./Collection";
 export * from "./Comment";
 export * from "./CreateAnswer";
 export * from "./CreateExam";

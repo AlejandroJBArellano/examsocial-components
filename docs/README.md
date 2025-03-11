@@ -39,30 +39,8 @@ npm install examsocial-components
 
 # Importar componentes y estilos
 import { Button, Input } from 'examsocial-components';
-import 'examsocial-components/dist/style.css';
+import 'examsocial-components/index.css';
 ```
-
-### Uso de la configuración de Tailwind
-
-```js
-// tailwind.config.js
-import { tailwindConfig, createTailwindConfig } from 'examsocial-components';
-
-// Usar la configuración tal cual
-export default tailwindConfig;
-
-// O extenderla con tu propia configuración
-export default createTailwindConfig({
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
-  theme: {
-    extend: {
-      // Tus extensiones
-    }
-  }
-});
-```
-
-Para más detalles sobre la configuración de Tailwind, consulta la [documentación detallada](./TAILWIND-CONFIG.md).
 
 ## Desarrollo
 

@@ -5,10 +5,8 @@ Esta sección proporciona información detallada sobre cómo utilizar y extender
 ## Índice
 
 1. [Introducción](#introducción)
-2. [Uso Básico](#uso-básico)
-3. [Extender la Configuración](#extender-la-configuración)
-4. [Temas Disponibles](#temas-disponibles)
-5. [Personalización Avanzada](#personalización-avanzada)
+2. [Temas Disponibles](#temas-disponibles)
+3. [Personalización Avanzada](#personalización-avanzada)
 
 ## Introducción
 
@@ -21,66 +19,11 @@ La configuración incluye:
 - Múltiples temas a través del plugin `tailwindcss-themer`
 - Configuraciones de tipografía y otros estilos
 
-## Uso Básico
-
-Para utilizar la configuración de Tailwind de ExamSocial Components en tu proyecto:
-
-```js
-// tailwind.config.js
-import { tailwindConfig } from 'examsocial-components';
-
-export default tailwindConfig;
-```
-
-Luego, asegúrate de incluir la configuración en tu archivo de PostCSS:
-
-```js
-// postcss.config.js
-export default {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-};
-```
-
-## Extender la Configuración
-
-Si deseas extender la configuración con tus propios estilos, puedes utilizar la función `createTailwindConfig`:
-
-```js
-// tailwind.config.js
-import { createTailwindConfig } from 'examsocial-components';
-
-export default createTailwindConfig({
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}', // Tus archivos
-  ],
-  theme: {
-    extend: {
-      // Tus extensiones de tema
-      colors: {
-        custom: '#ff0000',
-        'custom-dark': '#990000',
-      },
-      fontFamily: {
-        custom: ['CustomFont', 'sans-serif'],
-      },
-    },
-  },
-  plugins: [
-    // Tus plugins adicionales
-  ],
-});
-```
-
-La función `createTailwindConfig` realiza una fusión profunda de la configuración de ExamSocial Components con tu configuración personalizada, asegurando que no se pierdan las configuraciones originales.
-
 ## Temas Disponibles
 
 La configuración de Tailwind incluye varios temas predefinidos que puedes utilizar:
 
-### Default
+### WHITEBOARD
 
 El tema por defecto con una paleta de colores moderna y fresca:
 
@@ -133,60 +76,22 @@ Para cambiar entre temas, puedes utilizar las clases CSS proporcionadas por el p
 </div>
 
 <!-- Tema INDUSTRIAL_EDGE -->
-<div class="theme-INDUSTRIAL_EDGE">
+<div class="INDUSTRIAL_EDGE">
   <button class="bg-primary text-white">Botón con tema industrial</button>
 </div>
 
 <!-- Tema EARTHY_TONES -->
-<div class="theme-EARTHY_TONES">
+<div class="EARTHY_TONES">
   <button class="bg-primary text-white">Botón con tema terroso</button>
 </div>
 
 <!-- Tema VIBRANT_ORCHID -->
-<div class="theme-VIBRANT_ORCHID">
+<div class="VIBRANT_ORCHID">
   <button class="bg-primary text-white">Botón con tema vibrante</button>
 </div>
 ```
 
 ## Personalización Avanzada
-
-### Añadir Nuevos Temas
-
-Si deseas añadir tus propios temas, puedes extender la configuración de Tailwind y añadir nuevos temas al plugin `tailwindcss-themer`:
-
-```js
-// tailwind.config.js
-import { createTailwindConfig } from 'examsocial-components';
-import tailwindThemer from 'tailwindcss-themer';
-
-// Obtén la configuración base
-const baseConfig = createTailwindConfig({
-  // Tu configuración base
-});
-
-// Añade tu propio tema
-baseConfig.plugins.push(
-  tailwindThemer({
-    themes: [
-      {
-        name: 'MY_CUSTOM_THEME',
-        extend: {
-          colors: {
-            primary: {
-              shadow: '#123456',
-              DEFAULT: '#234567',
-              tint: '#345678',
-            },
-            // ... más colores
-          },
-        },
-      },
-    ],
-  })
-);
-
-export default baseConfig;
-```
 
 ### Personalización de Componentes
 
@@ -209,22 +114,3 @@ function CustomButton({ children, theme = 'primary' }) {
   );
 }
 ```
-
-### Acceso a la Configuración Programáticamente
-
-Si necesitas acceder a la configuración de Tailwind programáticamente (por ejemplo, para utilizar los mismos colores en un gráfico o en CSS-in-JS), puedes importar la configuración:
-
-```jsx
-import { tailwindConfig } from 'examsocial-components';
-
-function MyComponent() {
-  // Acceder a un color de la configuración
-  const primaryColor = tailwindConfig.theme.extend.colors.primary.DEFAULT;
-  
-  return (
-    <div style={{ backgroundColor: primaryColor }}>
-      Contenido con color primario
-    </div>
-  );
-}
-``` 

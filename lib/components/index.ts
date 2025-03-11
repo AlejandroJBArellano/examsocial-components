@@ -41,7 +41,6 @@ export * from "./QuestionSet";
 export * from "./RadioGroup";
 export * from "./ReportExam";
 export * from "./ReviewQuestionSet";
-export * from "./SaveButton";
 export * from "./Select";
 export * from "./Separator";
 export * from "./SocialPost";

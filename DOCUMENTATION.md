@@ -94,7 +94,6 @@ La biblioteca incluye los siguientes componentes:
 - **SocialPost**: Publicación social.
 - **Comment**: Componente de comentario.
 - **FavoriteButton**: Botón para marcar como favorito.
-- **SaveButton**: Botón para guardar contenido.
 - **ProfilePlaceholder**: Placeholder para perfiles de usuario.
 - **PremiumBadge**: Insignia para usuarios premium.
 

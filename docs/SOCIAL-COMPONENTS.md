@@ -7,9 +7,8 @@ Esta sección documenta los componentes relacionados con funcionalidades sociale
 1. [SocialPost](#socialpost)
 2. [Comment](#comment)
 3. [FavoriteButton](#favoritebutton)
-4. [SaveButton](#savebutton)
-5. [ProfilePlaceholder](#profileplaceholder)
-6. [PremiumBadge](#premiumbadge)
+4. [ProfilePlaceholder](#profileplaceholder)
+5. [PremiumBadge](#premiumbadge)
 
 ## SocialPost
 
@@ -159,42 +158,6 @@ El componente `FavoriteButton` proporciona un botón para marcar elementos como 
   isFavorite={false}
   onClick={() => toggleFavorite(itemId)}
   size="lg"
-/>
-```
-
-## SaveButton
-
-El componente `SaveButton` proporciona un botón para guardar elementos.
-
-### Propiedades
-
-| Propiedad | Tipo | Valor por defecto | Descripción |
-|-----------|------|-------------------|-------------|
-| `isSaved` | `boolean` | `false` | Si el elemento está guardado |
-| `onClick` | `() => void` | - | Función llamada al hacer clic en el botón |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Tamaño del botón |
-| `className` | `string` | - | Clases CSS adicionales |
-
-### Ejemplos
-
-```jsx
-// SaveButton básico
-<SaveButton 
-  isSaved={false}
-  onClick={() => toggleSave(itemId)}
-/>
-
-// SaveButton guardado
-<SaveButton 
-  isSaved={true}
-  onClick={() => toggleSave(itemId)}
-/>
-
-// SaveButton con tamaño personalizado
-<SaveButton 
-  isSaved={false}
-  onClick={() => toggleSave(itemId)}
-  size="sm"
 />
 ```
 

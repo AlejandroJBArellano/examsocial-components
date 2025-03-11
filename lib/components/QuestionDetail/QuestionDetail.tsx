@@ -20,7 +20,7 @@ export interface AnswerOptionType {
   /** Content to display for this option (can be text or React nodes) */
   content: ReactNode;
   /** Whether this option is the correct answer */
-  isCorrect: boolean;
+  correct: boolean;
   /** Percentage of users who selected this option */
   percentage: number;
 }
@@ -254,19 +254,13 @@ const Option: FC<{ id: string }> = ({ id }) => {
   if (!option) return null;
 
   const isSelected = selectedOptionId === id;
-  const isCorrect = option.isCorrect;
-
-  // Determine the type of AnswerOption based on state
-  let optionType: "default" | "selectable" | "viewOnly" = "selectable";
-  if (showCorrectAnswer && isCorrect) {
-    optionType = "viewOnly";
-  }
+  const isCorrect = option.correct;
 
   return (
     <div className="flex-1">
       <AnswerOption
         checked={isSelected || (showCorrectAnswer && isCorrect)}
-        type={optionType}
+        type="viewOnly"
         onClick={() => selectOption(id)}
       >
         {option.content}

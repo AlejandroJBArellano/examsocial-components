@@ -40,21 +40,21 @@ const sampleOptions: AnswerOptionType[] = [
     id: "1",
     content:
       'import {"{writable}"} from \'svelte/store\'; {"\n"} const store = writable([]);',
-    isCorrect: true,
+    correct: true,
     percentage: 42,
   },
   {
     id: "2",
     content:
       "import { useState } from 'react'; {\"\\n\"} const [state, setState] = useState([]);",
-    isCorrect: false,
+    correct: false,
     percentage: 30,
   },
   {
     id: "3",
     content:
       "import { reactive } from 'vue'; {\"\\n\"} const state = reactive([]);",
-    isCorrect: false,
+    correct: false,
     percentage: 28,
   },
 ];
@@ -148,7 +148,7 @@ const CustomContentTemplate = () => {
           <span>Option with custom styling</span>
         </div>
       ),
-      isCorrect: true,
+      correct: true,
       percentage: 55,
     },
     {
@@ -159,7 +159,7 @@ const CustomContentTemplate = () => {
           <span>Another custom option</span>
         </div>
       ),
-      isCorrect: false,
+      correct: false,
       percentage: 45,
     },
   ];
@@ -195,19 +195,19 @@ const MultipleQuestionsTemplate = () => {
     {
       id: "p1",
       content: "JavaScript",
-      isCorrect: true,
+      correct: true,
       percentage: 60,
     },
     {
       id: "p2",
       content: "Java",
-      isCorrect: false,
+      correct: false,
       percentage: 25,
     },
     {
       id: "p3",
       content: "Python",
-      isCorrect: false,
+      correct: false,
       percentage: 15,
     },
   ];
@@ -216,19 +216,19 @@ const MultipleQuestionsTemplate = () => {
     {
       id: "m1",
       content: "9",
-      isCorrect: false,
+      correct: false,
       percentage: 15,
     },
     {
       id: "m2",
       content: "6",
-      isCorrect: true,
+      correct: true,
       percentage: 75,
     },
     {
       id: "m3",
       content: "3",
-      isCorrect: false,
+      correct: false,
       percentage: 10,
     },
   ];
@@ -272,7 +272,7 @@ const MissingOptionTemplate = () => {
     {
       id: "1",
       content: "This is the only option",
-      isCorrect: true,
+      correct: true,
       percentage: 100,
     },
   ]);

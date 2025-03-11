@@ -8,21 +8,21 @@ const QuestionDetailExample: React.FC = () => {
       id: "1",
       content:
         'import {"{writable}"} from \'svelte/store\'; {"\n"} const store = writable([]);',
-      isCorrect: true,
+      correct: true,
       percentage: 42,
     },
     {
       id: "2",
       content:
         "import { useState } from 'react'; {\"\n\"} const [state, setState] = useState([]);",
-      isCorrect: false,
+      correct: false,
       percentage: 30,
     },
     {
       id: "3",
       content:
         "import { reactive } from 'vue'; {\"\n\"} const state = reactive([]);",
-      isCorrect: false,
+      correct: false,
       percentage: 28,
     },
   ]);

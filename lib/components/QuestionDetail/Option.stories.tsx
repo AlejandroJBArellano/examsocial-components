@@ -14,7 +14,7 @@ const StoryOption: React.FC<{
     {
       id,
       content: children,
-      isCorrect,
+      correct: isCorrect,
       percentage,
     },
   ];

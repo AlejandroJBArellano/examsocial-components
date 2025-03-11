@@ -8,12 +8,12 @@ interface RetentionRateProps {
 
 const RetentionRate = ({ completed, outOfTime, quit }: RetentionRateProps) => {
   return (
-    <div className="space-y-4 rounded-lg border border-secondary-shadow bg-secondary p-8">
+    <div className="space-y-4 rounded-lg border border-secondary-shadow bg-secondary-tint p-8">
       <Heading3>Retention Rate</Heading3>
-      <div className="flex w-full">
+      <div className="flex w-full divide-x-sm divide-black border-sm border-black">
         {completed > 0 && (
           <div
-            className="border-sm border-black bg-feedback-success p-3 text-center"
+            className="bg-feedback-success p-3 text-center"
             style={{
               width: `${completed}%`,
             }}
@@ -23,7 +23,7 @@ const RetentionRate = ({ completed, outOfTime, quit }: RetentionRateProps) => {
         )}
         {outOfTime > 0 && (
           <div
-            className="border-sm border-black bg-feedback-warning p-3 text-center"
+            className="bg-feedback-warning p-3 text-center"
             style={{
               width: `${outOfTime}%`,
             }}
@@ -33,7 +33,7 @@ const RetentionRate = ({ completed, outOfTime, quit }: RetentionRateProps) => {
         )}
         {quit > 0 && (
           <div
-            className="border-sm border-black bg-feedback-error p-3 text-center"
+            className="bg-feedback-error p-3 text-center"
             style={{
               width: `${quit}%`,
             }}

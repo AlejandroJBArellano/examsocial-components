@@ -12,6 +12,7 @@ interface ICommentProps {
   };
   createdAt: Date;
   rating: number;
+  liked?: boolean;
 }
 
 const Comment = ({
@@ -19,6 +20,7 @@ const Comment = ({
   createdAt,
   rating,
   children,
+  liked,
 }: PropsWithChildren<ICommentProps>) => {
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
   return (
@@ -59,7 +61,7 @@ const Comment = ({
             })}
           </div>
         </div>
-        <Button.Icon rounded theme="light" size={20}>
+        <Button.Icon rounded theme={liked ? "accent" : "light"} size={20}>
           favorite_border
         </Button.Icon>
       </article>

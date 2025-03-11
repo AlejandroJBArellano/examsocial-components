@@ -1,30 +1,32 @@
 import { AnswerOption } from "../AnswerOption";
 import { Button } from "../Button";
-import { Icon } from "../Icon";
+import { Heading3 } from "../FontFaces";
 
 const QuestionDetail = () => {
   return (
-    <section className="space-y-8 rounded-md border-sm border-black p-8 shadow-right">
+    <section className="w-full max-w-2xl space-y-8 rounded-md border-sm border-black p-8 shadow-right">
       <article className="flex gap-6">
-        <h3 className="sentient text-[32px] font-bold leading-8 tracking-[0.64px]">
+        <Heading3>
           Which of the following is a correct way to create a writable store in
           Svelte?
-        </h3>
+        </Heading3>
         <div className="flex flex-col items-center gap-4">
-          <Button rounded className="p-2">
-            <Icon name="edit" className="!h-6 !w-6" />
-          </Button>
-          <Button theme="feedback-error" rounded className="p-2">
-            <Icon name="delete" className="!h-6 !w-6" />
-          </Button>
+          <Button.Icon rounded size={24} filled>
+            edit
+          </Button.Icon>
+          <Button.Icon theme="feedback-error" rounded size={24} filled>
+            delete
+          </Button.Icon>
         </div>
       </article>
       <article>
         <div className="flex gap-6">
-          <AnswerOption checked type="viewOnly">
-            import {"{writable}"} from 'svelte/store'; {"\n "}
-            const store = writable([]);
-          </AnswerOption>
+          <div className="flex-1">
+            <AnswerOption checked type="viewOnly">
+              import {"{writable}"} from 'svelte/store'; {"\n "}
+              const store = writable([]);
+            </AnswerOption>
+          </div>
           <div className="flex items-center justify-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -48,9 +50,7 @@ const QuestionDetail = () => {
                 fill="#DBFAE4"
               />
             </svg>
-            <h3 className="sentient text-[32px] font-bold leading-10 tracking-[0.64px]">
-              25%
-            </h3>
+            <Heading3>25%</Heading3>
           </div>
         </div>
       </article>

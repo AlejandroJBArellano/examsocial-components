@@ -1,6 +1,5 @@
 import { Button } from "../Button";
 import { Heading4 } from "../FontFaces";
-import { Icon } from "../Icon";
 import { ReviewQuestionSet } from "../ReviewQuestionSet";
 
 const UserAnswers = () => {
@@ -8,9 +7,9 @@ const UserAnswers = () => {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <Heading4>Justin Anderson's Answers</Heading4>
-        <Button theme="light" className="p-2" rounded>
-          <Icon name="close" className="!h-6 !w-6" />
-        </Button>
+        <Button.Icon theme="light" rounded size={24}>
+          close
+        </Button.Icon>
       </div>
       <div className="grid gap-x-6 gap-y-4 xl:grid-cols-2">
         <ReviewQuestionSet

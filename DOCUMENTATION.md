@@ -39,7 +39,9 @@ function App() {
     <div>
       <Button theme="primary">Click me</Button>
       <Input placeholder="Enter your name" />
-      <Select options={[{ value: 'option1', label: 'Option 1' }]} />
+      <Select>
+        <Select.Option>Option 1</Select.Option>
+      </Select>
     </div>
   );
 }

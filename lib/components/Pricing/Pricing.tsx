@@ -29,7 +29,7 @@ const Pricing = ({ children, mode = "basic" }: PricingProps) => {
   return (
     <section
       className={cn(
-        "space-y-6 border-black px-4 py-5 md:rounded-xl md:border xl:space-y-8 xl:p-6",
+        "space-y-6 border-black px-4 py-5 md:flex md:h-full md:flex-col md:justify-between md:rounded-xl md:border xl:space-y-8 xl:p-6",
         modes[mode],
       )}
     >
@@ -76,9 +76,9 @@ Pricing.Price = PricingPrice;
 
 const PricingComparison = ({ children }: PropsWithChildren) => {
   return (
-    <article className="space-y-2">
+    <article className="space-y-2 md:flex md:flex-1 md:flex-col">
       <Heading5>Includes:</Heading5>
-      <div className="space-y-3">{children}</div>
+      <div className="space-y-3 md:flex-1">{children}</div>
     </article>
   );
 };

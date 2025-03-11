@@ -258,7 +258,7 @@ const Option: FC<{ id: string }> = ({ id }) => {
       <div className="flex-1">
         <AnswerOption
           checked={option.correct}
-          type="viewOnly"
+          type={option.correct ? "viewOnly" : "default"}
           onClick={() => selectOption(id)}
         >
           {option.content}

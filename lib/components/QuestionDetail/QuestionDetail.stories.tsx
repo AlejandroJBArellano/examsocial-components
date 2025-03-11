@@ -110,7 +110,7 @@ export const Interactive: Story = {
 
 // Using compound component pattern
 const CompoundPatternTemplate = () => (
-  <QuestionDetail showCorrectAnswer={true}>
+  <QuestionDetail>
     <QuestionDetail.Header
       onEdit={() => console.log("Edit")}
       onDelete={() => console.log("Delete")}

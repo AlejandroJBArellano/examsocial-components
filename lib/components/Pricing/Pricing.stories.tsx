@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../Button";
-import { FocusSpan } from "../FontFaces";
+import { FocusSpan, Heading5 } from "../FontFaces";
 import Pricing from "./Pricing";
 
 const meta: Meta<typeof Pricing> = {
@@ -134,5 +134,120 @@ export const AllPlans: Story = {
       <YearlyPlan />
       <LifetimePlan />
     </div>
+  ),
+};
+
+// Individual component stories
+export const PricingExplanationComponent: Story = {
+  name: "PricingExplanation",
+  render: () => (
+    <div className="p-4">
+      <Pricing.Explanation>Save 20% with annual billing</Pricing.Explanation>
+    </div>
+  ),
+};
+
+export const PricingContainerComponent: Story = {
+  name: "PricingContainer",
+  render: () => (
+    <div className="p-4">
+      <Pricing.Container>
+        <Pricing.Price>$19</Pricing.Price>
+        <Pricing.Period>/month</Pricing.Period>
+      </Pricing.Container>
+    </div>
+  ),
+};
+
+export const PricingComparisonCellWrapperComponent: Story = {
+  name: "PricingComparisonCellWrapper",
+  render: () => (
+    <div className="flex gap-4 p-4">
+      <Pricing.ComparisonCellWrapper includes={true} />
+      <Pricing.ComparisonCellWrapper includes={false} />
+    </div>
+  ),
+};
+
+export const PricingFeatureRowComponent: Story = {
+  name: "PricingFeatureRow",
+  render: () => (
+    <div className="w-full max-w-2xl p-4">
+      <Pricing.FeatureRow
+        feature="AI-Assisted Exam Creation"
+        includes={[true, true, false]}
+      >
+        Create exams with AI assistance
+      </Pricing.FeatureRow>
+      <Pricing.FeatureRow
+        feature="Unlimited Students"
+        includes={[false, true, true]}
+      >
+        No limit on the number of students
+      </Pricing.FeatureRow>
+      <Pricing.FeatureRow
+        feature="Advanced Analytics"
+        includes={[false, false, true]}
+      >
+        Detailed performance analytics and insights
+      </Pricing.FeatureRow>
+    </div>
+  ),
+};
+
+// Comparison table example with FeatureRows
+export const PricingComparisonTable: Story = {
+  render: () => (
+    <table className="w-full max-w-3xl p-4">
+      <thead>
+        <tr>
+          <th className="w-1/2">
+            <Heading5>Features</Heading5>
+          </th>
+          <th>
+            <Heading5>Basic</Heading5>
+          </th>
+          <th>
+            <Heading5>Pro</Heading5>
+          </th>
+          <th>
+            <Heading5>Enterprise</Heading5>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <Pricing.FeatureRow
+          feature="Up to 5 exams"
+          includes={[true, true, true]}
+        >
+          Create up to 5 exams for free
+        </Pricing.FeatureRow>
+        <Pricing.FeatureRow
+          feature="Unlimited exams"
+          includes={[false, true, true]}
+        >
+          Create as many exams as you need
+        </Pricing.FeatureRow>
+        <Pricing.FeatureRow
+          feature="AI Question Generation"
+          includes={[false, true, true]}
+        >
+          Generate questions with AI
+        </Pricing.FeatureRow>
+        <Pricing.FeatureRow
+          feature="Advanced Analytics"
+          includes={[false, false, true]}
+        >
+          Detailed performance analytics
+        </Pricing.FeatureRow>
+        <Pricing.FeatureRow
+          feature="Custom Branding"
+          includes={[false, false, true]}
+        >
+          Add your logo and brand colors
+        </Pricing.FeatureRow>
+      </tbody>
+    </table>
   ),
 };

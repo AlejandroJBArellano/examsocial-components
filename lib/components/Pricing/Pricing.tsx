@@ -104,9 +104,7 @@ const PricingComparisonCellWrapper = ({ includes }: { includes: boolean }) => {
     <Icon
       name={includes ? "check_circle" : "do_not_disturb_on"}
       size={32}
-      className={cn(
-        includes ? "bg-feedback-success text-white" : "bg-gray-500 text-white",
-      )}
+      className={cn(includes ? "text-feedback-success" : "text-gray-500")}
       filled
     />
   );
@@ -125,19 +123,19 @@ const PricingFeatureRow = ({
   includes,
 }: PricingFeatureRowProps) => {
   return (
-    <article className="flex justify-between gap-4 py-2 md:gap-5 xl:gap-6">
-      <div className="flex w-1/2 items-center justify-between gap-2 md:justify-start">
+    <tr className="flex justify-between gap-4 py-2 md:gap-5 xl:gap-6">
+      <td className="flex w-1/2 items-center justify-between gap-2 md:justify-start">
         <FocusSpan>{feature}</FocusSpan>
         <Helper align="center" side="top">
           {children}
         </Helper>
-      </div>
-      <div className="flex items-center gap-2">
-        {includes.map((include) => (
+      </td>
+      {includes.map((include, index) => (
+        <td key={index}>
           <Pricing.ComparisonCellWrapper includes={include} />
-        ))}
-      </div>
-    </article>
+        </td>
+      ))}
+    </tr>
   );
 };
 

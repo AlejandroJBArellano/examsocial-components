@@ -57,18 +57,84 @@ describe("Pricing Component", () => {
     expect(comparison).toBeDefined();
   });
 
-  it("renders Pricing.ComparisonCell correctly with default icon", () => {
-    render(<Pricing.ComparisonCell>Cell Content</Pricing.ComparisonCell>);
-    const container = screen.getByText("Cell Content");
-    console.log(container.innerHTML);
+  it("renders Pricing.Feature correctly with default icon", () => {
+    render(<Pricing.Feature>Feature Content</Pricing.Feature>);
+    const container = screen.getByText("Feature Content");
     expect(container.querySelector("span")?.innerHTML).toBe("check_circle");
   });
 
-  it("renders Pricing.ComparisonCell correctly with special icon", () => {
-    render(
-      <Pricing.ComparisonCell special>Cell Content</Pricing.ComparisonCell>,
-    );
-    const container = screen.getByText("Cell Content");
+  it("renders Pricing.Feature correctly with special icon", () => {
+    render(<Pricing.Feature special>Feature Content</Pricing.Feature>);
+    const container = screen.getByText("Feature Content");
     expect(container.querySelector("span")?.innerHTML).toBe("new_releases");
+  });
+
+  it("renders Pricing.Explanation correctly", () => {
+    render(
+      <Pricing.Explanation>Save 20% with annual billing</Pricing.Explanation>,
+    );
+    const explanation = screen.getByText("Save 20% with annual billing");
+    expect(explanation).toBeDefined();
+    expect(explanation.className).toContain("text-sm");
+  });
+
+  it("renders Pricing.Container correctly", () => {
+    render(<Pricing.Container>Price content with period</Pricing.Container>);
+    const container = screen.getByText("Price content with period");
+    expect(container).toBeDefined();
+    expect(container.className).toContain("flex items-baseline");
+  });
+
+  it("renders Pricing.ComparisonCellWrapper when includes is true", () => {
+    render(<Pricing.ComparisonCellWrapper includes={true} />);
+    const element = document.querySelector(".bg-feedback-success");
+    expect(element).toBeDefined();
+  });
+
+  it("renders Pricing.ComparisonCellWrapper when includes is false", () => {
+    render(<Pricing.ComparisonCellWrapper includes={false} />);
+    const element = document.querySelector(".bg-gray-500");
+    expect(element).toBeDefined();
+  });
+
+  it("renders Pricing.FeatureRow correctly", () => {
+    render(
+      <Pricing.FeatureRow feature="Test Feature" includes={[true, false, true]}>
+        Feature description
+      </Pricing.FeatureRow>,
+    );
+
+    const featureText = screen.getByText("Test Feature");
+    expect(featureText).toBeDefined();
+
+    const description = screen.getByText("Feature description");
+    expect(description).toBeDefined();
+
+    // Should have correct number of ComparisonCellWrapper elements
+    const cellWrappers = document.querySelectorAll(
+      "article > div:last-child > *",
+    );
+    expect(cellWrappers.length).toBe(3);
+
+    // Check if first and third are success (green) and middle is gray
+    const successCells = document.querySelectorAll(".bg-feedback-success");
+    const grayCells = document.querySelectorAll(".bg-gray-500");
+    expect(successCells.length).toBe(2);
+    expect(grayCells.length).toBe(1);
+  });
+
+  it("renders Pricing.FeatureRow without children", () => {
+    render(
+      <Pricing.FeatureRow feature="Simple Feature" includes={[true, true]} />,
+    );
+
+    const featureText = screen.getByText("Simple Feature");
+    expect(featureText).toBeDefined();
+
+    // Should have correct number of ComparisonCellWrapper elements
+    const cellWrappers = document.querySelectorAll(
+      "article > div:last-child > *",
+    );
+    expect(cellWrappers.length).toBe(2);
   });
 });

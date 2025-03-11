@@ -74,7 +74,7 @@ export const Drawer = {
       <div
         ref={ref}
         className={cn(
-          "mx-auto mb-8 h-1.5 w-12 flex-shrink-0 rounded-full bg-gray-300",
+          "mx-auto mb-8 h-2 w-24 flex-shrink-0 cursor-pointer rounded-full bg-black",
           className,
         )}
         {...props}

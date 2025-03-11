@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useState } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import { cn } from "../../utils";
 import { Icon } from "../Icon";
 import { Tooltip } from "../Tooltip";
@@ -7,82 +7,47 @@ interface FavoriteButtonProps extends ComponentPropsWithoutRef<"button"> {
   /**
    * Whether the item is favorited
    */
-  isFavorite?: boolean;
-  /**
-   * Callback when favorite status changes
-   */
-  onFavoriteChange?: (isFavorite: boolean) => void;
-  /**
-   * Size of the button
-   */
-  size?: "default" | "large";
-  /**
-   * Tooltip text
-   */
-  tooltipText?: string;
-  /**
-   * Tooltip position
-   */
-  tooltipSide?: "top" | "right" | "bottom" | "left";
+  favorite?: boolean;
 }
 
 const FavoriteButton = ({
-  isFavorite = false,
-  onFavoriteChange,
-  size = "default",
-  tooltipText = "Add to favorites",
-  tooltipSide = "left",
+  favorite = false,
+  children,
   className,
   ...props
 }: FavoriteButtonProps) => {
-  const [isHovering, setIsHovering] = useState(false);
-  const [favorite, setFavorite] = useState(isFavorite);
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const newFavoriteState = !favorite;
-    setFavorite(newFavoriteState);
-    onFavoriteChange?.(newFavoriteState);
-    props.onClick?.(e);
-  };
-
   const buttonElement = (
     <button
       type="button"
       data-testid="favorite-button"
       {...props}
-      onClick={handleClick}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-      className={cn(
-        "flex items-center justify-center rounded-md border-2 border-black",
-        size === "default" ? "h-10 w-10 p-2" : "h-11 w-11 p-2",
-        favorite
-          ? isHovering
-            ? "bg-white"
-            : "bg-accent-tint"
-          : isHovering
-            ? "bg-accent-tint"
-            : "bg-white",
-        className,
-      )}
+      className={
+        cn(
+          "flex h-10 w-10 items-center justify-center rounded-md border-2 border-black p-2 xl:h-11 xl:w-11",
+          favorite
+            ? "border-accent-shadow bg-accent-tint text-accent-shadow hover:border-black hover:bg-white hover:text-black"
+            : "bg-white hover:border-accent-shadow hover:bg-accent-tint hover:text-accent-shadow",
+          className,
+        ) +
+        " hover:shadow-right-sm" +
+        (favorite
+          ? " shadow-accent-shadow hover:shadow-black"
+          : " hover:shadow-accent-shadow")
+      }
     >
-      <Icon
-        name="favorite"
-        className={favorite || isHovering ? "text-accent-shadow" : "text-black"}
-      />
+      <Icon name="favorite" filled />
     </button>
   );
 
-  // Si no hay texto de tooltip o el tamaño no es large, solo devolvemos el botón
-  if (!tooltipText || size !== "large") {
-    return buttonElement;
-  }
-
-  // Si hay texto de tooltip y el tamaño es large, envolvemos el botón con el tooltip
+  // Envolvemos el botón con el tooltip
   return (
-    <Tooltip trigger={buttonElement} side={tooltipSide} align="center">
-      {tooltipText}
+    <Tooltip
+      trigger={buttonElement}
+      contentClassName="hidden xl:inline-block"
+      side="top"
+      align="center"
+    >
+      {children}
     </Tooltip>
   );
 };

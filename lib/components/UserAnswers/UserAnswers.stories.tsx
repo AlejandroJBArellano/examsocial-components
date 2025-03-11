@@ -70,7 +70,11 @@ export const Default: Story = {
   render: (args) => (
     <UserAnswers {...args}>
       {mockQuestions.map((question) => (
-        <ReviewQuestionSet key={question._id} question={question} />
+        <ReviewQuestionSet
+          key={question._id}
+          question={question}
+          selected={0}
+        />
       ))}
     </UserAnswers>
   ),
@@ -93,6 +97,7 @@ export const WithMultipleQuestions: Story = {
             ...question,
             _id: `${question._id}-${index}`,
           }}
+          selected={0}
         />
       ))}
     </UserAnswers>

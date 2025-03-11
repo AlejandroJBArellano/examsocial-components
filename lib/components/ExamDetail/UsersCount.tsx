@@ -1,15 +1,22 @@
 import { FocusDisplay, Heading3 } from "../FontFaces";
 import { Icon } from "../Icon";
 
-const UsersCount = () => {
+export interface UsersCountProps {
+  count: number;
+}
+
+const UsersCount = ({ count }: UsersCountProps) => {
   return (
-    <div className="space-y-5 rounded-lg border border-primary-shadow bg-primary-tint p-8">
+    <section
+      className="space-y-5 rounded-lg border border-primary-shadow bg-primary-tint p-8"
+      aria-label={`${count} exams taken`}
+    >
       <div className="flex gap-4">
-        <Icon name="person_check" size={64} />
-        <FocusDisplay>289</FocusDisplay>
+        <Icon name="person_check" size={64} aria-hidden="true" />
+        <FocusDisplay>{count}</FocusDisplay>
       </div>
       <Heading3 className="ml-20">exams taken</Heading3>
-    </div>
+    </section>
   );
 };
 

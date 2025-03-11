@@ -1,8 +1,14 @@
-const BannerExam = () => {
+export interface BannerExamProps {
+  imageUrl: string;
+  title: string;
+}
+
+const BannerExam = ({ imageUrl, title }: BannerExamProps) => {
   return (
     <img
-      className="h-60 rounded-2xl shadow-right-sm border-2 border-black w-full"
-      src="https://placehold.co/358x240"
+      className="h-60 w-full rounded-2xl border-2 border-black shadow-right-sm"
+      src={imageUrl}
+      alt={`${title} exam banner`}
     />
   );
 };

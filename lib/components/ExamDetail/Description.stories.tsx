@@ -15,6 +15,9 @@ type Story = StoryObj<typeof Description>;
 
 export const Default: Story = {
   args: {
-    count: 4.8,
+    description: "This is a description",
+    onStartExam: () => {},
+    onFavorite: () => {},
+    onBookmark: () => {},
   },
 };

@@ -8,6 +8,7 @@ export * from "./Comment";
 export * from "./CreateAnswer";
 export * from "./CreateExam";
 export * from "./CTA";
+export * from "./Drawer";
 export * from "./EditQuestion";
 export * from "./Email";
 export * from "./ExamCard";

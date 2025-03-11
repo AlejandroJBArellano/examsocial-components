@@ -6,7 +6,7 @@ export default {
   title: "Components/ExamDetail/Header",
   component: Header,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
     docs: {
       description: {
         component:
@@ -22,8 +22,14 @@ type Story = StoryObj<typeof Header>;
 export const Default: Story = {
   args: {
     rating: 4.8,
-    authorName: "John Doe",
-    category: "Math",
+    author: {
+      name: "John Doe",
+      href: "/profile",
+    },
+    category: {
+      name: "Math",
+      href: "/category/math",
+    },
     duration: { hours: 1, minutes: 30 },
     imageUrl: "https://via.placeholder.com/150",
     participants: 100,

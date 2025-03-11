@@ -4,8 +4,14 @@ import BannerExam from "./Banner";
 
 export interface HeaderExamProps {
   title: string;
-  authorName: string;
-  category: string;
+  author: {
+    name: string;
+    href: string;
+  };
+  category: {
+    name: string;
+    href: string;
+  };
   participants: number;
   duration: {
     hours?: number;
@@ -17,7 +23,7 @@ export interface HeaderExamProps {
 
 const HeaderExam = ({
   title,
-  authorName,
+  author,
   category,
   participants,
   duration,
@@ -31,47 +37,42 @@ const HeaderExam = ({
   return (
     <header className="space-y-6 bg-secondary-tint p-6">
       <BannerExam imageUrl={imageUrl} title={title} />
-      <div className="space-y-3">
-        <h1>
-          <Heading3>{title}</Heading3>
-        </h1>
-        <div className="flex justify-between">
-          <Anchor className="text-accent-shadow" href="/profile">
-            {authorName}
-          </Anchor>
-          <Anchor
-            className="text-accent-shadow"
-            href={`/category/${category.toLowerCase()}`}
-          >
-            {category}
-          </Anchor>
-          <div
-            className="flex items-center gap-2"
-            aria-label={`${participants} participants`}
-          >
-            <Heading6>{participants}</Heading6>
-            <Icon name="person_check" className="!size-8" aria-hidden="true" />
-          </div>
+      <Heading3>{title}</Heading3>
+      <div className="flex items-center justify-between">
+        <Anchor className="text-accent-shadow" href={author.href}>
+          {author.name}
+        </Anchor>
+        <Anchor className="text-accent-shadow" href={category.href}>
+          {category.name}
+        </Anchor>
+        <div
+          className="flex items-center gap-2"
+          aria-label={`${participants} participants`}
+        >
+          <Heading6>{participants}</Heading6>
+          <Icon name="person_check" size={32} filled aria-hidden="true" />
         </div>
-        <div className="flex justify-between">
-          <div
-            className="flex items-center gap-2 text-secondary-shadow"
-            aria-label={`Duration: ${formattedDuration}`}
-          >
-            <Icon name="timer" className="!size-8" aria-hidden="true" />
-            <Heading3>{formattedDuration}</Heading3>
-          </div>
-          <div
-            className="flex items-center gap-1"
-            aria-label={`Rating: ${rating} out of 5`}
-          >
-            <Heading5>{rating}</Heading5>
-            <Icon
-              name="grade"
-              className="!size-8 text-extra"
-              aria-hidden="true"
-            />
-          </div>
+      </div>
+      <div className="flex items-center justify-between">
+        <div
+          className="flex items-center gap-2 text-secondary-shadow"
+          aria-label={`Duration: ${formattedDuration}`}
+        >
+          <Icon name="timer" size={32} filled aria-hidden="true" />
+          <Heading3>{formattedDuration}.</Heading3>
+        </div>
+        <div
+          className="flex items-center gap-1"
+          aria-label={`Rating: ${rating} out of 5`}
+        >
+          <Heading5>{rating}</Heading5>
+          <Icon
+            name="grade"
+            size={32}
+            filled
+            aria-hidden="true"
+            className="text-extra"
+          />
         </div>
       </div>
     </header>

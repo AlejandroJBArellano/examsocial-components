@@ -25,15 +25,21 @@ export interface UserAnswersProps {
  */
 const UserAnswers = ({ userName, children, onClose }: UserAnswersProps) => {
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <Heading4>{userName}'s Answers</Heading4>
-        <Button.Icon theme="light" rounded size={24} onClick={onClose}>
+    <section className="space-y-8" aria-labelledby="user-answers-heading">
+      <header className="flex items-center justify-between">
+        <Heading4 id="user-answers-heading">{userName}'s Answers</Heading4>
+        <Button.Icon
+          theme="light"
+          rounded
+          size={24}
+          onClick={onClose}
+          aria-label="Close answers"
+        >
           close
         </Button.Icon>
-      </div>
-      <div className="grid gap-x-6 gap-y-4 xl:grid-cols-2">{children}</div>
-    </div>
+      </header>
+      <main className="grid gap-x-6 gap-y-4 xl:grid-cols-2">{children}</main>
+    </section>
   );
 };
 

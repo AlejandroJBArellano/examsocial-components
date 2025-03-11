@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "The UserAnswers component displays a collection of answers from a specific user in a responsive grid layout. It includes a header with the user's name and a close button.",
+          "The UserAnswers component displays a collection of answers from a specific user in a responsive grid layout. It uses semantic HTML (section, header, main) for improved accessibility and SEO. It includes a header with the user's name and a close button.",
       },
     },
   },
@@ -61,6 +61,7 @@ const mockQuestions = [
 
 /**
  * The default story shows the UserAnswers component with sample questions.
+ * Note the semantic HTML structure: section > header + main
  */
 export const Default: Story = {
   args: {
@@ -77,6 +78,7 @@ export const Default: Story = {
 
 /**
  * Example with multiple questions in a responsive grid layout.
+ * The main element creates a responsive grid for the children.
  */
 export const WithMultipleQuestions: Story = {
   args: {

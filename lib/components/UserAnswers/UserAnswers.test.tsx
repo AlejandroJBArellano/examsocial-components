@@ -8,65 +8,74 @@
  */
 
 // Example test implementation when testing libraries are properly set up:
-/*
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import UserAnswers from './UserAnswers';
 
-describe('UserAnswers', () => {
-  const mockOnClose = jest.fn();
-  const userName = 'Test User';
-  const childrenText = 'Test Children Content';
+import "@testing-library/jest-dom";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import UserAnswers from "./UserAnswers";
+
+describe("UserAnswers", () => {
+  const mockOnClose = vi.fn();
+  const userName = "Test User";
+  const childrenText = "Test Children Content";
 
   beforeEach(() => {
     mockOnClose.mockClear();
   });
 
-  it('renders the component with the correct user name', () => {
+  it("renders the component with the correct user name", () => {
     render(
       <UserAnswers userName={userName} onClose={mockOnClose}>
         <div>{childrenText}</div>
-      </UserAnswers>
+      </UserAnswers>,
     );
 
     expect(screen.getByText(`${userName}'s Answers`)).toBeInTheDocument();
   });
 
-  it('renders the children content', () => {
+  it("renders the children content", () => {
     render(
       <UserAnswers userName={userName} onClose={mockOnClose}>
         <div data-testid="child-content">{childrenText}</div>
-      </UserAnswers>
+      </UserAnswers>,
     );
 
-    expect(screen.getByTestId('child-content')).toBeInTheDocument();
+    expect(screen.getByTestId("child-content")).toBeInTheDocument();
     expect(screen.getByText(childrenText)).toBeInTheDocument();
   });
 
-  it('calls onClose when the close button is clicked', () => {
+  it("calls onClose when the close button is clicked", () => {
     render(
       <UserAnswers userName={userName} onClose={mockOnClose}>
         <div>{childrenText}</div>
-      </UserAnswers>
+      </UserAnswers>,
     );
 
-    const closeButton = screen.getByText('close');
+    const closeButton = screen.getByLabelText("Close answers");
     fireEvent.click(closeButton);
-    
+
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
 
-  it('applies the responsive grid layout to the children container', () => {
+  it("uses proper semantic HTML structure", () => {
     render(
       <UserAnswers userName={userName} onClose={mockOnClose}>
         <div>{childrenText}</div>
-      </UserAnswers>
+      </UserAnswers>,
     );
 
-    const gridContainer = screen.getByText(childrenText).parentElement;
-    expect(gridContainer).toHaveClass('grid');
-    expect(gridContainer).toHaveClass('xl:grid-cols-2');
+    // Check for section as container
+    const section = screen.getByLabelText(`${userName}'s Answers`);
+    expect(section.tagName).toBe("SECTION");
+
+    // Check for header
+    const header = section.querySelector("header");
+    expect(header).toBeInTheDocument();
+
+    // Check for main content area
+    const main = section.querySelector("main");
+    expect(main).toBeInTheDocument();
+    expect(main).toHaveClass("grid");
+    expect(main).toHaveClass("xl:grid-cols-2");
   });
 });
-*/

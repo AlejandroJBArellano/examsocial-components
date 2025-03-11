@@ -1,7 +1,7 @@
+import { QRCode } from "react-qrcode-logo";
 import { Button } from "../Button";
 import { FocusSpan, Heading3 } from "../FontFaces";
 import { Icon } from "../Icon";
-import { QRCode } from "../QRCode";
 
 const QRCodeCard = () => {
   return (

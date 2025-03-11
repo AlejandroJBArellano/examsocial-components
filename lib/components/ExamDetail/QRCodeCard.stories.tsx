@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import QRCodeCard from "./QRCodeCard";
 
 export default {
-  title: "Components/QRCodeCard",
+  title: "Components/ExamDetail/QRCodeCard",
   component: QRCodeCard,
 } as Meta;
 

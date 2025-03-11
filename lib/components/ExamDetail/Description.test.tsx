@@ -5,6 +5,8 @@ import ExamDescription from "./Description";
 describe("ExamDescription component", () => {
   const mockDescription =
     "Welcome to the Svelte 5 Quiz! This quiz is designed to test your knowledge and understanding of Svelte";
+  const longDescription =
+    "This is a very long text that should be truncated. ".repeat(10);
   const mockOnStartExam = vi.fn();
   const mockOnFavorite = vi.fn();
   const mockOnBookmark = vi.fn();
@@ -59,7 +61,8 @@ describe("ExamDescription component", () => {
         onBookmark={mockOnBookmark}
       />,
     );
-    fireEvent.click(screen.getByLabelText("Add to favorites"));
+    const favoriteButton = screen.getByTestId("favorite-button");
+    fireEvent.click(favoriteButton);
     expect(mockOnFavorite).toHaveBeenCalledTimes(1);
   });
 
@@ -72,19 +75,76 @@ describe("ExamDescription component", () => {
         onBookmark={mockOnBookmark}
       />,
     );
-    fireEvent.click(screen.getByLabelText("Bookmark exam"));
+    const bookmarkButton = screen.getByTestId("save-button");
+    fireEvent.click(bookmarkButton);
     expect(mockOnBookmark).toHaveBeenCalledTimes(1);
   });
 
-  it("renders with semantic HTML", () => {
-    const { container } = render(
+  it("truncates long text and shows 'Read more' button", () => {
+    render(
       <ExamDescription
-        description={mockDescription}
+        description={longDescription}
         onStartExam={mockOnStartExam}
         onFavorite={mockOnFavorite}
         onBookmark={mockOnBookmark}
       />,
     );
-    expect(container.querySelector("section")).toBeInTheDocument();
+
+    expect(screen.getByText(/This is a very long text/)).toBeInTheDocument();
+    expect(screen.getByText("Read more")).toBeInTheDocument();
+  });
+
+  it("expands text when 'Read more' is clicked", () => {
+    render(
+      <ExamDescription
+        description={longDescription}
+        onStartExam={mockOnStartExam}
+        onFavorite={mockOnFavorite}
+        onBookmark={mockOnBookmark}
+      />,
+    );
+
+    const readMoreButton = screen.getByText("Read more");
+    fireEvent.click(readMoreButton);
+
+    expect(screen.getByText("Read less")).toBeInTheDocument();
+    expect(screen.getByText(longDescription)).toBeInTheDocument();
+  });
+
+  it("collapses text when 'Read less' is clicked", () => {
+    render(
+      <ExamDescription
+        description={longDescription}
+        onStartExam={mockOnStartExam}
+        onFavorite={mockOnFavorite}
+        onBookmark={mockOnBookmark}
+      />,
+    );
+
+    // First expand
+    const readMoreButton = screen.getByText("Read more");
+    fireEvent.click(readMoreButton);
+
+    // Then collapse
+    const readLessButton = screen.getByText("Read less");
+    fireEvent.click(readLessButton);
+
+    expect(screen.getByText("Read more")).toBeInTheDocument();
+    expect(screen.queryByText(longDescription)).not.toBeInTheDocument();
+  });
+
+  it("renders with xl size correctly", () => {
+    render(
+      <ExamDescription
+        description={mockDescription}
+        onStartExam={mockOnStartExam}
+        onFavorite={mockOnFavorite}
+        onBookmark={mockOnBookmark}
+        size="xl"
+      />,
+    );
+
+    expect(screen.getByText(mockDescription)).toBeInTheDocument();
+    expect(screen.getByText("Start exam")).toBeInTheDocument();
   });
 });

@@ -52,11 +52,11 @@ const Comment = ({
           <div className="flex text-secondary-shadow">
             {[...Array(5)].map((_, index) => {
               if (rating >= index + 1) {
-                return <Icon name="grade" key={index} size={20} />;
+                return <Icon name="star" key={index} size={20} filled />;
               } else if (rating > index && rating < index + 1) {
-                return <Icon name="star_half" key={index} size={20} />;
+                return <Icon name="star_half" key={index} size={20} filled />;
               } else {
-                return <Icon name="star_outline" key={index} size={20} />;
+                return <Icon name="star" key={index} size={20} />;
               }
             })}
           </div>

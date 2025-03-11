@@ -5,6 +5,7 @@ import Tab from "./Tab";
 export default {
   title: "Components/Tab",
   component: Tab,
+  tags: ["autodocs"],
 } as Meta;
 
 type Story = StoryObj<typeof Tab>;

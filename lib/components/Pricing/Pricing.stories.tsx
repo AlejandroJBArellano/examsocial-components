@@ -22,7 +22,7 @@ export default meta;
 type Story = StoryObj<typeof Pricing>;
 
 const BasicPlan = () => (
-  <div className="w-80">
+  <div className="h-full w-80">
     <Pricing>
       <Pricing.Header>
         <Pricing.Title>Hobby</Pricing.Title>
@@ -45,7 +45,7 @@ export const Basic: Story = {
 };
 
 const MonthlyPlan = () => (
-  <div className="w-full">
+  <div className="h-full w-full">
     <Pricing mode="monthly">
       <Pricing.Header>
         <Pricing.Title>Pro</Pricing.Title>
@@ -73,7 +73,7 @@ export const Monthly: Story = {
 };
 
 const YearlyPlan = () => (
-  <div className="w-full">
+  <div className="h-full w-full">
     <Pricing mode="yearly">
       <Pricing.Header>
         <Pricing.Title>Pro Yearly</Pricing.Title>
@@ -102,7 +102,7 @@ export const Yearly: Story = {
 };
 
 const LifetimePlan = () => (
-  <div className="w-80">
+  <div className="h-full w-80">
     <Pricing mode="lifetime">
       <Pricing.Header>
         <Pricing.Title>Pro Lifetime</Pricing.Title>
@@ -128,7 +128,7 @@ export const Lifetime: Story = {
 
 export const AllPlans: Story = {
   render: () => (
-    <div className="flex flex-col place-items-center md:flex-row">
+    <div className="flex grid-cols-4 flex-col place-items-center md:grid md:flex-row md:gap-5">
       <BasicPlan />
       <MonthlyPlan />
       <YearlyPlan />

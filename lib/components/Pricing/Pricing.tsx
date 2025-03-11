@@ -29,7 +29,7 @@ const Pricing = ({ children, mode = "basic" }: PricingProps) => {
   return (
     <section
       className={cn(
-        "space-y-6 border-black px-4 py-5 xl:space-y-8 xl:rounded-xl xl:p-6",
+        "space-y-6 border-black px-4 py-5 md:rounded-xl md:border xl:space-y-8 xl:p-6",
         modes[mode],
       )}
     >

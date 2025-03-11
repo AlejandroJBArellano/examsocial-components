@@ -1,5 +1,13 @@
 import { PropsWithChildren } from "react";
 import { cn } from "../../utils";
+import {
+  FocusDisplay,
+  FocusSmoll,
+  Heading2,
+  Heading3,
+  Heading5,
+  Span,
+} from "../FontFaces";
 import { Icon } from "../Icon";
 
 type PricingMode = "monthly" | "yearly" | "lifetime" | "basic";
@@ -11,15 +19,15 @@ type PricingProps = PropsWithChildren<{
 const Pricing = ({ children, mode = "basic" }: PricingProps) => {
   const modes: Record<PricingMode, string> = {
     basic: "rounded-t-xl border-x border-t",
-    monthly: "rounded-t-xl border-y bg-secondary-tint text-secondary",
-    yearly: "rounded-t-xl border-y bg-accent-tint text-accent",
+    monthly: "border-t bg-secondary-tint text-secondary-shadow",
+    yearly: "border-y bg-accent-tint text-accent-shadow",
     lifetime: "rounded-b-xl border-x border-b",
   };
 
   return (
     <section
       className={cn(
-        "space-y-6 rounded-xl border-black px-4 py-5 xl:space-y-8 xl:rounded-xl xl:p-6",
+        "space-y-6 border-black px-4 py-5 xl:space-y-8 xl:rounded-xl xl:p-6",
         modes[mode],
       )}
     >
@@ -35,31 +43,31 @@ const PricingHeader = ({ children }: PropsWithChildren) => {
 Pricing.Header = PricingHeader;
 
 const PricingPeriod = ({ children }: PropsWithChildren) => {
-  return (
-    <span className="text-xl font-normal leading-6 tracking-[0.4px]">
-      {children}
-    </span>
-  );
+  return <Heading2>{children}</Heading2>;
 };
 
 Pricing.Period = PricingPeriod;
 
+const PricingContainer = ({ children }: PropsWithChildren) => {
+  return <div className="flex items-center gap-2">{children}</div>;
+};
+
+Pricing.Container = PricingContainer;
+
+const PricingExplanation = ({ children }: PropsWithChildren) => {
+  return <FocusSmoll className="block">{children}</FocusSmoll>;
+};
+
+Pricing.Explanation = PricingExplanation;
+
 const PricingTitle = ({ children }: PropsWithChildren) => {
-  return (
-    <h3 className="sentient text-[28px] font-bold leading-8 tracking-[0.56px]">
-      {children}
-    </h3>
-  );
+  return <Heading3>{children}</Heading3>;
 };
 
 Pricing.Title = PricingTitle;
 
 const PricingPrice = ({ children }: PropsWithChildren) => {
-  return (
-    <p className="sentient text-[56px] font-bold leading-[64px] tracking-[1.12px]">
-      {children}
-    </p>
-  );
+  return <FocusDisplay>{children}</FocusDisplay>;
 };
 
 Pricing.Price = PricingPrice;
@@ -67,9 +75,7 @@ Pricing.Price = PricingPrice;
 const PricingComparison = ({ children }: PropsWithChildren) => {
   return (
     <article className="space-y-2">
-      <p className="text-xl font-normal leading-6 tracking-[0.4px]">
-        Includes:
-      </p>
+      <Heading5>Includes:</Heading5>
       <div className="space-y-3">{children}</div>
     </article>
   );
@@ -83,12 +89,8 @@ const PricingComparisonCell = ({
 }: PropsWithChildren<{ special?: boolean }>) => {
   return (
     <div className="flex items-center gap-1 leading-5">
-      {special ? (
-        <Icon name="new_releases" className="h-7 w-7" />
-      ) : (
-        <Icon name="check_circle" className="h-7 w-7" />
-      )}
-      {children}
+      <Icon name={special ? "new_releases" : "check_circle"} size={28} filled />
+      <Span>{children}</Span>
     </div>
   );
 };

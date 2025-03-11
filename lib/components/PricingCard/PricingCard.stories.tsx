@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../Button";
+import { FocusSpan } from "../FontFaces";
 import PricingCard from "./PricingCard";
 
 const meta: Meta<typeof PricingCard> = {
   title: "Components/PricingCard",
   component: PricingCard,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
     docs: {
       description: {
         component:
@@ -23,10 +24,13 @@ type Story = StoryObj<typeof PricingCard>;
 const BasicPlan = () => (
   <div className="w-80">
     <PricingCard>
-      <PricingCard.Header>Basic Plan</PricingCard.Header>
-      <PricingCard.Period>Free forever</PricingCard.Period>
-      <PricingCard.Title>Start creating exams</PricingCard.Title>
-      <PricingCard.Price>$0</PricingCard.Price>
+      <PricingCard.Header>
+        <PricingCard.Title>Hobby</PricingCard.Title>
+        <PricingCard.Price>Free</PricingCard.Price>
+        <Button theme="light" className="w-full">
+          <FocusSpan>Get Started</FocusSpan>
+        </Button>
+      </PricingCard.Header>
       <PricingCard.Comparison>
         <PricingCard.ComparisonCell>Up to 5 exams</PricingCard.ComparisonCell>
         <PricingCard.ComparisonCell>Basic features</PricingCard.ComparisonCell>
@@ -34,7 +38,6 @@ const BasicPlan = () => (
           Community support
         </PricingCard.ComparisonCell>
       </PricingCard.Comparison>
-      <Button className="w-full">Get Started</Button>
     </PricingCard>
   </div>
 );
@@ -44,12 +47,19 @@ export const Basic: Story = {
 };
 
 const MonthlyPlan = () => (
-  <div className="w-80">
+  <div className="w-full">
     <PricingCard mode="monthly">
-      <PricingCard.Header>Pro Plan</PricingCard.Header>
-      <PricingCard.Period>Billed monthly</PricingCard.Period>
-      <PricingCard.Title>For serious educators</PricingCard.Title>
-      <PricingCard.Price>$9.99/month</PricingCard.Price>
+      <PricingCard.Header>
+        <PricingCard.Title>Pro</PricingCard.Title>
+        <PricingCard.Container>
+          <PricingCard.Price>$10</PricingCard.Price>
+          <PricingCard.Period>/month</PricingCard.Period>
+        </PricingCard.Container>
+        <PricingCard.Explanation>Billed monthly</PricingCard.Explanation>
+        <Button theme="accent" className="w-full text-black">
+          <FocusSpan>Get Started</FocusSpan>
+        </Button>
+      </PricingCard.Header>
       <PricingCard.Comparison>
         <PricingCard.ComparisonCell>Unlimited exams</PricingCard.ComparisonCell>
         <PricingCard.ComparisonCell>
@@ -62,9 +72,6 @@ const MonthlyPlan = () => (
           Analytics dashboard
         </PricingCard.ComparisonCell>
       </PricingCard.Comparison>
-      <Button theme="primary" className="w-full">
-        Subscribe Now
-      </Button>
     </PricingCard>
   </div>
 );
@@ -74,12 +81,21 @@ export const Monthly: Story = {
 };
 
 const YearlyPlan = () => (
-  <div className="w-80">
+  <div className="w-full">
     <PricingCard mode="yearly">
-      <PricingCard.Header>Pro Plan</PricingCard.Header>
-      <PricingCard.Period>Billed yearly (save 20%)</PricingCard.Period>
-      <PricingCard.Title>Best value</PricingCard.Title>
-      <PricingCard.Price>$95.88/year</PricingCard.Price>
+      <PricingCard.Header>
+        <PricingCard.Title>Pro Yearly</PricingCard.Title>
+        <PricingCard.Container>
+          <PricingCard.Price>$10</PricingCard.Price>
+          <PricingCard.Period>/month</PricingCard.Period>
+        </PricingCard.Container>
+        <PricingCard.Explanation>
+          Save 20% compared to monthly
+        </PricingCard.Explanation>
+        <Button theme="accent" className="w-full text-black">
+          <FocusSpan>Get Started</FocusSpan>
+        </Button>
+      </PricingCard.Header>
       <PricingCard.Comparison>
         <PricingCard.ComparisonCell>Unlimited exams</PricingCard.ComparisonCell>
         <PricingCard.ComparisonCell>
@@ -95,9 +111,6 @@ const YearlyPlan = () => (
           Bulk student import
         </PricingCard.ComparisonCell>
       </PricingCard.Comparison>
-      <Button theme="accent" className="w-full">
-        Subscribe Yearly
-      </Button>
     </PricingCard>
   </div>
 );
@@ -109,10 +122,14 @@ export const Yearly: Story = {
 const LifetimePlan = () => (
   <div className="w-80">
     <PricingCard mode="lifetime">
-      <PricingCard.Header>Lifetime Access</PricingCard.Header>
-      <PricingCard.Period>One-time payment</PricingCard.Period>
-      <PricingCard.Title>Never pay again</PricingCard.Title>
-      <PricingCard.Price>$299</PricingCard.Price>
+      <PricingCard.Header>
+        <PricingCard.Title>Pro Lifetime</PricingCard.Title>
+        <PricingCard.Price>$500</PricingCard.Price>
+        <PricingCard.Explanation>One-time payment</PricingCard.Explanation>
+        <Button theme="extra" className="w-full">
+          <FocusSpan>Get Started</FocusSpan>
+        </Button>
+      </PricingCard.Header>
       <PricingCard.Comparison>
         <PricingCard.ComparisonCell>
           All Pro features
@@ -127,9 +144,6 @@ const LifetimePlan = () => (
           Early access to new features
         </PricingCard.ComparisonCell>
       </PricingCard.Comparison>
-      <Button theme="extra" className="w-full">
-        Buy Lifetime
-      </Button>
     </PricingCard>
   </div>
 );
@@ -140,7 +154,7 @@ export const Lifetime: Story = {
 
 export const AllPlans: Story = {
   render: () => (
-    <div className="flex flex-col gap-8 md:flex-row">
+    <div className="flex flex-col place-items-center md:flex-row">
       <BasicPlan />
       <MonthlyPlan />
       <YearlyPlan />

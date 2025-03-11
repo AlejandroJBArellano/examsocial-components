@@ -71,8 +71,7 @@ export const Review = () => {
                 {
                   formik.values.contents.filter(
                     (content) =>
-                      content.contentType === "TEXT" ||
-                      content.contentType === "LINK",
+                      content.type === "TEXT" || content.type === "LINK",
                   ).length
                 }
               </Span>
@@ -83,7 +82,7 @@ export const Review = () => {
                 x
                 {
                   formik.values.contents.filter(
-                    (content) => content.contentType === "IMAGE",
+                    (content) => content.type === "IMAGE",
                   ).length
                 }
               </Span>
@@ -95,8 +94,7 @@ export const Review = () => {
                 {
                   formik.values.contents.filter(
                     (content) =>
-                      content.contentType === "VIDEO" ||
-                      content.contentType === "YOUTUBE",
+                      content.type === "VIDEO" || content.type === "YOUTUBE",
                   ).length
                 }
               </Span>
@@ -107,7 +105,7 @@ export const Review = () => {
                 x
                 {
                   formik.values.contents.filter(
-                    (content) => content.contentType === "AUDIO",
+                    (content) => content.type === "AUDIO",
                   ).length
                 }
               </Span>
@@ -118,7 +116,7 @@ export const Review = () => {
                 x
                 {
                   formik.values.contents.filter(
-                    (content) => content.contentType === "FILE",
+                    (content) => content.type === "FILE",
                   ).length
                 }
               </Span>

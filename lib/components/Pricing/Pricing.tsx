@@ -126,7 +126,7 @@ const PricingFeatureRow = ({
 }: PricingFeatureRowProps) => {
   return (
     <article className="flex justify-between gap-4 py-2 md:gap-5 xl:gap-6">
-      <div className="flex items-center justify-between gap-2 md:justify-start">
+      <div className="flex w-1/2 items-center justify-between gap-2 md:justify-start">
         <FocusSpan>{feature}</FocusSpan>
         <Helper align="center" side="top">
           {children}

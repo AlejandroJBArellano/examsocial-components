@@ -112,9 +112,10 @@ describe("Drawer Component", () => {
   });
 
   it("renders Handle component with correct styles", () => {
-    render(<Drawer.Handle />);
+    const { container } = render(<Drawer.Handle />);
 
-    const handle = screen.getByRole("presentation", { hidden: true });
+    // Get the div directly from the container since it doesn't have a testid or role
+    const handle = container.firstChild as HTMLElement;
     expect(handle).toBeInTheDocument();
     expect(handle.className).toContain("rounded-full");
     expect(handle.className).toContain("bg-black");
@@ -147,7 +148,7 @@ describe("Drawer Component", () => {
   });
 
   it("applies custom className to components", () => {
-    render(
+    const { container } = render(
       <>
         <Drawer.Trigger className="custom-trigger">Trigger</Drawer.Trigger>
         <Drawer.Overlay className="custom-overlay" />
@@ -161,8 +162,11 @@ describe("Drawer Component", () => {
     expect(screen.getByTestId("drawer-overlay")).toHaveClass("custom-overlay");
     expect(screen.getByTestId("drawer-content")).toHaveClass("custom-content");
     expect(screen.getByText("Title").closest("h4")).toHaveClass("custom-title");
-    expect(screen.getByRole("presentation", { hidden: true })).toHaveClass(
-      "custom-handle",
+
+    // Find the Handle element in the container
+    const handleElements = Array.from(container.querySelectorAll("div")).filter(
+      (el) => el.className.includes("custom-handle"),
     );
+    expect(handleElements[0]).toHaveClass("custom-handle");
   });
 });

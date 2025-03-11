@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../Button";
-import { FocusSpan } from "../FontFaces";
+import { FocusSpan, Span } from "../FontFaces";
 import { Icon } from "../Icon";
 
 const ImageInput = (
@@ -84,27 +84,10 @@ const ImageInput = (
         <div
           data-isHovering="true"
           data-responsive="xl:"
-          className="bg-brand-accent-tint outline-neutral-dark inline-flex h-[204px] w-[640px] items-center justify-center gap-4 overflow-hidden rounded-lg p-7 outline-2 outline-offset-[-2px]"
+          className="inline-flex h-36 w-full max-w-sm flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-black bg-accent-tint p-4 xl:h-auto xl:max-w-2xl xl:border-dashed xl:p-7"
         >
-          <div className="inline-flex flex-col items-center justify-center gap-2">
-            <div data-svg-wrapper data-shape="place_item">
-              <svg
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.33333 35C7.41667 35 6.63194 34.6736 5.97917 34.0208C5.32639 33.3681 5 32.5833 5 31.6667V15C5 14.0833 5.32639 13.2986 5.97917 12.6458C6.63194 11.9931 7.41667 11.6667 8.33333 11.6667H15V15H8.33333V31.6667H31.6667V15H25V11.6667H31.6667C32.5833 11.6667 33.3681 11.9931 34.0208 12.6458C34.6736 13.2986 35 14.0833 35 15V31.6667C35 32.5833 34.6736 33.3681 34.0208 34.0208C33.3681 34.6736 32.5833 35 31.6667 35H8.33333ZM20 26.6667L13.3333 20L15.6667 17.6667L18.3333 20.2917V0H21.6667V20.2917L24.3333 17.6667L26.6667 20L20 26.6667Z"
-                  fill="black"
-                />
-              </svg>
-            </div>
-            <div className="text-text-on-GRAY-300 justify-start font-['Satoshi'] text-lg font-normal leading-normal">
-              Drop it like it's hot
-            </div>
-          </div>
+          <Icon name="place_item" size={40} filled />
+          <Span className="block text-center">Drop it like it's hot</Span>
         </div>
       </label>
     );

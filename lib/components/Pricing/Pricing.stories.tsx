@@ -198,56 +198,58 @@ export const PricingFeatureRowComponent: Story = {
 // Comparison table example with FeatureRows
 export const PricingComparisonTable: Story = {
   render: () => (
-    <table className="w-full max-w-3xl p-4">
-      <thead>
-        <tr>
-          <th className="w-1/2">
-            <Heading5>Features</Heading5>
-          </th>
-          <th>
-            <Heading5>Basic</Heading5>
-          </th>
-          <th>
-            <Heading5>Pro</Heading5>
-          </th>
-          <th>
-            <Heading5>Enterprise</Heading5>
-          </th>
-        </tr>
-      </thead>
+    <div className="w-full max-w-3xl overflow-x-auto">
+      <table className="w-full">
+        <thead>
+          <tr className="flex w-full gap-6 px-4 py-2 md:px-5 xl:px-6">
+            <th className="flex w-1/2 items-center justify-start">
+              <Heading5>Features</Heading5>
+            </th>
+            <th className="flex flex-1 items-center justify-center">
+              <Heading5>Basic</Heading5>
+            </th>
+            <th className="flex flex-1 items-center justify-center">
+              <Heading5>Pro</Heading5>
+            </th>
+            <th className="flex flex-1 items-center justify-center">
+              <Heading5>Enterprise</Heading5>
+            </th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <Pricing.FeatureRow
-          feature="Up to 5 exams"
-          includes={[true, true, true]}
-        >
-          Create up to 5 exams for free
-        </Pricing.FeatureRow>
-        <Pricing.FeatureRow
-          feature="Unlimited exams"
-          includes={[false, true, true]}
-        >
-          Create as many exams as you need
-        </Pricing.FeatureRow>
-        <Pricing.FeatureRow
-          feature="AI Question Generation"
-          includes={[false, true, true]}
-        >
-          Generate questions with AI
-        </Pricing.FeatureRow>
-        <Pricing.FeatureRow
-          feature="Advanced Analytics"
-          includes={[false, false, true]}
-        >
-          Detailed performance analytics
-        </Pricing.FeatureRow>
-        <Pricing.FeatureRow
-          feature="Custom Branding"
-          includes={[false, false, true]}
-        >
-          Add your logo and brand colors
-        </Pricing.FeatureRow>
-      </tbody>
-    </table>
+        <tbody>
+          <Pricing.FeatureRow
+            feature="Up to 5 exams"
+            includes={[true, true, true]}
+          >
+            Create up to 5 exams for free
+          </Pricing.FeatureRow>
+          <Pricing.FeatureRow
+            feature="Unlimited exams"
+            includes={[false, true, true]}
+          >
+            Create as many exams as you need
+          </Pricing.FeatureRow>
+          <Pricing.FeatureRow
+            feature="AI Question Generation"
+            includes={[false, true, true]}
+          >
+            Generate questions with AI
+          </Pricing.FeatureRow>
+          <Pricing.FeatureRow
+            feature="Advanced Analytics"
+            includes={[false, false, true]}
+          >
+            Detailed performance analytics
+          </Pricing.FeatureRow>
+          <Pricing.FeatureRow
+            feature="Custom Branding"
+            includes={[false, false, true]}
+          >
+            Add your logo and brand colors
+          </Pricing.FeatureRow>
+        </tbody>
+      </table>
+    </div>
   ),
 };

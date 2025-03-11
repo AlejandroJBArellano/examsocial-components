@@ -123,15 +123,20 @@ const PricingFeatureRow = ({
   includes,
 }: PricingFeatureRowProps) => {
   return (
-    <tr className="flex justify-between gap-4 py-2 md:gap-5 xl:gap-6">
-      <td className="flex w-1/2 items-center justify-between gap-2 md:justify-start">
+    <tr className="flex w-full gap-6 border-b-sm border-gray-300 px-4 py-2 md:px-5 xl:px-6">
+      <td className="my-auto flex w-1/2 items-center justify-between gap-2 py-2 md:justify-start">
         <FocusSpan>{feature}</FocusSpan>
-        <Helper align="center" side="top">
-          {children}
-        </Helper>
+        {children && (
+          <Helper align="center" side="top">
+            {children}
+          </Helper>
+        )}
       </td>
       {includes.map((include, index) => (
-        <td key={index}>
+        <td
+          key={index}
+          className="flex flex-1 items-center justify-center py-2 text-center"
+        >
           <Pricing.ComparisonCellWrapper includes={include} />
         </td>
       ))}

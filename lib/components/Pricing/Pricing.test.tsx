@@ -87,13 +87,13 @@ describe("Pricing Component", () => {
 
   it("renders Pricing.ComparisonCellWrapper when includes is true", () => {
     render(<Pricing.ComparisonCellWrapper includes={true} />);
-    const element = document.querySelector(".bg-feedback-success");
+    const element = document.querySelector(".text-feedback-success");
     expect(element).toBeDefined();
   });
 
   it("renders Pricing.ComparisonCellWrapper when includes is false", () => {
     render(<Pricing.ComparisonCellWrapper includes={false} />);
-    const element = document.querySelector(".bg-gray-500");
+    const element = document.querySelector(".text-gray-500");
     expect(element).toBeDefined();
   });
 
@@ -110,15 +110,13 @@ describe("Pricing Component", () => {
     const description = screen.getByText("Feature description");
     expect(description).toBeDefined();
 
-    // Should have correct number of ComparisonCellWrapper elements
-    const cellWrappers = document.querySelectorAll(
-      "article > div:last-child > *",
-    );
-    expect(cellWrappers.length).toBe(3);
+    // Should have correct number of table cells
+    const tableCells = document.querySelectorAll("td");
+    expect(tableCells.length).toBe(4); // One for feature + three for includes array
 
-    // Check if first and third are success (green) and middle is gray
-    const successCells = document.querySelectorAll(".bg-feedback-success");
-    const grayCells = document.querySelectorAll(".bg-gray-500");
+    // Check if the classes are applied correctly
+    const successCells = document.querySelectorAll(".text-feedback-success");
+    const grayCells = document.querySelectorAll(".text-gray-500");
     expect(successCells.length).toBe(2);
     expect(grayCells.length).toBe(1);
   });
@@ -131,10 +129,12 @@ describe("Pricing Component", () => {
     const featureText = screen.getByText("Simple Feature");
     expect(featureText).toBeDefined();
 
-    // Should have correct number of ComparisonCellWrapper elements
-    const cellWrappers = document.querySelectorAll(
-      "article > div:last-child > *",
-    );
-    expect(cellWrappers.length).toBe(2);
+    // Should have correct number of table cells (no Helper should be rendered)
+    const tableCells = document.querySelectorAll("td");
+    expect(tableCells.length).toBe(3); // One for feature + two for includes array
+
+    // Helper shouldn't be rendered when there are no children
+    const helper = document.querySelector("[data-testid='helper']");
+    expect(helper).toBeNull();
   });
 });

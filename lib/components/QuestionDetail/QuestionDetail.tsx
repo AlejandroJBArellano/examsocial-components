@@ -240,7 +240,7 @@ const Header: FC<
  * Options container component for answer options
  */
 const Options: FC<PropsWithChildren> = ({ children }) => {
-  return <div className="flex gap-6">{children}</div>;
+  return <div className="space-y-8">{children}</div>;
 };
 
 /**

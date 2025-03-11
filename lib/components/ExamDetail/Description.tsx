@@ -152,26 +152,22 @@ const MainContainerAction = ({
   type,
   onClick,
   className,
-  favorite: isFavorite = false,
-  saved: isSaved = false,
+  favorite = false,
+  saved = false,
 }: MainContainerActionProps) => {
-  if (type === "favorite") {
-    return (
-      <Button.Action
-        name="favorite"
-        selected={isFavorite}
-        onClick={onClick}
-        className={className}
-      />
-    );
-  }
-
   return (
     <Button.Action
-      name="bookmark"
-      selected={isSaved}
       onClick={onClick}
       className={className}
+      {...(type === "bookmark"
+        ? {
+            name: "bookmark",
+            selected: saved,
+          }
+        : {
+            name: "favorite",
+            selected: favorite,
+          })}
     />
   );
 };
@@ -181,7 +177,7 @@ const MainContainerButton = ({
   ...props
 }: ComponentPropsWithoutRef<"button">) => {
   return (
-    <Button theme="accent" rounded={false} {...props}>
+    <Button theme="accent" {...props}>
       <FocusSpan>{children}</FocusSpan>
     </Button>
   );

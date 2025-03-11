@@ -32,6 +32,11 @@ export interface IconProps {
   onClick?: (event: React.MouseEvent<HTMLSpanElement>) => void;
 
   filled?: boolean;
+
+  /**
+   * Accessible label for the icon
+   */
+  "aria-label"?: string;
 }
 
 const variantMap = {
@@ -52,6 +57,8 @@ export const Icon: React.FC<IconProps> = ({
   weight = 400,
   grade = 0,
   filled,
+  "aria-label": ariaLabel,
+  ...rest
 }) => {
   return (
     <span
@@ -61,6 +68,10 @@ export const Icon: React.FC<IconProps> = ({
         fontSize: `${size}px`,
       }}
       onClick={onClick}
+      aria-label={ariaLabel}
+      aria-hidden={!ariaLabel}
+      role={ariaLabel ? "img" : undefined}
+      {...rest}
     >
       {name}
     </span>

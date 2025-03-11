@@ -23,7 +23,7 @@ ExamSocial Components es una biblioteca de componentes React diseñada para prop
 Para instalar la biblioteca en tu proyecto, ejecuta:
 
 ```bash
-npm install examsocial-components
+npm install examsocial-components@latest
 ```
 
 ## Uso

@@ -87,6 +87,7 @@ La biblioteca incluye los siguientes componentes:
 - **AnswerOption**: Opción de respuesta para preguntas.
 - **ReviewQuestionSet**: Componente para revisar un conjunto de preguntas.
 - **UserAnswers**: Muestra las respuestas de un usuario.
+- **MainContainer**: Contenedor de la descripción del examen
 
 ### Social
 
@@ -107,7 +108,6 @@ La biblioteca incluye los siguientes componentes:
 - **Stepper**: Indicador de pasos en un proceso.
 - **FeaturesCarousel**: Carrusel para mostrar características.
 - **FeedbackScreen**: Pantalla para mostrar feedback.
-- **MainContainer**: Contenedor principal para la aplicación.
 
 ## Configuración de Tailwind
 

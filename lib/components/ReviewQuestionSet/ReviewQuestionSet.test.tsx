@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import ReviewQuestionSet from "../ReviewQuestionSet";
+import ReviewQuestionSet from "./ReviewQuestionSet";
 
 // Mock question data
 const mockQuestion = {

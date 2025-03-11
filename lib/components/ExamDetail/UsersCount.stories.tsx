@@ -14,5 +14,7 @@ export default {
 type Story = StoryObj<typeof UsersCount>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    count: 100,
+  },
 };

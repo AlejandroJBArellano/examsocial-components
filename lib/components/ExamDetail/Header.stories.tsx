@@ -21,6 +21,12 @@ type Story = StoryObj<typeof Header>;
 
 export const Default: Story = {
   args: {
-    count: 4.8,
+    rating: 4.8,
+    authorName: "John Doe",
+    category: "Math",
+    duration: { hours: 1, minutes: 30 },
+    imageUrl: "https://via.placeholder.com/150",
+    participants: 100,
+    title: "Math Exam",
   },
 };

@@ -109,52 +109,11 @@ La biblioteca incluye los siguientes componentes:
 - **FeaturesCarousel**: Carrusel para mostrar características.
 - **FeedbackScreen**: Pantalla para mostrar feedback.
 
-## Configuración de Tailwind
-
-La biblioteca exporta su configuración de Tailwind CSS para que puedas extenderla en tu proyecto. Esto te permite utilizar los mismos temas, colores y estilos que utiliza la biblioteca en tu aplicación.
-
-### Uso básico
-
-Para utilizar la configuración de Tailwind de ExamSocial Components en tu proyecto:
-
-```js
-// tailwind.config.js
-import { tailwindConfig } from 'examsocial-components';
-
-export default tailwindConfig;
-```
-
-### Extender la configuración
-
-Si deseas extender la configuración con tus propios estilos:
-
-```js
-// tailwind.config.js
-import { createTailwindConfig } from 'examsocial-components';
-
-export default createTailwindConfig({
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}', // Tus archivos
-  ],
-  theme: {
-    extend: {
-      // Tus extensiones de tema
-      colors: {
-        custom: '#ff0000',
-      },
-    },
-  },
-  plugins: [
-    // Tus plugins adicionales
-  ],
-});
-```
-
-### Temas disponibles
+### Temas disponibles de Tailwind
 
 La configuración de Tailwind incluye varios temas predefinidos que puedes utilizar:
 
-- **Default**: Tema por defecto
+- **WHITEBOARD**: Tema por defecto
 - **INDUSTRIAL_EDGE**: Tema industrial con colores más fuertes
 - **EARTHY_TONES**: Tema con tonos terrosos y naturales
 - **VIBRANT_ORCHID**: Tema vibrante con colores púrpura
@@ -162,7 +121,7 @@ La configuración de Tailwind incluye varios temas predefinidos que puedes utili
 Para cambiar entre temas, puedes utilizar las clases CSS proporcionadas por el plugin `tailwindcss-themer`:
 
 ```html
-<div class="theme-INDUSTRIAL_EDGE">
+<div class="INDUSTRIAL_EDGE">
   <!-- Contenido con el tema INDUSTRIAL_EDGE -->
 </div>
 ```
@@ -196,14 +155,14 @@ examsocial-components/
 │   ├── components/      # Componentes React
 │   │   ├── Button/      # Ejemplo de estructura de componente
 │   │   │   ├── Button.tsx
+│   │   │   ├── Button.stories.tsx
 │   │   │   ├── Button.test.tsx
 │   │   │   └── index.ts
 │   │   └── ...
-│   ├── types/           # Definiciones de tipos TypeScript
-│   ├── schemas/         # Esquemas de validación
+│   ├── types.ts         # Definiciones de tipos TypeScript
+│   ├── schemas.ts       # Esquemas de validación
 │   ├── utils.ts         # Utilidades
 │   ├── constants.ts     # Constantes
-│   ├── tailwind.js      # Exportación de la configuración de Tailwind
 │   └── index.ts         # Punto de entrada principal
 ├── .storybook/          # Configuración de Storybook
 ├── node_modules/        # Dependencias

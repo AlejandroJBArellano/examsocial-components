@@ -3,11 +3,13 @@ import { cn } from "../../utils";
 import {
   FocusDisplay,
   FocusSmoll,
+  FocusSpan,
   Heading2,
   Heading3,
   Heading5,
   Span,
 } from "../FontFaces";
+import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 
 type PricingMode = "monthly" | "yearly" | "lifetime" | "basic";
@@ -96,5 +98,49 @@ const PricingFeature = ({
 };
 
 Pricing.Feature = PricingFeature;
+
+const PricingComparisonCellWrapper = ({ includes }: { includes: boolean }) => {
+  return (
+    <Icon
+      name={includes ? "check_circle" : "do_not_disturb_on"}
+      size={32}
+      className={cn(
+        includes ? "bg-feedback-success text-white" : "bg-gray-500 text-white",
+      )}
+      filled
+    />
+  );
+};
+
+Pricing.ComparisonCellWrapper = PricingComparisonCellWrapper;
+
+interface PricingFeatureRowProps extends PropsWithChildren {
+  feature: string;
+  includes: boolean[];
+}
+
+const PricingFeatureRow = ({
+  children,
+  feature,
+  includes,
+}: PricingFeatureRowProps) => {
+  return (
+    <article className="flex justify-between gap-4 py-2 md:gap-5 xl:gap-6">
+      <div className="flex items-center justify-between gap-2 md:justify-start">
+        <FocusSpan>{feature}</FocusSpan>
+        <Helper align="center" side="top">
+          {children}
+        </Helper>
+      </div>
+      <div className="flex items-center gap-2">
+        {includes.map((include) => (
+          <Pricing.ComparisonCellWrapper includes={include} />
+        ))}
+      </div>
+    </article>
+  );
+};
+
+Pricing.FeatureRow = PricingFeatureRow;
 
 export default Pricing;

@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef } from "react";
 import { cn } from "../../utils";
 import { Icon } from "../Icon";
+import { Tooltip } from "../Tooltip";
 
 export type ButtonTheme =
   | "extra"
@@ -66,3 +67,57 @@ const IconButton = (props: IconButtonProps) => {
 };
 
 Button.Icon = IconButton;
+
+interface ActionButtonProps extends ComponentPropsWithoutRef<"button"> {
+  /**
+   * Whether the item is favorited
+   */
+  selected?: boolean;
+
+  name: string;
+}
+
+const ActionButton = ({
+  selected,
+  name,
+  children,
+  className,
+  ...props
+}: ActionButtonProps) => {
+  const buttonElement = (
+    <button
+      type="button"
+      data-testid="favorite-button"
+      {...props}
+      className={
+        cn(
+          "flex h-10 w-10 items-center justify-center rounded-md border-2 border-black p-2 xl:h-11 xl:w-11",
+          selected
+            ? "border-accent-shadow bg-accent-tint text-accent-shadow hover:border-black hover:bg-white hover:text-black"
+            : "bg-white hover:border-accent-shadow hover:bg-accent-tint hover:text-accent-shadow",
+          className,
+        ) +
+        " hover:shadow-right-sm" +
+        (selected
+          ? " shadow-accent-shadow hover:shadow-black"
+          : " hover:shadow-accent-shadow")
+      }
+    >
+      <Icon name={name} filled />
+    </button>
+  );
+
+  // Envolvemos el botón con el tooltip
+  return (
+    <Tooltip
+      trigger={buttonElement}
+      contentClassName="hidden xl:inline-block"
+      side="top"
+      align="center"
+    >
+      {children}
+    </Tooltip>
+  );
+};
+
+Button.Action = ActionButton;

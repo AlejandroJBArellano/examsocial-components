@@ -83,18 +83,18 @@ const PricingComparison = ({ children }: PropsWithChildren) => {
 
 Pricing.Comparison = PricingComparison;
 
-const PricingComparisonCell = ({
+const PricingFeature = ({
   children,
   special,
 }: PropsWithChildren<{ special?: boolean }>) => {
   return (
-    <div className="flex items-center gap-1 leading-5">
-      <Icon name={special ? "new_releases" : "check_circle"} size={28} filled />
+    <article className="flex items-center gap-1 xl:gap-2">
+      <Icon name={special ? "new_releases" : "check_circle"} size={24} filled />
       <Span>{children}</Span>
-    </div>
+    </article>
   );
 };
 
-Pricing.ComparisonCell = PricingComparisonCell;
+Pricing.Feature = PricingFeature;
 
 export default Pricing;

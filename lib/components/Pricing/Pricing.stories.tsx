@@ -32,9 +32,9 @@ const BasicPlan = () => (
         </Button>
       </Pricing.Header>
       <Pricing.Comparison>
-        <Pricing.ComparisonCell>Up to 5 exams</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell>Basic features</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell>Community support</Pricing.ComparisonCell>
+        <Pricing.Feature>Up to 5 exams</Pricing.Feature>
+        <Pricing.Feature>Basic features</Pricing.Feature>
+        <Pricing.Feature>Community support</Pricing.Feature>
       </Pricing.Comparison>
     </Pricing>
   </div>
@@ -59,12 +59,10 @@ const MonthlyPlan = () => (
         </Button>
       </Pricing.Header>
       <Pricing.Comparison>
-        <Pricing.ComparisonCell>Unlimited exams</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell>Advanced features</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell>Priority support</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell special>
-          Analytics dashboard
-        </Pricing.ComparisonCell>
+        <Pricing.Feature>Unlimited exams</Pricing.Feature>
+        <Pricing.Feature>Advanced features</Pricing.Feature>
+        <Pricing.Feature>Priority support</Pricing.Feature>
+        <Pricing.Feature special>Analytics dashboard</Pricing.Feature>
       </Pricing.Comparison>
     </Pricing>
   </div>
@@ -89,15 +87,11 @@ const YearlyPlan = () => (
         </Button>
       </Pricing.Header>
       <Pricing.Comparison>
-        <Pricing.ComparisonCell>Unlimited exams</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell>Advanced features</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell>Priority support</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell special>
-          Analytics dashboard
-        </Pricing.ComparisonCell>
-        <Pricing.ComparisonCell special>
-          Bulk student import
-        </Pricing.ComparisonCell>
+        <Pricing.Feature>Unlimited exams</Pricing.Feature>
+        <Pricing.Feature>Advanced features</Pricing.Feature>
+        <Pricing.Feature>Priority support</Pricing.Feature>
+        <Pricing.Feature special>Analytics dashboard</Pricing.Feature>
+        <Pricing.Feature special>Bulk student import</Pricing.Feature>
       </Pricing.Comparison>
     </Pricing>
   </div>
@@ -119,12 +113,10 @@ const LifetimePlan = () => (
         </Button>
       </Pricing.Header>
       <Pricing.Comparison>
-        <Pricing.ComparisonCell>All Pro features</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell>Lifetime updates</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell special>VIP support</Pricing.ComparisonCell>
-        <Pricing.ComparisonCell special>
-          Early access to new features
-        </Pricing.ComparisonCell>
+        <Pricing.Feature>All Pro features</Pricing.Feature>
+        <Pricing.Feature>Lifetime updates</Pricing.Feature>
+        <Pricing.Feature special>VIP support</Pricing.Feature>
+        <Pricing.Feature special>Early access to new features</Pricing.Feature>
       </Pricing.Comparison>
     </Pricing>
   </div>

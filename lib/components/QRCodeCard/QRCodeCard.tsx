@@ -5,20 +5,27 @@ import { QRCode } from "../QRCode";
 
 const QRCodeCard = () => {
   return (
-    <div className="flex flex-col justify-between rounded-lg border border-zinc-300 bg-neutral-50 p-8">
-      <Heading3>Need a QR code?</Heading3>
-      <QRCode bgColor="#FAFAFA" quietZone={0} size={446} />
-      <div className="flex items-center justify-between">
+    <div className="w-full max-w-md justify-between space-y-10 rounded-lg border border-zinc-300 bg-neutral-50 p-8">
+      <Heading3 className="text-center">Need a QR code?</Heading3>
+      <QRCode
+        bgColor="#FAFAFA"
+        quietZone={0}
+        style={{ width: "100%", height: "100%" }}
+      />
+      <div className="flex items-center justify-between gap-6">
         <Button
           theme="extra"
           rounded
-          className="flex items-center justify-center gap-2"
+          className="flex w-1/2 items-center justify-center gap-2"
         >
-          <Icon name="share" className="!size-5" />
+          <Icon name="share" size={20} filled />
           <FocusSpan>Share</FocusSpan>
         </Button>
-        <Button rounded className="flex items-center justify-between gap-2">
-          <Icon name="download" className="!size-5" />
+        <Button
+          rounded
+          className="flex w-1/2 items-center justify-center gap-2"
+        >
+          <Icon name="download" size={20} filled />
           <FocusSpan>Download</FocusSpan>
         </Button>
       </div>

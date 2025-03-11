@@ -30,7 +30,7 @@ export * from "./NewQuestion";
 export * from "./Option";
 export * from "./Participants";
 export * from "./PremiumBadge";
-export * from "./PricingCard";
+export * from "./Pricing";
 export * from "./PricingComparisonCellWrapper";
 export * from "./ProfilePlaceholder";
 export * from "./ProviderButton";

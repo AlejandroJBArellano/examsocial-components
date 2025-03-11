@@ -1,1 +1,2 @@
-export { default as QuestionList } from "./QuestionList";
+export * from "./QuestionList";
+export { default } from "./QuestionList";

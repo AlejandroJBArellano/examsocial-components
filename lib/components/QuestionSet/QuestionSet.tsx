@@ -29,7 +29,7 @@ const QuestionSet = ({
     <div
       className={
         (selected ? "bg-extra shadow-right shadow-black " : "bg-extra-tint ") +
-        "w-full min-w-[350px] max-w-sm space-y-4 rounded-md border border-black p-4 xl:space-y-5 xl:p-5"
+        " w-full min-w-[350px] space-y-4 rounded-md border border-black p-4 xl:space-y-5 xl:p-5"
       }
     >
       <Heading5>{title}</Heading5>

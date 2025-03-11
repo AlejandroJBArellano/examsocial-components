@@ -1,0 +1,15 @@
+---
+description: Documentation
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- Read [CONTRIBUTING.md](mdc:CONTRIBUTING.md).
+- Read [CODING_STANDARDS.md](mdc:CODING_STANDARDS.md)
+- Read [DOCUMENTATION.md](mdc:DOCUMENTATION.md)
+- Read [CONTRIBUTING.md](mdc:CONTRIBUTING.md) 
+- Read [README.md](mdc:docs/README.md) 
+- Read [README.md](mdc:README.md) 
+- I am using Vite, React and Storybook.

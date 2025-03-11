@@ -81,7 +81,7 @@ export const VaulExample: Story = {
       <Drawer.Portal>
         <Drawer.Overlay />
         <Drawer.Content>
-          <div className="flex-1 rounded-t-[10px] bg-white p-4">
+          <div className="flex-1 rounded-t-3xl bg-white p-4">
             <Drawer.Handle />
             <div className="mx-auto max-w-md space-y-8">
               <Drawer.Title>Drawer for React.</Drawer.Title>

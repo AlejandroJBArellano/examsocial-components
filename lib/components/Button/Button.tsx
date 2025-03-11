@@ -55,7 +55,9 @@ const IconButton = (props: IconButtonProps) => {
   return (
     <Button
       {...props}
-      className={"flex items-center justify-center p-2 " + props.className}
+      className={
+        "flex items-center justify-center p-2 xl:p-2 " + props.className
+      }
     >
       <Icon
         name={props.children as string}

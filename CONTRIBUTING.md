@@ -219,6 +219,8 @@ export const Primary: Story = {
 - El código debe seguir las guías de estilo
 - Cada componente nuevo debe tener tests y documentación en Storybook
 - Incluye una descripción clara de los cambios realizados
+- Crea un diagrama de mermaid para explicar el componente
+- Comenta el código para que sea fácil de entender
 
 ## Consejos Adicionales
 

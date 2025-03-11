@@ -10,7 +10,8 @@ type Story = StoryObj<typeof ReviewQuestionSet>;
 
 export const Default: Story = {
   args: {
-    correct: false,
+    correct: true,
+    selected: 0,
     question: {
       title: "What is the capital of France?",
       _id: "q1",

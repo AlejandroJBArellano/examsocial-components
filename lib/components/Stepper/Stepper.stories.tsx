@@ -31,3 +31,60 @@ export const LastStepActive: Story = {
     onSelectStep: (step: number) => alert(`Step ${step} clicked`),
   },
 };
+
+export const WithStepStatuses: Story = {
+  args: {
+    steps: [
+      { id: 1, status: "completed", tooltip: "Completed step" },
+      { id: 2, status: "pending", tooltip: "Current step" },
+      { id: 3, status: "warning", tooltip: "Warning in this step" },
+      { id: 4, status: "error", tooltip: "Error in this step" },
+      { id: 5, status: "disabled", tooltip: "Disabled step" },
+    ],
+    activeStep: 2,
+    onSelectStep: (step: number) => alert(`Step ${step} clicked`),
+  },
+};
+
+export const WithTitle: Story = {
+  args: {
+    steps: Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })),
+    activeStep: 2,
+    onSelectStep: (step: number) => alert(`Step ${step} clicked`),
+    children: "Exam Progress",
+  },
+};
+
+export const WithTimeAndDivision: Story = {
+  args: {
+    steps: Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })),
+    activeStep: 3,
+    onSelectStep: (step: number) => alert(`Step ${step} clicked`),
+    children: "Exam Progress",
+    time: "15:30",
+    showDivision: true,
+  },
+};
+
+export const SecondaryTheme: Story = {
+  args: {
+    steps: Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })),
+    activeStep: 3,
+    onSelectStep: (step: number) => alert(`Step ${step} clicked`),
+    children: "Exam Progress",
+    time: "15:30",
+    showDivision: true,
+    theme: "secondary",
+    onReportExam: () => alert("Report exam clicked"),
+  },
+};
+
+export const AllowManualStepChange: Story = {
+  args: {
+    steps: Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })),
+    activeStep: 3,
+    onSelectStep: (step: number) => alert(`Step ${step} clicked`),
+    allowManualStepChange: true,
+    children: "Exam Progress - Click steps to navigate",
+  },
+};

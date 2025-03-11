@@ -102,35 +102,35 @@ export const advancedSettingsSchema = Yup.object({
 });
 
 export const contentSchema = Yup.object({
-  contentType: Yup.string()
+  type: Yup.string()
     .oneOf(["YOUTUBE", "TEXT", "LINK", "IMAGE", "VIDEO", "AUDIO", "FILE"])
     .required("Content type is required"),
-  youtubeUrl: Yup.string().when("contentType", {
+  youtubeUrl: Yup.string().when("type", {
     is: "YOUTUBE",
     then: (schema) =>
       schema.url("Invalid URL").required("YouTube URL is required"),
   }),
-  text: Yup.string().when("contentType", {
+  text: Yup.string().when("type", {
     is: "TEXT",
     then: (schema) => schema.required("Text is required"),
   }),
-  link: Yup.string().when("contentType", {
+  link: Yup.string().when("type", {
     is: "LINK",
     then: (schema) => schema.url("Invalid URL").required("Link is required"),
   }),
-  image: Yup.mixed().when("contentType", {
+  image: Yup.mixed().when("type", {
     is: "IMAGE",
     then: (schema) => schema.required("Image is required"),
   }),
-  video: Yup.mixed().when("contentType", {
+  video: Yup.mixed().when("type", {
     is: "VIDEO",
     then: (schema) => schema.required("Video is required"),
   }),
-  audio: Yup.mixed().when("contentType", {
+  audio: Yup.mixed().when("type", {
     is: "AUDIO",
     then: (schema) => schema.required("Audio is required"),
   }),
-  file: Yup.mixed().when("contentType", {
+  file: Yup.mixed().when("type", {
     is: "FILE",
     then: (schema) => schema.required("File is required"),
   }),

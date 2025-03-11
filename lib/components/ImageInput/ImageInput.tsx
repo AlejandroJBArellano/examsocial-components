@@ -117,10 +117,8 @@ const ImageInput = (
       </Button.Icon>
       <div className="hidden items-center justify-center gap-2 space-y-2 text-center xl:grid">
         <Icon name="photo" size={24} filled />
-        {/* TODO: 
         <Span>Drag and drop your images here to upload</Span>
-        <Span>or</Span> 
-        */}
+        <Span>or</Span>
         <Button rounded theme="extra" onClick={onClick}>
           <FocusSpan>Select from your files</FocusSpan>
         </Button>

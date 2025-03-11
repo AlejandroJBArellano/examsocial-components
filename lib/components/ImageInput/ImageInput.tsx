@@ -73,6 +73,7 @@ const ImageInput = (
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
+        className="inline-flex h-36 w-full max-w-sm flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-black bg-accent-tint p-4 xl:h-auto xl:max-w-2xl xl:border-dashed xl:p-7"
       >
         <input
           accept="image/*"
@@ -81,14 +82,8 @@ const ImageInput = (
           className="hidden"
           {...props}
         />
-        <div
-          data-isHovering="true"
-          data-responsive="xl:"
-          className="inline-flex h-36 w-full max-w-sm flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-black bg-accent-tint p-4 xl:h-auto xl:max-w-2xl xl:border-dashed xl:p-7"
-        >
-          <Icon name="place_item" size={40} filled />
-          <Span className="block text-center">Drop it like it's hot</Span>
-        </div>
+        <Icon name="place_item" size={40} filled />
+        <Span className="block text-center">Drop it like it's hot</Span>
       </label>
     );
   }

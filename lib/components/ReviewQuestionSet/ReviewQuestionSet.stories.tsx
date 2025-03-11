@@ -14,6 +14,7 @@ export default {
       },
     },
   },
+  tags: ["autodocs"],
   argTypes: {
     correct: {
       control: "boolean",

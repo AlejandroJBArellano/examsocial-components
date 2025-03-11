@@ -5,16 +5,44 @@ import { questionSchema } from "../../schemas";
 import { Heading5, Smoll } from "../FontFaces";
 import { Icon } from "../Icon";
 
+/**
+ * Interface for the ReviewQuestionSet component props
+ */
 interface IReviewQuestionSet {
+  /**
+   * The question object containing the title and options
+   */
   question: Yup.InferType<typeof questionSchema>;
+
+  /**
+   * The index of the selected answer from the options array
+   */
   selected: number;
+
+  /**
+   * Whether the selected answer is correct
+   */
   correct?: boolean;
 }
 
+/**
+ * A helper component to display answer text with consistent styling
+ */
 const Answer = ({ children }: { children: React.ReactNode }) => {
   return <p className="leading-5 xl:text-lg">{children}</p>;
 };
 
+/**
+ * ReviewQuestionSet component
+ *
+ * Displays a question with the selected answer and indicates whether the answer was correct or incorrect.
+ * Includes a toggle to show all available options.
+ *
+ * @param props - Component props
+ * @param props.question - The question object with title and options
+ * @param props.selected - Index of the selected answer
+ * @param props.correct - Whether the selected answer is correct
+ */
 const ReviewQuestionSet = ({
   question,
   correct,

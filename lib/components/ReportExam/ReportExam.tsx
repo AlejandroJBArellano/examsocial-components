@@ -2,6 +2,7 @@ import { Question } from "@/types";
 import { useState } from "react";
 import { Button } from "../Button";
 import { Checkbox } from "../Checkbox";
+import { FocusSpan, Heading4, Span } from "../FontFaces";
 import { RadioGroup } from "../RadioGroup";
 import { Textarea } from "../Textarea";
 
@@ -82,7 +83,7 @@ const ReportExam = ({
               htmlFor="other"
               className="block text-base font-medium leading-5"
             >
-              Please, write your reason:
+              <FocusSpan>Please, write your reason:</FocusSpan>
             </label>
             <Textarea
               id="other"
@@ -118,12 +119,10 @@ const ReportExam = ({
   };
 
   return (
-    <section className="space-y-6 rounded-md border border-black p-4">
+    <section className="space-y-6 rounded-md border border-black p-4 md:space-y-7 md:p-6 xl:space-y-8 xl:p-7 2xl:space-y-9 2xl:p-8">
       <article className="space-y-2">
-        <h2 className="sentient text-2xl font-medium leading-7 tracking-[0.48px]">
-          Report Exam
-        </h2>
-        <p className="text-base leading-5">{labels[step]}</p>
+        <Heading4>Report Exam</Heading4>
+        <Span>{labels[step]}</Span>
       </article>
       {steps[step]}
       <article className="grid grid-cols-2 gap-4">

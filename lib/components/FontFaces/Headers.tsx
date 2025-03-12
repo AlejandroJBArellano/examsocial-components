@@ -1,8 +1,17 @@
 import { PropsWithChildren } from "react";
 import { cn } from "../../utils";
 
-export const Heading1 = ({ children }: PropsWithChildren) => (
-  <h1 className="sentient text-4xl font-bold leading-[48px] tracking-wide xl:text-[40px] xl:leading-[56px]">
+export const Heading1 = ({
+  children,
+  ...props
+}: PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) => (
+  <h1
+    {...props}
+    className={cn(
+      "sentient text-4xl font-bold leading-[48px] tracking-wide xl:text-[40px] xl:leading-[56px]",
+      props.className,
+    )}
+  >
     {children}
   </h1>
 );
@@ -77,6 +86,9 @@ export const Heading6 = (
 ) => (
   <h6
     {...props}
-    className="text-lg font-medium leading-tight tracking-tight xl:text-xl xl:leading-normal"
+    className={cn(
+      "text-lg font-medium leading-tight tracking-tight xl:text-xl xl:leading-normal",
+      props.className,
+    )}
   />
 );

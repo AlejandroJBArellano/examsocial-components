@@ -5,10 +5,12 @@ import { Feature, FeaturesCarousel } from "./";
 
 interface ProfileCardSubscriptionProps {
   features: Feature[];
+  onSubscribe: () => void;
 }
 
 const ProfileCardSubscription = ({
   features,
+  onSubscribe,
 }: ProfileCardSubscriptionProps) => {
   return (
     <article className="space-y-4 rounded-md border-sm border-black bg-secondary-tint p-4">
@@ -20,6 +22,7 @@ const ProfileCardSubscription = ({
         className="flex w-full items-center justify-center gap-2"
         rounded
         theme="accent"
+        onClick={onSubscribe}
       >
         <Icon filled name="workspace_premium" size={24} />
         <FocusSpan>Subscribe Now</FocusSpan>

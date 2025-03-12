@@ -1,11 +1,12 @@
 import { Question } from "@/types";
-import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
+import "@testing-library/vi-dom";
 import React from "react";
+import { describe, expect, it, vi } from "vitest";
 import QuestionList from "./QuestionList";
 
 // Mock QuestionDetail and QuestionSet components
-jest.mock("../QuestionDetail", () => ({
+vi.mock("../QuestionDetail", () => ({
   QuestionDetail: ({
     children,
     options,
@@ -39,7 +40,7 @@ jest.mock("../QuestionDetail", () => ({
   ),
 }));
 
-jest.mock("../QuestionSet", () => ({
+vi.mock("../QuestionSet", () => ({
   QuestionSet: ({
     title,
     viewOnly,
@@ -143,7 +144,7 @@ describe("QuestionList Component", () => {
   });
 
   it("calls onEditQuestion with correct questionId", () => {
-    const handleEdit = jest.fn();
+    const handleEdit = vi.fn();
     render(
       <QuestionList questions={testQuestions} onEditQuestion={handleEdit} />,
     );
@@ -156,7 +157,7 @@ describe("QuestionList Component", () => {
   });
 
   it("calls onDeleteQuestion with correct questionId", () => {
-    const handleDelete = jest.fn();
+    const handleDelete = vi.fn();
     render(
       <QuestionList
         questions={testQuestions}

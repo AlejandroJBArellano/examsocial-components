@@ -3,6 +3,7 @@ export * from "./AnswerToggle";
 export * from "./Back";
 export * from "./BannerInput";
 export * from "./Button";
+export * from "./Chart";
 export * from "./Checkbox";
 export * from "./Collection";
 export * from "./Comment";

@@ -3,8 +3,11 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  Legend,
   ReferenceLine,
   ResponsiveContainer,
+  Tooltip,
+  TooltipProps,
   XAxis,
   YAxis,
 } from "recharts";
@@ -37,7 +40,43 @@ export interface ChartProps {
    * CSS classes to apply to the chart container
    */
   className?: string;
+  /**
+   * Enable/disable tooltips (default: true)
+   */
+  showTooltip?: boolean;
+  /**
+   * Enable/disable legend (default: false)
+   */
+  showLegend?: boolean;
+  /**
+   * Enable/disable animations (default: true)
+   */
+  animated?: boolean;
+  /**
+   * Custom label for the value in tooltip and legend
+   */
+  valueLabel?: string;
 }
+
+/**
+ * Custom tooltip component
+ */
+const CustomTooltip = ({
+  active,
+  payload,
+  label,
+  valueLabel,
+}: TooltipProps<number, string> & { valueLabel?: string }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="rounded border border-black bg-white p-2 shadow-md">
+        <p className="font-semibold">{label}</p>
+        <p className="text-sm">{`${valueLabel || "Value"}: ${payload[0].value}`}</p>
+      </div>
+    );
+  }
+  return null;
+};
 
 /**
  * Chart component that uses Recharts with custom styling
@@ -48,6 +87,10 @@ const Chart: React.FC<ChartProps> = ({
   maxY = 100,
   variant = "primary",
   className,
+  showTooltip = true,
+  showLegend = false,
+  animated = true,
+  valueLabel = "Value",
 }) => {
   // Format the data for Recharts
   const chartData = data.map((item) => ({
@@ -115,12 +158,28 @@ const Chart: React.FC<ChartProps> = ({
               tickCount={6}
             />
             <ReferenceLine y={0} stroke="#000000" strokeWidth={2} />
+            {showTooltip && (
+              <Tooltip
+                content={<CustomTooltip valueLabel={valueLabel} />}
+                cursor={{ fill: "rgba(0, 0, 0, 0.1)" }}
+              />
+            )}
+            {showLegend && (
+              <Legend
+                verticalAlign="top"
+                height={36}
+                wrapperStyle={{ paddingTop: "10px" }}
+              />
+            )}
             <Bar
+              name={valueLabel}
               dataKey="value"
               fill={getColor()}
               stroke="#000000"
               strokeWidth={1}
-              isAnimationActive={false}
+              isAnimationActive={animated}
+              animationDuration={animated ? 1500 : 0}
+              animationEasing="ease-out"
             />
           </BarChart>
         </ResponsiveContainer>

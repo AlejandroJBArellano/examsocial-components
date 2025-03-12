@@ -61,7 +61,7 @@ export default {
   title: "Components/ReportExam",
   component: ReportExam,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
     docs: {
       description: {
         component:

@@ -12,7 +12,7 @@ const UsersCount = ({ count }: UsersCountProps) => {
       aria-label={`${count} exams taken`}
     >
       <div className="flex gap-4">
-        <Icon name="person_check" size={64} aria-hidden="true" />
+        <Icon name="person_check" size={64} aria-hidden="true" filled />
         <FocusDisplay>{count}</FocusDisplay>
       </div>
       <Heading3 className="ml-20">exams taken</Heading3>

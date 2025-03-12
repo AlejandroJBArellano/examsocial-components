@@ -119,7 +119,7 @@ const ReportExam = ({
   };
 
   return (
-    <section className="space-y-6 rounded-md border border-black p-4 md:space-y-7 md:p-6 xl:space-y-8 xl:p-7 2xl:space-y-9 2xl:p-8">
+    <section className="w-full max-w-sm space-y-6 rounded-md border border-black p-4 md:max-w-md md:space-y-7 md:p-6 xl:max-w-xl xl:space-y-8 xl:p-7 2xl:max-w-2xl 2xl:space-y-9 2xl:p-8">
       <article className="space-y-2">
         <Heading4>Report Exam</Heading4>
         <Span>{labels[step]}</Span>

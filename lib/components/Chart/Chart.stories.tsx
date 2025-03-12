@@ -17,7 +17,7 @@ const meta: Meta<typeof Chart> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["primary", "secondary", "accent", "extra"],
+      options: ["primary", "secondary", "accent", "extra", "light"],
       defaultValue: "primary",
     },
     showTooltip: {
@@ -242,6 +242,61 @@ export const CustomClassNames: Story = {
 };
 
 /**
+ * Light variant stories
+ */
+
+export const LightVariant: Story = {
+  args: {
+    title: "Light Variant Chart",
+    variant: "light",
+    data: [
+      { label: "Q1", value: 78 },
+      { label: "Q2", value: 85 },
+      { label: "Q3", value: 92 },
+      { label: "Q4", value: 88 },
+    ],
+    maxY: 100,
+    showTooltip: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This story demonstrates the new light variant of the chart component with a clean white and gray color scheme.",
+      },
+    },
+  },
+};
+
+export const LightVariantWithFeatures: Story = {
+  args: {
+    title: "Light Variant with All Features",
+    variant: "light",
+    data: [
+      { label: "Student A", value: 82 },
+      { label: "Student B", value: 67 },
+      { label: "Student C", value: 91 },
+      { label: "Student D", value: 75 },
+      { label: "Student E", value: 88 },
+    ],
+    maxY: 100,
+    showTooltip: true,
+    showLegend: true,
+    animated: true,
+    valueLabel: "Test Score",
+    className: "shadow-md",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This story showcases the minimalist light variant with all available features enabled. Perfect for a clean, professional presentation.",
+      },
+    },
+  },
+};
+
+/**
  * This story is intended for visual regression testing.
  * It displays all variants of the Chart component in a single view.
  */
@@ -277,6 +332,12 @@ export const VisualRegressionTest: StoryObj = {
           title="Extra Variant"
           data={testData}
           variant="extra"
+          maxY={100}
+        />
+        <Chart
+          title="Light Variant"
+          data={testData}
+          variant="light"
           maxY={100}
         />
       </div>

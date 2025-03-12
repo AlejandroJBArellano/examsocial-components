@@ -35,7 +35,7 @@ export interface ChartProps {
   /**
    * The appearance style of the chart
    */
-  variant?: "primary" | "secondary" | "accent" | "extra";
+  variant?: "primary" | "secondary" | "accent" | "extra" | "light";
   /**
    * CSS classes to apply to the chart container
    */
@@ -107,6 +107,8 @@ const Chart: React.FC<ChartProps> = ({
         return "#FF5C96"; // accent color
       case "extra":
         return "#FFC34D"; // extra color
+      case "light":
+        return "#E0E0E0"; // light gray color for bars
       case "primary":
       default:
         return "#FFC34D"; // default to extra color for consistency with previous design
@@ -119,6 +121,12 @@ const Chart: React.FC<ChartProps> = ({
     accent: "bg-accent-tint",
     extra: "bg-extra-tint",
     primary: "bg-primary-tint",
+    light: "bg-white",
+  };
+
+  // Define the stroke color based on variant
+  const getStrokeColor = () => {
+    return variant === "light" ? "#AAAAAA" : "#000000";
   };
 
   return (
@@ -143,11 +151,11 @@ const Chart: React.FC<ChartProps> = ({
               strokeDasharray="3 3"
               horizontal={true}
               vertical={false}
-              stroke="#E6E6E6"
+              stroke={variant === "light" ? "#E6E6E6" : "#E6E6E6"}
             />
             <XAxis
               dataKey="name"
-              axisLine={{ stroke: "#000000", strokeWidth: 2 }}
+              axisLine={{ stroke: getStrokeColor(), strokeWidth: 2 }}
               tickLine={false}
               padding={{ left: 10, right: 10 }}
             />
@@ -157,7 +165,7 @@ const Chart: React.FC<ChartProps> = ({
               tickLine={false}
               tickCount={6}
             />
-            <ReferenceLine y={0} stroke="#000000" strokeWidth={2} />
+            <ReferenceLine y={0} stroke={getStrokeColor()} strokeWidth={2} />
             {showTooltip && (
               <Tooltip
                 content={<CustomTooltip valueLabel={valueLabel} />}
@@ -175,7 +183,7 @@ const Chart: React.FC<ChartProps> = ({
               name={valueLabel}
               dataKey="value"
               fill={getColor()}
-              stroke="#000000"
+              stroke={getStrokeColor()}
               strokeWidth={1}
               isAnimationActive={animated}
               animationDuration={animated ? 1500 : 0}

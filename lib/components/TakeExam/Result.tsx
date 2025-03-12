@@ -1,5 +1,5 @@
 import { Button } from "../Button";
-import { FocusSpan, Heading3 } from "../FontFaces";
+import { FocusSpan, Heading1, Heading3, Heading6 } from "../FontFaces";
 import { Icon } from "../Icon";
 
 const ResultTakeExam = () => {
@@ -8,14 +8,14 @@ const ResultTakeExam = () => {
       <div className="relative mx-auto h-[171px] w-[171px]">
         <div className="absolute left-0 top-0 h-[171px] w-[171px] rounded-full border border-[#037c95] bg-[#65e4ff]" />
         <div className="absolute left-0 top-[-0px] h-[171px] w-[171px] rounded-full bg-[#edfafd]" />
-        <div className="absolute left-[35.50px] top-[51.50px] w-[100px] text-center font-['Sentient'] text-4xl font-bold leading-[48px] tracking-wide text-black">
+        <Heading1 className="absolute left-[35.50px] top-[51.50px] w-[100px] text-center">
           75%
-        </div>
-        <div className="absolute left-[35.50px] top-[99.50px] w-[100px] text-center font-['Satoshi'] text-lg font-medium leading-tight tracking-tight text-black">
+        </Heading1>
+        <Heading6 className="absolute left-[35.50px] top-[99.50px] w-[100px] text-center">
           15/20
-        </div>
+        </Heading6>
       </div>
-      <Heading3 className="text-center leading-[32px] text-primary-shadow">
+      <Heading3 className="text-center text-primary-shadow">
         Congrats! You have approved this exam.
       </Heading3>
       <div className="flex items-center justify-between">
@@ -25,7 +25,7 @@ const ResultTakeExam = () => {
           rounded
           className="flex items-center justify-center gap-2"
         >
-          <Icon name="replay" className="!size-5" />
+          <Icon name="replay" size={20} />
           <FocusSpan>Retry</FocusSpan>
         </Button>
       </div>

@@ -20,6 +20,22 @@ const meta: Meta<typeof Chart> = {
       options: ["primary", "secondary", "accent", "extra"],
       defaultValue: "primary",
     },
+    showTooltip: {
+      control: "boolean",
+      defaultValue: true,
+    },
+    showLegend: {
+      control: "boolean",
+      defaultValue: false,
+    },
+    animated: {
+      control: "boolean",
+      defaultValue: true,
+    },
+    valueLabel: {
+      control: "text",
+      defaultValue: "Value",
+    },
   },
 };
 
@@ -271,6 +287,221 @@ export const VisualRegressionTest: StoryObj = {
       description: {
         story:
           "This story displays all variants of the Chart component in a single view for visual regression testing purposes.",
+      },
+    },
+  },
+};
+
+/**
+ * New stories to showcase enhanced features
+ */
+
+export const WithTooltip: Story = {
+  args: {
+    title: "Chart with Tooltip",
+    variant: "primary",
+    data: [
+      { label: "Math", value: 85 },
+      { label: "Science", value: 72 },
+      { label: "Language", value: 90 },
+      { label: "History", value: 68 },
+      { label: "Arts", value: 95 },
+    ],
+    maxY: 100,
+    showTooltip: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This story demonstrates the tooltip feature when hovering over chart bars.",
+      },
+    },
+  },
+};
+
+export const WithLegend: Story = {
+  args: {
+    title: "Chart with Legend",
+    variant: "secondary",
+    data: [
+      { label: "Quizzes", value: 75 },
+      { label: "Midterm", value: 68 },
+      { label: "Projects", value: 90 },
+      { label: "Final Exam", value: 82 },
+    ],
+    maxY: 100,
+    showLegend: true,
+    valueLabel: "Score",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This story shows how to display a legend at the top of the chart.",
+      },
+    },
+  },
+};
+
+export const WithAnimations: Story = {
+  args: {
+    title: "Animated Chart",
+    variant: "accent",
+    data: [
+      { label: "Week 1", value: 45 },
+      { label: "Week 2", value: 55 },
+      { label: "Week 3", value: 35 },
+      { label: "Week 4", value: 75 },
+      { label: "Week 5", value: 85 },
+    ],
+    maxY: 100,
+    animated: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This story demonstrates the animation capabilities of the chart.",
+      },
+    },
+  },
+};
+
+export const CustomValueLabel: Story = {
+  args: {
+    title: "Custom Value Label",
+    variant: "extra",
+    data: [
+      { label: "Q1", value: 2.5 },
+      { label: "Q2", value: 3.8 },
+      { label: "Q3", value: 4.2 },
+      { label: "Q4", value: 3.1 },
+    ],
+    maxY: 5,
+    valueLabel: "GPA",
+    showTooltip: true,
+    showLegend: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This story shows how to customize the value label in both tooltips and legend.",
+      },
+    },
+  },
+};
+
+export const FullFeatured: Story = {
+  args: {
+    title: "Full Featured Chart",
+    variant: "accent",
+    data: [
+      { label: "Module 1", value: 92 },
+      { label: "Module 2", value: 85 },
+      { label: "Module 3", value: 78 },
+      { label: "Module 4", value: 95 },
+      { label: "Module 5", value: 88 },
+    ],
+    maxY: 100,
+    showTooltip: true,
+    showLegend: true,
+    animated: true,
+    valueLabel: "Completion %",
+    className: "shadow-lg",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This story showcases all available features of the chart component used together.",
+      },
+    },
+  },
+};
+
+export const NonAnimated: Story = {
+  args: {
+    title: "Non-Animated Chart",
+    variant: "primary",
+    data: [
+      { label: "Section A", value: 65 },
+      { label: "Section B", value: 72 },
+      { label: "Section C", value: 58 },
+      { label: "Section D", value: 80 },
+    ],
+    maxY: 100,
+    animated: false,
+    showTooltip: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This story demonstrates how the chart looks without animations.",
+      },
+    },
+  },
+};
+
+/**
+ * This story shows an interactive demo of all features.
+ */
+export const InteractiveDemo: StoryObj = {
+  render: () => {
+    const demoData = [
+      { label: "Mon", value: 65 },
+      { label: "Tue", value: 72 },
+      { label: "Wed", value: 45 },
+      { label: "Thu", value: 85 },
+      { label: "Fri", value: 55 },
+    ];
+
+    return (
+      <div className="space-y-8">
+        <Chart
+          title="Interactive Demo - Try the controls!"
+          data={demoData}
+          variant="primary"
+          maxY={100}
+          showTooltip={true}
+          showLegend={true}
+          animated={true}
+          valueLabel="Daily Score"
+        />
+        <div className="rounded-lg bg-gray-100 p-4">
+          <p className="text-sm">
+            This demo showcases all the interactive features of the Chart
+            component. You can use the controls in the Storybook panel to toggle
+            features on and off.
+          </p>
+          <ul className="mt-2 list-inside list-disc text-sm">
+            <li>
+              Toggle tooltips with the <code>showTooltip</code> control
+            </li>
+            <li>
+              Show/hide the legend with the <code>showLegend</code> control
+            </li>
+            <li>
+              Enable/disable animations with the <code>animated</code> control
+            </li>
+            <li>
+              Customize the value label with the <code>valueLabel</code> control
+            </li>
+            <li>
+              Change the visual style with the <code>variant</code> control
+            </li>
+          </ul>
+        </div>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "An interactive demo showcasing all the features of the Chart component.",
       },
     },
   },

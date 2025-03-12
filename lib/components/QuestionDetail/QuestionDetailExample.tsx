@@ -55,8 +55,6 @@ const QuestionDetailExample: React.FC = () => {
           options={options}
           onEdit={handleEdit}
           onDelete={handleDelete}
-          showCorrectAnswer={showAnswer}
-          correctPercentage={42}
         >
           Which code snippet creates a store in Svelte?
         </QuestionDetail>
@@ -67,7 +65,7 @@ const QuestionDetailExample: React.FC = () => {
         <h3 className="mb-4 text-xl">
           Example 2: Using compound component pattern
         </h3>
-        <QuestionDetail showCorrectAnswer={showAnswer}>
+        <QuestionDetail>
           <QuestionDetail.Header onEdit={handleEdit} onDelete={handleDelete}>
             Which code snippet creates a store in Svelte?
           </QuestionDetail.Header>

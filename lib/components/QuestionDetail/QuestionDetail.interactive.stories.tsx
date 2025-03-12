@@ -139,11 +139,18 @@ export const SimpleQuiz = () => {
   const QuizQuestion = ({ question }: { question: typeof currentQuestion }) => {
     const selectedOptionId = userSelections[question.id] || null;
 
+    // Create properly formatted options with correct property name
+    const formattedOptions: AnswerOptionType[] = question.options.map(
+      (option) => ({
+        id: option.id,
+        text: option.content,
+        correct: option.isCorrect,
+        percentage: option.percentage,
+      }),
+    );
+
     return (
-      <QuestionDetail
-        showCorrectAnswer={showResults}
-        options={question.options as AnswerOptionType[]}
-      >
+      <QuestionDetail options={formattedOptions}>
         <QuestionDetail.Header>{question.text}</QuestionDetail.Header>
         <div className="mt-8">
           <div className="flex flex-col gap-4">

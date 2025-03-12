@@ -9,7 +9,7 @@ const StoryOption: React.FC<{
   showCorrectAnswer: boolean;
   percentage: number;
   children: React.ReactNode;
-}> = ({ id, isCorrect, showCorrectAnswer, percentage, children }) => {
+}> = ({ id, isCorrect, percentage, children }) => {
   const options: AnswerOptionType[] = [
     {
       id,
@@ -21,7 +21,7 @@ const StoryOption: React.FC<{
 
   return (
     <div className="max-w-md rounded-md border border-dashed border-gray-300 p-4">
-      <QuestionDetail options={options} showCorrectAnswer={showCorrectAnswer}>
+      <QuestionDetail options={options}>
         {/* The question text isn't shown in this story focus */}
         <span className="sr-only">Sample question</span>
       </QuestionDetail>

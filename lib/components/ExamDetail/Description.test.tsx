@@ -133,14 +133,27 @@ describe("ExamDescription component", () => {
     expect(screen.queryByText(longDescription)).not.toBeInTheDocument();
   });
 
-  it("renders with xl size correctly", () => {
+  it("renders with proper layout", () => {
     render(
       <ExamDescription
         description={mockDescription}
         onStartExam={mockOnStartExam}
         onFavorite={mockOnFavorite}
         onBookmark={mockOnBookmark}
-        size="xl"
+      />,
+    );
+
+    expect(screen.getByText(mockDescription)).toBeInTheDocument();
+    expect(screen.getByText("Start exam")).toBeInTheDocument();
+  });
+
+  it("should render long description correctly", () => {
+    render(
+      <ExamDescription
+        description={mockDescription}
+        onStartExam={mockOnStartExam}
+        onFavorite={mockOnFavorite}
+        onBookmark={mockOnBookmark}
       />,
     );
 

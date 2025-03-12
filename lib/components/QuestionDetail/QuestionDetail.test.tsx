@@ -23,14 +23,21 @@ describe("QuestionDetail component", () => {
 
   it("renders with custom question text", () => {
     const customQuestion = "What is the capital of France?";
-    render(<QuestionDetail questionText={customQuestion} />);
+    render(<QuestionDetail>{customQuestion}</QuestionDetail>);
 
     expect(screen.getByText(customQuestion)).toBeInTheDocument();
   });
 
-  it("renders with custom correct percentage", () => {
-    const correctPercentage = 75;
-    render(<QuestionDetail correctPercentage={correctPercentage} />);
+  it("renders with custom options including a specific percentage", () => {
+    const options = [
+      {
+        id: "1",
+        text: "Paris",
+        correct: true,
+        percentage: 75,
+      },
+    ];
+    render(<QuestionDetail options={options} />);
 
     expect(screen.getByText("75%")).toBeInTheDocument();
   });
@@ -71,11 +78,19 @@ describe("QuestionDetail component", () => {
   });
 
   it("has correct aria labels for accessibility", () => {
-    render(<QuestionDetail correctPercentage={42} />);
+    const options = [
+      {
+        id: "1",
+        text: "Paris",
+        correct: true,
+        percentage: 42,
+      },
+    ];
+    render(<QuestionDetail options={options} />);
 
     // Check the percentage indicator has appropriate aria-label
     expect(
-      screen.getByLabelText("42% of students got this answer correct"),
+      screen.getByLabelText("42% of students selected this answer"),
     ).toBeInTheDocument();
 
     // Check the buttons have proper aria-labels
@@ -83,27 +98,30 @@ describe("QuestionDetail component", () => {
     expect(screen.getByLabelText("Delete question")).toBeInTheDocument();
   });
 
-  it("does not show percentage indicator when showCorrectAnswer is false", () => {
-    render(<QuestionDetail showCorrectAnswer={false} />);
+  it("does not show percentage indicator when no options are provided", () => {
+    render(<QuestionDetail options={[]} />);
 
     // The percentage text should not be in the document
     expect(screen.queryByText("25%")).not.toBeInTheDocument();
-
-    // The percentage indicator div should not be present
-    expect(
-      screen.queryByLabelText("25% of students got this answer correct"),
-    ).not.toBeInTheDocument();
   });
 
-  it("shows percentage indicator when showCorrectAnswer is true", () => {
-    render(<QuestionDetail showCorrectAnswer={true} />);
+  it("shows percentage indicator when options with percentages are provided", () => {
+    const options = [
+      {
+        id: "1",
+        text: "Paris",
+        correct: true,
+        percentage: 25,
+      },
+    ];
+    render(<QuestionDetail options={options} />);
 
     // The percentage text should be in the document
     expect(screen.getByText("25%")).toBeInTheDocument();
 
     // The percentage indicator div should be present
     expect(
-      screen.getByLabelText("25% of students got this answer correct"),
+      screen.getByLabelText("25% of students selected this answer"),
     ).toBeInTheDocument();
   });
 });

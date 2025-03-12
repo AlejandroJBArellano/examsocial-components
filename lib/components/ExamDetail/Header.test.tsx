@@ -15,8 +15,14 @@ vi.mock("./Banner", () => ({
 
 const mockProps = {
   title: "Svelte Fundamentals",
-  authorName: "John Doe",
-  category: "Svelte",
+  author: {
+    name: "John Doe",
+    href: "/authors/john-doe",
+  },
+  category: {
+    name: "Svelte",
+    href: "/categories/svelte",
+  },
   participants: 391,
   duration: {
     hours: 2,

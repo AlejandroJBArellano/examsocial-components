@@ -14,7 +14,7 @@ const LibraryItem = ({
 >) => {
   return (
     <a className="mb-2 cursor-pointer space-y-1" {...props}>
-      <div className="flex justify-between">
+      <div className="flex items-center justify-between">
         <Heading4>{title}</Heading4>
         <Icon name="arrow_forward" size={24} />
       </div>

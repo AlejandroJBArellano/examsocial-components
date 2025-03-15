@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import { InputHTMLAttributes, ReactNode } from "react";
 import { FocusSpan, Smoll } from "../FontFaces";
 import { Input } from "../Input";
@@ -13,13 +14,17 @@ interface FieldProps {
 
 const Field = ({ label, error, helperText, inputProps }: FieldProps) => {
   return (
-    <article>
-      <div className="grid grid-cols-2 items-center">
+    <article className="space-y-1">
+      <div className="flex items-center justify-between">
         <FocusSpan>{label}</FocusSpan>
         <Smoll>{helperText}</Smoll>
       </div>
-      <div className={`rounded-b-md ${error ? "bg-feedback-error-tint" : ""}`}>
-        <Input {...inputProps} error={!!error} />
+      <div className={`rounded-md ${error ? "bg-feedback-error-tint" : ""}`}>
+        <Input
+          {...inputProps}
+          error={!!error}
+          className={cn("w-full", inputProps?.className)}
+        />
         {error && (
           <Smoll className="px-2 py-1 text-feedback-error">{error}</Smoll>
         )}

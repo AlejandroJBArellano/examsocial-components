@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import { ReactNode, TextareaHTMLAttributes } from "react";
 import { FocusSpan, Smoll } from "../FontFaces";
 import { Textarea } from "../Textarea";
@@ -15,13 +16,17 @@ export const TextareaField = ({
   textareaProps,
 }: TextareaFieldProps) => {
   return (
-    <article>
-      <div className="grid grid-cols-2 items-center">
+    <article className="space-y-1">
+      <div className="flex items-center justify-between">
         <FocusSpan>{label}</FocusSpan>
         <Smoll>{helperText}</Smoll>
       </div>
-      <div className="rounded-b-md bg-feedback-error-tint">
-        <Textarea {...textareaProps} error={!!error} />
+      <div className={`rounded-md ${error ? "bg-feedback-error-tint" : ""}`}>
+        <Textarea
+          {...textareaProps}
+          error={!!error}
+          className={cn("w-full", textareaProps?.className)}
+        />
         {error && (
           <Smoll className="px-2 py-1 text-feedback-error">{error}</Smoll>
         )}

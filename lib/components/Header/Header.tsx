@@ -7,7 +7,7 @@ interface HeaderProps extends PropsWithChildren {
 
 const Header = ({ children, logoHref }: HeaderProps) => {
   return (
-    <header className="flex items-center justify-between border-b-sm border-black bg-primary p-4 md:px-6 xl:bg-white xl:px-7 xl:py-5 2xl:px-8 2xl:py-5">
+    <header className="flex items-center justify-between border-b-sm border-black bg-primary px-4 py-2 md:px-6 xl:bg-white xl:px-7 xl:py-3 2xl:px-8 2xl:py-4">
       {logoHref ? (
         <a href={logoHref}>
           <Logo />

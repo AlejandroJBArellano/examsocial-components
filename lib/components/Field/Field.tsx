@@ -1,4 +1,5 @@
 import { InputHTMLAttributes, ReactNode } from "react";
+import { FocusSpan, Smoll } from "../FontFaces";
 import { Input } from "../Input";
 import { SwitchField } from "./Switch";
 import { TextareaField } from "./Textarea";
@@ -14,17 +15,13 @@ const Field = ({ label, error, helperText, inputProps }: FieldProps) => {
   return (
     <article>
       <div className="grid grid-cols-2 items-center">
-        <label className="font-medium xl:text-lg" htmlFor={inputProps?.id}>
-          {label}
-        </label>
-        <label className="text-right text-xs xl:text-sm">{helperText}</label>
+        <FocusSpan>{label}</FocusSpan>
+        <Smoll>{helperText}</Smoll>
       </div>
       <div className={`rounded-b-md ${error ? "bg-feedback-error-tint" : ""}`}>
         <Input {...inputProps} error={!!error} />
         {error && (
-          <div className="px-2 py-1 text-feedback-error">
-            <label htmlFor={inputProps?.id}>{error}</label>
-          </div>
+          <Smoll className="px-2 py-1 text-feedback-error">{error}</Smoll>
         )}
       </div>
     </article>

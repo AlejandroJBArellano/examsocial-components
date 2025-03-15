@@ -4,6 +4,7 @@ import React, { PropsWithChildren } from "react";
 import { Field } from "../Field";
 import { Heading5 } from "../FontFaces";
 import { Icon } from "../Icon";
+import { DeleteCollection } from "./DeleteCollection";
 import { EditCollection } from "./EditCollection";
 import { NewCollection } from "./NewCollection";
 
@@ -73,6 +74,7 @@ const Collection: React.FC<PropsWithChildren> & {
   Edit: typeof EditCollection;
   New: typeof NewCollection;
   Form: typeof CollectionForm;
+  Delete: typeof DeleteCollection;
 } = ({ children }) => {
   return <div>{children}</div>;
 };
@@ -82,6 +84,7 @@ Collection.Add = Add;
 Collection.Form = CollectionForm;
 Collection.Edit = EditCollection;
 Collection.New = NewCollection;
+Collection.Delete = DeleteCollection;
 
 export default Collection;
 

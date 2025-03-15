@@ -42,6 +42,7 @@ export * from "./QuestionForm";
 export * from "./QuestionList";
 export * from "./QuestionSet";
 export * from "./RadioGroup";
+export * from "./RemoveFollower";
 export * from "./ReportExam";
 export * from "./ReviewQuestionSet";
 export * from "./Select";

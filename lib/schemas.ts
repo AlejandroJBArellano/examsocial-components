@@ -175,3 +175,10 @@ export const examSchema = Yup.object({
     .required("Questions are required")
     .min(1, "At least one question is required"),
 });
+
+export const collectionSchema = Yup.object({
+  name: Yup.string().required("Collection name is required"),
+  _id: Yup.string().required(),
+  description: Yup.string(),
+  private: Yup.boolean().default(false),
+});

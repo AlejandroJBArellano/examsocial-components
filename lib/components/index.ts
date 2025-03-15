@@ -16,6 +16,7 @@ export * from "./EditQuestion";
 export * from "./Email";
 export * from "./ExamCard";
 export * from "./FeedbackScreen";
+export * from "./Field";
 export * from "./FontFaces";
 export * from "./Header";
 export * from "./Helper";

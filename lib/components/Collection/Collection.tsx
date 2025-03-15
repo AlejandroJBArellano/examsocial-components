@@ -79,9 +79,9 @@ const Collection: React.FC<PropsWithChildren> & {
 
 // Attach Add as a subcomponent
 Collection.Add = Add;
+Collection.Form = CollectionForm;
 Collection.Edit = EditCollection;
 Collection.New = NewCollection;
-Collection.Form = CollectionForm;
 
 export default Collection;
 

@@ -25,14 +25,13 @@ export const Default: Story = {
       private: false,
     },
   },
-  render: (args: Story["args"]) => {
+  render: (args) => {
     return <EditCollection {...args} />;
   },
 };
 
 export const PrivateCollection: Story = {
   args: {
-    isOpen: true,
     onSubmit: action("onSubmit"),
     onCancel: action("onCancel"),
     collection: {

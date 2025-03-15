@@ -19,7 +19,7 @@ export const Default: Story = {
     onSubmit: action("onSubmit"),
     onCancel: action("onCancel"),
   },
-  render: (args: Story["args"]) => {
+  render: (args) => {
     return <NewCollection {...args} />;
   },
 };

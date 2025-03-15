@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { FocusSpan } from "../FontFaces";
-import ImageInput from "../ImageInput/ImageInput";
+import { ImageInput } from "../ImageInput";
 import { ImageUploader } from "../ImageUploader";
 
 interface ImageFieldProps extends PropsWithChildren {

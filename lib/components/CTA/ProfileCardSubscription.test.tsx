@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import ProfileCardSubscription from "./ProfileCardSubscription";
 
 // Sample features data for testing
@@ -21,9 +21,16 @@ const testFeatures = [
   },
 ];
 
+const mockOnSubscribe = vi.fn();
+
 describe("ProfileCardSubscription", () => {
   test("renders the component correctly", () => {
-    render(<ProfileCardSubscription features={testFeatures} />);
+    render(
+      <ProfileCardSubscription
+        features={testFeatures}
+        onSubscribe={mockOnSubscribe}
+      />,
+    );
 
     // Check if the title is rendered
     expect(screen.getByText("Go Pro")).toBeInTheDocument();
@@ -44,7 +51,12 @@ describe("ProfileCardSubscription", () => {
   });
 
   test("passes features to FeaturesCarousel", () => {
-    render(<ProfileCardSubscription features={testFeatures} />);
+    render(
+      <ProfileCardSubscription
+        features={testFeatures}
+        onSubscribe={mockOnSubscribe}
+      />,
+    );
 
     // Check if features are passed to FeaturesCarousel and rendered
     expect(screen.getByText("Feature 1")).toBeInTheDocument();
@@ -56,7 +68,9 @@ describe("ProfileCardSubscription", () => {
   });
 
   test("renders with empty features array", () => {
-    render(<ProfileCardSubscription features={[]} />);
+    render(
+      <ProfileCardSubscription features={[]} onSubscribe={mockOnSubscribe} />,
+    );
 
     // Component should still render without features
     expect(screen.getByText("Go Pro")).toBeInTheDocument();
@@ -64,7 +78,12 @@ describe("ProfileCardSubscription", () => {
   });
 
   test("has the correct CSS classes", () => {
-    render(<ProfileCardSubscription features={testFeatures} />);
+    render(
+      <ProfileCardSubscription
+        features={testFeatures}
+        onSubscribe={mockOnSubscribe}
+      />,
+    );
 
     // Check if the article has the correct classes
     const article = screen.getByText("Go Pro").closest("article");

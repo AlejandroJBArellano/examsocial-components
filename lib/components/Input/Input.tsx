@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, ReactNode } from "react";
 import { cn } from "../../utils";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   LeftIcon?: ReactNode;
   RightIcon?: ReactNode;
   error?: boolean;
@@ -52,7 +52,7 @@ const Input = ({
           className={cn(
             "pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 peer-focus:text-extra",
             {
-              "text-feedback-error-tint": error,
+              "!text-feedback-error": error,
             },
           )}
         >
@@ -65,7 +65,7 @@ const Input = ({
           className={cn(
             "pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 peer-focus:text-extra",
             {
-              "text-feedback-error-tint": error,
+              "!text-feedback-error": error,
             },
           )}
         >

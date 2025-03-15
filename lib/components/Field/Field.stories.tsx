@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Icon } from "../Icon";
 import Field from "./Field";
 
 const meta: Meta<typeof Field> = {
@@ -61,6 +62,8 @@ export const WithIconsAndError: Story = {
         placeholder: "example@email.com",
         type: "email",
         id: "email",
+        LeftIcon: <Icon name="mail" size={24} />,
+        RightIcon: <Icon name="visibility" size={24} />,
       }}
     />
   ),

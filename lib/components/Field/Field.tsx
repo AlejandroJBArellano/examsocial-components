@@ -1,7 +1,7 @@
 import { cn } from "@/utils";
-import { InputHTMLAttributes, ReactNode } from "react";
+import { ReactNode } from "react";
 import { FocusSpan, Smoll } from "../FontFaces";
-import { Input } from "../Input";
+import { Input, InputProps } from "../Input";
 import { SwitchField } from "./Switch";
 import { TextareaField } from "./Textarea";
 
@@ -9,7 +9,7 @@ interface FieldProps {
   label: ReactNode;
   helperText?: ReactNode;
   error?: ReactNode;
-  inputProps?: InputHTMLAttributes<HTMLInputElement>;
+  inputProps?: InputProps;
 }
 
 const Field = ({ label, error, helperText, inputProps }: FieldProps) => {

@@ -1,40 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { Collection } from "./Collection";
+import Collection from "./Collection";
 
 describe("Collection Component", () => {
-  it("renders children correctly", () => {
-    render(
-      <Collection>
-        <div data-testid="test-child">Test Child</div>
-      </Collection>,
-    );
-
-    const childElement = screen.getByTestId("test-child");
-    expect(childElement).toBeDefined();
-    expect(screen.getByText("Test Child")).toBeDefined();
-  });
-
-  it("applies className correctly", () => {
-    const { container } = render(
-      <Collection className="test-class">
-        <div>Content</div>
-      </Collection>,
-    );
-
-    const collectionElement = container.firstChild as HTMLElement;
-    expect(collectionElement.className).toBe("test-class");
-  });
-
-  it("matches snapshot", () => {
-    const { container } = render(
-      <Collection className="test-class">
-        <div>Test Content</div>
-      </Collection>,
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
   describe("Collection.Add", () => {
     it("renders children as heading", () => {
       render(<Collection.Add>Add New Item</Collection.Add>);

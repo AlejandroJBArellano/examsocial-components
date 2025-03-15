@@ -1,6 +1,11 @@
+import { Collection as CollectionType } from "@/types";
+import { FormikProps } from "formik";
 import React, { PropsWithChildren } from "react";
+import { Field } from "../Field";
 import { Heading5 } from "../FontFaces";
 import { Icon } from "../Icon";
+import { EditCollection } from "./EditCollection";
+import { NewCollection } from "./NewCollection";
 
 // Add subcomponent
 interface AddProps extends PropsWithChildren {
@@ -19,19 +24,65 @@ const Add: React.FC<AddProps> = ({ children, onClick }) => {
   );
 };
 
-// Main Collection component
-interface CollectionProps extends PropsWithChildren {
-  className?: string;
-}
+const CollectionForm = ({
+  values,
+  handleChange,
+  errors,
+  setFieldValue,
+}: FormikProps<CollectionType>) => {
+  return (
+    <section className="space-y-4">
+      <Field
+        label="Name"
+        inputProps={{
+          name: "name",
+          placeholder: "e.g. Pop Culture",
+          value: values.name,
+          onChange: handleChange,
+        }}
+        error={errors.name}
+      />
 
-const Collection: React.FC<CollectionProps> & {
+      <Field.Textarea
+        label="Description"
+        textareaProps={{
+          name: "description",
+          placeholder: "Describe what this collection is for",
+          value: values.description,
+          onChange: handleChange,
+        }}
+        error={errors.description}
+      />
+
+      <Field.Switch
+        onCheckedChange={(checked) => {
+          setFieldValue("private", checked);
+        }}
+        checked={values.private}
+      >
+        Private collection
+      </Field.Switch>
+    </section>
+  );
+};
+
+// Main Collection componen
+
+const Collection: React.FC<PropsWithChildren> & {
   Add: typeof Add;
-} = ({ children, className }) => {
-  return <div className={className}>{children}</div>;
+  Edit: typeof EditCollection;
+  New: typeof NewCollection;
+  Form: typeof CollectionForm;
+} = ({ children }) => {
+  return <div>{children}</div>;
 };
 
 // Attach Add as a subcomponent
 Collection.Add = Add;
+Collection.Edit = EditCollection;
+Collection.New = NewCollection;
+Collection.Form = CollectionForm;
 
-export { Collection };
 export default Collection;
+
+export { CollectionForm };

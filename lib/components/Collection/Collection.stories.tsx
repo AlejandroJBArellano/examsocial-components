@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Collection } from "./Collection";
+import Collection from "./Collection";
 
 const meta: Meta<typeof Collection> = {
-  title: "Components/Collection",
+  title: "Components/Collection/Add",
   component: Collection,
   parameters: {
     layout: "fullscreen",

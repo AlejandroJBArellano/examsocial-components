@@ -6,7 +6,7 @@ const meta: Meta<typeof EditCollection> = {
   title: "Components/Collection/Edit",
   component: EditCollection,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
   tags: ["autodocs"],
 };

@@ -1,7 +1,8 @@
 import * as Yup from "yup";
-import { questionSchema } from "./schemas";
+import { collectionSchema, questionSchema } from "./schemas";
 
 export type Question = Yup.InferType<typeof questionSchema>;
+export type Collection = Yup.InferType<typeof collectionSchema>;
 
 export type ContentTypes =
   | "YOUTUBE"

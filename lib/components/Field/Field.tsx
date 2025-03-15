@@ -15,10 +15,14 @@ interface FieldProps {
 const Field = ({ label, error, helperText, inputProps }: FieldProps) => {
   return (
     <article className="space-y-1">
-      <div className="flex items-center justify-between">
+      <label
+        htmlFor={inputProps?.id}
+        className="flex items-center justify-between"
+      >
         <FocusSpan>{label}</FocusSpan>
         <Smoll>{helperText}</Smoll>
-      </div>
+      </label>
+
       <div className={`rounded-md ${error ? "bg-feedback-error-tint" : ""}`}>
         <Input
           {...inputProps}

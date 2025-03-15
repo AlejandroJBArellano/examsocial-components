@@ -56,9 +56,11 @@ export const WithIconsAndError: Story = {
     <Field
       label="Email Address"
       error="Invalid email format"
+      helperText="Enter your email address"
       inputProps={{
         placeholder: "example@email.com",
         type: "email",
+        id: "email",
       }}
     />
   ),
@@ -102,7 +104,9 @@ export const AllVariants: Story = {
         <Field
           label="Email"
           error="Invalid email address"
+          helperText="Enter your email address"
           inputProps={{
+            id: "email",
             type: "email",
             placeholder: "example@email.com",
             value: "invalid-email",
@@ -114,6 +118,7 @@ export const AllVariants: Story = {
           label="Comments"
           helperText="Optional feedback"
           textareaProps={{
+            id: "comments",
             placeholder: "Enter your comments here...",
             rows: 4,
           }}

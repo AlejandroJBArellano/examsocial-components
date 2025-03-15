@@ -17,10 +17,13 @@ export const TextareaField = ({
 }: TextareaFieldProps) => {
   return (
     <article className="space-y-1">
-      <div className="flex items-center justify-between">
+      <label
+        className="flex items-center justify-between"
+        htmlFor={textareaProps?.id}
+      >
         <FocusSpan>{label}</FocusSpan>
         <Smoll>{helperText}</Smoll>
-      </div>
+      </label>
       <div className={`rounded-md ${error ? "bg-feedback-error-tint" : ""}`}>
         <Textarea
           {...textareaProps}

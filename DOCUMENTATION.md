@@ -251,6 +251,14 @@ Esto generará los archivos compilados en la carpeta `dist/`, que incluyen:
 - `index.d.ts`: Definiciones de tipos TypeScript
 - `style.css`: Estilos compilados
 
+## Despliegue
+
+Para desplegar la biblioteca en NPM:
+
+```bash
+npm publish
+```
+
 ## Contribución
 
 Para contribuir al proyecto:

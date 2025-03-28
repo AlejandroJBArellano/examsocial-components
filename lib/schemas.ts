@@ -179,6 +179,6 @@ export const examSchema = Yup.object({
 export const collectionSchema = Yup.object({
   name: Yup.string().required("Collection name is required"),
   _id: Yup.string().required(),
-  description: Yup.string(),
+  description: Yup.string().optional(),
   private: Yup.boolean().default(false),
 });

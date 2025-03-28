@@ -1,27 +1,33 @@
 import { Form, Formik } from "formik";
 import { collectionSchema } from "../../schemas";
-import { Collection } from "../../types";
+import { CollectionType } from "../../types";
 import { Button } from "../Button";
 import { Heading4 } from "../FontFaces";
 import { CollectionForm } from "./Collection";
 
 interface IEditCollection {
-  onSubmit: (values: Collection) => void;
+  onSubmit: (values: CollectionType) => void;
   onCancel: () => void;
-  collection: Collection;
+  collection: CollectionType;
+  isOpen: boolean;
 }
 
 export const EditCollection = ({
   onSubmit,
   onCancel,
   collection,
+  isOpen,
 }: IEditCollection) => {
+  if (!isOpen) {
+    return null;
+  }
+
   return (
     <Formik
       initialValues={{
         name: collection.name,
         _id: collection._id,
-        description: collection.description || "",
+        description: collection.description ?? "",
         private: collection.private || false,
       }}
       validationSchema={collectionSchema}

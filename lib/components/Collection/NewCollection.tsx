@@ -1,16 +1,25 @@
 import { Form, Formik } from "formik";
 import { collectionSchema } from "../../schemas";
-import { Collection } from "../../types";
+import { CollectionType } from "../../types";
 import { Button } from "../Button";
 import { Heading4 } from "../FontFaces";
 import { CollectionForm } from "./Collection";
 
 interface INewCollection {
-  onSubmit: (values: Collection) => void;
+  onSubmit: (values: CollectionType) => void;
   onCancel: () => void;
+  isOpen: boolean;
 }
 
-export const NewCollection = ({ onSubmit, onCancel }: INewCollection) => {
+export const NewCollection = ({
+  onSubmit,
+  onCancel,
+  isOpen,
+}: INewCollection) => {
+  if (!isOpen) {
+    return null;
+  }
+
   return (
     <Formik
       initialValues={{

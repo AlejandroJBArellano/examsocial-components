@@ -1,4 +1,3 @@
-import { Collection as CollectionType } from "@/types";
 import { FormikProps } from "formik";
 import React, { PropsWithChildren } from "react";
 import { Field } from "../Field";
@@ -25,12 +24,20 @@ const Add: React.FC<AddProps> = ({ children, onClick }) => {
   );
 };
 
+// Use a more specific type that matches the actual structure
+type CollectionFormValues = {
+  name: string;
+  _id: string;
+  description: string;
+  private: boolean;
+};
+
 const CollectionForm = ({
   values,
   handleChange,
   errors,
   setFieldValue,
-}: FormikProps<CollectionType>) => {
+}: FormikProps<CollectionFormValues>) => {
   return (
     <section className="space-y-4">
       <Field
@@ -49,7 +56,7 @@ const CollectionForm = ({
         textareaProps={{
           name: "description",
           placeholder: "Describe what this collection is for",
-          value: values.description,
+          value: values.description || "",
           onChange: handleChange,
         }}
         error={errors.description}

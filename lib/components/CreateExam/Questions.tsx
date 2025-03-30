@@ -26,7 +26,7 @@ export const Questions = () => {
   return (
     <section className="space-y-6">
       <Heading3>Questions</Heading3>
-      <article className="space-y-4">
+      <article className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {values.questions?.map((question, index) => (
           <QuestionSet
             {...question}

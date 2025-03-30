@@ -100,6 +100,11 @@ export const advancedSettingsSchema = Yup.object({
     is: (val: boolean) => val,
     then: (schema) => schema.required("Required"),
   }),
+  limitAttempts: Yup.boolean(),
+  maxAttemptsPerParticipant: Yup.number().when("limitAttempts", {
+    is: (val: boolean) => val,
+    then: (schema) => schema.min(1, "Must be at least 1").required("Required"),
+  }),
   timing: timingSchema,
   theme: Yup.string()
     .required("Required")

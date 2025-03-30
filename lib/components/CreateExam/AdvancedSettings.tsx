@@ -160,6 +160,53 @@ export const AdvancedSettings = () => {
             </div>
           )}
         </section>
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Limit attempts</FocusSpan>
+              <Helper align="center" side="top">
+                Limit the number of times a participant can take this exam.
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.limitAttempts}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.limitAttempts",
+                  !values.advancedSettings.limitAttempts,
+                )
+              }
+            />
+          </div>
+          {values.advancedSettings.limitAttempts && (
+            <div className="grid grid-cols-2 items-center">
+              <label
+                className="flex items-center gap-2"
+                htmlFor="maxAttemptsPerParticipant"
+              >
+                <FocusSpan>Max attempts</FocusSpan>
+                <Helper align="center" side="top">
+                  Set a maximum number of attempts allowed per participant.
+                </Helper>
+              </label>
+              <Input
+                id="maxAttemptsPerParticipant"
+                type="number"
+                placeholder="1"
+                className="w-full"
+                value={values.advancedSettings.maxAttemptsPerParticipant || ""}
+                onChange={(e) =>
+                  setFieldValue(
+                    "advancedSettings.maxAttemptsPerParticipant",
+                    parseInt(e.target.value) || 1,
+                  )
+                }
+                min={1}
+              />
+            </div>
+          )}
+        </section>
       </div>
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>

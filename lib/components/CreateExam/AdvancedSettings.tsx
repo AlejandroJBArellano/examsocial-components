@@ -444,11 +444,24 @@ export const AdvancedSettings = () => {
           <div className="space-y-2">
             <FocusSpan>Personalized Thank You Screen</FocusSpan>
             <Paragraph className={userPlan !== "PREMIUM" ? "opacity-50" : ""}>
-              Create custom thank you screens based on exam results. Perfect for
-              congratulating high performers or providing guidance to those who
-              need improvement. You can also use these as{" "}
-              <Span className="font-semibold">sales funnels</Span> by adding
-              links to your products or services.
+              Create{" "}
+              <Span className="font-semibold">custom thank you screens</Span>{" "}
+              based on exam results. Perfect for
+              <Span className="font-semibold">
+                {" "}
+                congratulating high performers
+              </Span>{" "}
+              or providing <Span className="font-semibold">guidance</Span> to
+              those who need improvement. You can also use these as{" "}
+              <Span className="font-bold text-accent-shadow">
+                sales funnels
+              </Span>{" "}
+              by adding
+              <Span className="font-bold text-accent-shadow">
+                {" "}
+                links to your products
+              </Span>{" "}
+              or <Span className="font-bold text-accent-shadow">services</Span>.
             </Paragraph>
             <div className="flex flex-nowrap gap-2 overflow-x-auto">
               <Button.Icon

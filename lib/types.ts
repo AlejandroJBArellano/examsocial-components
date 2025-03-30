@@ -19,3 +19,10 @@ export type ThemeSetting =
   | "INDUSTRIAL_EDGE"
   | "EARTHY_TONES"
   | "VIBRANT_ORCHID";
+
+export type UserPlan = "BASIC" | "PRO" | "PREMIUM";
+
+export interface ExamCreationContextType {
+  userPlan: UserPlan;
+  canSellExams: boolean;
+}

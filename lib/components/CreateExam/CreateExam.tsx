@@ -1,5 +1,7 @@
+import { ExamCreationContext } from "@/hooks/exam";
+import { UserPlan } from "@/types";
 import { Form, Formik } from "formik";
-import { createContext, useContext, useState } from "react";
+import { useState } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { Button } from "../Button";
@@ -10,27 +12,6 @@ import { AdvancedSettings } from "./AdvancedSettings";
 import { GeneralDetails } from "./GeneralDetails";
 import { Questions } from "./Questions";
 import { Review } from "./Review";
-
-type UserPlan = "BASIC" | "PRO" | "PREMIUM";
-
-interface ExamCreationContextType {
-  userPlan: UserPlan;
-  canSellExams: boolean;
-}
-
-const ExamCreationContext = createContext<ExamCreationContextType | undefined>(
-  undefined,
-);
-
-export const useExamCreation = () => {
-  const context = useContext(ExamCreationContext);
-  if (context === undefined) {
-    throw new Error(
-      "useExamCreation must be used within a ExamCreationProvider",
-    );
-  }
-  return context;
-};
 
 interface CreateExamProps {
   onSubmit: (values: Yup.InferType<typeof examSchema>) => void;

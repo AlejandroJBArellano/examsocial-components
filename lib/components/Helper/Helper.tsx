@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { PropsWithChildren } from "react";
 import { Icon } from "../Icon";
@@ -5,14 +6,23 @@ import { Icon } from "../Icon";
 interface IHelper extends PropsWithChildren {
   align: "start" | "center" | "end";
   side: "top" | "right" | "bottom" | "left";
+  disabled?: boolean;
 }
 
-const Helper = ({ align, side, children }: IHelper) => {
+const Helper = ({ align, side, children, disabled = false }: IHelper) => {
   return (
     <Tooltip.Provider>
-      <Tooltip.Root delayDuration={0}>
+      <Tooltip.Root delayDuration={0} disableHoverableContent={disabled}>
         <Tooltip.Trigger asChild>
-          <button className="flex items-center justify-center text-gray-700 hover:text-black">
+          <button
+            className={cn(
+              "flex items-center justify-center text-gray-700 hover:text-black",
+              {
+                "pointer-events-none cursor-not-allowed": disabled,
+              },
+            )}
+            disabled={disabled}
+          >
             <Icon filled name="help" size={20} />
           </button>
         </Tooltip.Trigger>

@@ -362,73 +362,90 @@ export const AdvancedSettings = () => {
           </div>
           <PremiumBadge />
         </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <FocusSpan>Show logo in exam</FocusSpan>
-            <Helper align="center" side="top">
-              Display your logo in the exam metadata and details view.
-            </Helper>
+        <div
+          className={cn("space-y-4", {
+            "cursor-not-allowed select-none blur-sm": userPlan !== "PREMIUM",
+          })}
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Show logo in exam</FocusSpan>
+              <Helper
+                align="center"
+                side="top"
+                disabled={userPlan !== "PREMIUM"}
+              >
+                Display your logo in the exam metadata and details view.
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.showLogo}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.showLogo",
+                  !values.advancedSettings.showLogo,
+                )
+              }
+              disabled={userPlan !== "PREMIUM"}
+            />
           </div>
-          <Switch
-            className="w-20"
-            checked={values.advancedSettings.showLogo}
-            onCheckedChange={() =>
-              setFieldValue(
-                "advancedSettings.showLogo",
-                !values.advancedSettings.showLogo,
-              )
-            }
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <FocusSpan>Show brand name</FocusSpan>
-            <Helper align="center" side="top">
-              Display your brand name in the exam metadata and details view.
-            </Helper>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Show brand name</FocusSpan>
+              <Helper
+                align="center"
+                side="top"
+                disabled={userPlan !== "PREMIUM"}
+              >
+                Display your brand name in the exam metadata and details view.
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.showBrandName}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.showBrandName",
+                  !values.advancedSettings.showBrandName,
+                )
+              }
+              disabled={userPlan !== "PREMIUM"}
+            />
           </div>
-          <Switch
-            className="w-20"
-            checked={values.advancedSettings.showBrandName}
-            onCheckedChange={() =>
-              setFieldValue(
-                "advancedSettings.showBrandName",
-                !values.advancedSettings.showBrandName,
-              )
-            }
-          />
-        </div>
-        <div className="space-y-2">
-          <FocusSpan>Personalized Thank You Screen</FocusSpan>
-          <div className="flex flex-nowrap gap-2 overflow-x-auto">
-            <Button.Icon
-              className="mb-1 mr-1"
-              rounded
-              onClick={() => dialogRef.current?.showModal()}
-              type="button"
-              size={24}
-            >
-              add
-            </Button.Icon>
-            {values.advancedSettings.feedback?.map((feedback, index) => (
-              <FeedbackScreen
-                key={feedback.condition}
-                {...feedback}
-                onEdit={() => {
-                  setIndex(index);
-                  editFeedbackDialogRef.current?.showModal();
-                }}
-                onDelete={() => {
-                  setFieldValue(
-                    "advancedSettings.feedback",
-                    values.advancedSettings.feedback?.filter(
-                      (_, i) => i !== index,
-                    ),
-                  );
-                }}
-                index={index}
-              />
-            ))}
+          <div className="space-y-2">
+            <FocusSpan>Personalized Thank You Screen</FocusSpan>
+            <div className="flex flex-nowrap gap-2 overflow-x-auto">
+              <Button.Icon
+                className="mb-1 mr-1"
+                rounded
+                onClick={() => dialogRef.current?.showModal()}
+                type="button"
+                size={24}
+                disabled={userPlan !== "PREMIUM"}
+              >
+                add
+              </Button.Icon>
+              {values.advancedSettings.feedback?.map((feedback, index) => (
+                <FeedbackScreen
+                  key={feedback.condition}
+                  {...feedback}
+                  onEdit={() => {
+                    setIndex(index);
+                    editFeedbackDialogRef.current?.showModal();
+                  }}
+                  onDelete={() => {
+                    setFieldValue(
+                      "advancedSettings.feedback",
+                      values.advancedSettings.feedback?.filter(
+                        (_, i) => i !== index,
+                      ),
+                    );
+                  }}
+                  index={index}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

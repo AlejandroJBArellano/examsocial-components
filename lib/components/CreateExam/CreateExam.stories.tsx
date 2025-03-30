@@ -21,5 +21,8 @@ type Story = StoryObj<typeof CreateExam>;
 export const Default: Story = {
   args: {
     onSubmit: () => {},
+    onCancel: () => {},
+    userPlan: "BASIC",
+    canSellExams: false,
   },
 };

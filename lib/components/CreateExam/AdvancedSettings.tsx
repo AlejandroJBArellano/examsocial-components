@@ -74,8 +74,14 @@ export const AdvancedSettings = () => {
             "cursor-not-allowed select-none blur-sm": !canSellExams,
           })}
         >
-          <FocusSpan>Price</FocusSpan>
+          <label htmlFor="price">
+            <FocusSpan>Price</FocusSpan>
+            <Helper align="center" side="top">
+              Price is the amount a student has to pay to attempt the exam.
+            </Helper>
+          </label>
           <Input
+            id="price"
             type="number"
             placeholder="0"
             className="w-full"
@@ -83,7 +89,7 @@ export const AdvancedSettings = () => {
           />
         </section>
       </div>
-      <div>
+      <div className="space-y-4">
         <section className="flex items-center justify-between">
           <div className="flex gap-2">
             <Heading5>Security</Heading5>
@@ -94,6 +100,66 @@ export const AdvancedSettings = () => {
           </div>
         </section>
         <PrivacySettings />
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex gap-2">
+              <FocusSpan>Limit number of participants</FocusSpan>
+              <Helper align="center" side="top">
+                Set a maximum number of participants who can take this exam.
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.limitParticipants}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.limitParticipants",
+                  !values.advancedSettings.limitParticipants,
+                )
+              }
+            />
+          </div>
+          {values.advancedSettings.limitParticipants && (
+            <div className="grid grid-cols-2 items-center">
+              <label
+                className="flex items-center gap-2"
+                htmlFor="maxParticipants"
+              >
+                <FocusSpan>Max participants</FocusSpan>
+                <Helper align="center" side="top">
+                  Set a maximum number of participants who can take this exam.
+                </Helper>
+              </label>
+              <Input
+                id="maxParticipants"
+                type="number"
+                placeholder={
+                  userPlan === "PREMIUM"
+                    ? "500"
+                    : userPlan === "PRO"
+                      ? "100"
+                      : "0"
+                }
+                className="w-full"
+                value={values.advancedSettings.maxParticipants || ""}
+                onChange={(e) =>
+                  setFieldValue(
+                    "advancedSettings.maxParticipants",
+                    parseInt(e.target.value) || 0,
+                  )
+                }
+                min={1}
+                max={
+                  userPlan === "PREMIUM"
+                    ? 500
+                    : userPlan === "PRO"
+                      ? 100
+                      : undefined
+                }
+              />
+            </div>
+          )}
+        </section>
       </div>
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>

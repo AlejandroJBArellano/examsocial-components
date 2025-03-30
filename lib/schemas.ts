@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { FeedbackCondition } from "./constants";
+import { Currency, FeedbackCondition } from "./constants";
 import { ExamCategory } from "./types";
 
 export const questionSchema = Yup.object({
@@ -92,11 +92,12 @@ export const timingSchema = Yup.object({
 });
 
 export const advancedSettingsSchema = Yup.object({
+  currency: Yup.string().required("Required").oneOf(Object.keys(Currency)),
+  price: Yup.number().min(0, "Must be at least 0").required("Required"),
   showCorrectAnswers: Yup.boolean(),
   sendEmailReport: Yup.boolean(),
   leaderboard: Yup.boolean(),
   maxAttempts: Yup.number().min(1, "Must be at least 1").required("Required"),
-  price: Yup.number().min(0, "Must be at least 0").required("Required"),
   feedback: Yup.array().of(feedbackSchema),
   privacy: Yup.object({
     setting: Yup.string().required("Required"),

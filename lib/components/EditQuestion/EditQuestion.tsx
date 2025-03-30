@@ -12,7 +12,6 @@ interface IEditQuestion {
 }
 
 const EditQuestion = ({ initialValues, onSubmit, onCancel }: IEditQuestion) => {
-  console.log({ initialValues });
   return (
     <Formik
       initialValues={initialValues}

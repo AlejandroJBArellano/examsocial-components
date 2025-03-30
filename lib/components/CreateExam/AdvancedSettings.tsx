@@ -315,11 +315,14 @@ export const AdvancedSettings = () => {
             />
           </div>
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-2">
-              <FocusSpan>Send email report</FocusSpan>
-              <Helper align="center" side="top">
-                Send an email report to the user when they complete the exam.
-              </Helper>
+            <div className="flex w-full items-center justify-between">
+              <div className="flex items-center gap-2">
+                <FocusSpan>Send email report</FocusSpan>
+                <Helper align="center" side="top">
+                  Send an email report to the user when they complete the exam.
+                </Helper>
+              </div>
+              <ProBadge />
             </div>
             <Switch
               className="w-20"

@@ -297,7 +297,8 @@ export const AdvancedSettings = () => {
             <div className="flex items-center gap-2">
               <FocusSpan>Minimum passing score</FocusSpan>
               <Helper align="center" side="top">
-                Set the minimum score required to pass the exam.
+                Set the minimum score required to pass the exam. Students who
+                score below this threshold will fail the exam, appearing in red.
               </Helper>
             </div>
             <Input

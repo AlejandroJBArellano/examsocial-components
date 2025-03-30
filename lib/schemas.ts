@@ -95,6 +95,11 @@ export const advancedSettingsSchema = Yup.object({
       then: (schema) => schema.required("Required"),
     }),
   }),
+  limitParticipants: Yup.boolean(),
+  maxParticipants: Yup.number().when("limitParticipants", {
+    is: (val: boolean) => val,
+    then: (schema) => schema.required("Required"),
+  }),
   timing: timingSchema,
   theme: Yup.string()
     .required("Required")

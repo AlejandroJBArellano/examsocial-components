@@ -5,3 +5,12 @@ export const FeedbackCondition = {
   GREATER_THAN: "Greater than",
   LESS_THAN: "Less than",
 };
+
+export const Currency = {
+  USD: "USD",
+  EUR: "EUR",
+  MXN: "MXN",
+  CAD: "CAD",
+  AUD: "AUD",
+  NZD: "NZD",
+};

@@ -33,12 +33,12 @@ export const AdvancedSettings = () => {
 
   return (
     <section className="divide-y divide-secondary-tint [&>div]:space-y-4 [&>div]:py-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2">
         <Heading4>Advanced Settings</Heading4>
         <ProBadge />
       </div>
       <div>
-        <section className="flex items-center justify-between">
+        <section className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
           <div className="flex gap-2">
             <Heading5>Monetization</Heading5>
             <Helper align="center" side="top">
@@ -55,7 +55,7 @@ export const AdvancedSettings = () => {
           )}
         </section>
         <section
-          className={cn("grid grid-cols-2 items-center", {
+          className={cn("grid grid-cols-1 items-center gap-2 sm:grid-cols-2", {
             "cursor-not-allowed select-none blur-sm": !canSellExams,
           })}
         >
@@ -70,7 +70,7 @@ export const AdvancedSettings = () => {
           </Select>
         </section>
         <section
-          className={cn("grid grid-cols-2 items-center", {
+          className={cn("grid grid-cols-1 items-center gap-2 sm:grid-cols-2", {
             "cursor-not-allowed select-none blur-sm": !canSellExams,
           })}
         >
@@ -90,7 +90,7 @@ export const AdvancedSettings = () => {
         </section>
       </div>
       <div>
-        <section className="flex items-center justify-between">
+        <section className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
           <div className="flex gap-2">
             <Heading5>Security</Heading5>
             <Helper align="center" side="top">
@@ -101,7 +101,7 @@ export const AdvancedSettings = () => {
         </section>
         <PrivacySettings />
         <section className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <div className="flex gap-2">
               <FocusSpan>Limit number of participants</FocusSpan>
               <Helper align="center" side="top">
@@ -120,7 +120,7 @@ export const AdvancedSettings = () => {
             />
           </div>
           {values.advancedSettings.limitParticipants && (
-            <div className="grid grid-cols-2 items-center">
+            <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
               <label
                 className="flex items-center gap-2"
                 htmlFor="maxParticipants"
@@ -169,7 +169,7 @@ export const AdvancedSettings = () => {
           )}
         </section>
         <section className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2">
               <FocusSpan>Limit attempts</FocusSpan>
               <Helper align="center" side="top">
@@ -188,7 +188,7 @@ export const AdvancedSettings = () => {
             />
           </div>
           {values.advancedSettings.limitAttempts && (
-            <div className="grid grid-cols-2 items-center">
+            <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
               <label
                 className="flex items-center gap-2"
                 htmlFor="maxAttemptsPerParticipant"
@@ -216,7 +216,7 @@ export const AdvancedSettings = () => {
           )}
         </section>
         <section className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2">
               <FocusSpan>Allow anonymous answers</FocusSpan>
               <Helper align="center" side="top">
@@ -240,7 +240,7 @@ export const AdvancedSettings = () => {
       </div>
       <TimingSettings />
       <div>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
           <div className="flex gap-2">
             <Heading5>Questions</Heading5>
             <Helper align="center" side="top">
@@ -248,7 +248,7 @@ export const AdvancedSettings = () => {
             </Helper>
           </div>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
           <div className="flex items-center gap-2">
             <FocusSpan>Randomize question order</FocusSpan>
             <Helper align="center" side="top">
@@ -266,7 +266,7 @@ export const AdvancedSettings = () => {
             }
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
           <div className="flex items-center gap-2">
             <FocusSpan>Randomize answer options</FocusSpan>
             <Helper align="center" side="top">
@@ -293,7 +293,7 @@ export const AdvancedSettings = () => {
           </Helper>
         </div>
         <div className="mt-4 space-y-4">
-          <div className="grid grid-cols-2 items-center justify-between">
+          <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
             <div className="flex items-center gap-2">
               <FocusSpan>Minimum passing score</FocusSpan>
               <Helper align="center" side="top">
@@ -313,7 +313,7 @@ export const AdvancedSettings = () => {
               }
             />
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2">
               <FocusSpan>Send email report</FocusSpan>
               <Helper align="center" side="top">
@@ -331,7 +331,7 @@ export const AdvancedSettings = () => {
               }
             />
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2">
               <FocusSpan>Show correct answers</FocusSpan>
               <Helper align="center" side="top">
@@ -353,7 +353,7 @@ export const AdvancedSettings = () => {
         </div>
       </div>
       <div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <div className="flex gap-2">
             <Heading5>Branding</Heading5>
             <Helper align="center" side="top">
@@ -367,7 +367,7 @@ export const AdvancedSettings = () => {
             "cursor-not-allowed select-none blur-sm": userPlan !== "PREMIUM",
           })}
         >
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2">
               <FocusSpan>Show logo in exam</FocusSpan>
               <Helper
@@ -390,7 +390,7 @@ export const AdvancedSettings = () => {
               disabled={userPlan !== "PREMIUM"}
             />
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2">
               <FocusSpan>Show brand name</FocusSpan>
               <Helper

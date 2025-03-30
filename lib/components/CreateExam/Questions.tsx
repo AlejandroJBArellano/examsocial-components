@@ -32,6 +32,11 @@ export const Questions = () => {
             {...question}
             index={index}
             key={index}
+            image={
+              question.image
+                ? URL.createObjectURL(question.image as Blob)
+                : undefined
+            }
             onDelete={() => {
               setFieldValue(
                 "questions",

@@ -9,11 +9,13 @@ type QuestionSetPropsEditable = Question & {
   index: number;
   viewOnly?: false;
   selected?: false;
+  image?: string;
 };
 
 type QuestionSetPropsViewOnly = {
   viewOnly: true;
   title: string;
+  image?: string;
   selected?: boolean;
 };
 
@@ -33,8 +35,23 @@ const QuestionSet = ({
       }
     >
       <Heading5>{title}</Heading5>
-      {viewOnly ? null : (
+      {viewOnly ? (
+        props.image && (
+          <img
+            src={props.image}
+            alt={title}
+            className="h-40 w-full rounded-md object-cover"
+          />
+        )
+      ) : (
         <>
+          {(props as QuestionSetPropsEditable).image && (
+            <img
+              src={(props as QuestionSetPropsEditable).image as string}
+              alt={title}
+              className="h-40 w-full rounded-md object-cover"
+            />
+          )}
           <div className="space-y-2.5">
             {(props as QuestionSetPropsEditable).options.map((option, i) => (
               <div key={i} className="flex items-center justify-between">

@@ -37,7 +37,7 @@ export const AdvancedSettings = () => {
         <Heading4>Advanced Settings</Heading4>
         <PremiumBadge />
       </article>
-      <div className="space-y-2">
+      <div className="space-y-4">
         <section className="flex items-center justify-between">
           <div className="flex gap-2">
             <Heading5>Monetization</Heading5>
@@ -82,6 +82,18 @@ export const AdvancedSettings = () => {
             disabled={!canSellExams}
           />
         </section>
+      </div>
+      <div>
+        <section className="flex items-center justify-between">
+          <div className="flex gap-2">
+            <Heading5>Security</Heading5>
+            <Helper align="center" side="top">
+              Security is the process of securing the exam from being accessed
+              by unauthorized users.
+            </Helper>
+          </div>
+        </section>
+        <PrivacySettings />
       </div>
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
@@ -224,7 +236,6 @@ export const AdvancedSettings = () => {
         />
       </article>
       <TimingSettings />
-      <PrivacySettings />
       <ThemeSettings
         onChange={(theme) => {
           setFieldValue("advancedSettings.theme", theme);

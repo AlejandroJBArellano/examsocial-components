@@ -77,7 +77,6 @@ export const timingSchema = Yup.object({
 });
 
 export const advancedSettingsSchema = Yup.object({
-  randomizeQuestionOrder: Yup.boolean(),
   showCorrectAnswers: Yup.boolean(),
   sendEmailReport: Yup.boolean(),
   leaderboard: Yup.boolean(),
@@ -106,6 +105,8 @@ export const advancedSettingsSchema = Yup.object({
     then: (schema) => schema.min(1, "Must be at least 1").required("Required"),
   }),
   allowAnonymousAnswers: Yup.boolean(),
+  randomizeQuestionOrder: Yup.boolean(),
+  randomizeOptionsOrder: Yup.boolean(),
   timing: timingSchema,
   theme: Yup.string()
     .required("Required")

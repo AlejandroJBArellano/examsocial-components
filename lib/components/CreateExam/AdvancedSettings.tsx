@@ -238,6 +238,54 @@ export const AdvancedSettings = () => {
           </div>
         </section>
       </div>
+      <div className="space-y-4">
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex gap-2">
+              <Heading5>Questions</Heading5>
+              <Helper align="center" side="top">
+                Configuration for the order of questions and their options.
+              </Helper>
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Randomize question order</FocusSpan>
+              <Helper align="center" side="top">
+                Shuffles the order of questions for each student.
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.randomizeQuestionOrder}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.randomizeQuestionOrder",
+                  !values.advancedSettings.randomizeQuestionOrder,
+                )
+              }
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Randomize answer options</FocusSpan>
+              <Helper align="center" side="top">
+                Shuffles the order of answer options for each question.
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.randomizeOptionsOrder}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.randomizeOptionsOrder",
+                  !values.advancedSettings.randomizeOptionsOrder,
+                )
+              }
+            />
+          </div>
+        </section>
+      </div>
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
         <div className="flex flex-nowrap gap-2 overflow-x-auto">

@@ -1,3 +1,5 @@
+import { ProBadge } from "@/components/Badges";
+import { useExamCreation } from "@/hooks/exam";
 import { useFormik, useFormikContext } from "formik";
 import { ChangeEvent } from "react";
 import * as Yup from "yup";
@@ -26,11 +28,18 @@ const PrivacySettingsNameMap = {
 
 const PrivacySettings = () => {
   const formik = useFormikContext<Yup.InferType<typeof examSchema>>();
+  const { userPlan } = useExamCreation();
 
   const privacySetting = formik.values.advancedSettings.privacy
     .setting as keyof typeof PrivacySettingsNameMap;
 
   const handlePrivacySettingChange = (newPrivacySetting: PrivacySetting) => {
+    if (
+      ["INVITE_ONLY", "PASSWORD", "LINK"].includes(newPrivacySetting) &&
+      userPlan === "BASIC"
+    ) {
+      return;
+    }
     formik.setFieldValue("advancedSettings.privacy.setting", newPrivacySetting);
     if (newPrivacySetting === "INVITE_ONLY") {
       formik.setFieldValue("advancedSettings.privacy.invitees", []);
@@ -113,20 +122,23 @@ const PrivacySettings = () => {
             <Select.Option
               onClick={() => handlePrivacySettingChange("INVITE_ONLY")}
               checked={privacySetting === "INVITE_ONLY"}
+              disabled={userPlan === "BASIC"}
             >
-              Invite only
+              Invite only {userPlan === "BASIC" && <ProBadge />}
             </Select.Option>
             <Select.Option
               onClick={() => handlePrivacySettingChange("PASSWORD")}
               checked={privacySetting === "PASSWORD"}
+              disabled={userPlan === "BASIC"}
             >
-              Password
+              Password {userPlan === "BASIC" && <ProBadge />}
             </Select.Option>
             <Select.Option
               onClick={() => handlePrivacySettingChange("LINK")}
               checked={privacySetting === "LINK"}
+              disabled={userPlan === "BASIC"}
             >
-              Everyone with link
+              Everyone with link {userPlan === "BASIC" && <ProBadge />}
             </Select.Option>
             <Select.Option
               onClick={() => handlePrivacySettingChange("ONLY_ME")}

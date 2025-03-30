@@ -325,14 +325,18 @@ export const AdvancedSettings = () => {
               <ProBadge />
             </div>
             <Switch
-              className="w-20"
+              className={cn("w-20", {
+                "cursor-not-allowed opacity-50 blur-sm": userPlan === "BASIC",
+              })}
               checked={values.advancedSettings.sendEmailReport}
               onCheckedChange={() =>
+                userPlan !== "BASIC" &&
                 setFieldValue(
                   "advancedSettings.sendEmailReport",
                   !values.advancedSettings.sendEmailReport,
                 )
               }
+              disabled={userPlan === "BASIC"}
             />
           </div>
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">

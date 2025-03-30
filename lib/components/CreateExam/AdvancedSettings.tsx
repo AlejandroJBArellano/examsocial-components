@@ -1,3 +1,5 @@
+import { useExamCreation } from "@/hooks/exam";
+import { cn } from "@/utils";
 import { useFormikContext } from "formik";
 import { useRef, useState } from "react";
 import * as Yup from "yup";
@@ -25,6 +27,10 @@ export const AdvancedSettings = () => {
   const { values, setFieldValue, getFieldProps } =
     useFormikContext<Yup.InferType<typeof examSchema>>();
 
+  const { userPlan, canSellExams } = useExamCreation();
+
+  console.log({ userPlan, canSellExams });
+
   return (
     <section className="space-y-4 [&>article>div]:flex [&>article>div]:items-center [&>article>div]:gap-2 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article]:gap-2 [&>article]:space-y-1">
       <article className="flex items-center justify-between">
@@ -39,16 +45,22 @@ export const AdvancedSettings = () => {
               Monetization is the process of charging students for taking exams.
             </Helper>
           </div>
-          <div className="flex items-center gap-2 rounded-md bg-feedback-warning px-3 py-2 text-feedback-warning-tint">
-            <Icon className="text-feedback-warning-tint" name="info" filled />
-            <span className="text-sm font-medium">
-              Register into the marketplace section
-            </span>
-          </div>
+          {!canSellExams && (
+            <div className="flex items-center gap-2 rounded-md bg-feedback-warning px-3 py-2 text-feedback-warning-tint">
+              <Icon className="text-feedback-warning-tint" name="info" filled />
+              <span className="text-sm font-medium">
+                Register into the marketplace section
+              </span>
+            </div>
+          )}
         </section>
-        <section className="grid grid-cols-2 items-center">
+        <section
+          className={cn("grid grid-cols-2 items-center", {
+            "cursor-not-allowed select-none blur-sm": !canSellExams,
+          })}
+        >
           <FocusSpan>Currency</FocusSpan>
-          <Select text="USD">
+          <Select text="USD" disabled={!canSellExams}>
             <Select.Option>USD</Select.Option>
             <Select.Option>EUR</Select.Option>
             <Select.Option>MXN</Select.Option>
@@ -57,9 +69,18 @@ export const AdvancedSettings = () => {
             <Select.Option>NZD</Select.Option>
           </Select>
         </section>
-        <section className="grid grid-cols-2 items-center">
+        <section
+          className={cn("grid grid-cols-2 items-center", {
+            "cursor-not-allowed select-none blur-sm": !canSellExams,
+          })}
+        >
           <FocusSpan>Price</FocusSpan>
-          <Input type="number" placeholder="0" className="w-full" />
+          <Input
+            type="number"
+            placeholder="0"
+            className={`w-full ${!canSellExams ? "opacity-50" : ""}`}
+            disabled={!canSellExams}
+          />
         </section>
       </div>
       <article className="flex-col !items-start">

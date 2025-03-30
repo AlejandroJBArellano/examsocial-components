@@ -215,6 +215,28 @@ export const AdvancedSettings = () => {
             </div>
           )}
         </section>
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Allow anonymous answers</FocusSpan>
+              <Helper align="center" side="top">
+                Allows users who are not registered on ExamSocial to take this
+                exam. Their results in the table will be displayed as:
+                "Anonymous user".
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.allowAnonymousAnswers}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.allowAnonymousAnswers",
+                  !values.advancedSettings.allowAnonymousAnswers,
+                )
+              }
+            />
+          </div>
+        </section>
       </div>
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>

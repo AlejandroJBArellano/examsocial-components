@@ -45,7 +45,7 @@ const CreateExam = ({
   // Save exam progress to localStorage whenever step changes
   const saveToLocalStorage = (values: Yup.InferType<typeof examSchema>) => {
     try {
-      const key = `exam_progress_${Date.now()}`;
+      const key = `exam_progress_${values.title.replace(/\s+/g, "_")}`;
       localStorage.setItem(key, JSON.stringify(values));
 
       // Keep only the 5 most recent saved exams

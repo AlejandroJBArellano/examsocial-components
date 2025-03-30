@@ -1,7 +1,8 @@
+import { Helper } from "@/components/Helper";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import { examSchema } from "../../../schemas";
-import { FocusSpan, Smoll } from "../../FontFaces";
+import { FocusSpan, Heading5, Smoll } from "../../FontFaces";
 import { Input } from "../../Input";
 import { Select } from "../../Select";
 
@@ -100,7 +101,13 @@ const TimingSettings = () => {
     <section className="space-y-4">
       <article className="space-y-1">
         <div className="flex items-center justify-between">
-          <FocusSpan>Timing</FocusSpan>
+          <div className="flex gap-2">
+            <Heading5>Timing</Heading5>
+            <Helper align="center" side="top">
+              Configure time limits for your exam, either for the entire exam or
+              per question.
+            </Helper>
+          </div>
           <div className="w-1/2">
             <Select text={TimingSettingsNameMap[timingSetting]}>
               <Select.Option

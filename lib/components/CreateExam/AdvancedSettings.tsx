@@ -286,6 +286,7 @@ export const AdvancedSettings = () => {
           </div>
         </section>
       </div>
+      <TimingSettings />
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
         <div className="flex flex-nowrap gap-2 overflow-x-auto">
@@ -426,7 +427,6 @@ export const AdvancedSettings = () => {
           {...getFieldProps("price")}
         />
       </article>
-      <TimingSettings />
       <ThemeSettings
         onChange={(theme) => {
           setFieldValue("advancedSettings.theme", theme);

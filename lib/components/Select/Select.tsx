@@ -8,6 +8,7 @@ import { OptionSelect } from "./Option.tsx";
 interface SelectProps extends DropdownMenu.DropdownMenuProps {
   text: string;
   container?: HTMLElement;
+  disabled?: boolean;
 }
 
 const Select = (props: SelectProps) => {
@@ -16,10 +17,14 @@ const Select = (props: SelectProps) => {
       <DropdownMenu.Trigger
         data-testid="trigger"
         className="group w-full data-[state=open]:border-accent-shadow data-[state]:outline-none"
+        disabled={props.disabled}
       >
         <Button
           theme="light"
-          className="flex w-full items-center justify-between outline-none group-data-[state=open]:border-accent-shadow group-data-[state=open]:shadow-accent-shadow"
+          className={
+            "flex w-full items-center justify-between outline-none group-data-[state=open]:border-accent-shadow group-data-[state=open]:shadow-accent-shadow " +
+            (props.disabled ? "cursor-not-allowed" : "")
+          }
         >
           {props.text}
           <Icon

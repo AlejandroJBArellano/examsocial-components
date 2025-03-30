@@ -41,7 +41,7 @@ const Select = (props: SelectProps) => {
       <DropdownMenu.Portal container={props.container}>
         <DropdownMenu.Content
           sideOffset={8}
-          className="DropdownMenuContent w-full translate-x-0 rounded-md border border-accent-shadow bg-white py-2 shadow-right-sm shadow-accent-shadow"
+          className="DropdownMenuContent max-h-[300px] w-full translate-x-0 overflow-y-auto rounded-md border border-accent-shadow bg-white py-2 shadow-right-sm shadow-accent-shadow"
         >
           {props.children}
         </DropdownMenu.Content>

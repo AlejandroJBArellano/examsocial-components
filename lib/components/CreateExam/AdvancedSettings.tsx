@@ -52,9 +52,7 @@ export const AdvancedSettings = () => {
           {!canSellExams && (
             <div className="flex items-center gap-2 rounded-md bg-feedback-warning px-3 py-2 text-feedback-warning-tint">
               <Icon className="text-feedback-warning-tint" name="info" filled />
-              <span className="text-sm font-medium">
-                Register into the marketplace section
-              </span>
+              <FocusSpan>Register into the marketplace section</FocusSpan>
             </div>
           )}
         </section>

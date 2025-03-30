@@ -55,7 +55,7 @@ export const Questions = () => {
         <Icon name="add" className="!h-5 !w-5" />
         <span className="font-medium">Add new question</span>
       </Button>
-      <Dialog innerRef={dialogRef} className="w-full max-w-sm">
+      <Dialog innerRef={dialogRef} className="w-full max-w-sm xl:max-w-lg">
         <NewQuestion
           onSubmit={(newQuestion) => {
             setFieldValue("questions", [
@@ -69,7 +69,7 @@ export const Questions = () => {
           }}
         />
       </Dialog>
-      <Dialog innerRef={editDialogRef} className="w-full max-w-sm">
+      <Dialog innerRef={editDialogRef} className="w-full max-w-sm xl:max-w-lg">
         <EditQuestion
           initialValues={
             values.questions && index !== null

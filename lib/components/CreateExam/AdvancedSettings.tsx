@@ -10,7 +10,14 @@ import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
 import { EditFeedbackScreen } from "../FeedbackScreen/NewAndEdit";
-import { FocusSpan, Heading4, Heading5, Paragraph, Span } from "../FontFaces";
+import {
+  FocusSpan,
+  Heading4,
+  Heading5,
+  Heading6,
+  Paragraph,
+  Span,
+} from "../FontFaces";
 import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 import { Input } from "../Input";
@@ -442,7 +449,7 @@ export const AdvancedSettings = () => {
             />
           </div>
           <div className="space-y-2">
-            <FocusSpan>Personalized Thank You Screen</FocusSpan>
+            <Heading6>Personalized Thank You Screen</Heading6>
             <Paragraph className={userPlan !== "PREMIUM" ? "opacity-50" : ""}>
               Create{" "}
               <Span className="font-semibold">custom thank you screens</Span>{" "}

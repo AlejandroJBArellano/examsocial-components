@@ -5,7 +5,7 @@ import { contentSchema, examSchema } from "../../schemas";
 import { NewAdditionalContent } from "../AdditionalContent/New";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
-import { Anchor, Heading3, Smoll } from "../FontFaces";
+import { Anchor, Heading3, Paragraph, Smoll } from "../FontFaces";
 import { Icon } from "../Icon";
 
 const ContentSet = ({
@@ -98,6 +98,12 @@ export const AdditionalContent = () => {
   return (
     <section className="space-y-6">
       <Heading3>Additional Content</Heading3>
+      <Paragraph>
+        Enhance your exam with supplementary materials such as links, images,
+        videos, audio files, or documents. These additional resources can
+        provide context, references, or extra information to help students
+        better understand the exam content.
+      </Paragraph>
       <article className="space-y-4">
         {formik.values.contents.map((content, index) => (
           <ContentSet key={index} content={content} />

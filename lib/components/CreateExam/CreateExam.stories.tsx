@@ -116,6 +116,7 @@ export const WithPrefilledValues: Story = {
       questions: [],
       contents: [],
       advancedSettings: {
+        currency: "USD",
         randomizeQuestionOrder: false,
         showCorrectAnswers: true,
         sendEmailReport: true,

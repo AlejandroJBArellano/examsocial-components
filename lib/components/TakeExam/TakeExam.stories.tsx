@@ -15,7 +15,10 @@ export const Default: Story = {
       title: "Sample Exam",
       description: "This is a sample exam description.",
       image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA",
+      category: "COMPUTER_SCIENCE",
       advancedSettings: {
+        currency: "USD",
+        passingScore: 80,
         randomizeQuestionOrder: true,
         showCorrectAnswers: false,
         sendEmailReport: true,

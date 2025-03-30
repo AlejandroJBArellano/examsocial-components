@@ -44,20 +44,25 @@ export const Review = () => {
       <article className="space-y-1">
         <Heading4>Questions</Heading4>
         <div className="flex flex-nowrap gap-4 overflow-x-auto">
-          {formik.values.questions.map((question, index) => (
-            <QuestionSet
-              {...question}
-              index={index}
-              key={index}
-              onEdit={(index) => console.log(index)}
-              onDelete={(index) =>
-                formik.setFieldValue(
-                  "questions",
-                  formik.values.questions.filter((_, i) => i !== index),
-                )
-              }
-            />
-          ))}
+          {formik.values.questions.map((question, index) => {
+            // Extract only the properties that QuestionSet expects
+            const { image, ...questionProps } = question;
+            return (
+              <QuestionSet
+                {...questionProps}
+                image={image as string}
+                index={index}
+                key={index}
+                onEdit={(index) => console.log(index)}
+                onDelete={(index) =>
+                  formik.setFieldValue(
+                    "questions",
+                    formik.values.questions.filter((_, i) => i !== index),
+                  )
+                }
+              />
+            );
+          })}
         </div>
       </article>
       {formik.values.contents.length > 0 && (

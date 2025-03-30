@@ -10,7 +10,7 @@ import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
 import { EditFeedbackScreen } from "../FeedbackScreen/NewAndEdit";
-import { FocusSpan, Heading4, Heading5, Paragraph } from "../FontFaces";
+import { FocusSpan, Heading4, Heading5, Paragraph, Span } from "../FontFaces";
 import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 import { Input } from "../Input";
@@ -443,6 +443,13 @@ export const AdvancedSettings = () => {
           </div>
           <div className="space-y-2">
             <FocusSpan>Personalized Thank You Screen</FocusSpan>
+            <Paragraph className={userPlan !== "PREMIUM" ? "opacity-50" : ""}>
+              Create custom thank you screens based on exam results. Perfect for
+              congratulating high performers or providing guidance to those who
+              need improvement. You can also use these as{" "}
+              <Span className="font-semibold">sales funnels</Span> by adding
+              links to your products or services.
+            </Paragraph>
             <div className="flex flex-nowrap gap-2 overflow-x-auto">
               <Button.Icon
                 className="mb-1 mr-1"

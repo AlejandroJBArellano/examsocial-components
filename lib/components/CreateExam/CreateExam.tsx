@@ -107,12 +107,12 @@ const CreateExam = ({
                 isValidGeneralDetails && isValidAdvancedSettings
                   ? "completed"
                   : "error",
-              tooltip: "General details",
+              tooltip: "Details and Settings",
             },
             {
               id: 2,
               status: isValidQuestions ? "completed" : "error",
-              tooltip: "Questions of the exam",
+              tooltip: "Questions",
             },
             {
               id: 3,

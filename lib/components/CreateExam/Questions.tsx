@@ -17,6 +17,8 @@ export const Questions = () => {
   const editDialogRef = useRef<HTMLDialogElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
+  console.log({ values });
+
   useEffect(() => {
     if (index !== null) {
       editDialogRef.current?.showModal();
@@ -75,34 +77,28 @@ export const Questions = () => {
         />
       </Dialog>
       <Dialog innerRef={editDialogRef} className="w-full max-w-sm xl:max-w-lg">
-        <EditQuestion
-          initialValues={
-            values.questions && index !== null
-              ? values.questions[index]
-              : {
-                  title: "",
-                  _id: `temp-${Date.now()}`,
-                  options: [],
-                }
-          }
-          onSubmit={(updatedQuestion) => {
-            setFieldValue(
-              "questions",
-              values.questions?.map((question, i) => {
-                if (i === index) {
-                  return updatedQuestion;
-                }
-                return question;
-              }),
-            );
-            editDialogRef.current?.close();
-            setIndex(null);
-          }}
-          onCancel={() => {
-            editDialogRef.current?.close();
-            setIndex(null);
-          }}
-        />
+        {index !== null && (
+          <EditQuestion
+            initialValues={values.questions[index]}
+            onSubmit={(updatedQuestion) => {
+              setFieldValue(
+                "questions",
+                values.questions?.map((question, i) => {
+                  if (i === index) {
+                    return updatedQuestion;
+                  }
+                  return question;
+                }),
+              );
+              editDialogRef.current?.close();
+              setIndex(null);
+            }}
+            onCancel={() => {
+              editDialogRef.current?.close();
+              setIndex(null);
+            }}
+          />
+        )}
       </Dialog>
     </section>
   );

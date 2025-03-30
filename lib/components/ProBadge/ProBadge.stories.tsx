@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import PremiumBadge from "./PremiumBadge";
+import ProBadge from "./ProBadge";
 
 export default {
-  title: "Components/PremiumBadge",
-  component: PremiumBadge,
+  title: "Components/ProBadge",
+  component: ProBadge,
 } as Meta;
 
-type Story = StoryObj<typeof PremiumBadge>;
+type Story = StoryObj<typeof ProBadge>;
 
 export const Default: Story = {
   args: {

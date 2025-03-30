@@ -1,7 +1,7 @@
 import { cn } from "../../utils";
 import { Icon } from "../Icon";
 
-const PremiumBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
+const ProBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
   const dimensions = {
     small: {
       container: "px-2 py-1",
@@ -31,4 +31,4 @@ const PremiumBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
   );
 };
 
-export default PremiumBadge;
+export default ProBadge;

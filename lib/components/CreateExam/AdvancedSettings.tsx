@@ -12,7 +12,7 @@ import { FocusSpan, Heading4, Heading5 } from "../FontFaces";
 import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 import { Input } from "../Input";
-import { PremiumBadge } from "../PremiumBadge";
+import { ProBadge } from "../ProBadge";
 import { Select } from "../Select";
 import { Switch } from "../Switch";
 import { PrivacySettings } from "./PrivacySettings";
@@ -35,7 +35,7 @@ export const AdvancedSettings = () => {
     <section className="space-y-4 [&>article>div]:flex [&>article>div]:items-center [&>article>div]:gap-2 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article]:gap-2 [&>article]:space-y-1">
       <article className="flex items-center justify-between">
         <Heading4>Advanced Settings</Heading4>
-        <PremiumBadge />
+        <ProBadge />
       </article>
       <div className="space-y-4">
         <section className="flex items-center justify-between">
@@ -352,39 +352,86 @@ export const AdvancedSettings = () => {
           </div>
         </div>
       </div>
-      <article className="flex-col !items-start">
-        <FocusSpan>Personalized Thank You Screen</FocusSpan>
-        <div className="flex flex-nowrap gap-2 overflow-x-auto">
-          <Button.Icon
-            className="mb-1 mr-1"
-            rounded
-            onClick={() => dialogRef.current?.showModal()}
-            type="button"
-            size={24}
-          >
-            add
-          </Button.Icon>
-          {values.advancedSettings.feedback?.map((feedback, index) => (
-            <FeedbackScreen
-              key={feedback.condition}
-              {...feedback}
-              onEdit={() => {
-                setIndex(index);
-                editFeedbackDialogRef.current?.showModal();
-              }}
-              onDelete={() => {
-                setFieldValue(
-                  "advancedSettings.feedback",
-                  values.advancedSettings.feedback?.filter(
-                    (_, i) => i !== index,
-                  ),
-                );
-              }}
-              index={index}
-            />
-          ))}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex gap-2">
+            <Heading5>Branding</Heading5>
+            <Helper align="center" side="top">
+              Customize the appearance and branding of your exam.
+            </Helper>
+          </div>
+          <ProBadge />
         </div>
-      </article>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <FocusSpan>Show logo in exam</FocusSpan>
+            <Helper align="center" side="top">
+              Display your logo in the exam metadata and details view.
+            </Helper>
+          </div>
+          <Switch
+            className="w-20"
+            checked={values.advancedSettings.showLogo}
+            onCheckedChange={() =>
+              setFieldValue(
+                "advancedSettings.showLogo",
+                !values.advancedSettings.showLogo,
+              )
+            }
+          />
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <FocusSpan>Show brand name</FocusSpan>
+            <Helper align="center" side="top">
+              Display your brand name in the exam metadata and details view.
+            </Helper>
+          </div>
+          <Switch
+            className="w-20"
+            checked={values.advancedSettings.showBrandName}
+            onCheckedChange={() =>
+              setFieldValue(
+                "advancedSettings.showBrandName",
+                !values.advancedSettings.showBrandName,
+              )
+            }
+          />
+        </div>
+        <article className="flex-col !items-start">
+          <FocusSpan>Personalized Thank You Screen</FocusSpan>
+          <div className="flex flex-nowrap gap-2 overflow-x-auto">
+            <Button.Icon
+              className="mb-1 mr-1"
+              rounded
+              onClick={() => dialogRef.current?.showModal()}
+              type="button"
+              size={24}
+            >
+              add
+            </Button.Icon>
+            {values.advancedSettings.feedback?.map((feedback, index) => (
+              <FeedbackScreen
+                key={feedback.condition}
+                {...feedback}
+                onEdit={() => {
+                  setIndex(index);
+                  editFeedbackDialogRef.current?.showModal();
+                }}
+                onDelete={() => {
+                  setFieldValue(
+                    "advancedSettings.feedback",
+                    values.advancedSettings.feedback?.filter(
+                      (_, i) => i !== index,
+                    ),
+                  );
+                }}
+                index={index}
+              />
+            ))}
+          </div>
+        </article>
+      </div>
       <article>
         <div>
           <FocusSpan>Leaderboard</FocusSpan>

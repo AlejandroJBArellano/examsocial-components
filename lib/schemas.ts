@@ -5,6 +5,20 @@ import { ExamCategory } from "./types";
 export const questionSchema = Yup.object({
   title: Yup.string().required("Question is required"),
   _id: Yup.string().required(),
+  image: Yup.mixed()
+    .nullable()
+    .test(
+      "fileFormat",
+      "Unsupported file format",
+      (value) =>
+        !value || (value instanceof File && value.type.startsWith("image/")),
+    )
+    .test(
+      "fileSize",
+      "File size must be less than 5MB",
+      (value) =>
+        !value || (value instanceof File && value.size <= 5 * 1024 * 1024),
+    ),
   options: Yup.array()
     .of(
       Yup.object({

@@ -24,7 +24,7 @@ export const AdvancedSettings = () => {
   const editFeedbackDialogRef = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState<number>(0);
 
-  const { values, setFieldValue, getFieldProps } =
+  const { values, setFieldValue } =
     useFormikContext<Yup.InferType<typeof examSchema>>();
 
   const { userPlan, canSellExams } = useExamCreation();
@@ -292,6 +292,65 @@ export const AdvancedSettings = () => {
             Configure the feedback and results for the exam.
           </Helper>
         </div>
+        <div className="mt-4 space-y-4">
+          <div className="grid grid-cols-2 items-center justify-between">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Minimum passing score</FocusSpan>
+              <Helper align="center" side="top">
+                Set the minimum score required to pass the exam.
+              </Helper>
+            </div>
+            <Input
+              type="number"
+              placeholder="70"
+              className="w-full"
+              value={values.advancedSettings.passingScore}
+              onChange={(e) =>
+                setFieldValue(
+                  "advancedSettings.passingScore",
+                  parseInt(e.target.value),
+                )
+              }
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Send email report</FocusSpan>
+              <Helper align="center" side="top">
+                Send an email report to the user when they complete the exam.
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.sendEmailReport}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.sendEmailReport",
+                  !values.advancedSettings.sendEmailReport,
+                )
+              }
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Show correct answers</FocusSpan>
+              <Helper align="center" side="top">
+                Show the correct answers to students after they complete the
+                exam.
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.showCorrectAnswers}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.showCorrectAnswers",
+                  !values.advancedSettings.showCorrectAnswers,
+                )
+              }
+            />
+          </div>
+        </div>
       </div>
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
@@ -328,63 +387,6 @@ export const AdvancedSettings = () => {
       </article>
       <article>
         <div>
-          <FocusSpan>Randomize question order</FocusSpan>
-          <Helper align="center" side="top">
-            Randomizing question order will shuffle the order of questions for
-            each student.
-          </Helper>
-        </div>
-        <Switch
-          className="w-20"
-          checked={values.advancedSettings.randomizeQuestionOrder}
-          onCheckedChange={() =>
-            setFieldValue(
-              "advancedSettings.randomizeQuestionOrder",
-              !values.advancedSettings.randomizeQuestionOrder,
-            )
-          }
-        />
-      </article>
-      <article>
-        <div>
-          <FocusSpan>Show correct answers at the end</FocusSpan>
-          <Helper align="center" side="top">
-            Showing correct answers at the end will display the correct answers
-            to the questions after the student has submitted the exam.
-          </Helper>
-        </div>
-        <Switch
-          className="w-20"
-          checked={values.advancedSettings.showCorrectAnswers}
-          onCheckedChange={() =>
-            setFieldValue(
-              "advancedSettings.showCorrectAnswers",
-              !values.advancedSettings.showCorrectAnswers,
-            )
-          }
-        />
-      </article>
-      <article>
-        <div>
-          <FocusSpan>Send email report</FocusSpan>
-          <Helper align="center" side="top">
-            Sending email report will send the student's exam report to their
-            email.
-          </Helper>
-        </div>
-        <Switch
-          className="w-20"
-          checked={values.advancedSettings.sendEmailReport}
-          onCheckedChange={() =>
-            setFieldValue(
-              "advancedSettings.sendEmailReport",
-              !values.advancedSettings.sendEmailReport,
-            )
-          }
-        />
-      </article>
-      <article>
-        <div>
           <FocusSpan>Leaderboard</FocusSpan>
           <Helper align="center" side="top">
             Leaderboard will display the top 10 students with the highest score
@@ -400,37 +402,6 @@ export const AdvancedSettings = () => {
               !values.advancedSettings.leaderboard,
             )
           }
-        />
-      </article>
-      <article className="w-full">
-        <div>
-          <FocusSpan>Number of attempts</FocusSpan>
-          <Helper align="center" side="top">
-            Number of attempts is the number of times a student can attempt the
-            exam.
-          </Helper>
-        </div>
-        <Input
-          type="number"
-          placeholder="3"
-          containerClassName="flex-initial"
-          className="w-20"
-          {...getFieldProps("maxAttempts")}
-        />
-      </article>
-      <article className="w-full">
-        <div>
-          <FocusSpan>Price (USD)</FocusSpan>
-          <Helper align="center" side="top">
-            Price is the amount a student has to pay to attempt the exam.
-          </Helper>
-        </div>
-        <Input
-          type="number"
-          placeholder="0"
-          containerClassName="flex-initial"
-          className="w-20"
-          {...getFieldProps("price")}
         />
       </article>
       <ThemeSettings

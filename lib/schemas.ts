@@ -107,6 +107,7 @@ export const advancedSettingsSchema = Yup.object({
   allowAnonymousAnswers: Yup.boolean(),
   randomizeQuestionOrder: Yup.boolean(),
   randomizeOptionsOrder: Yup.boolean(),
+  passingScore: Yup.number().min(0, "Must be at least 0").required("Required"),
   timing: timingSchema,
   theme: Yup.string()
     .required("Required")

@@ -238,6 +238,7 @@ export const AdvancedSettings = () => {
           </div>
         </section>
       </div>
+      <TimingSettings />
       <div className="space-y-4">
         <section className="space-y-4">
           <div className="flex items-center justify-between">
@@ -286,7 +287,6 @@ export const AdvancedSettings = () => {
           </div>
         </section>
       </div>
-      <TimingSettings />
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
         <div className="flex flex-nowrap gap-2 overflow-x-auto">

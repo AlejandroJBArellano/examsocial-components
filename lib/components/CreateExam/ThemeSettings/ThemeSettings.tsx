@@ -17,7 +17,7 @@ interface IThemeSettingsProps {
 const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
   const [themeSetting, setThemeSetting] = useState<ThemeSetting>("WHITEBOARD");
   return (
-    <section className="space-y-4">
+    <div className="space-y-4">
       <article className="flex items-center justify-between">
         <Heading5>Theme</Heading5>
         <div className="w-1/2">
@@ -48,7 +48,7 @@ const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
         <div className="aspect-square rounded-md border border-black bg-accent" />
         <div className="aspect-square rounded-md border border-black bg-extra" />
       </article>
-    </section>
+    </div>
   );
 };
 

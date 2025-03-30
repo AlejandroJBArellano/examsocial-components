@@ -32,12 +32,12 @@ export const AdvancedSettings = () => {
   console.log({ userPlan, canSellExams });
 
   return (
-    <section className="space-y-4 [&>article>div]:flex [&>article>div]:items-center [&>article>div]:gap-2 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article]:gap-2 [&>article]:space-y-1">
+    <section className="divide-y divide-secondary-tint [&>div]:space-y-4 [&>div]:py-4">
       <div className="flex items-center justify-between">
         <Heading4>Advanced Settings</Heading4>
         <ProBadge />
       </div>
-      <div className="space-y-4">
+      <div>
         <section className="flex items-center justify-between">
           <div className="flex gap-2">
             <Heading5>Monetization</Heading5>
@@ -89,7 +89,7 @@ export const AdvancedSettings = () => {
           />
         </section>
       </div>
-      <div className="space-y-4">
+      <div>
         <section className="flex items-center justify-between">
           <div className="flex gap-2">
             <Heading5>Security</Heading5>
@@ -239,7 +239,7 @@ export const AdvancedSettings = () => {
         </section>
       </div>
       <TimingSettings />
-      <div className="space-y-4">
+      <div>
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
             <Heading5>Questions</Heading5>
@@ -352,7 +352,7 @@ export const AdvancedSettings = () => {
           </div>
         </div>
       </div>
-      <div className="space-y-4">
+      <div>
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
             <Heading5>Branding</Heading5>
@@ -398,7 +398,7 @@ export const AdvancedSettings = () => {
             }
           />
         </div>
-        <article className="flex-col !items-start">
+        <div className="space-y-2">
           <FocusSpan>Personalized Thank You Screen</FocusSpan>
           <div className="flex flex-nowrap gap-2 overflow-x-auto">
             <Button.Icon
@@ -430,7 +430,7 @@ export const AdvancedSettings = () => {
               />
             ))}
           </div>
-        </article>
+        </div>
       </div>
       <ThemeSettings
         onChange={(theme) => {

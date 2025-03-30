@@ -98,7 +98,7 @@ const TimingSettings = () => {
   };
 
   return (
-    <section className="space-y-4">
+    <div className="space-y-4">
       <article className="space-y-1">
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
@@ -142,7 +142,7 @@ const TimingSettings = () => {
         </Smoll>
       </article>
       {TotalTimeControls[timingSetting]}
-    </section>
+    </div>
   );
 };
 

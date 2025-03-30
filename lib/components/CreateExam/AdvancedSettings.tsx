@@ -33,10 +33,10 @@ export const AdvancedSettings = () => {
 
   return (
     <section className="space-y-4 [&>article>div]:flex [&>article>div]:items-center [&>article>div]:gap-2 [&>article]:flex [&>article]:items-center [&>article]:justify-between [&>article]:gap-2 [&>article]:space-y-1">
-      <article className="flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <Heading4>Advanced Settings</Heading4>
         <ProBadge />
-      </article>
+      </div>
       <div className="space-y-4">
         <section className="flex items-center justify-between">
           <div className="flex gap-2">

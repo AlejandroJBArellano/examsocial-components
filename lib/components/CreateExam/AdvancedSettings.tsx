@@ -35,7 +35,6 @@ export const AdvancedSettings = () => {
     <section className="divide-y divide-secondary-tint [&>div]:space-y-4 [&>div]:py-4">
       <div className="flex items-center justify-between gap-2">
         <Heading4>Advanced Settings</Heading4>
-        <ProBadge />
       </div>
       <div>
         <section className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
@@ -368,7 +367,7 @@ export const AdvancedSettings = () => {
               Customize the appearance and branding of your exam.
             </Helper>
           </div>
-          <PremiumBadge />
+          {userPlan !== "PREMIUM" && <PremiumBadge />}
         </div>
         <div
           className={cn("space-y-4", {

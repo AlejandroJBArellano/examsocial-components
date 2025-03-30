@@ -18,6 +18,7 @@ interface CreateExamProps {
   onCancel: () => void;
   userPlan: UserPlan;
   canSellExams: boolean;
+  initialValues?: Partial<Yup.InferType<typeof examSchema>>;
 }
 
 const CreateExam = ({
@@ -25,6 +26,7 @@ const CreateExam = ({
   onCancel,
   userPlan,
   canSellExams,
+  initialValues,
 }: CreateExamProps) => {
   const steps = {
     1: (
@@ -44,31 +46,40 @@ const CreateExam = ({
     <ExamCreationContext.Provider value={{ userPlan, canSellExams }}>
       <Formik
         initialValues={{
-          title: "",
-          description: "",
-          image: "",
-          questions: [],
-          contents: [],
+          title: initialValues?.title || "",
+          description: initialValues?.description || "",
+          image: initialValues?.image || "",
+          category: initialValues?.category || "OTHER",
+          questions: initialValues?.questions || [],
+          contents: initialValues?.contents || [],
           advancedSettings: {
-            randomizeQuestionOrder: true,
-            showCorrectAnswers: false,
-            sendEmailReport: false,
-            leaderboard: false,
-            maxAttempts: 3,
-            price: 0,
-            feedback: [],
+            randomizeQuestionOrder:
+              initialValues?.advancedSettings?.randomizeQuestionOrder ?? true,
+            showCorrectAnswers:
+              initialValues?.advancedSettings?.showCorrectAnswers ?? false,
+            sendEmailReport:
+              initialValues?.advancedSettings?.sendEmailReport ?? false,
+            leaderboard: initialValues?.advancedSettings?.leaderboard ?? false,
+            maxAttempts: initialValues?.advancedSettings?.maxAttempts ?? 3,
+            price: initialValues?.advancedSettings?.price ?? 0,
+            feedback: initialValues?.advancedSettings?.feedback || [],
+            passingScore: initialValues?.advancedSettings?.passingScore ?? 70,
             privacy: {
-              setting: "PUBLIC",
-              invitees: [],
-              password: "",
+              setting:
+                initialValues?.advancedSettings?.privacy?.setting || "PUBLIC",
+              invitees:
+                initialValues?.advancedSettings?.privacy?.invitees || [],
+              password:
+                initialValues?.advancedSettings?.privacy?.password || "",
             },
             timing: {
-              setting: "NONE",
-              hours: 0,
-              minutes: 0,
-              seconds: 0,
+              setting:
+                initialValues?.advancedSettings?.timing?.setting || "NONE",
+              hours: initialValues?.advancedSettings?.timing?.hours ?? 0,
+              minutes: initialValues?.advancedSettings?.timing?.minutes ?? 0,
+              seconds: initialValues?.advancedSettings?.timing?.seconds ?? 0,
             },
-            theme: "WHITEBOARD",
+            theme: initialValues?.advancedSettings?.theme || "WHITEBOARD",
           },
         }}
         validationSchema={examSchema}

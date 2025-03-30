@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ThemeSetting } from "../../../types";
-import { FocusSpan } from "../../FontFaces";
+import { Heading5 } from "../../FontFaces";
 import { Select } from "../../Select";
 
 const ThemeSettingsNameMap = {
@@ -19,7 +19,7 @@ const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
   return (
     <section className="space-y-4">
       <article className="flex items-center justify-between">
-        <FocusSpan>Theme</FocusSpan>
+        <Heading5>Theme</Heading5>
         <div className="w-1/2">
           <Select text={ThemeSettingsNameMap[themeSetting]}>
             {Object.entries(ThemeSettingsNameMap).map(([key, value]) => (

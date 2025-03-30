@@ -288,9 +288,9 @@ export const AdvancedSettings = () => {
         </div>
         <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
           <div className="flex items-center gap-2">
-            <FocusSpan>Randomize answer options</FocusSpan>
+            <FocusSpan>Randomize options order</FocusSpan>
             <Helper align="center" side="top">
-              Shuffles the order of answer options for each question.
+              Shuffles the order of options order for each question.
             </Helper>
           </div>
           <Switch

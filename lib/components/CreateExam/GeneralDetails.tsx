@@ -3,7 +3,7 @@ import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { BannerInput } from "../BannerInput";
-import { FocusSpan, Heading4 } from "../FontFaces";
+import { FocusSpan, Heading4, Heading6, Paragraph } from "../FontFaces";
 import { Icon } from "../Icon";
 import { ImageUploader } from "../ImageUploader";
 import { Input } from "../Input";
@@ -82,7 +82,15 @@ export const GeneralDetails = () => {
           {Object.entries(ExamCategory).map(([key, value]) => (
             <Select.Option
               key={key}
-              onClick={() => setFieldValue("category", value)}
+              onClick={() => {
+                setFieldValue("category", value);
+                if (value === ExamCategory.OTHER) {
+                  setFieldValue(
+                    "description",
+                    "Please describe the category here",
+                  );
+                }
+              }}
               checked={values.category === value}
             >
               <div className="flex items-center gap-2">
@@ -92,8 +100,15 @@ export const GeneralDetails = () => {
             </Select.Option>
           ))}
         </Select>
+        {values.category === ExamCategory.OTHER && (
+          <Heading6 className="mt-2 text-sm text-accent-shadow">
+            Please describe the category in the description
+          </Heading6>
+        )}
         {errors.category && (
-          <p className="text-sm text-red-500">{errors.category.toString()}</p>
+          <Paragraph className="text-sm text-red-500">
+            {errors.category.toString()}
+          </Paragraph>
         )}
       </article>
     </section>

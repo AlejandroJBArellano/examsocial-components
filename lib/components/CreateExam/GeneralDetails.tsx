@@ -1,10 +1,13 @@
+import { CategoryMetadata, ExamCategory } from "@/types";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { BannerInput } from "../BannerInput";
 import { FocusSpan, Heading4 } from "../FontFaces";
+import { Icon } from "../Icon";
 import { ImageUploader } from "../ImageUploader";
 import { Input } from "../Input";
+import { Select } from "../Select";
 import { Textarea } from "../Textarea";
 
 export const GeneralDetails = () => {
@@ -57,6 +60,40 @@ export const GeneralDetails = () => {
           <p className="text-sm text-red-500">
             {errors.description.toString()}
           </p>
+        )}
+      </article>
+      <article className="space-y-1">
+        <FocusSpan>Category</FocusSpan>
+        <Select
+          text={
+            values.category ? (
+              <div className="flex items-center gap-2">
+                <Icon
+                  name={CategoryMetadata[values.category as ExamCategory].icon}
+                  size={18}
+                />
+                {CategoryMetadata[values.category as ExamCategory].displayName}
+              </div>
+            ) : (
+              "Select a category"
+            )
+          }
+        >
+          {Object.entries(ExamCategory).map(([key, value]) => (
+            <Select.Option
+              key={key}
+              onClick={() => setFieldValue("category", value)}
+              checked={values.category === value}
+            >
+              <div className="flex items-center gap-2">
+                <Icon name={CategoryMetadata[value].icon} size={18} />
+                {CategoryMetadata[value].displayName}
+              </div>
+            </Select.Option>
+          ))}
+        </Select>
+        {errors.category && (
+          <p className="text-sm text-red-500">{errors.category.toString()}</p>
         )}
       </article>
     </section>

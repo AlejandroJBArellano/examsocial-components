@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import { FeedbackCondition } from "./constants";
+import { ExamCategory } from "./types";
 
 export const questionSchema = Yup.object({
   title: Yup.string().required("Question is required"),
@@ -183,6 +184,9 @@ export const examSchema = Yup.object({
             "image/hevc",
           ].includes(value instanceof File ? value.type : "")),
     ),
+  category: Yup.string()
+    .required("Category is required")
+    .oneOf(Object.keys(ExamCategory)),
   advancedSettings: advancedSettingsSchema,
   contents: Yup.array().of(contentSchema).required("Contents are required"),
   questions: Yup.array()

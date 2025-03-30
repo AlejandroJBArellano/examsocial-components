@@ -1,3 +1,4 @@
+import { Currency } from "@/constants";
 import { useExamCreation } from "@/hooks/exam";
 import { cn } from "@/utils";
 import { useFormikContext } from "formik";
@@ -31,6 +32,10 @@ export const AdvancedSettings = () => {
 
   console.log({ userPlan, canSellExams });
 
+  const setCurrency = (currency: string) => {
+    setFieldValue("advancedSettings.currency", currency);
+  };
+
   return (
     <section className="divide-y divide-secondary-tint [&>div]:space-y-4 [&>div]:py-4">
       <div>
@@ -62,13 +67,26 @@ export const AdvancedSettings = () => {
           })}
         >
           <FocusSpan>Currency</FocusSpan>
-          <Select text="USD" disabled={!canSellExams}>
-            <Select.Option>USD</Select.Option>
-            <Select.Option>EUR</Select.Option>
-            <Select.Option>MXN</Select.Option>
-            <Select.Option>CAD</Select.Option>
-            <Select.Option>AUD</Select.Option>
-            <Select.Option>NZD</Select.Option>
+          <Select
+            text={
+              Currency[
+                values.advancedSettings.currency as keyof typeof Currency
+              ]
+            }
+            disabled={!canSellExams}
+          >
+            {Object.entries(Currency).map(([key, value]) => (
+              <Select.Option
+                key={key}
+                onClick={() => {
+                  setCurrency(key);
+                }}
+                disabled={!canSellExams}
+                checked={values.advancedSettings.currency === key}
+              >
+                {value}
+              </Select.Option>
+            ))}
           </Select>
         </section>
         <section
@@ -76,7 +94,7 @@ export const AdvancedSettings = () => {
             "cursor-not-allowed select-none blur-sm": !canSellExams,
           })}
         >
-          <label htmlFor="price">
+          <label htmlFor="price" className="flex items-center gap-2">
             <FocusSpan>Price</FocusSpan>
             <Helper align="center" side="top">
               Price is the amount a student has to pay to attempt the exam.

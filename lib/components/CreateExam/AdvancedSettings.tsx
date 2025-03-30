@@ -134,11 +134,26 @@ export const AdvancedSettings = () => {
                 id="maxParticipants"
                 type="number"
                 placeholder={
-                  userPlan === "PREMIUM"
-                    ? "500"
-                    : userPlan === "PRO"
-                      ? "100"
-                      : "0"
+                  !["PUBLIC", "ONLY_ME"].includes(
+                    values.advancedSettings.privacy.setting,
+                  )
+                    ? userPlan === "PREMIUM"
+                      ? "500"
+                      : userPlan === "PRO"
+                        ? "100"
+                        : "0"
+                    : "0"
+                }
+                max={
+                  !["PUBLIC", "ONLY_ME"].includes(
+                    values.advancedSettings.privacy.setting,
+                  )
+                    ? userPlan === "PREMIUM"
+                      ? 500
+                      : userPlan === "PRO"
+                        ? 100
+                        : undefined
+                    : undefined
                 }
                 className="w-full"
                 value={values.advancedSettings.maxParticipants || ""}
@@ -149,13 +164,6 @@ export const AdvancedSettings = () => {
                   )
                 }
                 min={1}
-                max={
-                  userPlan === "PREMIUM"
-                    ? 500
-                    : userPlan === "PRO"
-                      ? 100
-                      : undefined
-                }
               />
             </div>
           )}

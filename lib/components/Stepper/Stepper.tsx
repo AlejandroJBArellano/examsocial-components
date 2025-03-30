@@ -131,7 +131,7 @@ const Stepper = ({
                   }}
                   key={step.id}
                   rounded
-                  className="xl:p-2"
+                  className="aspect-square"
                   theme={
                     (step.status
                       ? themeStep[step.status]

@@ -6,10 +6,12 @@ import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
 import { EditFeedbackScreen } from "../FeedbackScreen/NewAndEdit";
-import { FocusSpan, Heading4 } from "../FontFaces";
+import { FocusSpan, Heading4, Heading5 } from "../FontFaces";
 import { Helper } from "../Helper";
+import { Icon } from "../Icon";
 import { Input } from "../Input";
 import { PremiumBadge } from "../PremiumBadge";
+import { Select } from "../Select";
 import { Switch } from "../Switch";
 import { PrivacySettings } from "./PrivacySettings";
 import { ThemeSettings } from "./ThemeSettings";
@@ -29,6 +31,37 @@ export const AdvancedSettings = () => {
         <Heading4>Advanced Settings</Heading4>
         <PremiumBadge />
       </article>
+      <div className="space-y-2">
+        <section className="flex items-center justify-between">
+          <div className="flex gap-2">
+            <Heading5>Monetization</Heading5>
+            <Helper align="center" side="top">
+              Monetization is the process of charging students for taking exams.
+            </Helper>
+          </div>
+          <div className="flex items-center gap-2 rounded-md bg-feedback-warning px-3 py-2 text-feedback-warning-tint">
+            <Icon className="text-feedback-warning-tint" name="info" filled />
+            <span className="text-sm font-medium">
+              Register into the marketplace section
+            </span>
+          </div>
+        </section>
+        <section className="grid grid-cols-2 items-center">
+          <FocusSpan>Currency</FocusSpan>
+          <Select text="USD">
+            <Select.Option>USD</Select.Option>
+            <Select.Option>EUR</Select.Option>
+            <Select.Option>MXN</Select.Option>
+            <Select.Option>CAD</Select.Option>
+            <Select.Option>AUD</Select.Option>
+            <Select.Option>NZD</Select.Option>
+          </Select>
+        </section>
+        <section className="grid grid-cols-2 items-center">
+          <FocusSpan>Price</FocusSpan>
+          <Input type="number" placeholder="0" className="w-full" />
+        </section>
+      </div>
       <article className="flex-col !items-start">
         <FocusSpan>Personalized Thank You Screen</FocusSpan>
         <div className="flex flex-nowrap gap-2 overflow-x-auto">

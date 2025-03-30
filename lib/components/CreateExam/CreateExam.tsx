@@ -42,6 +42,26 @@ const CreateExam = ({
 
   const [step, setStep] = useState<keyof typeof steps>(1);
 
+  // Save exam progress to localStorage whenever step changes
+  const saveToLocalStorage = (values: Yup.InferType<typeof examSchema>) => {
+    try {
+      const key = `exam_progress_${Date.now()}`;
+      localStorage.setItem(key, JSON.stringify(values));
+
+      // Keep only the 5 most recent saved exams
+      const keys = Object.keys(localStorage)
+        .filter((k) => k.startsWith("exam_progress_"))
+        .sort()
+        .reverse();
+
+      if (keys.length > 5) {
+        keys.slice(5).forEach((k) => localStorage.removeItem(k));
+      }
+    } catch (error) {
+      console.error("Failed to save exam progress to localStorage:", error);
+    }
+  };
+
   return (
     <ExamCreationContext.Provider value={{ userPlan, canSellExams }}>
       <Formik
@@ -144,6 +164,7 @@ const CreateExam = ({
                   steps={stepsForStepper}
                   onSelectStep={(id) => {
                     setStep(id as keyof typeof steps);
+                    saveToLocalStorage(values);
                   }}
                 >
                   Create Exam

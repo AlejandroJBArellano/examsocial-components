@@ -1,3 +1,4 @@
+import { Helper } from "@/components/Helper";
 import { useState } from "react";
 import { ThemeSetting } from "../../../types";
 import { Heading5 } from "../../FontFaces";
@@ -19,7 +20,14 @@ const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
   return (
     <div className="space-y-4">
       <article className="flex items-center justify-between">
-        <Heading5>Theme</Heading5>
+        <div className="flex items-center gap-2">
+          <Heading5>Theme</Heading5>
+          <Helper align="center" side="top">
+            Choose a theme for your exam to customize the overall look and feel.
+            Each theme offers a unique color palette and design elements to
+            enhance the exam experience.
+          </Helper>
+        </div>
         <div className="w-1/2">
           <Select text={ThemeSettingsNameMap[themeSetting]}>
             {Object.entries(ThemeSettingsNameMap).map(([key, value]) => (

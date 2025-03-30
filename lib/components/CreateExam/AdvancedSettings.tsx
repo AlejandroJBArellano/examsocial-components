@@ -322,7 +322,7 @@ export const AdvancedSettings = () => {
                   Send an email report to the user when they complete the exam.
                 </Helper>
               </div>
-              <ProBadge />
+              {userPlan === "BASIC" && <ProBadge />}
             </div>
             <Switch
               className={cn("w-20", {

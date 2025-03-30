@@ -53,6 +53,7 @@ const CreateExam = ({
           questions: initialValues?.questions || [],
           contents: initialValues?.contents || [],
           advancedSettings: {
+            currency: initialValues?.advancedSettings?.currency || "USD",
             randomizeQuestionOrder:
               initialValues?.advancedSettings?.randomizeQuestionOrder ?? true,
             showCorrectAnswers:

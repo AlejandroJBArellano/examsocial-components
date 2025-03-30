@@ -9,7 +9,7 @@ import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
 import { EditFeedbackScreen } from "../FeedbackScreen/NewAndEdit";
-import { FocusSpan, Heading4, Heading5 } from "../FontFaces";
+import { FocusSpan, Heading4, Heading5, Paragraph } from "../FontFaces";
 import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 import { Input } from "../Input";
@@ -33,8 +33,13 @@ export const AdvancedSettings = () => {
 
   return (
     <section className="divide-y divide-secondary-tint [&>div]:space-y-4 [&>div]:py-4">
-      <div className="flex items-center justify-between gap-2">
+      <div>
         <Heading4>Advanced Settings</Heading4>
+        <Paragraph>
+          Configure advanced settings for your exam including monetization,
+          privacy, timing, feedback, and branding options. These settings allow
+          you to customize the exam experience for your students.
+        </Paragraph>
       </div>
       <div>
         <section className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">

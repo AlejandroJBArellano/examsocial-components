@@ -78,7 +78,7 @@ export const AdvancedSettings = () => {
           <Input
             type="number"
             placeholder="0"
-            className={`w-full ${!canSellExams ? "opacity-50" : ""}`}
+            className="w-full"
             disabled={!canSellExams}
           />
         </section>

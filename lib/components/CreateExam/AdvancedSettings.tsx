@@ -470,9 +470,9 @@ export const AdvancedSettings = () => {
               </Span>{" "}
               or <Span className="font-bold text-accent-shadow">services</Span>.
             </Paragraph>
-            <div className="flex flex-nowrap gap-2 overflow-x-auto">
+            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto">
               <Button.Icon
-                className="mb-1 mr-1"
+                className="flex aspect-square h-fit items-center justify-center"
                 rounded
                 onClick={() => dialogRef.current?.showModal()}
                 type="button"

@@ -4,6 +4,7 @@ import { useFormikContext } from "formik";
 import { useRef, useState } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
+import { PremiumBadge, ProBadge } from "../Badges";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
@@ -12,7 +13,6 @@ import { FocusSpan, Heading4, Heading5 } from "../FontFaces";
 import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 import { Input } from "../Input";
-import { ProBadge } from "../ProBadge";
 import { Select } from "../Select";
 import { Switch } from "../Switch";
 import { PrivacySettings } from "./PrivacySettings";
@@ -360,7 +360,7 @@ export const AdvancedSettings = () => {
               Customize the appearance and branding of your exam.
             </Helper>
           </div>
-          <ProBadge />
+          <PremiumBadge />
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

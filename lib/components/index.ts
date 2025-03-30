@@ -1,6 +1,7 @@
 export * from "./AnswerOption";
 export * from "./AnswerToggle";
 export * from "./Back";
+export * from "./Badges";
 export * from "./BannerInput";
 export * from "./Button";
 export * from "./Chart";
@@ -34,7 +35,6 @@ export * from "./Option";
 export * from "./Participants";
 export * from "./Pricing";
 export * from "./PricingComparisonCellWrapper";
-export * from "./ProBadge";
 export * from "./ProfilePlaceholder";
 export * from "./ProviderButton";
 export * from "./QuestionDetail";

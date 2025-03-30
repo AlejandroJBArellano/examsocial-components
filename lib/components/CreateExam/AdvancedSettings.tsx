@@ -432,25 +432,6 @@ export const AdvancedSettings = () => {
           </div>
         </article>
       </div>
-      <article>
-        <div>
-          <FocusSpan>Leaderboard</FocusSpan>
-          <Helper align="center" side="top">
-            Leaderboard will display the top 10 students with the highest score
-            after the exam.
-          </Helper>
-        </div>
-        <Switch
-          className="w-20"
-          checked={values.advancedSettings.leaderboard}
-          onCheckedChange={() =>
-            setFieldValue(
-              "advancedSettings.leaderboard",
-              !values.advancedSettings.leaderboard,
-            )
-          }
-        />
-      </article>
       <ThemeSettings
         onChange={(theme) => {
           setFieldValue("advancedSettings.theme", theme);

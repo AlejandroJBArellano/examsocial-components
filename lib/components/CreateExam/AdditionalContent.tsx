@@ -5,7 +5,7 @@ import { contentSchema, examSchema } from "../../schemas";
 import { NewAdditionalContent } from "../AdditionalContent/New";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
-import { Anchor, Heading3 } from "../FontFaces";
+import { Anchor, Heading3, Smoll } from "../FontFaces";
 import { Icon } from "../Icon";
 
 const ContentSet = ({
@@ -25,14 +25,33 @@ const ContentSet = ({
     ),
     TEXT: <p className="break-all">{content.text}</p>,
     LINK: (
-      <Anchor
-        href={content.link}
-        target="_blank"
-        rel="noreferrer"
-        className="break-all"
-      >
-        {content.link}
-      </Anchor>
+      <article className="flex items-center justify-between border-sm border-black bg-white p-2">
+        <div className="flex items-center gap-2">
+          <Icon name="link" className="!h-10 !w-10" />
+          <div className="space-y-1">
+            <Anchor
+              href={content.link}
+              target="_blank"
+              rel="noreferrer"
+              className="block"
+            >
+              {content.link}
+            </Anchor>
+            <Smoll>External Link</Smoll>
+          </div>
+        </div>
+        <Button.Icon
+          type="button"
+          theme="feedback-error"
+          rounded
+          className="flex items-center justify-center p-2"
+          onClick={() => {}}
+          filled
+          size={24}
+        >
+          open_in_new
+        </Button.Icon>
+      </article>
     ),
     IMAGE: content.image ? (
       <img

@@ -1,12 +1,13 @@
 "use client";
 
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { ReactNode } from "react";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { OptionSelect } from "./Option.tsx";
 
 interface SelectProps extends DropdownMenu.DropdownMenuProps {
-  text: string;
+  text: ReactNode;
   container?: HTMLElement;
   disabled?: boolean;
 }

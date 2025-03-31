@@ -189,7 +189,7 @@ export const AdvancedSettings = () => {
   const [index, setIndex] = useState<number>(0);
   const [feedbackError, setFeedbackError] = useState<string | null>(null);
 
-  const { values, setFieldValue } =
+  const { values, setFieldValue, getFieldProps } =
     useFormikContext<Yup.InferType<typeof examSchema>>();
 
   const { userPlan, canSellExams } = useExamCreation();
@@ -312,6 +312,7 @@ export const AdvancedSettings = () => {
             placeholder="0"
             className="w-full"
             disabled={!canSellExams}
+            {...getFieldProps("advancedSettings.price")}
           />
         </section>
       </div>

@@ -13,17 +13,24 @@ import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 
 type PricingMode = "monthly" | "yearly" | "lifetime" | "basic";
+type PricingColor = "accent" | "secondary";
 
 type PricingProps = PropsWithChildren<{
   mode?: PricingMode;
+  color?: PricingColor;
 }>;
 
-const Pricing = ({ children, mode = "basic" }: PricingProps) => {
+const Pricing = ({ children, mode = "basic", color }: PricingProps) => {
   const modes: Record<PricingMode, string> = {
     basic: "rounded-t-xl border-x border-t",
-    monthly: "border-t bg-secondary-tint text-secondary-shadow",
-    yearly: "border-y bg-accent-tint text-accent-shadow",
+    monthly: "",
+    yearly: "",
     lifetime: "rounded-b-xl border-x border-b",
+  };
+
+  const colors: Record<PricingColor, string> = {
+    accent: "border-y bg-accent-tint text-accent-shadow",
+    secondary: "border-b bg-secondary-tint text-secondary-shadow",
   };
 
   return (
@@ -31,6 +38,7 @@ const Pricing = ({ children, mode = "basic" }: PricingProps) => {
       className={cn(
         "space-y-6 border-black px-4 py-5 md:flex md:h-full md:flex-col md:justify-between md:rounded-xl md:border xl:space-y-8 xl:p-6",
         modes[mode],
+        color && colors[color],
       )}
     >
       {children}

@@ -46,7 +46,7 @@ export const Basic: Story = {
 
 const MonthlyPlan = () => (
   <div className="h-full w-full">
-    <Pricing mode="monthly">
+    <Pricing mode="monthly" color="accent">
       <Pricing.Header>
         <Pricing.Title>Pro</Pricing.Title>
         <Pricing.Container>
@@ -74,7 +74,7 @@ export const Monthly: Story = {
 
 const YearlyPlan = () => (
   <div className="h-full w-full">
-    <Pricing mode="yearly">
+    <Pricing mode="yearly" color="secondary">
       <Pricing.Header>
         <Pricing.Title>Pro Yearly</Pricing.Title>
         <Pricing.Container>

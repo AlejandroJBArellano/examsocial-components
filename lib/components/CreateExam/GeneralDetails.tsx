@@ -1,5 +1,7 @@
+import { Currency } from "@/constants";
 import { useExamCreation } from "@/hooks/exam";
 import { CategoryMetadata, ExamCategory } from "@/types";
+import { cn } from "@/utils";
 import { useFormikContext } from "formik";
 import { useCallback, useEffect, useState } from "react";
 import * as Yup from "yup";
@@ -7,9 +9,18 @@ import { examSchema } from "../../schemas";
 import { PremiumBadge } from "../Badges";
 import { BannerInput } from "../BannerInput";
 import { Field } from "../Field";
-import { FocusSpan, Heading4, Heading6, Paragraph, Span } from "../FontFaces";
+import {
+  FocusSpan,
+  Heading4,
+  Heading5,
+  Heading6,
+  Paragraph,
+  Span,
+} from "../FontFaces";
+import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 import { ImageUploader } from "../ImageUploader";
+import { Input } from "../Input";
 import { Select } from "../Select";
 
 export const GeneralDetails = () => {
@@ -19,7 +30,7 @@ export const GeneralDetails = () => {
   const { getFieldProps, values, setFieldValue, errors, touched } =
     useFormikContext<Yup.InferType<typeof examSchema>>();
 
-  const { userPlan, validatePathname } = useExamCreation();
+  const { userPlan, validatePathname, canSellExams } = useExamCreation();
 
   const validate = useCallback(async () => {
     if (!values.pathname) return;
@@ -164,6 +175,73 @@ export const GeneralDetails = () => {
             <PremiumBadge />
           </div>
         )}
+      </article>
+      <article className="space-y-4 border-t border-secondary-tint py-4">
+        <section className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+          <div className="flex gap-2">
+            <Heading5>Monetization</Heading5>
+            <Helper align="center" side="top">
+              Monetization is the process of charging students for taking exams.
+            </Helper>
+          </div>
+          {!canSellExams && (
+            <div className="flex items-center gap-2 rounded-md bg-feedback-warning px-3 py-2 text-feedback-warning-tint">
+              <Icon className="text-feedback-warning-tint" name="info" filled />
+              <FocusSpan>Register into the marketplace section</FocusSpan>
+            </div>
+          )}
+        </section>
+        <section
+          className={cn("grid grid-cols-1 items-center gap-2 sm:grid-cols-2", {
+            "cursor-not-allowed select-none blur-sm": !canSellExams,
+          })}
+        >
+          <FocusSpan>Currency</FocusSpan>
+          <Select
+            text={
+              Currency[
+                values.advancedSettings.currency as keyof typeof Currency
+              ]
+            }
+            disabled={!canSellExams}
+          >
+            {Object.entries(Currency).map(([key, value]) => (
+              <Select.Option
+                key={key}
+                onClick={() => {
+                  setFieldValue(
+                    "advancedSettings.currency",
+                    key as keyof typeof Currency,
+                  );
+                }}
+                disabled={!canSellExams}
+                checked={values.advancedSettings.currency === key}
+              >
+                {value}
+              </Select.Option>
+            ))}
+          </Select>
+        </section>
+        <section
+          className={cn("grid grid-cols-1 items-center gap-2 sm:grid-cols-2", {
+            "cursor-not-allowed select-none blur-sm": !canSellExams,
+          })}
+        >
+          <label htmlFor="price" className="flex items-center gap-2">
+            <FocusSpan>Price</FocusSpan>
+            <Helper align="center" side="top">
+              Price is the amount a student has to pay to attempt the exam.
+            </Helper>
+          </label>
+          <Input
+            id="price"
+            type="number"
+            placeholder="0"
+            className="w-full"
+            disabled={!canSellExams}
+            {...getFieldProps("advancedSettings.price")}
+          />
+        </section>
       </article>
     </section>
   );

@@ -1,4 +1,5 @@
 import { Icon } from "../Icon";
+import { Tooltip } from "../Tooltip";
 
 const SoonBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
   const dimensions = {
@@ -12,21 +13,29 @@ const SoonBadge = ({ size = "small" }: { size?: "big" | "small" }) => {
     },
   };
   return (
-    <div
-      className={
-        "inline-flex cursor-pointer select-none items-center gap-1 rounded-md bg-extra-shadow text-extra-tint hover:shadow-right-sm hover:shadow-extra " +
-        dimensions[size].container
+    <Tooltip
+      align="center"
+      side="top"
+      trigger={
+        <div
+          className={
+            "inline-flex cursor-pointer select-none items-center gap-1 rounded-md bg-extra-shadow text-extra-tint hover:shadow-right-sm hover:shadow-extra " +
+            dimensions[size].container
+          }
+        >
+          <span className={dimensions[size].text}>Coming Soon</span>
+          <Icon
+            grade={200}
+            filled
+            variant="rounded"
+            name="update"
+            size={size === "big" ? 24 : 20}
+          />
+        </div>
       }
     >
-      <span className={dimensions[size].text}>Coming Soon</span>
-      <Icon
-        grade={200}
-        filled
-        variant="rounded"
-        name="update"
-        size={size === "big" ? 24 : 20}
-      />
-    </div>
+      Stay tuned! We'll let you know when this cool feature drops.
+    </Tooltip>
   );
 };
 

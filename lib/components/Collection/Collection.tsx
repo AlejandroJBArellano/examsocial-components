@@ -27,7 +27,7 @@ const Add: React.FC<AddProps> = ({ children, onClick }) => {
 // Use a more specific type that matches the actual structure
 type CollectionFormValues = {
   name: string;
-  _id: string;
+  id: string;
   description: string;
   private: boolean;
 };

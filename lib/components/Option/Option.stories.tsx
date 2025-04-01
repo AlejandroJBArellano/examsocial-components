@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Option>;
 export const Default: Story = {
   args: {
     option: {
-      _id: "option1",
+      id: "option1",
       text: "Option 1",
     },
     selectAnswer: (id) => console.log("Selected option:", id),
@@ -32,7 +32,7 @@ export const Default: Story = {
 export const LongText: Story = {
   args: {
     option: {
-      _id: "option2",
+      id: "option2",
       text: "This is a very long option text that demonstrates how the component handles longer content in the option.",
     },
     selectAnswer: (id) => console.log("Selected option:", id),
@@ -42,7 +42,7 @@ export const LongText: Story = {
 export const WithCustomHandler: Story = {
   args: {
     option: {
-      _id: "option3",
+      id: "option3",
       text: "Click me to see an alert",
     },
     selectAnswer: (id) => alert(`You selected option with ID: ${id}`),
@@ -53,15 +53,15 @@ export const AllOptions: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
       <Option
-        option={{ _id: "option1", text: "Option 1" }}
+        option={{ id: "option1", text: "Option 1" }}
         selectAnswer={(id) => console.log("Selected option:", id)}
       />
       <Option
-        option={{ _id: "option2", text: "Option 2" }}
+        option={{ id: "option2", text: "Option 2" }}
         selectAnswer={(id) => console.log("Selected option:", id)}
       />
       <Option
-        option={{ _id: "option3", text: "Option 3" }}
+        option={{ id: "option3", text: "Option 3" }}
         selectAnswer={(id) => console.log("Selected option:", id)}
       />
     </div>

@@ -45,12 +45,12 @@ type Story = StoryObj<typeof ReviewQuestionSet>;
 // Base question for all stories
 const baseQuestion = {
   title: "What is the capital of France?",
-  _id: "q1",
+  id: "q1",
   options: [
-    { text: "Paris", correct: true, _id: "o1" },
-    { text: "London", correct: false, _id: "o2" },
-    { text: "Berlin", correct: false, _id: "o3" },
-    { text: "Madrid", correct: false, _id: "o4" },
+    { text: "Paris", correct: true, id: "o1" },
+    { text: "London", correct: false, id: "o2" },
+    { text: "Berlin", correct: false, id: "o3" },
+    { text: "Madrid", correct: false, id: "o4" },
   ],
 };
 
@@ -111,13 +111,13 @@ export const ManyOptions: Story = {
     question: {
       ...baseQuestion,
       options: [
-        { text: "Paris", correct: true, _id: "o1" },
-        { text: "London", correct: false, _id: "o2" },
-        { text: "Berlin", correct: false, _id: "o3" },
-        { text: "Madrid", correct: false, _id: "o4" },
-        { text: "Rome", correct: false, _id: "o5" },
-        { text: "Brussels", correct: false, _id: "o6" },
-        { text: "Amsterdam", correct: false, _id: "o7" },
+        { text: "Paris", correct: true, id: "o1" },
+        { text: "London", correct: false, id: "o2" },
+        { text: "Berlin", correct: false, id: "o3" },
+        { text: "Madrid", correct: false, id: "o4" },
+        { text: "Rome", correct: false, id: "o5" },
+        { text: "Brussels", correct: false, id: "o6" },
+        { text: "Amsterdam", correct: false, id: "o7" },
       ],
     },
   },
@@ -141,11 +141,11 @@ export const LongOptionText: Story = {
         {
           text: "Paris is the capital and most populous city of France, with an estimated population of 2,175,601 residents as of 2018, in an area of more than 105 square kilometres.",
           correct: true,
-          _id: "o1",
+          id: "o1",
         },
-        { text: "London", correct: false, _id: "o2" },
-        { text: "Berlin", correct: false, _id: "o3" },
-        { text: "Madrid", correct: false, _id: "o4" },
+        { text: "London", correct: false, id: "o2" },
+        { text: "Berlin", correct: false, id: "o3" },
+        { text: "Madrid", correct: false, id: "o4" },
       ],
     },
   },

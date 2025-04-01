@@ -8,7 +8,7 @@ describe("EditCollection", () => {
   const onCancelMock = vi.fn();
   const mockCollection = {
     name: "Test Collection",
-    _id: "col-123",
+    id: "col-123",
     description: "This is a test collection",
     private: false,
   };
@@ -85,7 +85,7 @@ describe("EditCollection", () => {
           name: "Updated Collection",
           description: "This is an updated collection",
           private: false,
-          _id: mockCollection._id,
+          id: mockCollection.id,
         }),
       );
     });

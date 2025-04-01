@@ -39,22 +39,22 @@ type Story = StoryObj<typeof UserAnswers>;
 const mockQuestions = [
   {
     title: "What is the capital of France?",
-    _id: "q1",
+    id: "q1",
     options: [
-      { text: "Paris", correct: true, _id: "o1" },
-      { text: "London", correct: false, _id: "o2" },
-      { text: "Berlin", correct: false, _id: "o3" },
-      { text: "Madrid", correct: false, _id: "o4" },
+      { text: "Paris", correct: true, id: "o1" },
+      { text: "London", correct: false, id: "o2" },
+      { text: "Berlin", correct: false, id: "o3" },
+      { text: "Madrid", correct: false, id: "o4" },
     ],
   },
   {
     title: "Which planet is known as the Red Planet?",
-    _id: "q2",
+    id: "q2",
     options: [
-      { text: "Mars", correct: true, _id: "o5" },
-      { text: "Venus", correct: false, _id: "o6" },
-      { text: "Jupiter", correct: false, _id: "o7" },
-      { text: "Saturn", correct: false, _id: "o8" },
+      { text: "Mars", correct: true, id: "o5" },
+      { text: "Venus", correct: false, id: "o6" },
+      { text: "Jupiter", correct: false, id: "o7" },
+      { text: "Saturn", correct: false, id: "o8" },
     ],
   },
 ];
@@ -70,11 +70,7 @@ export const Default: Story = {
   render: (args) => (
     <UserAnswers {...args}>
       {mockQuestions.map((question) => (
-        <ReviewQuestionSet
-          key={question._id}
-          question={question}
-          selected={0}
-        />
+        <ReviewQuestionSet key={question.id} question={question} selected={0} />
       ))}
     </UserAnswers>
   ),
@@ -92,10 +88,10 @@ export const WithMultipleQuestions: Story = {
     <UserAnswers {...args}>
       {[...mockQuestions, ...mockQuestions].map((question, index) => (
         <ReviewQuestionSet
-          key={`${question._id}-${index}`}
+          key={`${question.id}-${index}`}
           question={{
             ...question,
-            _id: `${question._id}-${index}`,
+            id: `${question.id}-${index}`,
           }}
           selected={0}
         />

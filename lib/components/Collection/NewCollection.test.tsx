@@ -69,7 +69,7 @@ describe("NewCollection", () => {
           name: "Test Collection",
           description: "This is a test collection",
           private: false,
-          _id: expect.any(String),
+          id: expect.any(String),
         }),
       );
     });

@@ -6,68 +6,68 @@ import QuestionList from "./QuestionList";
 // Sample questions data for stories
 const sampleQuestions: Question[] = [
   {
-    _id: "1",
+    id: "1",
     title: "What is the capital of France?",
     options: [
       {
-        _id: "1",
+        id: "1",
         text: "Paris",
         correct: true,
       },
       {
-        _id: "2",
+        id: "2",
         text: "London",
         correct: false,
       },
       {
-        _id: "3",
+        id: "3",
         text: "Berlin",
         correct: false,
       },
       {
-        _id: "4",
+        id: "4",
         text: "Madrid",
         correct: false,
       },
     ],
   },
   {
-    _id: "2",
+    id: "2",
     title: "Which planet is known as the Red Planet?",
     options: [
       {
-        _id: "1",
+        id: "1",
         text: "Earth",
         correct: false,
       },
       {
-        _id: "2",
+        id: "2",
         text: "Mars",
         correct: true,
       },
       {
-        _id: "3",
+        id: "3",
         text: "Venus",
         correct: false,
       },
     ],
   },
   {
-    _id: "3",
+    id: "3",
     title: "Who painted the Mona Lisa?",
     options: [
       {
-        _id: "1",
+        id: "1",
         text: "Vincent van Gogh",
         correct: false,
       },
       {
-        _id: "2",
+        id: "2",
         text: "Leonardo da Vinci",
         correct: true,
       },
       {
-        _id: "3",
+        id: "3",
         text: "Pablo Picasso",
         correct: false,
       },

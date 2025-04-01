@@ -39,13 +39,13 @@ const QuestionList = ({
   emptyStateMessage = "No questions available",
 }: QuestionListProps) => {
   const [selected, setSelected] = useState<string | null>(
-    questions.length > 0 ? questions[0]._id : null,
+    questions.length > 0 ? questions[0].id : null,
   );
 
   // Update selected question when questions list changes
   useEffect(() => {
-    if (questions.length > 0 && !questions.some((q) => q._id === selected)) {
-      setSelected(questions[0]._id);
+    if (questions.length > 0 && !questions.some((q) => q.id === selected)) {
+      setSelected(questions[0].id);
     } else if (questions.length === 0) {
       setSelected(null);
     }
@@ -53,7 +53,7 @@ const QuestionList = ({
 
   // Get the selected question object
   const selectedQuestion = selected
-    ? questions.find((q) => q._id === selected)
+    ? questions.find((q) => q.id === selected)
     : null;
 
   // Render loading state
@@ -81,14 +81,14 @@ const QuestionList = ({
       <article className="col-span-7 space-y-8">
         {questions.map((currentQuestion) => (
           <div
-            key={currentQuestion._id}
-            onClick={() => setSelected(currentQuestion._id)}
+            key={currentQuestion.id}
+            onClick={() => setSelected(currentQuestion.id)}
             className="w-full cursor-pointer"
           >
             <QuestionSet
               title={currentQuestion.title}
               viewOnly
-              selected={selected === currentQuestion._id}
+              selected={selected === currentQuestion.id}
             />
           </div>
         ))}
@@ -97,19 +97,19 @@ const QuestionList = ({
         {selectedQuestion && (
           <QuestionDetail
             options={selectedQuestion.options.map((option) => ({
-              id: option._id,
+              id: option.id,
               text: option.text,
               correct: option.correct || false,
               percentage: 0, // Default value for percentage
             }))}
             onEdit={
               onEditQuestion
-                ? () => onEditQuestion(selectedQuestion._id)
+                ? () => onEditQuestion(selectedQuestion.id)
                 : undefined
             }
             onDelete={
               onDeleteQuestion
-                ? () => onDeleteQuestion(selectedQuestion._id)
+                ? () => onDeleteQuestion(selectedQuestion.id)
                 : undefined
             }
           >

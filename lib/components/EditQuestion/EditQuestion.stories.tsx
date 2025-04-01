@@ -40,12 +40,12 @@ export const Default: Story = {
   args: {
     initialValues: {
       title: "What is the capital of France?",
-      _id: createMockId(),
+      id: createMockId(),
       options: [
-        { text: "Paris", correct: true, _id: createMockId() },
-        { text: "London", correct: false, _id: createMockId() },
-        { text: "Berlin", correct: false, _id: createMockId() },
-        { text: "Madrid", correct: false, _id: createMockId() },
+        { text: "Paris", correct: true, id: createMockId() },
+        { text: "London", correct: false, id: createMockId() },
+        { text: "Berlin", correct: false, id: createMockId() },
+        { text: "Madrid", correct: false, id: createMockId() },
       ],
     },
     onCancel: action("Cancel button clicked"),
@@ -66,12 +66,12 @@ export const WithMultipleCorrectAnswers: Story = {
     initialValues: {
       title:
         "Which of the following are programming languages? (Select all that apply)",
-      _id: createMockId(),
+      id: createMockId(),
       options: [
-        { text: "JavaScript", correct: true, _id: createMockId() },
-        { text: "Python", correct: true, _id: createMockId() },
-        { text: "HTML", correct: false, _id: createMockId() },
-        { text: "CSS", correct: false, _id: createMockId() },
+        { text: "JavaScript", correct: true, id: createMockId() },
+        { text: "Python", correct: true, id: createMockId() },
+        { text: "HTML", correct: false, id: createMockId() },
+        { text: "CSS", correct: false, id: createMockId() },
       ],
     },
     onCancel: action("Cancel button clicked"),
@@ -91,27 +91,27 @@ export const WithLongerQuestion: Story = {
     initialValues: {
       title:
         "In the context of web development, what is the primary purpose of React's virtual DOM and how does it improve performance compared to direct DOM manipulation?",
-      _id: createMockId(),
+      id: createMockId(),
       options: [
         {
           text: "It creates a lightweight copy of the DOM in memory and compares it with the real DOM to minimize actual DOM updates",
           correct: true,
-          _id: createMockId(),
+          id: createMockId(),
         },
         {
           text: "It bypasses the browser's rendering engine completely to make direct hardware-accelerated changes",
           correct: false,
-          _id: createMockId(),
+          id: createMockId(),
         },
         {
           text: "It provides a way to write HTML directly in JavaScript files without performance penalties",
           correct: false,
-          _id: createMockId(),
+          id: createMockId(),
         },
         {
           text: "It creates a separate thread for DOM operations to avoid blocking the main UI thread",
           correct: false,
-          _id: createMockId(),
+          id: createMockId(),
         },
       ],
     },
@@ -132,10 +132,10 @@ export const WithFewerOptions: Story = {
   args: {
     initialValues: {
       title: "Is JavaScript a compiled or interpreted language?",
-      _id: createMockId(),
+      id: createMockId(),
       options: [
-        { text: "Interpreted", correct: true, _id: createMockId() },
-        { text: "Compiled", correct: false, _id: createMockId() },
+        { text: "Interpreted", correct: true, id: createMockId() },
+        { text: "Compiled", correct: false, id: createMockId() },
       ],
     },
     onCancel: action("Cancel button clicked"),

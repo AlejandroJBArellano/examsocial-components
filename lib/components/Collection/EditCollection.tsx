@@ -26,7 +26,7 @@ export const EditCollection = ({
     <Formik
       initialValues={{
         name: collection.name,
-        _id: collection._id,
+        id: collection.id,
         description: collection.description ?? "",
         private: collection.private || false,
       }}

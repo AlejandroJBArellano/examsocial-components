@@ -90,7 +90,7 @@ const ReviewQuestionSet = ({
           <ul id="options-list" className="space-y-2">
             {question.options.map((option, index) => (
               <li
-                key={option._id || index}
+                key={option.id || index}
                 className={cn(
                   index === selected && "underline",
                   option.correct && "font-medium",

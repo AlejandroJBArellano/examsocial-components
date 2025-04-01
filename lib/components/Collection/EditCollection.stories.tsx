@@ -20,7 +20,7 @@ export const Default: Story = {
     onCancel: action("onCancel"),
     collection: {
       name: "Science Questions",
-      _id: "col-123",
+      id: "col-123",
       description: "A collection of science-related questions",
       private: false,
     },
@@ -36,7 +36,7 @@ export const PrivateCollection: Story = {
     onCancel: action("onCancel"),
     collection: {
       name: "Private Notes",
-      _id: "col-456",
+      id: "col-456",
       description: "My personal notes collection",
       private: true,
     },

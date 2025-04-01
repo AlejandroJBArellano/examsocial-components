@@ -42,7 +42,7 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
 
   const steps: Step[] = exam.questions.map((_, index) => ({
     id: index + 1,
-    status: recordQuestionSelectedOptions[exam.questions[index]._id!]
+    status: recordQuestionSelectedOptions[exam.questions[index].id!]
       ? "completed"
       : "pending",
   }));

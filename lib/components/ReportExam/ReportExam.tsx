@@ -97,10 +97,10 @@ const ReportExam = ({
     [ReportStep.QUESTION]: (
       <article className="space-y-2">
         <ul className="space-y-4">
-          {questions.map(({ title, _id }) => (
-            <li key={_id} className="flex items-center gap-2">
+          {questions.map(({ title, id }) => (
+            <li key={id} className="flex items-center gap-2">
               <Checkbox
-                id={_id}
+                id={id}
                 checked={selectedQuestions.includes(title)}
                 onCheckedChange={() =>
                   setSelectedQuestions((prev) =>
@@ -110,7 +110,7 @@ const ReportExam = ({
                   )
                 }
               />
-              <label htmlFor={_id}>{title}</label>
+              <label htmlFor={id}>{title}</label>
             </li>
           ))}
         </ul>

@@ -64,19 +64,19 @@ describe("QuestionList Component", () => {
   // Sample questions for testing
   const testQuestions: Question[] = [
     {
-      _id: "1",
+      id: "1",
       title: "Question 1",
       options: [
-        { _id: "1", text: "Option 1", correct: true },
-        { _id: "2", text: "Option 2", correct: false },
+        { id: "1", text: "Option 1", correct: true },
+        { id: "2", text: "Option 2", correct: false },
       ],
     },
     {
-      _id: "2",
+      id: "2",
       title: "Question 2",
       options: [
-        { _id: "1", text: "Option A", correct: false },
-        { _id: "2", text: "Option B", correct: true },
+        { id: "1", text: "Option A", correct: false },
+        { id: "2", text: "Option B", correct: true },
       ],
     },
   ];
@@ -183,11 +183,11 @@ describe("QuestionList Component", () => {
     // Update with new questions where the first one has a different ID
     const newQuestions = [
       {
-        _id: "3",
+        id: "3",
         title: "New Question",
         options: [
-          { _id: "1", text: "Option X", correct: true },
-          { _id: "2", text: "Option Y", correct: false },
+          { id: "1", text: "Option X", correct: true },
+          { id: "2", text: "Option Y", correct: false },
         ],
       },
       ...testQuestions.slice(1),

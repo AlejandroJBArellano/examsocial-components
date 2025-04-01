@@ -5,12 +5,12 @@ import ReviewQuestionSet from "./ReviewQuestionSet";
 // Mock question data
 const mockQuestion = {
   title: "What is the capital of France?",
-  _id: "q1",
+  id: "q1",
   options: [
-    { text: "Paris", correct: true, _id: "o1" },
-    { text: "London", correct: false, _id: "o2" },
-    { text: "Berlin", correct: false, _id: "o3" },
-    { text: "Madrid", correct: false, _id: "o4" },
+    { text: "Paris", correct: true, id: "o1" },
+    { text: "London", correct: false, id: "o2" },
+    { text: "Berlin", correct: false, id: "o3" },
+    { text: "Madrid", correct: false, id: "o4" },
   ],
 };
 

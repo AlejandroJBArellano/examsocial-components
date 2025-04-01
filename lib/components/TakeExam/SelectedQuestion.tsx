@@ -36,14 +36,14 @@ const SelectedQuestion = ({
           {question.options.map((option) => (
             <AnswerOption
               onClick={() => {
-                onSelectOption(question._id!, option._id!);
+                onSelectOption(question.id!, option.id!);
               }}
-              key={option._id}
+              key={option.id}
               checked={
-                recordQuestionSelectedOptions[question._id!] === option._id
+                recordQuestionSelectedOptions[question.id!] === option.id
               }
               type={
-                recordQuestionSelectedOptions[question._id!] === option._id
+                recordQuestionSelectedOptions[question.id!] === option.id
                   ? "selectable"
                   : undefined
               }
@@ -72,7 +72,7 @@ const SelectedQuestion = ({
           rounded
           theme="accent"
           className="flex items-center justify-center gap-2"
-          disabled={!recordQuestionSelectedOptions[question._id!]}
+          disabled={!recordQuestionSelectedOptions[question.id!]}
           onClick={() => {
             if (selected === questions.length - 1) {
               onFinish();

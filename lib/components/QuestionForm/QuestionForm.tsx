@@ -84,7 +84,7 @@ const QuestionForm = ({
                   rounded
                   className="mx-auto flex items-center justify-center p-2"
                   onClick={() =>
-                    push({ text: "", correct: false, _id: uuidv4() })
+                    push({ text: "", correct: false, id: uuidv4() })
                   }
                   size={20}
                   filled

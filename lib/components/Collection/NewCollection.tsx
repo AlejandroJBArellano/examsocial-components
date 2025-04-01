@@ -24,7 +24,7 @@ export const NewCollection = ({
     <Formik
       initialValues={{
         name: "",
-        _id: `temp-${Date.now()}`,
+        id: `temp-${Date.now()}`,
         description: "",
         private: false,
       }}

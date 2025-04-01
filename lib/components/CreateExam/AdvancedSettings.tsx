@@ -326,11 +326,7 @@ export const AdvancedSettings = () => {
           </div>
           {userPlan !== "PREMIUM" && <PremiumBadge />}
         </div>
-        <div
-          className={cn("space-y-4", {
-            "cursor-not-allowed select-none blur-sm": userPlan !== "PREMIUM",
-          })}
-        >
+        <div className="space-y-4">
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2">
               <FocusSpan>Show logo in exam</FocusSpan>
@@ -343,7 +339,9 @@ export const AdvancedSettings = () => {
               </Helper>
             </div>
             <Switch
-              className="w-20"
+              className={cn("w-20", {
+                "cursor-not-allowed blur-sm": userPlan !== "PREMIUM",
+              })}
               checked={values.advancedSettings.showLogo}
               onCheckedChange={() =>
                 setFieldValue(
@@ -366,7 +364,9 @@ export const AdvancedSettings = () => {
               </Helper>
             </div>
             <Switch
-              className="w-20"
+              className={cn("w-20", {
+                "cursor-not-allowed blur-sm": userPlan !== "PREMIUM",
+              })}
               checked={values.advancedSettings.showBrandName}
               onCheckedChange={() =>
                 setFieldValue(
@@ -379,7 +379,7 @@ export const AdvancedSettings = () => {
           </div>
           <div className="space-y-2">
             <Heading6>Personalized Thank You Screen</Heading6>
-            <Paragraph className={userPlan !== "PREMIUM" ? "opacity-50" : ""}>
+            <Paragraph>
               Create{" "}
               <Span className="font-semibold">custom thank you screens</Span>{" "}
               based on exam results. Perfect for
@@ -404,7 +404,14 @@ export const AdvancedSettings = () => {
                 <p>{feedbackError}</p>
               </div>
             )}
-            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto">
+            <div
+              className={cn(
+                "flex flex-nowrap items-center gap-2 overflow-x-auto",
+                {
+                  "cursor-not-allowed blur-sm": userPlan !== "PREMIUM",
+                },
+              )}
+            >
               <Button.Icon
                 className="flex aspect-square h-fit items-center justify-center"
                 rounded

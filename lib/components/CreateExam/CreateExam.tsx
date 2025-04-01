@@ -18,6 +18,7 @@ interface CreateExamProps {
   onCancel: () => void;
   userPlan: UserPlan;
   canSellExams: boolean;
+  validatePathname: (pathname: string) => Promise<boolean>;
   initialValues?: Partial<Yup.InferType<typeof examSchema>>;
 }
 
@@ -26,6 +27,7 @@ const CreateExam = ({
   onCancel,
   userPlan,
   canSellExams,
+  validatePathname,
   initialValues,
 }: CreateExamProps) => {
   const steps = {
@@ -63,7 +65,9 @@ const CreateExam = ({
   };
 
   return (
-    <ExamCreationContext.Provider value={{ userPlan, canSellExams }}>
+    <ExamCreationContext.Provider
+      value={{ userPlan, canSellExams, validatePathname }}
+    >
       <Formik
         initialValues={{
           title: initialValues?.title || "",

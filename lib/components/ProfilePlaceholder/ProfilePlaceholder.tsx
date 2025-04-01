@@ -4,7 +4,7 @@ import {
   FemaleUnfilled,
   MaleFilled,
   MaleUnfilled,
-} from "../../illustrations/profilePlaceholder";
+} from "../../Illustrations/profilePlaceholder";
 
 export type ProfilePlaceholderGender = "male" | "female";
 

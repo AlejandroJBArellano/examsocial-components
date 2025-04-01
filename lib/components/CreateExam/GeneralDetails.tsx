@@ -1,21 +1,38 @@
 import { useExamCreation } from "@/hooks/exam";
 import { CategoryMetadata, ExamCategory } from "@/types";
 import { useFormikContext } from "formik";
+import { useCallback, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { PremiumBadge } from "../Badges";
 import { BannerInput } from "../BannerInput";
 import { Field } from "../Field";
-import { FocusSpan, Heading4, Heading6, Paragraph } from "../FontFaces";
+import { FocusSpan, Heading4, Heading6, Paragraph, Span } from "../FontFaces";
 import { Icon } from "../Icon";
 import { ImageUploader } from "../ImageUploader";
 import { Select } from "../Select";
 
 export const GeneralDetails = () => {
+  const [validating, setValidating] = useState(false);
+  const [valid, setValid] = useState(false);
+
   const { getFieldProps, values, setFieldValue, errors } =
     useFormikContext<Yup.InferType<typeof examSchema>>();
 
-  const { userPlan } = useExamCreation();
+  const { userPlan, validatePathname } = useExamCreation();
+
+  const validate = useCallback(async () => {
+    if (!values.pathname) return;
+    setValidating(true);
+    const isValid = await validatePathname(values.pathname!);
+    setValid(isValid);
+    setValidating(false);
+  }, [validatePathname, values.pathname, setValidating, setValid]);
+
+  useEffect(() => {
+    validate();
+  }, [validate]);
+
   return (
     <section className="space-y-4">
       <Heading4>General Details</Heading4>
@@ -128,6 +145,23 @@ export const GeneralDetails = () => {
             }}
           />
         </div>
+        {validating && (
+          <div className="mt-1 flex items-center gap-1.5 text-accent-shadow">
+            <Icon name="refresh" size={18} className="animate-spin" />
+            <Span>Validating pathname...</Span>
+          </div>
+        )}
+        {valid ? (
+          <div className="text-accent-success mt-1 flex items-center gap-1.5">
+            <Icon name="check" size={18} />
+            <Span>Pathname is valid</Span>
+          </div>
+        ) : (
+          <div className="mt-1 flex items-center gap-1.5 text-feedback-error">
+            <Icon name="x" size={18} />
+            <Span>Pathname is already taken</Span>
+          </div>
+        )}
         {userPlan !== "PREMIUM" && (
           <div className="absolute inset-0 flex items-center justify-center">
             <PremiumBadge />

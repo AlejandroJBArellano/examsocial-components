@@ -317,6 +317,140 @@ export const AdvancedSettings = () => {
         </section>
       </div>
       <div>
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex gap-2">
+            <Heading5>Branding</Heading5>
+            <Helper align="center" side="top">
+              Customize the appearance and branding of your exam.
+            </Helper>
+          </div>
+          {userPlan !== "PREMIUM" && <PremiumBadge />}
+        </div>
+        <div
+          className={cn("space-y-4", {
+            "cursor-not-allowed select-none blur-sm": userPlan !== "PREMIUM",
+          })}
+        >
+          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Show logo in exam</FocusSpan>
+              <Helper
+                align="center"
+                side="top"
+                disabled={userPlan !== "PREMIUM"}
+              >
+                Display your logo in the exam metadata and details view.
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.showLogo}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.showLogo",
+                  !values.advancedSettings.showLogo,
+                )
+              }
+              disabled={userPlan !== "PREMIUM"}
+            />
+          </div>
+          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+            <div className="flex items-center gap-2">
+              <FocusSpan>Show brand name</FocusSpan>
+              <Helper
+                align="center"
+                side="top"
+                disabled={userPlan !== "PREMIUM"}
+              >
+                Display your brand name in the exam metadata and details view.
+              </Helper>
+            </div>
+            <Switch
+              className="w-20"
+              checked={values.advancedSettings.showBrandName}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.showBrandName",
+                  !values.advancedSettings.showBrandName,
+                )
+              }
+              disabled={userPlan !== "PREMIUM"}
+            />
+          </div>
+          <div className="space-y-2">
+            <Heading6>Personalized Thank You Screen</Heading6>
+            <Paragraph className={userPlan !== "PREMIUM" ? "opacity-50" : ""}>
+              Create{" "}
+              <Span className="font-semibold">custom thank you screens</Span>{" "}
+              based on exam results. Perfect for
+              <Span className="font-semibold">
+                {" "}
+                congratulating high performers
+              </Span>{" "}
+              or providing <Span className="font-semibold">guidance</Span> to
+              those who need improvement. You can also use these as{" "}
+              <Span className="font-bold text-accent-shadow">
+                sales funnels
+              </Span>{" "}
+              by adding
+              <Span className="font-bold text-accent-shadow">
+                {" "}
+                links to your products
+              </Span>{" "}
+              or <Span className="font-bold text-accent-shadow">services</Span>.
+            </Paragraph>
+            {feedbackError && (
+              <div className="mt-2 rounded-md bg-feedback-error p-2 text-white">
+                <p>{feedbackError}</p>
+              </div>
+            )}
+            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto">
+              <Button.Icon
+                className="flex aspect-square h-fit items-center justify-center"
+                rounded
+                onClick={() => dialogRef.current?.showModal()}
+                type="button"
+                size={24}
+                disabled={userPlan !== "PREMIUM"}
+              >
+                add
+              </Button.Icon>
+              {values.advancedSettings.feedback?.map((feedback, index) => (
+                <FeedbackScreen
+                  key={feedback.condition}
+                  {...feedback}
+                  onEdit={() => {
+                    setIndex(index);
+                    editFeedbackDialogRef.current?.showModal();
+                  }}
+                  onDelete={() => {
+                    setFieldValue(
+                      "advancedSettings.feedback",
+                      values.advancedSettings.feedback?.filter(
+                        (_, i) => i !== index,
+                      ),
+                    );
+                    // Al eliminar, verificar si aún hay solapamientos
+                    const updatedFeedbacks =
+                      values.advancedSettings.feedback?.filter(
+                        (_, i) => i !== index,
+                      );
+                    if (checkFeedbackOverlap(updatedFeedbacks)) {
+                      setFeedbackError(
+                        "Error: Thank you screens conditions are overlapping. Please adjust the conditions to avoid overlaps.",
+                      );
+                    } else {
+                      setFeedbackError(null);
+                    }
+                  }}
+                  index={index}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
         <section className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
           <div className="flex gap-2">
             <Heading5>Security</Heading5>
@@ -584,140 +718,6 @@ export const AdvancedSettings = () => {
                 )
               }
             />
-          </div>
-        </div>
-      </div>
-      <div>
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex gap-2">
-            <Heading5>Branding</Heading5>
-            <Helper align="center" side="top">
-              Customize the appearance and branding of your exam.
-            </Helper>
-          </div>
-          {userPlan !== "PREMIUM" && <PremiumBadge />}
-        </div>
-        <div
-          className={cn("space-y-4", {
-            "cursor-not-allowed select-none blur-sm": userPlan !== "PREMIUM",
-          })}
-        >
-          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-2">
-              <FocusSpan>Show logo in exam</FocusSpan>
-              <Helper
-                align="center"
-                side="top"
-                disabled={userPlan !== "PREMIUM"}
-              >
-                Display your logo in the exam metadata and details view.
-              </Helper>
-            </div>
-            <Switch
-              className="w-20"
-              checked={values.advancedSettings.showLogo}
-              onCheckedChange={() =>
-                setFieldValue(
-                  "advancedSettings.showLogo",
-                  !values.advancedSettings.showLogo,
-                )
-              }
-              disabled={userPlan !== "PREMIUM"}
-            />
-          </div>
-          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-2">
-              <FocusSpan>Show brand name</FocusSpan>
-              <Helper
-                align="center"
-                side="top"
-                disabled={userPlan !== "PREMIUM"}
-              >
-                Display your brand name in the exam metadata and details view.
-              </Helper>
-            </div>
-            <Switch
-              className="w-20"
-              checked={values.advancedSettings.showBrandName}
-              onCheckedChange={() =>
-                setFieldValue(
-                  "advancedSettings.showBrandName",
-                  !values.advancedSettings.showBrandName,
-                )
-              }
-              disabled={userPlan !== "PREMIUM"}
-            />
-          </div>
-          <div className="space-y-2">
-            <Heading6>Personalized Thank You Screen</Heading6>
-            <Paragraph className={userPlan !== "PREMIUM" ? "opacity-50" : ""}>
-              Create{" "}
-              <Span className="font-semibold">custom thank you screens</Span>{" "}
-              based on exam results. Perfect for
-              <Span className="font-semibold">
-                {" "}
-                congratulating high performers
-              </Span>{" "}
-              or providing <Span className="font-semibold">guidance</Span> to
-              those who need improvement. You can also use these as{" "}
-              <Span className="font-bold text-accent-shadow">
-                sales funnels
-              </Span>{" "}
-              by adding
-              <Span className="font-bold text-accent-shadow">
-                {" "}
-                links to your products
-              </Span>{" "}
-              or <Span className="font-bold text-accent-shadow">services</Span>.
-            </Paragraph>
-            {feedbackError && (
-              <div className="mt-2 rounded-md bg-feedback-error p-2 text-white">
-                <p>{feedbackError}</p>
-              </div>
-            )}
-            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto">
-              <Button.Icon
-                className="flex aspect-square h-fit items-center justify-center"
-                rounded
-                onClick={() => dialogRef.current?.showModal()}
-                type="button"
-                size={24}
-                disabled={userPlan !== "PREMIUM"}
-              >
-                add
-              </Button.Icon>
-              {values.advancedSettings.feedback?.map((feedback, index) => (
-                <FeedbackScreen
-                  key={feedback.condition}
-                  {...feedback}
-                  onEdit={() => {
-                    setIndex(index);
-                    editFeedbackDialogRef.current?.showModal();
-                  }}
-                  onDelete={() => {
-                    setFieldValue(
-                      "advancedSettings.feedback",
-                      values.advancedSettings.feedback?.filter(
-                        (_, i) => i !== index,
-                      ),
-                    );
-                    // Al eliminar, verificar si aún hay solapamientos
-                    const updatedFeedbacks =
-                      values.advancedSettings.feedback?.filter(
-                        (_, i) => i !== index,
-                      );
-                    if (checkFeedbackOverlap(updatedFeedbacks)) {
-                      setFeedbackError(
-                        "Error: Thank you screens conditions are overlapping. Please adjust the conditions to avoid overlaps.",
-                      );
-                    } else {
-                      setFeedbackError(null);
-                    }
-                  }}
-                  index={index}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </div>

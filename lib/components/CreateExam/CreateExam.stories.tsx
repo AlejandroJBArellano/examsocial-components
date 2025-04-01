@@ -118,15 +118,15 @@ export const WithPrefilledValues: Story = {
       category: "COMPUTER_SCIENCE",
       questions: [],
       contents: [],
+      currency: "USD",
+      price: 0,
       advancedSettings: {
-        currency: "USD",
         randomizeQuestionOrder: false,
         showCorrectAnswers: true,
         sendEmailReport: true,
         leaderboard: true,
         maxAttempts: 1,
         passingScore: 80,
-        price: 0,
         feedback: [],
         privacy: {
           setting: "PRIVATE",

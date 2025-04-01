@@ -188,7 +188,7 @@ export const Review = () => {
           </div>
           <div>
             <Span>Price</Span>
-            <FocusSpan>{formik.values.advancedSettings.price}</FocusSpan>
+            <FocusSpan>{formik.values.price}</FocusSpan>
           </div>
           <div>
             <Span>Privacy</Span>

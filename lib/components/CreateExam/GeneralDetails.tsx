@@ -16,7 +16,7 @@ export const GeneralDetails = () => {
   const [validating, setValidating] = useState(false);
   const [valid, setValid] = useState(false);
 
-  const { getFieldProps, values, setFieldValue, errors, setFieldError } =
+  const { getFieldProps, values, setFieldValue, errors, touched } =
     useFormikContext<Yup.InferType<typeof examSchema>>();
 
   const { userPlan, validatePathname } = useExamCreation();
@@ -25,10 +25,7 @@ export const GeneralDetails = () => {
     if (!values.pathname) return;
     setValidating(true);
     const isValid = await validatePathname(values.pathname!);
-    if (!isValid) {
-      setFieldError("pathname", "Pathname is already taken");
-    }
-    setValid(isValid);
+    setValid(() => isValid);
     setValidating(false);
   }, [validatePathname, values.pathname, setValidating, setValid]);
 
@@ -151,10 +148,15 @@ export const GeneralDetails = () => {
             <Span>Validating pathname...</Span>
           </div>
         )}
-        {valid && (
+        {valid && !validating && touched.pathname ? (
           <div className="text-accent-success mt-1 flex items-center gap-1.5">
             <Icon name="check" size={18} />
             <Span>Pathname is valid</Span>
+          </div>
+        ) : (
+          <div className="text-accent-error mt-1 flex items-center gap-1.5">
+            <Icon name="close" size={18} />
+            <Span>Pathname is invalid</Span>
           </div>
         )}
         {userPlan !== "PREMIUM" && (

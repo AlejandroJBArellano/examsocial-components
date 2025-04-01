@@ -25,6 +25,7 @@ export type UserPlan = "BASIC" | "PRO" | "PREMIUM";
 export interface ExamCreationContextType {
   userPlan: UserPlan;
   canSellExams: boolean;
+  validatePathname: (pathname: string) => Promise<boolean>;
 }
 
 export enum ExamCategory {

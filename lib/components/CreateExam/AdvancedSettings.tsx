@@ -255,13 +255,9 @@ export const AdvancedSettings = () => {
         </div>
         <div className="space-y-4">
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-2">
+            <div className="flex gap-2">
               <FocusSpan>Show logo in exam</FocusSpan>
-              <Helper
-                align="center"
-                side="top"
-                disabled={userPlan !== "PREMIUM"}
-              >
+              <Helper align="center" side="top">
                 Display your logo in the exam metadata and details view.
               </Helper>
             </div>
@@ -280,13 +276,9 @@ export const AdvancedSettings = () => {
             />
           </div>
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-2">
+            <div className="flex gap-2">
               <FocusSpan>Show brand name</FocusSpan>
-              <Helper
-                align="center"
-                side="top"
-                disabled={userPlan !== "PREMIUM"}
-              >
+              <Helper align="center" side="top">
                 Display your brand name in the exam metadata and details view.
               </Helper>
             </div>
@@ -385,22 +377,22 @@ export const AdvancedSettings = () => {
       </div>
       <div>
         <section className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-          <div className="flex gap-2">
+          <div className="space-y-1">
             <Heading5>Security</Heading5>
-            <Helper align="center" side="top">
+            <Paragraph className="text-sm">
               Security is the process of securing the exam from being accessed
               by unauthorized users.
-            </Helper>
+            </Paragraph>
           </div>
         </section>
         <PrivacySettings />
         <section className="space-y-4">
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex gap-2">
+            <div>
               <FocusSpan>Limit number of participants</FocusSpan>
-              <Helper align="center" side="top">
+              <Paragraph className="text-sm">
                 Set a maximum number of participants who can take this exam.
-              </Helper>
+              </Paragraph>
             </div>
             <Switch
               className="w-20"
@@ -420,9 +412,9 @@ export const AdvancedSettings = () => {
                 htmlFor="maxParticipants"
               >
                 <FocusSpan>Max participants</FocusSpan>
-                <Helper align="center" side="top">
+                <Paragraph className="text-sm">
                   Set a maximum number of participants who can take this exam.
-                </Helper>
+                </Paragraph>
               </label>
               <Input
                 id="maxParticipants"
@@ -464,11 +456,11 @@ export const AdvancedSettings = () => {
         </section>
         <section className="space-y-4">
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-2">
+            <div>
               <FocusSpan>Limit attempts</FocusSpan>
-              <Helper align="center" side="top">
+              <Paragraph className="text-sm">
                 Limit the number of times a participant can take this exam.
-              </Helper>
+              </Paragraph>
             </div>
             <Switch
               className="w-20"
@@ -485,9 +477,9 @@ export const AdvancedSettings = () => {
             <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
               <label className="flex items-center gap-2" htmlFor="maxAttempts">
                 <FocusSpan>Max attempts</FocusSpan>
-                <Helper align="center" side="top">
+                <Paragraph className="text-sm">
                   Set a maximum number of attempts allowed per participant.
-                </Helper>
+                </Paragraph>
               </label>
               <Input
                 id="maxAttempts"
@@ -508,13 +500,13 @@ export const AdvancedSettings = () => {
         </section>
         <section className="space-y-4">
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-2">
+            <div>
               <FocusSpan>Allow anonymous answers</FocusSpan>
-              <Helper align="center" side="top">
+              <Paragraph className="text-sm">
                 Allows users who are not registered on ExamSocial to take this
                 exam. Their results in the table will be displayed as:
                 "Anonymous user".
-              </Helper>
+              </Paragraph>
             </div>
             <Switch
               className="w-20"
@@ -540,7 +532,7 @@ export const AdvancedSettings = () => {
           </div>
         </div>
         <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-          <div className="flex items-center gap-2">
+          <div className="flex gap-2">
             <FocusSpan>Randomize question order</FocusSpan>
             <Helper align="center" side="top">
               Shuffles the order of questions for each student.
@@ -558,7 +550,7 @@ export const AdvancedSettings = () => {
           />
         </div>
         <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-          <div className="flex items-center gap-2">
+          <div className="flex gap-2">
             <FocusSpan>Randomize options order</FocusSpan>
             <Helper align="center" side="top">
               Shuffles the order of options order for each question.
@@ -577,15 +569,15 @@ export const AdvancedSettings = () => {
         </div>
       </div>
       <div>
-        <div className="flex gap-2">
+        <div className="space-y-1">
           <Heading5>Feedback and Results</Heading5>
-          <Helper align="center" side="top">
+          <Paragraph className="text-sm">
             Configure the feedback and results for the exam.
-          </Helper>
+          </Paragraph>
         </div>
         <div className="mt-4 space-y-4">
           <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
-            <div className="flex items-center gap-2">
+            <div className="flex gap-2">
               <FocusSpan>Minimum passing score</FocusSpan>
               <Helper align="center" side="top">
                 Set the minimum score required to pass the exam. Students who
@@ -607,11 +599,11 @@ export const AdvancedSettings = () => {
           </div>
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <div className="flex w-full items-center justify-between">
-              <div className="flex items-center gap-2">
+              <div>
                 <FocusSpan>Send email report</FocusSpan>
-                <Helper align="center" side="top">
+                <Paragraph className="text-sm">
                   Send an email report to the user when they complete the exam.
-                </Helper>
+                </Paragraph>
               </div>
               {userPlan === "BASIC" && <ProBadge />}
             </div>
@@ -631,12 +623,12 @@ export const AdvancedSettings = () => {
             />
           </div>
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-2">
+            <div>
               <FocusSpan>Show correct answers</FocusSpan>
-              <Helper align="center" side="top">
+              <Paragraph className="text-sm">
                 Show the correct answers to students after they complete the
                 exam.
-              </Helper>
+              </Paragraph>
             </div>
             <Switch
               className="w-20"

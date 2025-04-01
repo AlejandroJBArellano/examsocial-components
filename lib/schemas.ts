@@ -97,7 +97,6 @@ export const advancedSettingsSchema = Yup.object({
   showCorrectAnswers: Yup.boolean(),
   sendEmailReport: Yup.boolean(),
   leaderboard: Yup.boolean(),
-  maxAttempts: Yup.number().min(1, "Must be at least 1").required("Required"),
   feedback: Yup.array().of(feedbackSchema),
   privacy: Yup.object({
     setting: Yup.string().required("Required"),
@@ -116,7 +115,7 @@ export const advancedSettingsSchema = Yup.object({
     then: (schema) => schema.required("Required"),
   }),
   limitAttempts: Yup.boolean(),
-  maxAttemptsPerParticipant: Yup.number().when("limitAttempts", {
+  maxAttempts: Yup.number().when("limitAttempts", {
     is: (val: boolean) => val,
     then: (schema) => schema.min(1, "Must be at least 1").required("Required"),
   }),

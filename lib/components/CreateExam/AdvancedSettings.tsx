@@ -550,24 +550,21 @@ export const AdvancedSettings = () => {
           </div>
           {values.advancedSettings.limitAttempts && (
             <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
-              <label
-                className="flex items-center gap-2"
-                htmlFor="maxAttemptsPerParticipant"
-              >
+              <label className="flex items-center gap-2" htmlFor="maxAttempts">
                 <FocusSpan>Max attempts</FocusSpan>
                 <Helper align="center" side="top">
                   Set a maximum number of attempts allowed per participant.
                 </Helper>
               </label>
               <Input
-                id="maxAttemptsPerParticipant"
+                id="maxAttempts"
                 type="number"
                 placeholder="1"
                 className="w-full"
-                value={values.advancedSettings.maxAttemptsPerParticipant || ""}
+                value={values.advancedSettings.maxAttempts || ""}
                 onChange={(e) =>
                   setFieldValue(
-                    "advancedSettings.maxAttemptsPerParticipant",
+                    "advancedSettings.maxAttempts",
                     parseInt(e.target.value) || 1,
                   )
                 }

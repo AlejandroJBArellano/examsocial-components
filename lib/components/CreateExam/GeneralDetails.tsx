@@ -152,29 +152,29 @@ export const GeneralDetails = () => {
             }}
             error={errors.pathname?.toString()}
           />
+          {validating && (
+            <div className="mt-1 flex items-center gap-1.5 text-accent-shadow">
+              <Icon name="refresh" size={18} className="animate-spin" />
+              <Span>Validating pathname...</Span>
+            </div>
+          )}
+          {valid && !validating && touched.pathname ? (
+            <div className="text-accent-success mt-1 flex items-center gap-1.5">
+              <Icon name="check" size={18} />
+              <Span>Pathname is valid</Span>
+            </div>
+          ) : (
+            <div className="text-accent-error mt-1 flex items-center gap-1.5">
+              <Icon name="close" size={18} />
+              <Span>Pathname is invalid</Span>
+            </div>
+          )}
+          {userPlan !== "PREMIUM" && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <PremiumBadge />
+            </div>
+          )}
         </div>
-        {validating && (
-          <div className="mt-1 flex items-center gap-1.5 text-accent-shadow">
-            <Icon name="refresh" size={18} className="animate-spin" />
-            <Span>Validating pathname...</Span>
-          </div>
-        )}
-        {valid && !validating && touched.pathname ? (
-          <div className="text-accent-success mt-1 flex items-center gap-1.5">
-            <Icon name="check" size={18} />
-            <Span>Pathname is valid</Span>
-          </div>
-        ) : (
-          <div className="text-accent-error mt-1 flex items-center gap-1.5">
-            <Icon name="close" size={18} />
-            <Span>Pathname is invalid</Span>
-          </div>
-        )}
-        {userPlan !== "PREMIUM" && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <PremiumBadge />
-          </div>
-        )}
       </article>
       <article className="space-y-4 border-t border-secondary-tint py-4">
         <section className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">

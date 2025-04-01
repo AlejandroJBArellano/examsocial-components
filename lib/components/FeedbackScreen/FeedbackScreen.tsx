@@ -7,9 +7,8 @@ import { FocusSpan, Paragraph } from "../FontFaces";
 type Feedback = Yup.InferType<typeof feedbackSchema>;
 
 type FeedbackScreenProps = Feedback & {
-  onEdit: (index: number) => void;
-  onDelete: (index: number) => void;
-  index: number;
+  onEdit: () => void;
+  onDelete: () => void;
 };
 
 const FeedbackScreen = ({
@@ -28,7 +27,7 @@ const FeedbackScreen = ({
           size={24}
           type="button"
           filled
-          onClick={() => onDelete(feedback.index)}
+          onClick={onDelete}
         >
           delete
         </Button.Icon>
@@ -38,7 +37,7 @@ const FeedbackScreen = ({
           size={24}
           type="button"
           filled
-          onClick={() => onEdit(feedback.index)}
+          onClick={onEdit}
         >
           edit
         </Button.Icon>

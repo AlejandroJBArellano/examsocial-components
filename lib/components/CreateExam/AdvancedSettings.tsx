@@ -450,7 +450,6 @@ export const AdvancedSettings = () => {
                       setFeedbackError(null);
                     }
                   }}
-                  index={index}
                 />
               ))}
             </div>

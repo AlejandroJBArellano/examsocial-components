@@ -24,6 +24,7 @@ export const Default: Story = {
     onCancel: () => {},
     userPlan: "BASIC",
     canSellExams: false,
+    validatePathname: async () => true,
   },
 };
 
@@ -33,6 +34,7 @@ export const ProPlan: Story = {
     onCancel: () => {},
     userPlan: "PRO",
     canSellExams: false,
+    validatePathname: async () => true,
   },
   parameters: {
     docs: {
@@ -50,6 +52,7 @@ export const PremiumPlan: Story = {
     onCancel: () => {},
     userPlan: "PREMIUM",
     canSellExams: false,
+    validatePathname: async () => false,
   },
   parameters: {
     docs: {

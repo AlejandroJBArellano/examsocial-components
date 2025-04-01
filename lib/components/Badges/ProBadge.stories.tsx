@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import ProBadge from "./ProBadge";
 
 export default {
-  title: "Components/ProBadge",
+  title: "Components/Badges/ProBadge",
   component: ProBadge,
 } as Meta;
 

@@ -16,7 +16,7 @@ export const GeneralDetails = () => {
   const [validating, setValidating] = useState(false);
   const [valid, setValid] = useState(false);
 
-  const { getFieldProps, values, setFieldValue, errors } =
+  const { getFieldProps, values, setFieldValue, errors, setFieldError } =
     useFormikContext<Yup.InferType<typeof examSchema>>();
 
   const { userPlan, validatePathname } = useExamCreation();
@@ -25,6 +25,9 @@ export const GeneralDetails = () => {
     if (!values.pathname) return;
     setValidating(true);
     const isValid = await validatePathname(values.pathname!);
+    if (!isValid) {
+      setFieldError("pathname", "Pathname is already taken");
+    }
     setValid(isValid);
     setValidating(false);
   }, [validatePathname, values.pathname, setValidating, setValid]);
@@ -56,29 +59,25 @@ export const GeneralDetails = () => {
           <p className="text-sm text-red-500">{errors.image.toString()}</p>
         )}
       </article>
-      <article className="space-y-1">
-        <Field
-          label={<FocusSpan>Title</FocusSpan>}
-          error={errors.title?.toString()}
-          inputProps={{
-            placeholder: "The title of your exam",
-            className: "w-full",
-            ...getFieldProps("title"),
-            error: !!errors.title,
-          }}
-        />
-      </article>
-      <article className="space-y-1">
-        <Field.Textarea
-          label="Description"
-          error={errors.description?.toString()}
-          textareaProps={{
-            placeholder: "A brief description of your exam",
-            className: "w-full",
-            ...getFieldProps("description"),
-          }}
-        />
-      </article>
+      <Field
+        label={<FocusSpan>Title</FocusSpan>}
+        error={errors.title?.toString()}
+        inputProps={{
+          placeholder: "The title of your exam",
+          className: "w-full",
+          ...getFieldProps("title"),
+          error: !!errors.title,
+        }}
+      />
+      <Field.Textarea
+        label="Description"
+        error={errors.description?.toString()}
+        textareaProps={{
+          placeholder: "A brief description of your exam",
+          className: "w-full",
+          ...getFieldProps("description"),
+        }}
+      />
       <article className="space-y-1">
         <FocusSpan>Category</FocusSpan>
         <Select
@@ -143,6 +142,7 @@ export const GeneralDetails = () => {
               error: !!errors.pathname,
               disabled: userPlan !== "PREMIUM",
             }}
+            error={errors.pathname?.toString()}
           />
         </div>
         {validating && (
@@ -151,15 +151,10 @@ export const GeneralDetails = () => {
             <Span>Validating pathname...</Span>
           </div>
         )}
-        {valid ? (
+        {valid && (
           <div className="text-accent-success mt-1 flex items-center gap-1.5">
             <Icon name="check" size={18} />
             <Span>Pathname is valid</Span>
-          </div>
-        ) : (
-          <div className="mt-1 flex items-center gap-1.5 text-feedback-error">
-            <Icon name="x" size={18} />
-            <Span>Pathname is already taken</Span>
           </div>
         )}
         {userPlan !== "PREMIUM" && (

@@ -92,8 +92,6 @@ export const timingSchema = Yup.object({
 });
 
 export const advancedSettingsSchema = Yup.object({
-  currency: Yup.string().required("Required").oneOf(Object.keys(Currency)),
-  price: Yup.number().min(0, "Must be at least 0").required("Required"),
   showCorrectAnswers: Yup.boolean(),
   sendEmailReport: Yup.boolean(),
   leaderboard: Yup.boolean(),
@@ -170,9 +168,10 @@ export const examSchema = Yup.object({
   title: Yup.string()
     .required("Title is required")
     .min(5, "Title must be at least 5 characters long"),
-  description: Yup.string()
-    .required("Description is required")
-    .min(10, "Description must be at least 10 characters long"),
+  description: Yup.string().min(
+    20,
+    "Description must be at least 20 characters long",
+  ),
   pathname: Yup.string(),
   image: Yup.mixed()
     .required("Image is required")
@@ -202,6 +201,8 @@ export const examSchema = Yup.object({
   category: Yup.string()
     .required("Category is required")
     .oneOf(Object.keys(ExamCategory)),
+  currency: Yup.string().required("Required").oneOf(Object.keys(Currency)),
+  price: Yup.number().min(0, "Must be at least 0").required("Required"),
   advancedSettings: advancedSettingsSchema,
   contents: Yup.array().of(contentSchema).required("Contents are required"),
   questions: Yup.array()

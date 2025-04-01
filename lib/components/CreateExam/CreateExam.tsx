@@ -76,8 +76,9 @@ const CreateExam = ({
           category: initialValues?.category || "OTHER",
           questions: initialValues?.questions || [],
           contents: initialValues?.contents || [],
+          currency: initialValues?.currency || "USD",
+          price: initialValues?.price ?? 0,
           advancedSettings: {
-            currency: initialValues?.advancedSettings?.currency || "USD",
             randomizeQuestionOrder:
               initialValues?.advancedSettings?.randomizeQuestionOrder ?? true,
             showCorrectAnswers:
@@ -86,7 +87,6 @@ const CreateExam = ({
               initialValues?.advancedSettings?.sendEmailReport ?? false,
             leaderboard: initialValues?.advancedSettings?.leaderboard ?? false,
             maxAttempts: initialValues?.advancedSettings?.maxAttempts ?? 3,
-            price: initialValues?.advancedSettings?.price ?? 0,
             feedback: initialValues?.advancedSettings?.feedback || [],
             passingScore: initialValues?.advancedSettings?.passingScore ?? 70,
             privacy: {

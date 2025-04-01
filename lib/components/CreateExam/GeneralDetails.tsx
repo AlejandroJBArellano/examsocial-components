@@ -198,11 +198,7 @@ export const GeneralDetails = () => {
         >
           <FocusSpan>Currency</FocusSpan>
           <Select
-            text={
-              Currency[
-                values.advancedSettings.currency as keyof typeof Currency
-              ]
-            }
+            text={Currency[values.currency as keyof typeof Currency]}
             disabled={!canSellExams}
           >
             {Object.entries(Currency).map(([key, value]) => (
@@ -215,7 +211,7 @@ export const GeneralDetails = () => {
                   );
                 }}
                 disabled={!canSellExams}
-                checked={values.advancedSettings.currency === key}
+                checked={values.currency === key}
               >
                 {value}
               </Select.Option>
@@ -239,7 +235,7 @@ export const GeneralDetails = () => {
             placeholder="0"
             className="w-full"
             disabled={!canSellExams}
-            {...getFieldProps("advancedSettings.price")}
+            {...getFieldProps("price")}
           />
         </section>
       </article>

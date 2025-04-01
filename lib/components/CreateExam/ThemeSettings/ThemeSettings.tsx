@@ -1,3 +1,4 @@
+import SoonBadge from "@/components/Badges/SoonBadge";
 import { Helper } from "@/components/Helper";
 import { useState } from "react";
 import { ThemeSetting } from "../../../types";
@@ -42,6 +43,10 @@ const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
                 {value}
               </Select.Option>
             ))}
+            <Select.Option>
+              Custom!
+              <SoonBadge />
+            </Select.Option>
           </Select>
         </div>
       </article>

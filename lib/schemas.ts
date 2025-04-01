@@ -4,7 +4,7 @@ import { ExamCategory } from "./types";
 
 export const questionSchema = Yup.object({
   title: Yup.string().required("Question is required"),
-  _id: Yup.string().required(),
+  id: Yup.string().required(),
   image: Yup.mixed()
     .nullable()
     .test(
@@ -24,7 +24,7 @@ export const questionSchema = Yup.object({
       Yup.object({
         text: Yup.string().required("Option text is required"),
         correct: Yup.boolean(),
-        _id: Yup.string().required(),
+        id: Yup.string().required(),
       }),
     )
     .required()
@@ -211,7 +211,7 @@ export const examSchema = Yup.object({
 
 export const collectionSchema = Yup.object({
   name: Yup.string().required("Collection name is required"),
-  _id: Yup.string().required(),
+  id: Yup.string().required(),
   description: Yup.string().optional(),
   private: Yup.boolean().default(false),
 });

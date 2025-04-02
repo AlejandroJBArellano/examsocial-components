@@ -20,7 +20,6 @@ import {
 import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 import { ImageUploader } from "../ImageUploader";
-import { Input } from "../Input";
 import { Select } from "../Select";
 
 export const GeneralDetails = () => {
@@ -68,7 +67,7 @@ export const GeneralDetails = () => {
         )}
       </article>
       <Field
-        label={<FocusSpan>Title</FocusSpan>}
+        label="Title"
         error={errors.title?.toString()}
         inputProps={{
           placeholder: "The title of your exam",
@@ -87,10 +86,10 @@ export const GeneralDetails = () => {
         }}
       />
       <article className="space-y-1">
-        <FocusSpan>Category</FocusSpan>
-        <Select
-          text={
-            values.category ? (
+        <Field.Select
+          label="Category"
+          selectProps={{
+            text: values.category ? (
               <div className="flex items-center gap-2">
                 <Icon
                   name={CategoryMetadata[values.category as ExamCategory].icon}
@@ -100,8 +99,8 @@ export const GeneralDetails = () => {
               </div>
             ) : (
               "Select a category"
-            )
-          }
+            ),
+          }}
         >
           {Object.entries(ExamCategory).map(([key, value]) => (
             <Select.Option
@@ -123,7 +122,7 @@ export const GeneralDetails = () => {
               </div>
             </Select.Option>
           ))}
-        </Select>
+        </Field.Select>
         {values.category === ExamCategory.OTHER && (
           <Heading6 className="mt-2 text-sm text-accent-shadow">
             Please describe the category in the description
@@ -176,8 +175,8 @@ export const GeneralDetails = () => {
           )}
         </div>
       </article>
-      <article className="space-y-4 border-t border-secondary-tint py-4">
-        <section className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+      <article className="grid gap-4 border-t border-secondary-tint py-4 sm:grid-cols-2">
+        <section className="flex flex-col items-start justify-between gap-2 sm:col-span-2 sm:flex-row sm:items-center">
           <div className="flex gap-2">
             <Heading5>Monetization</Heading5>
             <Helper align="center" side="top">
@@ -192,14 +191,16 @@ export const GeneralDetails = () => {
           )}
         </section>
         <section
-          className={cn("grid grid-cols-1 items-center gap-2 sm:grid-cols-2", {
+          className={cn({
             "cursor-not-allowed select-none blur-sm": !canSellExams,
           })}
         >
-          <FocusSpan>Currency</FocusSpan>
-          <Select
-            text={Currency[values.currency as keyof typeof Currency]}
-            disabled={!canSellExams}
+          <Field.Select
+            label="Currency"
+            selectProps={{
+              text: Currency[values.currency as keyof typeof Currency],
+              disabled: !canSellExams,
+            }}
           >
             {Object.entries(Currency).map(([key, value]) => (
               <Select.Option
@@ -216,26 +217,30 @@ export const GeneralDetails = () => {
                 {value}
               </Select.Option>
             ))}
-          </Select>
+          </Field.Select>
         </section>
         <section
-          className={cn("grid grid-cols-1 items-center gap-2 sm:grid-cols-2", {
+          className={cn({
             "cursor-not-allowed select-none blur-sm": !canSellExams,
           })}
         >
-          <label htmlFor="price" className="flex items-center gap-2">
-            <FocusSpan>Price</FocusSpan>
-            <Helper align="center" side="top">
-              Price is the amount a student has to pay to attempt the exam.
-            </Helper>
-          </label>
-          <Input
-            id="price"
-            type="number"
-            placeholder="0"
-            className="w-full"
-            disabled={!canSellExams}
-            {...getFieldProps("price")}
+          <Field
+            label={
+              <div className="flex items-center gap-2">
+                <FocusSpan>Price</FocusSpan>
+                <Helper align="center" side="top">
+                  Price is the amount a student has to pay to attempt the exam.
+                </Helper>
+              </div>
+            }
+            inputProps={{
+              id: "price",
+              type: "number",
+              placeholder: "0",
+              className: "w-full",
+              disabled: !canSellExams,
+              ...getFieldProps("price"),
+            }}
           />
         </section>
       </article>

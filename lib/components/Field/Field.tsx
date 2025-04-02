@@ -17,7 +17,7 @@ interface FieldProps {
 
 const Field = ({ label, error, helperText, inputProps }: FieldProps) => {
   return (
-    <article className="space-y-1">
+    <article className="w-full space-y-1">
       <label
         htmlFor={inputProps?.id}
         className="flex items-center justify-between"

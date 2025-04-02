@@ -1,4 +1,4 @@
-import Logo from "@/Illustrations/logo";
+import { Logo } from "@/illustrations";
 import { PropsWithChildren } from "react";
 
 interface HeaderProps extends PropsWithChildren {

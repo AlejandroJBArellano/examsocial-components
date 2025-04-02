@@ -10,7 +10,7 @@ export * from "./utils";
 export * from "./types";
 
 // Export illustrations
-export * from "./Illustrations";
+export * from "./illustrations";
 
 // Export constants
 export * from "./constants";

@@ -1,10 +1,10 @@
-import { SVGProps } from "react";
 import {
   FemaleFilled,
   FemaleUnfilled,
   MaleFilled,
   MaleUnfilled,
-} from "../../Illustrations/profilePlaceholder";
+} from "@/illustrations";
+import { SVGProps } from "react";
 
 export type ProfilePlaceholderGender = "male" | "female";
 

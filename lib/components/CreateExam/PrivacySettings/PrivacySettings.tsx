@@ -46,8 +46,13 @@ const PrivacySettings = () => {
     }
   };
 
-  const handleInvite = (emails: string) => {
-    const newInvitees = emails.split(",").map((email) => email.trim());
+  const handleInvite = (
+    users: {
+      email: string;
+      name: string;
+    }[],
+  ) => {
+    const newInvitees = users.map((user) => user.email);
     const updatedInvitees = [
       ...new Set([
         ...(formik.values.advancedSettings.privacy.invitees || []),
@@ -157,7 +162,7 @@ const PrivacySettings = () => {
 export default PrivacySettings;
 
 interface INewInvitee {
-  onSubmit: (emails: string) => void;
+  onSubmit: (users: { email: string; name: string }[]) => void;
 }
 
 const NewInvitee = ({ onSubmit }: INewInvitee) => {
@@ -169,7 +174,7 @@ const NewInvitee = ({ onSubmit }: INewInvitee) => {
       emails: Yup.string().required("Email(s) are required"),
     }),
     onSubmit: (values) => {
-      onSubmit(values.emails);
+      onSubmit(values.emails.split(",").map((email) => ({ email, name: "" })));
       formik.resetForm();
     },
   });
@@ -201,7 +206,7 @@ const NewInvitee = ({ onSubmit }: INewInvitee) => {
 };
 
 interface IUploadCSV {
-  handleInvite: (emails: string) => void;
+  handleInvite: (users: { email: string; name: string }[]) => void;
 }
 
 const UploadCSV = ({ handleInvite }: IUploadCSV) => {
@@ -211,12 +216,25 @@ const UploadCSV = ({ handleInvite }: IUploadCSV) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         const text = e.target?.result as string;
-        const emails = text
-          .split("\n")
-          .map((email) => email.trim())
-          .filter(Boolean);
+        const lines = text.split("\n").filter(Boolean);
+
+        // Extract headers from the first line
+        const headers = lines[0]
+          .split(",")
+          .map((header) => header.trim().toLowerCase());
+
+        // Find the indices of the email and name columns
+        const emailIndex = headers.findIndex((header) => header === "email");
+        const nameIndex = headers.findIndex((header) => header === "name");
+
+        // Process the remaining lines to extract emails
+        const rows = lines.slice(1).map((line) => {
+          const columns = line.split(",").map((col) => col.trim());
+          return { email: columns[emailIndex], name: columns[nameIndex] };
+        });
+
         // Assuming handleInvite is accessible here
-        handleInvite(emails.join(","));
+        handleInvite(rows);
       };
       reader.readAsText(file);
     }
@@ -226,7 +244,7 @@ const UploadCSV = ({ handleInvite }: IUploadCSV) => {
     <Button rounded className="w-full p-0" type="button">
       <label
         htmlFor="upload-csv"
-        className="flex cursor-pointer place-items-center gap-2 py-2"
+        className="flex cursor-pointer place-content-center gap-2 py-2"
       >
         <Icon name="upload_file" filled />
         <FocusSpan>Upload .csv</FocusSpan>

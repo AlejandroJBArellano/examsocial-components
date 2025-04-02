@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import * as Yup from "yup";
 import { examSchema, feedbackSchema } from "../../schemas";
 import { PremiumBadge, ProBadge } from "../Badges";
+import SoonBadge from "../Badges/SoonBadge";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
@@ -253,46 +254,62 @@ export const AdvancedSettings = () => {
           {userPlan !== "PREMIUM" && <PremiumBadge />}
         </div>
         <div className="space-y-4">
-          <Field.Switch
-            checked={values.advancedSettings.showLogo}
-            onCheckedChange={() =>
-              userPlan === "PREMIUM" &&
-              setFieldValue(
-                "advancedSettings.showLogo",
-                !values.advancedSettings.showLogo,
-              )
-            }
-            disabled={userPlan !== "PREMIUM"}
-            className={cn({
-              "cursor-not-allowed opacity-50 blur-sm": userPlan !== "PREMIUM",
-            })}
-            helperText="Display your logo in the exam metadata and details view."
-          >
-            <div className="flex items-center gap-2">
-              Show logo in exam
-              {userPlan !== "PREMIUM" && <PremiumBadge />}
+          <div className="relative">
+            <div className="pointer-events-none blur-sm">
+              <Field.Switch
+                checked={values.advancedSettings.showLogo}
+                onCheckedChange={() =>
+                  userPlan === "PREMIUM" &&
+                  setFieldValue(
+                    "advancedSettings.showLogo",
+                    !values.advancedSettings.showLogo,
+                  )
+                }
+                disabled={userPlan !== "PREMIUM"}
+                className={cn({
+                  "cursor-not-allowed opacity-50 blur-sm":
+                    userPlan !== "PREMIUM",
+                })}
+                helperText="Display your logo in the exam metadata and details view."
+              >
+                <div className="flex items-center gap-2">
+                  Show logo in exam
+                  {userPlan !== "PREMIUM" && <PremiumBadge />}
+                </div>
+              </Field.Switch>
             </div>
-          </Field.Switch>
-          <Field.Switch
-            checked={values.advancedSettings.showBrandName}
-            onCheckedChange={() =>
-              userPlan === "PREMIUM" &&
-              setFieldValue(
-                "advancedSettings.showBrandName",
-                !values.advancedSettings.showBrandName,
-              )
-            }
-            disabled={userPlan !== "PREMIUM"}
-            className={cn({
-              "cursor-not-allowed opacity-50 blur-sm": userPlan !== "PREMIUM",
-            })}
-            helperText="Display your brand name in the exam metadata and details view."
-          >
-            <div className="flex items-center gap-2">
-              Show brand name
-              {userPlan !== "PREMIUM" && <PremiumBadge />}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <SoonBadge />
             </div>
-          </Field.Switch>
+          </div>
+          <div className="relative">
+            <div className="pointer-events-none blur-sm">
+              <Field.Switch
+                checked={values.advancedSettings.showBrandName}
+                onCheckedChange={() =>
+                  userPlan === "PREMIUM" &&
+                  setFieldValue(
+                    "advancedSettings.showBrandName",
+                    !values.advancedSettings.showBrandName,
+                  )
+                }
+                disabled={userPlan !== "PREMIUM"}
+                className={cn({
+                  "cursor-not-allowed opacity-50 blur-sm":
+                    userPlan !== "PREMIUM",
+                })}
+                helperText="Display your brand name in the exam metadata and details view."
+              >
+                <div className="flex items-center gap-2">
+                  Show brand name
+                  {userPlan !== "PREMIUM" && <PremiumBadge />}
+                </div>
+              </Field.Switch>
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <SoonBadge />
+            </div>
+          </div>
           <div className="space-y-2">
             <Heading6>Personalized Thank You Screen</Heading6>
             <Paragraph>

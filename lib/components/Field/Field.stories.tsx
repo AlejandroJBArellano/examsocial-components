@@ -85,6 +85,9 @@ export const TextareaVariant: Story = {
 };
 
 export const SwitchVariant: Story = {
+  parameters: {
+    layout: "fullscreen",
+  },
   render: () => <Field.Switch>Enable notifications</Field.Switch>,
 };
 

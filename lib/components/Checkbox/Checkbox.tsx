@@ -2,7 +2,9 @@ import * as CheckboxElement from "@radix-ui/react-checkbox";
 import { cn } from "../../utils";
 import { Icon } from "../Icon";
 
-const Checkbox = ({ className, ...props }: CheckboxElement.CheckboxProps) => {
+export type CheckboxProps = CheckboxElement.CheckboxProps;
+
+export const Checkbox = ({ className, ...props }: CheckboxProps) => {
   return (
     <CheckboxElement.Root
       {...props}

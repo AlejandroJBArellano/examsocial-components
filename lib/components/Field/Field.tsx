@@ -2,6 +2,7 @@ import { cn } from "@/utils";
 import { ReactNode } from "react";
 import { FocusSpan, Smoll } from "../FontFaces";
 import { Input, InputProps } from "../Input";
+import { CheckboxField } from "./Checkbox";
 import { SelectField } from "./Select";
 import { SwitchField } from "./Switch";
 import { TextareaField } from "./Textarea";
@@ -41,5 +42,5 @@ const Field = ({ label, error, helperText, inputProps }: FieldProps) => {
 Field.Textarea = TextareaField;
 Field.Switch = SwitchField;
 Field.Select = SelectField;
-
+Field.Checkbox = CheckboxField;
 export default Field;

@@ -168,3 +168,15 @@ export const SelectWithError: Story = {
     </Field.Select>
   ),
 };
+
+export const CheckboxVariant: Story = {
+  render: () => (
+    <Field.Checkbox
+      option="Enable"
+      helperText="Enable notifications at night"
+      checkboxProps={{ id: "enable-notifications" }}
+    >
+      Enable notifications
+    </Field.Checkbox>
+  ),
+};

@@ -82,26 +82,23 @@ const PrivacySettings = () => {
         {formik.values.advancedSettings.privacy.invitees?.length ? (
           <article className="space-y-3">
             <Separator>Invitees</Separator>
-            {formik.values.advancedSettings.privacy.invitees.map(
-              (invitee, index) => (
-                <div
-                  key={index}
-                  className="flex w-full items-center justify-between"
+            {formik.values.advancedSettings.privacy.invitees.map((invitee) => (
+              <div
+                key={invitee.email}
+                className="flex w-full items-center justify-between"
+              >
+                <Span>{invitee.name || invitee.email}</Span>
+                <Button.Icon
+                  size={24}
+                  type="button"
+                  filled
+                  theme="feedback-error"
+                  onClick={() => handleRemoveInvitee(invitee.email)}
                 >
-                  <Span>{invitee.name || invitee.email}</Span>
-                  <Button.Icon
-                    size={24}
-                    type="button"
-                    filled
-                    theme="feedback-error"
-                    className="p-2"
-                    onClick={() => handleRemoveInvitee(invitee.email)}
-                  >
-                    person_remove
-                  </Button.Icon>
-                </div>
-              ),
-            )}
+                  person_remove
+                </Button.Icon>
+              </div>
+            ))}
           </article>
         ) : null}
       </>

@@ -167,12 +167,12 @@ export const GeneralDetails = () => {
             </div>
           )}
           {userPlan !== "PREMIUM" && (
-            <div className="absolute inset-0 flex place-content-center">
+            <div className="absolute inset-0 flex items-center justify-center">
               <PremiumBadge />
             </div>
           )}
         </div>
-        <div className="absolute inset-0 flex place-content-center">
+        <div className="absolute inset-0 flex items-center justify-center">
           <SoonBadge />
         </div>
       </article>

@@ -175,7 +175,7 @@ const NewInvitee = ({ onSubmit }: INewInvitee) => {
   });
 
   return (
-    <section className="flex items-center gap-2">
+    <section className="flex items-end gap-2">
       <Field
         label="Email"
         inputProps={{

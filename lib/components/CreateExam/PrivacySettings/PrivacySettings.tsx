@@ -90,14 +90,16 @@ const PrivacySettings = () => {
                   className="flex w-full items-center justify-between"
                 >
                   <Span>{invitee.name || invitee.email}</Span>
-                  <Button
+                  <Button.Icon
+                    size={24}
                     type="button"
+                    filled
                     theme="feedback-error"
                     className="p-2"
                     onClick={() => handleRemoveInvitee(invitee.email)}
                   >
-                    <Icon name="person_remove" />
-                  </Button>
+                    person_remove
+                  </Button.Icon>
                 </div>
               ),
             )}

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { ContentTypes } from "../../types";
 import { Button } from "../Button";
+import { Field } from "../Field";
 import { FocusSpan, Heading4 } from "../FontFaces";
 import { ImageField } from "../ImageField";
-import { Input } from "../Input";
 import { Select } from "../Select";
-import { Textarea } from "../Textarea";
 
 interface INewAdditionalContent {
   onSubmit: (values: {
@@ -54,44 +53,45 @@ export const NewAdditionalContent = ({
 
   const ContentTypes = {
     YOUTUBE: (
-      <div className="space-y-1">
-        <FocusSpan>YouTube URL</FocusSpan>
-        <Input
-          placeholder="https://youtu.be/?w=video"
-          className="w-full"
-          onChange={(e) => {
+      <Field
+        label="YouTube URL"
+        inputProps={{
+          placeholder: "https://youtu.be/?w=video",
+          className: "w-full",
+          onChange: (e) => {
             setYoutubeUrl(e.target.value);
-          }}
-          value={youtubeUrl}
-        />
-      </div>
+          },
+          value: youtubeUrl,
+        }}
+      />
     ),
     TEXT: (
-      <div className="space-y-1">
-        <FocusSpan>Text</FocusSpan>
-        <Textarea
-          rows={4}
-          className="w-full"
-          placeholder="Add a description to your content. This will be shown to your students."
-          onChange={(e) => {
+      <Field.Textarea
+        label="Text"
+        textareaProps={{
+          rows: 4,
+          className: "w-full",
+          placeholder:
+            "Add a description to your content. This will be shown to your students.",
+          onChange: (e) => {
             setText(e.target.value);
-          }}
-          value={text}
-        />
-      </div>
+          },
+          value: text,
+        }}
+      />
     ),
     LINK: (
-      <div className="space-y-1">
-        <FocusSpan>Link</FocusSpan>
-        <Input
-          placeholder="https://example.com"
-          className="w-full"
-          onChange={(e) => {
+      <Field
+        label="Link"
+        inputProps={{
+          placeholder: "https://example.com",
+          className: "w-full",
+          onChange: (e) => {
             setLink(e.target.value);
-          }}
-          value={link}
-        />
-      </div>
+          },
+          value: link,
+        }}
+      />
     ),
     IMAGE: (
       <ImageField image={image} setImage={(newImage) => setImage(newImage)} />

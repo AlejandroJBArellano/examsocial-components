@@ -1,6 +1,5 @@
 import SoonBadge from "@/components/Badges/SoonBadge";
 import { Helper } from "@/components/Helper";
-import { useState } from "react";
 import { ThemeSetting } from "../../../types";
 import { Heading5 } from "../../FontFaces";
 import { Select } from "../../Select";
@@ -14,10 +13,10 @@ const ThemeSettingsNameMap = {
 
 interface IThemeSettingsProps {
   onChange: (setting: ThemeSetting) => void;
+  theme: ThemeSetting;
 }
 
-const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
-  const [themeSetting, setThemeSetting] = useState<ThemeSetting>("WHITEBOARD");
+const ThemeSettings = ({ onChange, theme }: IThemeSettingsProps) => {
   return (
     <div className="space-y-4">
       <article className="flex items-center justify-between">
@@ -30,15 +29,14 @@ const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
           </Helper>
         </div>
         <div className="w-1/2">
-          <Select text={ThemeSettingsNameMap[themeSetting]}>
+          <Select text={ThemeSettingsNameMap[theme]}>
             {Object.entries(ThemeSettingsNameMap).map(([key, value]) => (
               <Select.Option
                 key={key}
                 onClick={() => {
-                  setThemeSetting(key as ThemeSetting);
                   onChange(key as ThemeSetting);
                 }}
-                checked={themeSetting === key}
+                checked={theme === key}
               >
                 {value}
               </Select.Option>
@@ -52,7 +50,7 @@ const ThemeSettings = ({ onChange }: IThemeSettingsProps) => {
       </article>
       <article
         className={
-          (themeSetting === "WHITEBOARD" ? "" : themeSetting) +
+          (theme === "WHITEBOARD" ? "" : theme) +
           " ml-auto grid w-full max-w-80 grid-cols-4 items-center gap-4 overflow-x-auto"
         }
       >

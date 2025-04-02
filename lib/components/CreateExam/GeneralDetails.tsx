@@ -1,6 +1,6 @@
 import { Currency } from "@/constants";
 import { useExamCreation } from "@/hooks/exam";
-import { CategoryMetadata, ExamCategory } from "@/types";
+import { CategoryMetadata, ExamCategory, ThemeSetting } from "@/types";
 import { cn } from "@/utils";
 import { useFormikContext } from "formik";
 import { useCallback, useEffect, useState } from "react";
@@ -247,6 +247,7 @@ export const GeneralDetails = () => {
       </article>
       <article className="border-t border-secondary-tint py-4">
         <ThemeSettings
+          theme={values.theme as ThemeSetting}
           onChange={(theme) => {
             setFieldValue("theme", theme);
           }}

@@ -78,6 +78,7 @@ const CreateExam = ({
           contents: initialValues?.contents || [],
           currency: initialValues?.currency || "USD",
           price: initialValues?.price ?? 0,
+          theme: initialValues?.theme || "WHITEBOARD",
           advancedSettings: {
             randomizeQuestionOrder:
               initialValues?.advancedSettings?.randomizeQuestionOrder ?? true,
@@ -104,7 +105,6 @@ const CreateExam = ({
               minutes: initialValues?.advancedSettings?.timing?.minutes ?? 0,
               seconds: initialValues?.advancedSettings?.timing?.seconds ?? 0,
             },
-            theme: initialValues?.advancedSettings?.theme || "WHITEBOARD",
           },
         }}
         validationSchema={examSchema}

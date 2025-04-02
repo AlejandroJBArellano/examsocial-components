@@ -435,7 +435,7 @@ export const AdvancedSettings = () => {
                       ? 100
                       : undefined
                   : undefined,
-                className: "w-full",
+                className: "block w-1/6",
                 value: values.advancedSettings.maxParticipants || "",
                 onChange: (e) =>
                   setFieldValue(
@@ -448,50 +448,47 @@ export const AdvancedSettings = () => {
           )}
         </section>
         <section className="space-y-4">
-          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+          <Field.Switch
+            checked={values.advancedSettings.limitAttempts}
+            onCheckedChange={() =>
+              setFieldValue(
+                "advancedSettings.limitAttempts",
+                !values.advancedSettings.limitAttempts,
+              )
+            }
+            className="w-20"
+          >
             <div>
               <FocusSpan>Limit attempts</FocusSpan>
               <Paragraph className="text-sm">
                 Limit the number of times a participant can take this exam.
               </Paragraph>
             </div>
-            <Switch
-              className="w-20"
-              checked={values.advancedSettings.limitAttempts}
-              onCheckedChange={() =>
-                setFieldValue(
-                  "advancedSettings.limitAttempts",
-                  !values.advancedSettings.limitAttempts,
-                )
-              }
-            />
-          </div>
+          </Field.Switch>
           {values.advancedSettings.limitAttempts && (
-            <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
-              <Field
-                label={
-                  <div className="flex items-center gap-2">
-                    <FocusSpan>Max attempts</FocusSpan>
-                    <Paragraph className="text-sm">
-                      Set a maximum number of attempts allowed per participant.
-                    </Paragraph>
-                  </div>
-                }
-                inputProps={{
-                  id: "maxAttempts",
-                  type: "number",
-                  placeholder: "1",
-                  className: "w-full",
-                  value: values.advancedSettings.maxAttempts || "",
-                  onChange: (e) =>
-                    setFieldValue(
-                      "advancedSettings.maxAttempts",
-                      parseInt(e.target.value) || 1,
-                    ),
-                  min: 1,
-                }}
-              />
-            </div>
+            <Field
+              label={
+                <div>
+                  <FocusSpan>Max attempts</FocusSpan>
+                  <Paragraph className="text-sm">
+                    Set a maximum number of attempts allowed per participant.
+                  </Paragraph>
+                </div>
+              }
+              inputProps={{
+                id: "maxAttempts",
+                type: "number",
+                placeholder: "1",
+                className: "block w-1/6",
+                value: values.advancedSettings.maxAttempts || "",
+                onChange: (e) =>
+                  setFieldValue(
+                    "advancedSettings.maxAttempts",
+                    parseInt(e.target.value) || 1,
+                  ),
+                min: 1,
+              }}
+            />
           )}
         </section>
         <section className="space-y-4">

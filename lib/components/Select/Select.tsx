@@ -3,6 +3,7 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { ReactNode } from "react";
 import { Button } from "../Button";
+import { Span } from "../FontFaces/Spans.tsx";
 import { Icon } from "../Icon";
 import { OptionSelect } from "./Option.tsx";
 
@@ -10,6 +11,7 @@ interface SelectProps extends DropdownMenu.DropdownMenuProps {
   text: ReactNode;
   container?: HTMLElement;
   disabled?: boolean;
+  error?: boolean;
 }
 
 const Select = (props: SelectProps) => {
@@ -17,17 +19,18 @@ const Select = (props: SelectProps) => {
     <DropdownMenu.Root {...props}>
       <DropdownMenu.Trigger
         data-testid="trigger"
+        data-error={props.error}
         className="group w-full data-[state=open]:border-accent-shadow data-[state]:outline-none"
         disabled={props.disabled}
       >
         <Button
           theme="light"
           className={
-            "flex w-full items-center justify-between outline-none group-data-[state=open]:border-accent-shadow group-data-[state=open]:shadow-accent-shadow " +
+            "flex w-full items-center justify-between outline-none group-data-[error=true]:!border-feedback-error group-data-[state=open]:border-accent-shadow group-data-[error=true]:!bg-feedback-error-tint group-data-[error=true]:!text-feedback-error group-data-[error=true]:!shadow-feedback-error group-data-[state=open]:shadow-accent-shadow" +
             (props.disabled ? "cursor-not-allowed" : "")
           }
         >
-          {props.text}
+          <Span>{props.text}</Span>
           <Icon
             name="keyboard_arrow_down"
             className="!hidden group-data-[state=closed]:!inline-block"

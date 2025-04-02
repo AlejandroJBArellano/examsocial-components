@@ -248,7 +248,7 @@ export const GeneralDetails = () => {
       <article className="border-t border-secondary-tint py-4">
         <ThemeSettings
           onChange={(theme) => {
-            setFieldValue("advancedSettings.theme", theme);
+            setFieldValue("theme", theme);
           }}
         />
       </article>

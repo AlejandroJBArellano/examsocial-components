@@ -127,9 +127,6 @@ export const advancedSettingsSchema = Yup.object({
   randomizeOptionsOrder: Yup.boolean(),
   passingScore: Yup.number().min(0, "Must be at least 0").required("Required"),
   timing: timingSchema,
-  theme: Yup.string()
-    .required("Required")
-    .oneOf(["WHITEBOARD", "INDUSTRIAL_EDGE", "EARTHY_TONES", "VIBRANT_ORCHID"]),
   showLogo: Yup.boolean(),
   showBrandName: Yup.boolean(),
 });
@@ -210,6 +207,9 @@ export const examSchema = Yup.object({
   price: Yup.number().min(0, "Must be at least 0").required("Required"),
   advancedSettings: advancedSettingsSchema,
   contents: Yup.array().of(contentSchema).required("Contents are required"),
+  theme: Yup.string()
+    .required("Required")
+    .oneOf(["WHITEBOARD", "INDUSTRIAL_EDGE", "EARTHY_TONES", "VIBRANT_ORCHID"]),
   questions: Yup.array()
     .of(questionSchema)
     .required("Questions are required")

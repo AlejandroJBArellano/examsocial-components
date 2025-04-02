@@ -387,68 +387,64 @@ export const AdvancedSettings = () => {
         </section>
         <PrivacySettings />
         <section className="space-y-4">
-          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+          <Field.Switch
+            className="w-20"
+            checked={values.advancedSettings.limitParticipants}
+            onCheckedChange={() =>
+              setFieldValue(
+                "advancedSettings.limitParticipants",
+                !values.advancedSettings.limitParticipants,
+              )
+            }
+          >
             <div>
               <FocusSpan>Limit number of participants</FocusSpan>
               <Paragraph className="text-sm">
                 Set a maximum number of participants who can take this exam.
               </Paragraph>
             </div>
-            <Switch
-              className="w-20"
-              checked={values.advancedSettings.limitParticipants}
-              onCheckedChange={() =>
-                setFieldValue(
-                  "advancedSettings.limitParticipants",
-                  !values.advancedSettings.limitParticipants,
-                )
-              }
-            />
-          </div>
+          </Field.Switch>
           {values.advancedSettings.limitParticipants && (
-            <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
-              <Field
-                label={
-                  <div className="flex items-center gap-2">
-                    <FocusSpan>Max participants</FocusSpan>
-                    <Paragraph className="text-sm">
-                      Set a maximum number of participants who can take this
-                      exam.
-                    </Paragraph>
-                  </div>
-                }
-                inputProps={{
-                  id: "maxParticipants",
-                  type: "number",
-                  placeholder: !["PUBLIC", "ONLY_ME"].includes(
-                    values.advancedSettings.privacy.setting,
-                  )
-                    ? userPlan === "PREMIUM"
-                      ? "500"
-                      : userPlan === "PRO"
-                        ? "100"
-                        : "0"
-                    : "0",
-                  max: !["PUBLIC", "ONLY_ME"].includes(
-                    values.advancedSettings.privacy.setting,
-                  )
-                    ? userPlan === "PREMIUM"
-                      ? 500
-                      : userPlan === "PRO"
-                        ? 100
-                        : undefined
-                    : undefined,
-                  className: "w-full",
-                  value: values.advancedSettings.maxParticipants || "",
-                  onChange: (e) =>
-                    setFieldValue(
-                      "advancedSettings.maxParticipants",
-                      parseInt(e.target.value) || 0,
-                    ),
-                  min: 1,
-                }}
-              />
-            </div>
+            <Field
+              label={
+                <div>
+                  <FocusSpan>Max participants</FocusSpan>
+                  <Paragraph className="text-sm">
+                    Set a maximum number of participants who can take this exam.
+                  </Paragraph>
+                </div>
+              }
+              inputProps={{
+                id: "maxParticipants",
+                type: "number",
+                placeholder: !["PUBLIC", "ONLY_ME"].includes(
+                  values.advancedSettings.privacy.setting,
+                )
+                  ? userPlan === "PREMIUM"
+                    ? "500"
+                    : userPlan === "PRO"
+                      ? "100"
+                      : "0"
+                  : "0",
+                max: !["PUBLIC", "ONLY_ME"].includes(
+                  values.advancedSettings.privacy.setting,
+                )
+                  ? userPlan === "PREMIUM"
+                    ? 500
+                    : userPlan === "PRO"
+                      ? 100
+                      : undefined
+                  : undefined,
+                className: "w-full",
+                value: values.advancedSettings.maxParticipants || "",
+                onChange: (e) =>
+                  setFieldValue(
+                    "advancedSettings.maxParticipants",
+                    parseInt(e.target.value) || 0,
+                  ),
+                min: 1,
+              }}
+            />
           )}
         </section>
         <section className="space-y-4">

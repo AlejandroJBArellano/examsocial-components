@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Icon } from "../Icon";
+import { Select } from "../Select";
 import Field from "./Field";
 
 const meta: Meta<typeof Field> = {
@@ -132,5 +133,35 @@ export const AllVariants: Story = {
         <Field.Switch>Enable notifications</Field.Switch>
       </div>
     </div>
+  ),
+};
+
+export const SelectVariant: Story = {
+  render: () => (
+    <Field.Select
+      label="Select an option"
+      selectProps={{
+        text: "Select an option",
+      }}
+    >
+      <Select.Option>Option 1</Select.Option>
+      <Select.Option>Option 2</Select.Option>
+      <Select.Option>Option 3</Select.Option>
+    </Field.Select>
+  ),
+};
+
+export const SelectWithError: Story = {
+  render: () => (
+    <Field.Select
+      label="Select an option"
+      error="This is an error"
+      selectProps={{
+        text: "Select an option",
+        error: true,
+      }}
+    >
+      <Select.Option>Option 1</Select.Option>
+    </Field.Select>
   ),
 };

@@ -7,7 +7,7 @@ import { Span } from "../FontFaces/Spans.tsx";
 import { Icon } from "../Icon";
 import { OptionSelect } from "./Option.tsx";
 
-interface SelectProps extends DropdownMenu.DropdownMenuProps {
+export interface SelectProps extends DropdownMenu.DropdownMenuProps {
   text: ReactNode;
   container?: HTMLElement;
   disabled?: boolean;

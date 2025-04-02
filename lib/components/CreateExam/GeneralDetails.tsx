@@ -21,6 +21,7 @@ import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 import { ImageUploader } from "../ImageUploader";
 import { Select } from "../Select";
+import { ThemeSettings } from "./ThemeSettings";
 
 export const GeneralDetails = () => {
   const [validating, setValidating] = useState(false);
@@ -243,6 +244,13 @@ export const GeneralDetails = () => {
             }}
           />
         </section>
+      </article>
+      <article className="border-t border-secondary-tint py-4">
+        <ThemeSettings
+          onChange={(theme) => {
+            setFieldValue("advancedSettings.theme", theme);
+          }}
+        />
       </article>
     </section>
   );

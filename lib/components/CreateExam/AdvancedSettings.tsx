@@ -21,7 +21,6 @@ import {
 import { Helper } from "../Helper";
 import { Switch } from "../Switch";
 import { PrivacySettings } from "./PrivacySettings";
-import { ThemeSettings } from "./ThemeSettings";
 import { TimingSettings } from "./TimingSettings";
 
 // Función para verificar si hay solapamiento entre condiciones de feedback
@@ -615,11 +614,6 @@ export const AdvancedSettings = () => {
           </Field.Switch>
         </div>
       </div>
-      <ThemeSettings
-        onChange={(theme) => {
-          setFieldValue("advancedSettings.theme", theme);
-        }}
-      />
       <Dialog innerRef={dialogRef} id="advanced-settings">
         <NewFeedbackScreen
           onSubmit={(newFeedback) => {

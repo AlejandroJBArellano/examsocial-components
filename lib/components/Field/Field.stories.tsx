@@ -180,3 +180,21 @@ export const CheckboxVariant: Story = {
     </Field.Checkbox>
   ),
 };
+
+export const RadioVariant: Story = {
+  render: () => (
+    <Field.Radio
+      option="Option 1"
+      helperText="This is an option"
+      radioProps={{
+        items: [
+          { value: "option-1", label: "Option 1" },
+          { value: "option-2", label: "Option 2" },
+          { value: "option-3", label: "Option 3" },
+        ],
+      }}
+    >
+      Select an option
+    </Field.Radio>
+  ),
+};

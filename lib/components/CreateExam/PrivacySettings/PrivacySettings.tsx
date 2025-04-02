@@ -52,11 +52,10 @@ const PrivacySettings = () => {
       name: string;
     }[],
   ) => {
-    const newInvitees = users.map((user) => user.email);
     const updatedInvitees = [
       ...new Set([
         ...(formik.values.advancedSettings.privacy.invitees || []),
-        ...newInvitees,
+        ...users,
       ]),
     ];
     formik.setFieldValue("advancedSettings.privacy.invitees", updatedInvitees);

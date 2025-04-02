@@ -100,6 +100,20 @@ export const WithManyOptions: Story = {
   },
 };
 
+export const WithError: Story = {
+  args: {
+    text: "Select an option",
+    error: true,
+    children: (
+      <>
+        <Select.Option>Option 1</Select.Option>
+        <Select.Option>Option 2</Select.Option>
+        <Select.Option>Option 3</Select.Option>
+      </>
+    ),
+  },
+};
+
 export const AllVariants: Story = {
   render: () => (
     <div className="flex w-64 flex-col gap-6">

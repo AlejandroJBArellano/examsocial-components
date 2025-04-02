@@ -2,14 +2,14 @@ import { Helper } from "@/components/Helper";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import { examSchema } from "../../../schemas";
-import { FocusSpan, Heading5, Smoll } from "../../FontFaces";
-import { Input } from "../../Input";
+import { Field } from "../../Field";
+import { Heading5, Smoll } from "../../FontFaces";
 import { Select } from "../../Select";
 
 export type TimingSetting = "NONE" | "TOTAL" | "PER_QUESTION" | "CUSTOM";
 
 const TimingSettingsDescriptionMap = {
-  NONE: "The exam won’t have a time limit.",
+  NONE: "The exam won't have a time limit.",
   TOTAL: "Sets a limit time for the whole exam.",
   PER_QUESTION: "Set an equal amount of time for each individual question.",
   CUSTOM: "Sets a custom of time for each individual question.",
@@ -45,52 +45,60 @@ const TimingSettings = () => {
     CUSTOM: null,
     TOTAL: (
       <article className="flex w-full items-center gap-4">
-        <div className="w-1/2 space-y-1">
-          <FocusSpan>Hours</FocusSpan>
-          <Input
-            type="number"
-            placeholder="0"
-            className="w-full"
-            onChange={(e) =>
-              handleInputChange("hours", parseInt(e.target.value))
-            }
+        <div className="w-1/2">
+          <Field
+            label="Hours"
+            inputProps={{
+              type: "number",
+              placeholder: "0",
+              className: "w-full",
+              onChange: (e) =>
+                handleInputChange("hours", parseInt(e.target.value)),
+              value: formik.values.advancedSettings.timing.hours || "",
+            }}
           />
         </div>
-        <div className="w-1/2 space-y-1">
-          <FocusSpan>Minutes</FocusSpan>
-          <Input
-            type="number"
-            placeholder="0"
-            className="w-full"
-            onChange={(e) =>
-              handleInputChange("minutes", parseInt(e.target.value))
-            }
+        <div className="w-1/2">
+          <Field
+            label="Minutes"
+            inputProps={{
+              type: "number",
+              placeholder: "0",
+              className: "w-full",
+              onChange: (e) =>
+                handleInputChange("minutes", parseInt(e.target.value)),
+              value: formik.values.advancedSettings.timing.minutes || "",
+            }}
           />
         </div>
       </article>
     ),
     PER_QUESTION: (
       <article className="flex w-full items-center gap-4">
-        <div className="w-1/2 space-y-1">
-          <FocusSpan>Minutes</FocusSpan>
-          <Input
-            type="number"
-            placeholder="0"
-            className="w-full"
-            onChange={(e) =>
-              handleInputChange("minutes", parseInt(e.target.value))
-            }
+        <div className="w-1/2">
+          <Field
+            label="Minutes"
+            inputProps={{
+              type: "number",
+              placeholder: "0",
+              className: "w-full",
+              onChange: (e) =>
+                handleInputChange("minutes", parseInt(e.target.value)),
+              value: formik.values.advancedSettings.timing.minutes || "",
+            }}
           />
         </div>
-        <div className="w-1/2 space-y-1">
-          <FocusSpan>Seconds</FocusSpan>
-          <Input
-            type="number"
-            placeholder="0"
-            className="w-full"
-            onChange={(e) =>
-              handleInputChange("seconds", parseInt(e.target.value))
-            }
+        <div className="w-1/2">
+          <Field
+            label="Seconds"
+            inputProps={{
+              type: "number",
+              placeholder: "0",
+              className: "w-full",
+              onChange: (e) =>
+                handleInputChange("seconds", parseInt(e.target.value)),
+              value: formik.values.advancedSettings.timing.seconds || "",
+            }}
           />
         </div>
       </article>

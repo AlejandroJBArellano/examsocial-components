@@ -20,13 +20,13 @@ const Select = (props: SelectProps) => {
       <DropdownMenu.Trigger
         data-testid="trigger"
         data-error={props.error}
-        className="group w-full data-[state=open]:border-accent-shadow data-[state]:outline-none"
         disabled={props.disabled}
+        asChild
       >
         <Button
           theme="light"
           className={
-            "flex w-full items-center justify-between outline-none group-data-[error=true]:!border-feedback-error group-data-[state=open]:border-accent-shadow group-data-[error=true]:!bg-feedback-error-tint group-data-[error=true]:!text-feedback-error group-data-[error=true]:!shadow-feedback-error group-data-[state=open]:shadow-accent-shadow" +
+            "group flex w-full items-center justify-between outline-none data-[error=true]:!border-feedback-error data-[state=open]:border-accent-shadow data-[error=true]:!bg-feedback-error-tint data-[error=true]:!text-feedback-error data-[error=true]:!shadow-feedback-error data-[state=open]:shadow-accent-shadow" +
             (props.disabled ? "cursor-not-allowed" : "")
           }
         >

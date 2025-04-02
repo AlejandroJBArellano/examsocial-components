@@ -9,6 +9,7 @@ import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
 import { EditFeedbackScreen } from "../FeedbackScreen/NewAndEdit";
+import { Field } from "../Field";
 import {
   FocusSpan,
   Heading4,
@@ -18,7 +19,6 @@ import {
   Span,
 } from "../FontFaces";
 import { Helper } from "../Helper";
-import { Input } from "../Input";
 import { Switch } from "../Switch";
 import { PrivacySettings } from "./PrivacySettings";
 import { ThemeSettings } from "./ThemeSettings";
@@ -407,20 +407,20 @@ export const AdvancedSettings = () => {
           </div>
           {values.advancedSettings.limitParticipants && (
             <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
-              <label
-                className="flex items-center gap-2"
-                htmlFor="maxParticipants"
-              >
-                <FocusSpan>Max participants</FocusSpan>
-                <Paragraph className="text-sm">
-                  Set a maximum number of participants who can take this exam.
-                </Paragraph>
-              </label>
-              <Input
-                id="maxParticipants"
-                type="number"
-                placeholder={
-                  !["PUBLIC", "ONLY_ME"].includes(
+              <Field
+                label={
+                  <div className="flex items-center gap-2">
+                    <FocusSpan>Max participants</FocusSpan>
+                    <Paragraph className="text-sm">
+                      Set a maximum number of participants who can take this
+                      exam.
+                    </Paragraph>
+                  </div>
+                }
+                inputProps={{
+                  id: "maxParticipants",
+                  type: "number",
+                  placeholder: !["PUBLIC", "ONLY_ME"].includes(
                     values.advancedSettings.privacy.setting,
                   )
                     ? userPlan === "PREMIUM"
@@ -428,10 +428,8 @@ export const AdvancedSettings = () => {
                       : userPlan === "PRO"
                         ? "100"
                         : "0"
-                    : "0"
-                }
-                max={
-                  !["PUBLIC", "ONLY_ME"].includes(
+                    : "0",
+                  max: !["PUBLIC", "ONLY_ME"].includes(
                     values.advancedSettings.privacy.setting,
                   )
                     ? userPlan === "PREMIUM"
@@ -439,17 +437,16 @@ export const AdvancedSettings = () => {
                       : userPlan === "PRO"
                         ? 100
                         : undefined
-                    : undefined
-                }
-                className="w-full"
-                value={values.advancedSettings.maxParticipants || ""}
-                onChange={(e) =>
-                  setFieldValue(
-                    "advancedSettings.maxParticipants",
-                    parseInt(e.target.value) || 0,
-                  )
-                }
-                min={1}
+                    : undefined,
+                  className: "w-full",
+                  value: values.advancedSettings.maxParticipants || "",
+                  onChange: (e) =>
+                    setFieldValue(
+                      "advancedSettings.maxParticipants",
+                      parseInt(e.target.value) || 0,
+                    ),
+                  min: 1,
+                }}
               />
             </div>
           )}
@@ -475,25 +472,28 @@ export const AdvancedSettings = () => {
           </div>
           {values.advancedSettings.limitAttempts && (
             <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
-              <label className="flex items-center gap-2" htmlFor="maxAttempts">
-                <FocusSpan>Max attempts</FocusSpan>
-                <Paragraph className="text-sm">
-                  Set a maximum number of attempts allowed per participant.
-                </Paragraph>
-              </label>
-              <Input
-                id="maxAttempts"
-                type="number"
-                placeholder="1"
-                className="w-full"
-                value={values.advancedSettings.maxAttempts || ""}
-                onChange={(e) =>
-                  setFieldValue(
-                    "advancedSettings.maxAttempts",
-                    parseInt(e.target.value) || 1,
-                  )
+              <Field
+                label={
+                  <div className="flex items-center gap-2">
+                    <FocusSpan>Max attempts</FocusSpan>
+                    <Paragraph className="text-sm">
+                      Set a maximum number of attempts allowed per participant.
+                    </Paragraph>
+                  </div>
                 }
-                min={1}
+                inputProps={{
+                  id: "maxAttempts",
+                  type: "number",
+                  placeholder: "1",
+                  className: "w-full",
+                  value: values.advancedSettings.maxAttempts || "",
+                  onChange: (e) =>
+                    setFieldValue(
+                      "advancedSettings.maxAttempts",
+                      parseInt(e.target.value) || 1,
+                    ),
+                  min: 1,
+                }}
               />
             </div>
           )}
@@ -577,24 +577,28 @@ export const AdvancedSettings = () => {
         </div>
         <div className="mt-4 space-y-4">
           <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
-            <div className="flex gap-2">
-              <FocusSpan>Minimum passing score</FocusSpan>
-              <Helper align="center" side="top">
-                Set the minimum score required to pass the exam. Students who
-                score below this threshold will fail the exam, appearing in red.
-              </Helper>
-            </div>
-            <Input
-              type="number"
-              placeholder="70"
-              className="w-full"
-              value={values.advancedSettings.passingScore}
-              onChange={(e) =>
-                setFieldValue(
-                  "advancedSettings.passingScore",
-                  parseInt(e.target.value),
-                )
+            <Field
+              label={
+                <div className="flex gap-2">
+                  <FocusSpan>Minimum passing score</FocusSpan>
+                  <Helper align="center" side="top">
+                    Set the minimum score required to pass the exam. Students
+                    who score below this threshold will fail the exam, appearing
+                    in red.
+                  </Helper>
+                </div>
               }
+              inputProps={{
+                type: "number",
+                placeholder: "70",
+                className: "w-full",
+                value: values.advancedSettings.passingScore,
+                onChange: (e) =>
+                  setFieldValue(
+                    "advancedSettings.passingScore",
+                    parseInt(e.target.value),
+                  ),
+              }}
             />
           </div>
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">

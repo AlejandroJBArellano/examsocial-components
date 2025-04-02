@@ -7,7 +7,7 @@ export interface SelectFieldProps {
   label: ReactNode;
   error?: ReactNode;
   helperText?: ReactNode;
-  selectProps?: SelectProps;
+  selectProps: SelectProps;
   children?: ReactNode;
 }
 
@@ -22,14 +22,14 @@ export const SelectField = ({
     <article className="space-y-1">
       <label className="flex items-center justify-between">
         <FocusSpan>{label}</FocusSpan>
-        <Helper side="top" align="center">
-          {helperText}
-        </Helper>
+        {helperText && (
+          <Helper side="top" align="center">
+            {helperText}
+          </Helper>
+        )}
       </label>
       <div className={`rounded-md ${error ? "bg-feedback-error-tint" : ""}`}>
-        <Select {...selectProps} text={label}>
-          {children}
-        </Select>
+        <Select {...selectProps}>{children}</Select>
         {error && (
           <Smoll className="px-2 py-1 text-feedback-error">{error}</Smoll>
         )}

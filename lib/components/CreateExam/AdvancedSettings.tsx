@@ -557,75 +557,62 @@ export const AdvancedSettings = () => {
           </Paragraph>
         </div>
         <div className="mt-4 space-y-4">
-          <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-2">
-            <Field
-              label={
-                <div className="flex gap-2">
-                  <FocusSpan>Minimum passing score</FocusSpan>
-                  <Helper align="center" side="top">
-                    Set the minimum score required to pass the exam. Students
-                    who score below this threshold will fail the exam, appearing
-                    in red.
-                  </Helper>
-                </div>
-              }
-              inputProps={{
-                type: "number",
-                placeholder: "70",
-                className: "w-full",
-                value: values.advancedSettings.passingScore,
-                onChange: (e) =>
-                  setFieldValue(
-                    "advancedSettings.passingScore",
-                    parseInt(e.target.value),
-                  ),
-              }}
-            />
-          </div>
-          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex w-full items-center justify-between">
-              <div>
-                <FocusSpan>Send email report</FocusSpan>
-                <Paragraph className="text-sm">
-                  Send an email report to the user when they complete the exam.
-                </Paragraph>
+          <Field
+            label={
+              <div className="flex gap-2">
+                <FocusSpan>Minimum passing score</FocusSpan>
+                <Helper align="center" side="top">
+                  Set the minimum score required to pass the exam. Students who
+                  score below this threshold will fail the exam, appearing in
+                  red.
+                </Helper>
               </div>
+            }
+            inputProps={{
+              type: "number",
+              placeholder: "70",
+              className: "w-1/3",
+              value: values.advancedSettings.passingScore,
+              onChange: (e) =>
+                setFieldValue(
+                  "advancedSettings.passingScore",
+                  parseInt(e.target.value),
+                ),
+            }}
+          />
+          <Field.Switch
+            checked={values.advancedSettings.sendEmailReport}
+            onCheckedChange={() =>
+              userPlan !== "BASIC" &&
+              setFieldValue(
+                "advancedSettings.sendEmailReport",
+                !values.advancedSettings.sendEmailReport,
+              )
+            }
+            disabled={userPlan === "BASIC"}
+            className={cn({
+              "cursor-not-allowed opacity-50 blur-sm": userPlan === "BASIC",
+            })}
+            helperText="Send an email report to the user when they complete the exam."
+          >
+            <div className="flex items-center gap-2">
+              Send email report
               {userPlan === "BASIC" && <ProBadge />}
             </div>
-            <Switch
-              className={cn("w-20", {
-                "cursor-not-allowed opacity-50 blur-sm": userPlan === "BASIC",
-              })}
-              checked={values.advancedSettings.sendEmailReport}
-              onCheckedChange={() =>
-                userPlan !== "BASIC" &&
-                setFieldValue(
-                  "advancedSettings.sendEmailReport",
-                  !values.advancedSettings.sendEmailReport,
-                )
-              }
-              disabled={userPlan === "BASIC"}
-            />
-          </div>
-          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div>
-              <FocusSpan>Show correct answers</FocusSpan>
-              <Paragraph className="text-sm">
-                Show the correct answers to students after they complete the
-                exam.
-              </Paragraph>
-            </div>
-            <Switch
-              className="w-20"
-              checked={values.advancedSettings.showCorrectAnswers}
-              onCheckedChange={() =>
-                setFieldValue(
-                  "advancedSettings.showCorrectAnswers",
-                  !values.advancedSettings.showCorrectAnswers,
-                )
-              }
-            />
-          </div>
+          </Field.Switch>
+          <Field.Switch
+            checked={values.advancedSettings.showCorrectAnswers}
+            onCheckedChange={() =>
+              setFieldValue(
+                "advancedSettings.showCorrectAnswers",
+                !values.advancedSettings.showCorrectAnswers,
+              )
+            }
+            className="w-20"
+            helperText="Show the correct answers to students after they complete the exam."
+          >
+            Show correct answers
+          </Field.Switch>
         </div>
       </div>
       <ThemeSettings

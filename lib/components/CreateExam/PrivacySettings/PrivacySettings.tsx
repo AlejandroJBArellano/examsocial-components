@@ -5,9 +5,9 @@ import { ChangeEvent } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../../schemas";
 import { Button } from "../../Button";
+import { Field } from "../../Field";
 import { FocusSpan, Paragraph, Span } from "../../FontFaces";
 import { Icon } from "../../Icon";
-import { Input } from "../../Input";
 import { Select } from "../../Select";
 import { Separator } from "../../Separator";
 
@@ -176,11 +176,16 @@ const NewInvitee = ({ onSubmit }: INewInvitee) => {
 
   return (
     <section className="flex items-center gap-2">
-      <Input
-        placeholder="Email(s), separated by commas"
-        className="h-11 w-full"
-        type="email"
-        {...formik.getFieldProps("emails")}
+      <Field
+        label="Email"
+        inputProps={{
+          placeholder: "Email(s), separated by commas",
+          className: "h-11 w-full",
+          type: "email",
+          ...formik.getFieldProps("emails"),
+          error: formik.touched.emails && !!formik.errors.emails,
+        }}
+        error={formik.touched.emails && formik.errors.emails}
       />
       <Button
         theme="extra"

@@ -17,9 +17,11 @@ export const SwitchField = ({
     <div className="flex items-center justify-between xl:text-lg">
       <label className="flex items-center justify-between gap-2">
         <FocusSpan>{children}</FocusSpan>
-        <Helper side="top" align="center">
-          {helperText}
-        </Helper>
+        {helperText && (
+          <Helper side="top" align="center">
+            {helperText}
+          </Helper>
+        )}
       </label>
       <Switch {...props} />
     </div>

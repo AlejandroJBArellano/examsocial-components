@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { PremiumBadge } from "../Badges";
+import SoonBadge from "../Badges/SoonBadge";
 import { BannerInput } from "../BannerInput";
 import { Field } from "../Field";
 import {
@@ -136,11 +137,7 @@ export const GeneralDetails = () => {
         )}
       </article>
       <article className="relative">
-        <div
-          className={
-            userPlan !== "PREMIUM" ? "pointer-events-none blur-sm" : ""
-          }
-        >
+        <div className={"pointer-events-none blur-sm"}>
           <Field
             label="Pathname"
             inputProps={{
@@ -170,10 +167,13 @@ export const GeneralDetails = () => {
             </div>
           )}
           {userPlan !== "PREMIUM" && (
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex place-content-center">
               <PremiumBadge />
             </div>
           )}
+        </div>
+        <div className="absolute inset-0 flex place-content-center">
+          <SoonBadge />
         </div>
       </article>
       <article className="grid gap-4 border-t border-secondary-tint py-4 sm:grid-cols-2">

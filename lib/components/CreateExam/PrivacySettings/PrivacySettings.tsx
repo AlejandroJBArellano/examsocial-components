@@ -1,4 +1,5 @@
 import { ProBadge } from "@/components/Badges";
+import SoonBadge from "@/components/Badges/SoonBadge";
 import { useExamCreation } from "@/hooks/exam";
 import { useFormik, useFormikContext } from "formik";
 import { ChangeEvent } from "react";
@@ -130,11 +131,14 @@ const PrivacySettings = () => {
               Invite only {userPlan === "BASIC" && <ProBadge />}
             </Select.Option>
             <Select.Option
-              onClick={() => handlePrivacySettingChange("PASSWORD")}
+              disabled
+              //onClick={() => handlePrivacySettingChange("PASSWORD")}
+              onClick={() => null}
               checked={privacySetting === "PASSWORD"}
-              disabled={userPlan === "BASIC"}
+              //disabled={userPlan === "BASIC"}
             >
               Password {userPlan === "BASIC" && <ProBadge />}
+              <SoonBadge />
             </Select.Option>
             <Select.Option
               onClick={() => handlePrivacySettingChange("LINK")}

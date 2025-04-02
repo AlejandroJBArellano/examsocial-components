@@ -60,7 +60,7 @@ const PrivacySettings = () => {
   const handleRemoveInvitee = (email: string) => {
     const updatedInvitees =
       formik.values.advancedSettings.privacy.invitees?.filter(
-        (invitee) => invitee !== email,
+        (invitee) => invitee.email !== email,
       );
     formik.setFieldValue("advancedSettings.privacy.invitees", updatedInvitees);
   };
@@ -84,12 +84,12 @@ const PrivacySettings = () => {
                   key={index}
                   className="flex w-full items-center justify-between"
                 >
-                  <Span>{invitee}</Span>
+                  <Span>{invitee.name || invitee.email}</Span>
                   <Button
                     type="button"
                     theme="feedback-error"
                     className="p-2"
-                    onClick={() => handleRemoveInvitee(invitee)}
+                    onClick={() => handleRemoveInvitee(invitee.email)}
                   >
                     <Icon name="person_remove" />
                   </Button>
@@ -226,9 +226,9 @@ const UploadCSV = ({ handleInvite }: IUploadCSV) => {
     <Button rounded className="w-full p-0" type="button">
       <label
         htmlFor="upload-csv"
-        className="flex cursor-pointer items-center justify-center gap-2 py-2"
+        className="flex cursor-pointer place-items-center gap-2 py-2"
       >
-        <Icon name="upload_file" />
+        <Icon name="upload_file" filled />
         <FocusSpan>Upload .csv</FocusSpan>
         <input
           type="file"

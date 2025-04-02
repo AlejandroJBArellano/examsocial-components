@@ -542,24 +542,18 @@ export const AdvancedSettings = () => {
             }
           />
         </div>
-        <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-          <div className="flex gap-2">
-            <FocusSpan>Randomize options order</FocusSpan>
-            <Helper align="center" side="top">
-              Shuffles the order of options order for each question.
-            </Helper>
-          </div>
-          <Switch
-            className="w-20"
-            checked={values.advancedSettings.randomizeOptionsOrder}
-            onCheckedChange={() =>
-              setFieldValue(
-                "advancedSettings.randomizeOptionsOrder",
-                !values.advancedSettings.randomizeOptionsOrder,
-              )
-            }
-          />
-        </div>
+        <Field.Switch
+          checked={values.advancedSettings.randomizeOptionsOrder}
+          onCheckedChange={() =>
+            setFieldValue(
+              "advancedSettings.randomizeOptionsOrder",
+              !values.advancedSettings.randomizeOptionsOrder,
+            )
+          }
+          helperText="Shuffles the order of options order for each question."
+        >
+          Randomize options order
+        </Field.Switch>
       </div>
       <div>
         <div className="space-y-1">

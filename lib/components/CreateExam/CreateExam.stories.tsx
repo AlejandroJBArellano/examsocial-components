@@ -125,8 +125,6 @@ export const WithPrefilledValues: Story = {
         showCorrectAnswers: true,
         sendEmailReport: true,
         leaderboard: true,
-        maxAttempts: 1,
-        passingScore: 80,
         feedback: [],
         privacy: {
           setting: "PRIVATE",
@@ -139,8 +137,9 @@ export const WithPrefilledValues: Story = {
           minutes: 30,
           seconds: 0,
         },
-        theme: "INDUSTRIAL_EDGE",
+        passingScore: 80,
       },
+      theme: "INDUSTRIAL_EDGE",
     },
   },
   parameters: {

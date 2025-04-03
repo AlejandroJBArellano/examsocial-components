@@ -19,19 +19,10 @@ export const Default: Story = {
       currency: "USD",
       price: 0,
       advancedSettings: {
-        passingScore: 80,
-        randomizeQuestionOrder: true,
-        showCorrectAnswers: false,
+        showCorrectAnswers: true,
         sendEmailReport: true,
         leaderboard: true,
-        maxAttempts: 3,
-        feedback: [
-          {
-            message: "Great job!",
-            condition: "GREATER_THAN",
-            gt: 80,
-          },
-        ],
+        passingScore: 80,
         privacy: {
           setting: "PUBLIC",
           invitees: [],
@@ -43,8 +34,8 @@ export const Default: Story = {
           minutes: 30,
           seconds: 0,
         },
-        theme: "WHITEBOARD",
       },
+      theme: "WHITEBOARD",
       contents: [
         {
           type: "TEXT",

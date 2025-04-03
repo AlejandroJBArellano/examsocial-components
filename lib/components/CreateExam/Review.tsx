@@ -199,21 +199,14 @@ export const Review = () => {
           <div>
             <Span>Theme</Span>
             <div className="flex gap-2">
-              <div
-                className={
-                  "flex gap-1.5 " + formik.values.advancedSettings.theme
-                }
-              >
+              <div className={"flex gap-1.5 " + formik.values.theme}>
                 <div className="size-5 rounded-full border border-black bg-primary"></div>
                 <div className="size-5 rounded-full border border-black bg-secondary"></div>
                 <div className="size-5 rounded-full border border-black bg-accent"></div>
                 <div className="size-5 rounded-full border border-black bg-extra"></div>
               </div>
               <FocusSpan>
-                {toTitleCase(formik.values.advancedSettings.theme).replaceAll(
-                  "_",
-                  " ",
-                )}
+                {toTitleCase(formik.values.theme).replaceAll("_", " ")}
               </FocusSpan>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import { CategoryMetadata, ExamCategory } from "@/types";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
@@ -35,8 +36,23 @@ export const Review = () => {
               {formik.values.description}
             </ExamCard.Description>
             <ExamCard.Footer>
-              <ExamCard.Tag>XD</ExamCard.Tag>
-              <ExamCard.Time>10 min</ExamCard.Time>
+              <ExamCard.Tag className="flex items-end gap-1">
+                <Icon
+                  name={
+                    CategoryMetadata[
+                      formik.values.categories[0] as ExamCategory
+                    ].icon
+                  }
+                  size={16}
+                  filled
+                />
+                {toTitleCase(formik.values.categories[0])}
+              </ExamCard.Tag>
+              <ExamCard.Time>
+                {formik.values.advancedSettings.timing.setting === "NONE"
+                  ? "No time limit"
+                  : `${formik.values.advancedSettings.timing.hours ? `${formik.values.advancedSettings.timing.hours}h ` : ""}${formik.values.advancedSettings.timing.minutes ? `${formik.values.advancedSettings.timing.minutes}m ` : ""}${formik.values.advancedSettings.timing.seconds ? `${formik.values.advancedSettings.timing.seconds}s` : ""}`}
+              </ExamCard.Time>
             </ExamCard.Footer>
           </ExamCard.Content>
         </ExamCard>

@@ -145,84 +145,155 @@ export const Review = () => {
           </div>
         </article>
       )}
-      <article className="space-y-1">
+      <article className="space-y-4">
         <Heading4>Advanced Settings</Heading4>
-        <div className="space-y-3 [&>div]:flex [&>div]:justify-between">
-          <div>
-            <Span>Randomize question order</Span>
-            <FocusSpan
-              className={
-                formik.values.advancedSettings.randomizeQuestionOrder
-                  ? "text-feedback-success"
-                  : "text-feedback-error"
-              }
-            >
-              {formik.values.advancedSettings.randomizeQuestionOrder
-                ? "Yes"
-                : "No"}
-            </FocusSpan>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="space-y-3 rounded-md bg-gray-50 p-4">
+            <div className="border-b border-gray-200 pb-2">
+              <Span className="font-medium">Exam Behavior</Span>
+            </div>
+            <div className="flex justify-between">
+              <Span>Randomize question order</Span>
+              <FocusSpan
+                className={
+                  formik.values.advancedSettings.randomizeQuestionOrder
+                    ? "flex items-center gap-1 text-feedback-success"
+                    : "flex items-center gap-1 text-feedback-error"
+                }
+              >
+                {formik.values.advancedSettings.randomizeQuestionOrder ? (
+                  <>
+                    <Icon name="check_circle" size={16} filled />
+                    Yes
+                  </>
+                ) : (
+                  <>
+                    <Icon name="cancel" size={16} filled />
+                    No
+                  </>
+                )}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Show results at the end</Span>
+              <FocusSpan
+                className={
+                  formik.values.advancedSettings.showCorrectAnswers
+                    ? "flex items-center gap-1 text-feedback-success"
+                    : "flex items-center gap-1 text-feedback-error"
+                }
+              >
+                {formik.values.advancedSettings.showCorrectAnswers ? (
+                  <>
+                    <Icon name="check_circle" size={16} filled />
+                    Yes
+                  </>
+                ) : (
+                  <>
+                    <Icon name="cancel" size={16} filled />
+                    No
+                  </>
+                )}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Time Limit</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="schedule" size={16} filled />
+                {formik.values.advancedSettings.timing.setting === "NONE"
+                  ? "No time limit"
+                  : `${formik.values.advancedSettings.timing.hours ? `${formik.values.advancedSettings.timing.hours}h ` : ""}${formik.values.advancedSettings.timing.minutes ? `${formik.values.advancedSettings.timing.minutes}m ` : ""}${formik.values.advancedSettings.timing.seconds ? `${formik.values.advancedSettings.timing.seconds}s` : ""}`}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Number of attempts</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="refresh" size={16} filled />
+                {formik.values.advancedSettings.maxAttempts}
+              </FocusSpan>
+            </div>
           </div>
-          <div>
-            <Span>Show results at the end</Span>
-            <FocusSpan
-              className={
-                formik.values.advancedSettings.showCorrectAnswers
-                  ? "text-feedback-success"
-                  : "text-feedback-error"
-              }
-            >
-              {formik.values.advancedSettings.showCorrectAnswers ? "Yes" : "No"}
-            </FocusSpan>
+
+          <div className="space-y-3 rounded-md bg-gray-50 p-4">
+            <div className="border-b border-gray-200 pb-2">
+              <Span className="font-medium">Results & Sharing</Span>
+            </div>
+            <div className="flex justify-between">
+              <Span>Send email report</Span>
+              <FocusSpan
+                className={
+                  formik.values.advancedSettings.sendEmailReport
+                    ? "flex items-center gap-1 text-feedback-success"
+                    : "flex items-center gap-1 text-feedback-error"
+                }
+              >
+                {formik.values.advancedSettings.sendEmailReport ? (
+                  <>
+                    <Icon name="check_circle" size={16} filled />
+                    Yes
+                  </>
+                ) : (
+                  <>
+                    <Icon name="cancel" size={16} filled />
+                    No
+                  </>
+                )}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Leaderboard</Span>
+              <FocusSpan
+                className={
+                  formik.values.advancedSettings.leaderboard
+                    ? "flex items-center gap-1 text-feedback-success"
+                    : "flex items-center gap-1 text-feedback-error"
+                }
+              >
+                {formik.values.advancedSettings.leaderboard ? (
+                  <>
+                    <Icon name="check_circle" size={16} filled />
+                    Yes
+                  </>
+                ) : (
+                  <>
+                    <Icon name="cancel" size={16} filled />
+                    No
+                  </>
+                )}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Privacy</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="lock" size={16} filled />
+                {toTitleCase(formik.values.advancedSettings.privacy.setting)}
+              </FocusSpan>
+            </div>
           </div>
-          <div>
-            <Span>Send email report</Span>
-            <FocusSpan
-              className={
-                formik.values.advancedSettings.sendEmailReport
-                  ? "text-feedback-success"
-                  : "text-feedback-error"
-              }
-            >
-              {formik.values.advancedSettings.sendEmailReport ? "Yes" : "No"}
-            </FocusSpan>
-          </div>
-          <div>
-            <Span>Leaderboard</Span>
-            <FocusSpan
-              className={
-                formik.values.advancedSettings.leaderboard
-                  ? "text-feedback-success"
-                  : "text-feedback-error"
-              }
-            >
-              {formik.values.advancedSettings.leaderboard ? "Yes" : "No"}
-            </FocusSpan>
-          </div>
-          <div>
-            <Span>Number of attempts</Span>
-            <FocusSpan>{formik.values.advancedSettings.maxAttempts}</FocusSpan>
-          </div>
-          <div>
-            <Span>Price</Span>
-            <FocusSpan>{formik.values.price}</FocusSpan>
-          </div>
-          <div>
-            <Span>Privacy</Span>
-            <FocusSpan>
-              {toTitleCase(formik.values.advancedSettings.privacy.setting)}
-            </FocusSpan>
-          </div>
-          <div>
-            <Span>Theme</Span>
-            <div className="flex gap-2">
-              <div className={"flex gap-1.5 " + formik.values.theme}>
-                <div className="size-5 rounded-full border border-black bg-primary"></div>
-                <div className="size-5 rounded-full border border-black bg-secondary"></div>
-                <div className="size-5 rounded-full border border-black bg-accent"></div>
-                <div className="size-5 rounded-full border border-black bg-extra"></div>
+
+          <div className="space-y-3 rounded-md bg-gray-50 p-4">
+            <div className="border-b border-gray-200 pb-2">
+              <Span className="font-medium">Appearance & Price</Span>
+            </div>
+            <div className="flex justify-between">
+              <Span>Theme</Span>
+              <div className="flex items-center gap-2">
+                <div className={"flex gap-1.5 " + formik.values.theme}>
+                  <div className="size-5 rounded-full border border-black bg-primary"></div>
+                  <div className="size-5 rounded-full border border-black bg-secondary"></div>
+                  <div className="size-5 rounded-full border border-black bg-accent"></div>
+                  <div className="size-5 rounded-full border border-black bg-extra"></div>
+                </div>
+                <FocusSpan>
+                  {toTitleCase(formik.values.theme).replaceAll("_", " ")}
+                </FocusSpan>
               </div>
-              <FocusSpan>
-                {toTitleCase(formik.values.theme).replaceAll("_", " ")}
+            </div>
+            <div className="flex justify-between">
+              <Span>Price</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="payments" size={16} filled />
+                {formik.values.price}
               </FocusSpan>
             </div>
           </div>

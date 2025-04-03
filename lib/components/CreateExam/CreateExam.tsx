@@ -73,7 +73,7 @@ const CreateExam = ({
           title: initialValues?.title || "",
           description: initialValues?.description || "",
           image: initialValues?.image || "",
-          category: initialValues?.category || "OTHER",
+          categories: initialValues?.categories || [],
           questions: initialValues?.questions || [],
           contents: initialValues?.contents || [],
           currency: initialValues?.currency || "USD",

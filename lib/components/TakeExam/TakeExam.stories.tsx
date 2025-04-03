@@ -15,7 +15,7 @@ export const Default: Story = {
       title: "Sample Exam",
       description: "This is a sample exam description.",
       image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA",
-      category: "COMPUTER_SCIENCE",
+      categories: ["COMPUTER_SCIENCE"],
       currency: "USD",
       price: 0,
       advancedSettings: {

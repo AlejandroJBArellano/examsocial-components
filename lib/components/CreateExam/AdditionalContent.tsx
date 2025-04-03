@@ -5,7 +5,7 @@ import { contentSchema, examSchema } from "../../schemas";
 import { NewAdditionalContent } from "../AdditionalContent/New";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
-import { Anchor, Heading3, Paragraph, Smoll } from "../FontFaces";
+import { Anchor, Heading3, Paragraph, Smoll, Span } from "../FontFaces";
 import { Icon } from "../Icon";
 
 const ContentSet = ({
@@ -102,7 +102,11 @@ export const AdditionalContent = () => {
         Enhance your exam with supplementary materials such as links, images,
         videos, audio files, or documents. These additional resources can
         provide context, references, or extra information to help students
-        better understand the exam content.
+        better understand the exam content.{" "}
+        <Span className="text-extra-shadow">
+          You will soon have a rich text editor to have such writing experience
+          like Notion. Keep in touch! 👀
+        </Span>
       </Paragraph>
       <article className="space-y-4">
         {formik.values.contents.map((content, index) => (

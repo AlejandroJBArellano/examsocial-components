@@ -115,7 +115,7 @@ export const WithPrefilledValues: Story = {
       description:
         "This is a sample exam description with some pre-filled values.",
       image: "https://placekitten.com/800/400",
-      category: "COMPUTER_SCIENCE",
+      categories: ["COMPUTER_SCIENCE"],
       questions: [],
       contents: [],
       currency: "USD",

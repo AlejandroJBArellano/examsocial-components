@@ -7,7 +7,6 @@ import { useCallback, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { examSchema } from "../../schemas";
 import { PremiumBadge } from "../Badges";
-import SoonBadge from "../Badges/SoonBadge";
 import { BannerInput } from "../BannerInput";
 import { Field } from "../Field";
 import { FocusSpan, Heading4, Heading5, Heading6, Span } from "../FontFaces";
@@ -15,6 +14,7 @@ import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 import { ImageUploader } from "../ImageUploader";
 import { Select } from "../Select";
+import { ComingSoonWrapper } from "../Wrapper";
 import { ThemeSettings } from "./ThemeSettings";
 
 export const GeneralDetails = () => {
@@ -133,8 +133,8 @@ export const GeneralDetails = () => {
           </Heading6>
         )}
       </article>
-      <article className="relative">
-        <div className={"pointer-events-none blur-sm"}>
+      <ComingSoonWrapper show={true} badgeSize="small">
+        <article>
           <Field
             label="Pathname"
             inputProps={{
@@ -168,11 +168,8 @@ export const GeneralDetails = () => {
               <PremiumBadge />
             </div>
           )}
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <SoonBadge />
-        </div>
-      </article>
+        </article>
+      </ComingSoonWrapper>
       <article className="grid gap-4 border-t border-secondary-tint py-4 sm:grid-cols-2">
         <section className="flex flex-col items-start justify-between gap-2 sm:col-span-2 sm:flex-row sm:items-center">
           <div className="flex gap-2">

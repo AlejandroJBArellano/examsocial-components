@@ -55,3 +55,4 @@ export * from "./Tag";
 export * from "./Textarea";
 export * from "./Tooltip";
 export * from "./UserAnswers";
+export * from "./Wrapper";

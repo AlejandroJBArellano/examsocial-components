@@ -5,7 +5,6 @@ import { useRef, useState } from "react";
 import * as Yup from "yup";
 import { examSchema, feedbackSchema } from "../../schemas";
 import { PremiumBadge, ProBadge } from "../Badges";
-import SoonBadge from "../Badges/SoonBadge";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
@@ -20,6 +19,7 @@ import {
   Span,
 } from "../FontFaces";
 import { Helper } from "../Helper";
+import { ComingSoonWrapper } from "../Wrapper";
 import { PrivacySettings } from "./PrivacySettings";
 import { TimingSettings } from "./TimingSettings";
 
@@ -253,62 +253,50 @@ export const AdvancedSettings = () => {
           {userPlan !== "PREMIUM" && <PremiumBadge />}
         </div>
         <div className="space-y-4">
-          <div className="relative">
-            <div className="pointer-events-none blur-sm">
-              <Field.Switch
-                checked={values.advancedSettings.showLogo}
-                onCheckedChange={() =>
-                  userPlan === "PREMIUM" &&
-                  setFieldValue(
-                    "advancedSettings.showLogo",
-                    !values.advancedSettings.showLogo,
-                  )
-                }
-                disabled={userPlan !== "PREMIUM"}
-                className={cn({
-                  "cursor-not-allowed opacity-50 blur-sm":
-                    userPlan !== "PREMIUM",
-                })}
-                helperText="Display your logo in the exam metadata and details view."
-              >
-                <div className="flex items-center gap-2">
-                  Show logo in exam
-                  {userPlan !== "PREMIUM" && <PremiumBadge />}
-                </div>
-              </Field.Switch>
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <SoonBadge />
-            </div>
-          </div>
-          <div className="relative">
-            <div className="pointer-events-none blur-sm">
-              <Field.Switch
-                checked={values.advancedSettings.showBrandName}
-                onCheckedChange={() =>
-                  userPlan === "PREMIUM" &&
-                  setFieldValue(
-                    "advancedSettings.showBrandName",
-                    !values.advancedSettings.showBrandName,
-                  )
-                }
-                disabled={userPlan !== "PREMIUM"}
-                className={cn({
-                  "cursor-not-allowed opacity-50 blur-sm":
-                    userPlan !== "PREMIUM",
-                })}
-                helperText="Display your brand name in the exam metadata and details view."
-              >
-                <div className="flex items-center gap-2">
-                  Show brand name
-                  {userPlan !== "PREMIUM" && <PremiumBadge />}
-                </div>
-              </Field.Switch>
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <SoonBadge />
-            </div>
-          </div>
+          <ComingSoonWrapper>
+            <Field.Switch
+              checked={values.advancedSettings.showLogo}
+              onCheckedChange={() =>
+                userPlan === "PREMIUM" &&
+                setFieldValue(
+                  "advancedSettings.showLogo",
+                  !values.advancedSettings.showLogo,
+                )
+              }
+              disabled={userPlan !== "PREMIUM"}
+              className={cn({
+                "cursor-not-allowed opacity-50 blur-sm": userPlan !== "PREMIUM",
+              })}
+              helperText="Display your logo in the exam metadata and details view."
+            >
+              <div className="flex items-center gap-2">
+                Show logo in exam
+                {userPlan !== "PREMIUM" && <PremiumBadge />}
+              </div>
+            </Field.Switch>
+          </ComingSoonWrapper>
+          <ComingSoonWrapper>
+            <Field.Switch
+              checked={values.advancedSettings.showBrandName}
+              onCheckedChange={() =>
+                userPlan === "PREMIUM" &&
+                setFieldValue(
+                  "advancedSettings.showBrandName",
+                  !values.advancedSettings.showBrandName,
+                )
+              }
+              disabled={userPlan !== "PREMIUM"}
+              className={cn({
+                "cursor-not-allowed opacity-50 blur-sm": userPlan !== "PREMIUM",
+              })}
+              helperText="Display your brand name in the exam metadata and details view."
+            >
+              <div className="flex items-center gap-2">
+                Show brand name
+                {userPlan !== "PREMIUM" && <PremiumBadge />}
+              </div>
+            </Field.Switch>
+          </ComingSoonWrapper>
           <div className="space-y-2">
             <Heading6>Personalized Thank You Screen</Heading6>
             <Paragraph>
@@ -400,73 +388,68 @@ export const AdvancedSettings = () => {
         </section>
         <PrivacySettings />
         <section className="space-y-4">
-          <div className="relative">
-            <div className="pointer-events-none blur-sm">
-              <Field.Switch
-                className="w-20"
-                checked={values.advancedSettings.limitParticipants}
-                onCheckedChange={() =>
-                  setFieldValue(
-                    "advancedSettings.limitParticipants",
-                    !values.advancedSettings.limitParticipants,
-                  )
+          <ComingSoonWrapper>
+            <Field.Switch
+              className="w-20"
+              checked={values.advancedSettings.limitParticipants}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.limitParticipants",
+                  !values.advancedSettings.limitParticipants,
+                )
+              }
+            >
+              <div>
+                <FocusSpan>Limit number of participants</FocusSpan>
+                <Paragraph className="text-sm">
+                  Set a maximum number of participants who can take this exam.
+                </Paragraph>
+              </div>
+            </Field.Switch>
+            {values.advancedSettings.limitParticipants && (
+              <Field
+                label={
+                  <div>
+                    <FocusSpan>Max participants</FocusSpan>
+                    <Paragraph className="text-sm">
+                      Set a maximum number of participants who can take this
+                      exam.
+                    </Paragraph>
+                  </div>
                 }
-              >
-                <div>
-                  <FocusSpan>Limit number of participants</FocusSpan>
-                  <Paragraph className="text-sm">
-                    Set a maximum number of participants who can take this exam.
-                  </Paragraph>
-                </div>
-              </Field.Switch>
-              {values.advancedSettings.limitParticipants && (
-                <Field
-                  label={
-                    <div>
-                      <FocusSpan>Max participants</FocusSpan>
-                      <Paragraph className="text-sm">
-                        Set a maximum number of participants who can take this
-                        exam.
-                      </Paragraph>
-                    </div>
-                  }
-                  inputProps={{
-                    id: "maxParticipants",
-                    type: "number",
-                    placeholder: !["PUBLIC", "ONLY_ME"].includes(
-                      values.advancedSettings.privacy.setting,
-                    )
-                      ? userPlan === "PREMIUM"
-                        ? "500"
-                        : userPlan === "PRO"
-                          ? "100"
-                          : "0"
-                      : "0",
-                    max: !["PUBLIC", "ONLY_ME"].includes(
-                      values.advancedSettings.privacy.setting,
-                    )
-                      ? userPlan === "PREMIUM"
-                        ? 500
-                        : userPlan === "PRO"
-                          ? 100
-                          : undefined
-                      : undefined,
-                    className: "block w-1/6",
-                    value: values.advancedSettings.maxParticipants || "",
-                    onChange: (e) =>
-                      setFieldValue(
-                        "advancedSettings.maxParticipants",
-                        parseInt(e.target.value) || 0,
-                      ),
-                    min: 1,
-                  }}
-                />
-              )}
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <SoonBadge />
-            </div>
-          </div>
+                inputProps={{
+                  id: "maxParticipants",
+                  type: "number",
+                  placeholder: !["PUBLIC", "ONLY_ME"].includes(
+                    values.advancedSettings.privacy.setting,
+                  )
+                    ? userPlan === "PREMIUM"
+                      ? "500"
+                      : userPlan === "PRO"
+                        ? "100"
+                        : "0"
+                    : "0",
+                  max: !["PUBLIC", "ONLY_ME"].includes(
+                    values.advancedSettings.privacy.setting,
+                  )
+                    ? userPlan === "PREMIUM"
+                      ? 500
+                      : userPlan === "PRO"
+                        ? 100
+                        : undefined
+                    : undefined,
+                  className: "block w-1/6",
+                  value: values.advancedSettings.maxParticipants || "",
+                  onChange: (e) =>
+                    setFieldValue(
+                      "advancedSettings.maxParticipants",
+                      parseInt(e.target.value) || 0,
+                    ),
+                  min: 1,
+                }}
+              />
+            )}
+          </ComingSoonWrapper>
         </section>
         <section className="space-y-4">
           <Field.Switch
@@ -513,32 +496,27 @@ export const AdvancedSettings = () => {
           )}
         </section>
         <section className="space-y-4">
-          <div className="relative">
-            <div className="pointer-events-none blur-sm">
-              <Field.Switch
-                checked={values.advancedSettings.allowAnonymousAnswers}
-                onCheckedChange={() =>
-                  setFieldValue(
-                    "advancedSettings.allowAnonymousAnswers",
-                    !values.advancedSettings.allowAnonymousAnswers,
-                  )
-                }
-                className="w-20"
-              >
-                <div>
-                  <FocusSpan>Allow anonymous answers</FocusSpan>
-                  <Paragraph className="text-sm">
-                    Allows users who are not registered on ExamSocial to take
-                    this exam. Their results in the table will be displayed as:
-                    "Anonymous user".
-                  </Paragraph>
-                </div>
-              </Field.Switch>
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <SoonBadge />
-            </div>
-          </div>
+          <ComingSoonWrapper>
+            <Field.Switch
+              checked={values.advancedSettings.allowAnonymousAnswers}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.allowAnonymousAnswers",
+                  !values.advancedSettings.allowAnonymousAnswers,
+                )
+              }
+              className="w-20"
+            >
+              <div>
+                <FocusSpan>Allow anonymous answers</FocusSpan>
+                <Paragraph className="text-sm">
+                  Allows users who are not registered on ExamSocial to take this
+                  exam. Their results in the table will be displayed as:
+                  "Anonymous user".
+                </Paragraph>
+              </div>
+            </Field.Switch>
+          </ComingSoonWrapper>
         </section>
       </div>
       <TimingSettings />
@@ -563,97 +541,87 @@ export const AdvancedSettings = () => {
         >
           Randomize question order
         </Field.Switch>
-        <div className="relative">
-          <div className="pointer-events-none blur-sm">
-            <Field.Switch
-              checked={values.advancedSettings.randomizeOptionsOrder}
-              onCheckedChange={() =>
-                setFieldValue(
-                  "advancedSettings.randomizeOptionsOrder",
-                  !values.advancedSettings.randomizeOptionsOrder,
-                )
-              }
-              helperText="Shuffles the order of options order for each question."
-            >
-              Randomize options order
-            </Field.Switch>
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <SoonBadge />
-          </div>
-        </div>
+        <ComingSoonWrapper>
+          <Field.Switch
+            checked={values.advancedSettings.randomizeOptionsOrder}
+            onCheckedChange={() =>
+              setFieldValue(
+                "advancedSettings.randomizeOptionsOrder",
+                !values.advancedSettings.randomizeOptionsOrder,
+              )
+            }
+            helperText="Shuffles the order of options order for each question."
+          >
+            Randomize options order
+          </Field.Switch>
+        </ComingSoonWrapper>
       </div>
-      <div className="relative">
-        <div className="pointer-events-none blur-sm">
-          <div className="space-y-1">
-            <Heading5>Feedback and Results</Heading5>
-            <Paragraph className="text-sm">
-              Configure the feedback and results for the exam.
-            </Paragraph>
-          </div>
-          <div className="mt-4 space-y-4">
-            <Field
-              label={
-                <div className="flex gap-2">
-                  <FocusSpan>Minimum passing score</FocusSpan>
-                  <Helper align="center" side="top">
-                    Set the minimum score required to pass the exam. Students
-                    who score below this threshold will fail the exam, appearing
-                    in red.
-                  </Helper>
-                </div>
-              }
-              inputProps={{
-                type: "number",
-                placeholder: "70",
-                className: "w-1/3",
-                value: values.advancedSettings.passingScore,
-                onChange: (e) =>
-                  setFieldValue(
-                    "advancedSettings.passingScore",
-                    parseInt(e.target.value),
-                  ),
-              }}
-            />
-            <Field.Switch
-              checked={values.advancedSettings.sendEmailReport}
-              onCheckedChange={() =>
-                userPlan !== "BASIC" &&
-                setFieldValue(
-                  "advancedSettings.sendEmailReport",
-                  !values.advancedSettings.sendEmailReport,
-                )
-              }
-              disabled={userPlan === "BASIC"}
-              className={cn({
-                "cursor-not-allowed opacity-50 blur-sm": userPlan === "BASIC",
-              })}
-              helperText="Send an email report to the user when they complete the exam."
-            >
-              <div className="flex items-center gap-2">
-                Send email report
-                {userPlan === "BASIC" && <ProBadge />}
+      <ComingSoonWrapper>
+        <div className="space-y-1">
+          <Heading5>Feedback and Results</Heading5>
+          <Paragraph className="text-sm">
+            Configure the feedback and results for the exam.
+          </Paragraph>
+        </div>
+        <div className="mt-4 space-y-4">
+          <Field
+            label={
+              <div className="flex gap-2">
+                <FocusSpan>Minimum passing score</FocusSpan>
+                <Helper align="center" side="top">
+                  Set the minimum score required to pass the exam. Students who
+                  score below this threshold will fail the exam, appearing in
+                  red.
+                </Helper>
               </div>
-            </Field.Switch>
-            <Field.Switch
-              checked={values.advancedSettings.showCorrectAnswers}
-              onCheckedChange={() =>
+            }
+            inputProps={{
+              type: "number",
+              placeholder: "70",
+              className: "w-1/3",
+              value: values.advancedSettings.passingScore,
+              onChange: (e) =>
                 setFieldValue(
-                  "advancedSettings.showCorrectAnswers",
-                  !values.advancedSettings.showCorrectAnswers,
-                )
-              }
-              className="w-20"
-              helperText="Show the correct answers to students after they complete the exam."
-            >
-              Show correct answers
-            </Field.Switch>
-          </div>
+                  "advancedSettings.passingScore",
+                  parseInt(e.target.value),
+                ),
+            }}
+          />
+          <Field.Switch
+            checked={values.advancedSettings.sendEmailReport}
+            onCheckedChange={() =>
+              userPlan !== "BASIC" &&
+              setFieldValue(
+                "advancedSettings.sendEmailReport",
+                !values.advancedSettings.sendEmailReport,
+              )
+            }
+            disabled={userPlan === "BASIC"}
+            className={cn({
+              "cursor-not-allowed opacity-50 blur-sm": userPlan === "BASIC",
+            })}
+            helperText="Send an email report to the user when they complete the exam."
+          >
+            <div className="flex items-center gap-2">
+              Send email report
+              {userPlan === "BASIC" && <ProBadge />}
+            </div>
+          </Field.Switch>
+          <Field.Switch
+            checked={values.advancedSettings.showCorrectAnswers}
+            onCheckedChange={() =>
+              setFieldValue(
+                "advancedSettings.showCorrectAnswers",
+                !values.advancedSettings.showCorrectAnswers,
+              )
+            }
+            className="w-20"
+            helperText="Show the correct answers to students after they complete the exam."
+          >
+            Show correct answers
+          </Field.Switch>
         </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <SoonBadge />
-        </div>
-      </div>
+      </ComingSoonWrapper>
       <Dialog innerRef={dialogRef} id="advanced-settings">
         <NewFeedbackScreen
           onSubmit={(newFeedback) => {

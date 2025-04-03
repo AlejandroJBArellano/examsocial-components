@@ -63,6 +63,10 @@ const IconButton = (props: IconButtonProps) => {
         name={props.children as string}
         size={props.size}
         filled={props.filled}
+        responsiveSizes={{
+          sm: 20,
+          xl: 24,
+        }}
       />
     </Button>
   );

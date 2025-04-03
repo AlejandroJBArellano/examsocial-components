@@ -158,7 +158,7 @@ const CreateExam = ({
           );
 
           return (
-            <Form className="h-full min-h-screen w-full max-w-screen-2xl">
+            <Form className="flex h-full min-h-screen w-full max-w-screen-2xl flex-col">
               <header className="sticky top-0 z-10 bg-white">
                 <Stepper
                   allowManualStepChange
@@ -172,8 +172,10 @@ const CreateExam = ({
                   Create Exam
                 </Stepper>
               </header>
-              <main className="px-4 py-6 md:space-y-5 md:px-6 md:py-8 lg:space-y-6 lg:px-7 lg:py-9 xl:px-8 xl:py-10">
-                <div className="space-y-6 md:space-y-5">{steps[step]}</div>
+              <main className="flex flex-1 flex-col px-4 py-6 md:gap-5 md:px-6 md:py-8 lg:gap-6 lg:px-7 lg:py-9 xl:px-8 xl:py-10">
+                <div className="flex-1 space-y-6 md:space-y-5">
+                  {steps[step]}
+                </div>
                 <footer className="mt-4 flex items-center justify-between gap-4 md:justify-end">
                   <Button
                     rounded

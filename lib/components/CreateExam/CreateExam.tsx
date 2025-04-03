@@ -95,8 +95,6 @@ const CreateExam = ({
                 initialValues?.advancedSettings?.privacy?.setting || "PUBLIC",
               invitees:
                 initialValues?.advancedSettings?.privacy?.invitees || [],
-              password:
-                initialValues?.advancedSettings?.privacy?.password || "",
             },
             timing: {
               setting:

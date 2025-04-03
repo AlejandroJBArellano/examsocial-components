@@ -7,10 +7,6 @@ export interface ComingSoonWrapperProps {
    */
   children: ReactNode;
   /**
-   * Whether to show the wrapper (enables conditional rendering)
-   */
-  show?: boolean;
-  /**
    * Size of the badge
    */
   badgeSize?: "small" | "big";
@@ -21,13 +17,8 @@ export interface ComingSoonWrapperProps {
  */
 export const ComingSoonWrapper = ({
   children,
-  show = true,
   badgeSize = "small",
 }: ComingSoonWrapperProps) => {
-  if (!show) {
-    return <>{children}</>;
-  }
-
   return (
     <div className="relative">
       <div className="pointer-events-none blur-sm">{children}</div>

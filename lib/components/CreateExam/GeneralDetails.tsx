@@ -133,7 +133,7 @@ export const GeneralDetails = () => {
           </Heading6>
         )}
       </article>
-      <ComingSoonWrapper show={true} badgeSize="small">
+      <ComingSoonWrapper badgeSize="small">
         <article>
           <Field
             label="Pathname"

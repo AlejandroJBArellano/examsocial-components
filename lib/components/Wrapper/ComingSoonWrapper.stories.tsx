@@ -26,7 +26,6 @@ export const Default: Story = {
         />
       </div>
     ),
-    show: true,
     badgeSize: "small",
   },
 };
@@ -35,12 +34,5 @@ export const BigBadge: Story = {
   args: {
     ...Default.args,
     badgeSize: "big",
-  },
-};
-
-export const NotShown: Story = {
-  args: {
-    ...Default.args,
-    show: false,
   },
 };

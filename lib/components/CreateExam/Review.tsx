@@ -148,9 +148,164 @@ export const Review = () => {
       <article className="space-y-4">
         <Heading4>Advanced Settings</Heading4>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {/* Branding */}
           <div className="space-y-3 rounded-md bg-gray-50 p-4">
             <div className="border-b border-gray-200 pb-2">
-              <Span className="font-medium">Exam Behavior</Span>
+              <Span className="font-medium">Branding</Span>
+            </div>
+            <div className="flex justify-between">
+              <Span>Show logo in exam</Span>
+              <FocusSpan
+                className={
+                  formik.values.advancedSettings.showLogo
+                    ? "flex items-center gap-1 text-feedback-success"
+                    : "flex items-center gap-1 text-feedback-error"
+                }
+              >
+                {formik.values.advancedSettings.showLogo ? (
+                  <>
+                    <Icon name="check_circle" size={16} filled />
+                    Yes
+                  </>
+                ) : (
+                  <>
+                    <Icon name="cancel" size={16} filled />
+                    No
+                  </>
+                )}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Show brand name</Span>
+              <FocusSpan
+                className={
+                  formik.values.advancedSettings.showBrandName
+                    ? "flex items-center gap-1 text-feedback-success"
+                    : "flex items-center gap-1 text-feedback-error"
+                }
+              >
+                {formik.values.advancedSettings.showBrandName ? (
+                  <>
+                    <Icon name="check_circle" size={16} filled />
+                    Yes
+                  </>
+                ) : (
+                  <>
+                    <Icon name="cancel" size={16} filled />
+                    No
+                  </>
+                )}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Custom thank you screens</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="feedback" size={16} filled />
+                {formik.values.advancedSettings.feedback?.length || 0}
+              </FocusSpan>
+            </div>
+          </div>
+
+          {/* Security */}
+          <div className="space-y-3 rounded-md bg-gray-50 p-4">
+            <div className="border-b border-gray-200 pb-2">
+              <Span className="font-medium">Security</Span>
+            </div>
+            <div className="flex justify-between">
+              <Span>Privacy</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="lock" size={16} filled />
+                {toTitleCase(formik.values.advancedSettings.privacy.setting)}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Limit participants</Span>
+              <FocusSpan
+                className={
+                  formik.values.advancedSettings.limitParticipants
+                    ? "flex items-center gap-1 text-feedback-success"
+                    : "flex items-center gap-1 text-feedback-error"
+                }
+              >
+                {formik.values.advancedSettings.limitParticipants ? (
+                  <>
+                    <Icon name="check_circle" size={16} filled />
+                    {formik.values.advancedSettings.maxParticipants || 0}
+                  </>
+                ) : (
+                  <>
+                    <Icon name="cancel" size={16} filled />
+                    No
+                  </>
+                )}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Limit attempts</Span>
+              <FocusSpan
+                className={
+                  formik.values.advancedSettings.limitAttempts
+                    ? "flex items-center gap-1 text-feedback-success"
+                    : "flex items-center gap-1 text-feedback-error"
+                }
+              >
+                {formik.values.advancedSettings.limitAttempts ? (
+                  <>
+                    <Icon name="check_circle" size={16} filled />
+                    {formik.values.advancedSettings.maxAttempts}
+                  </>
+                ) : (
+                  <>
+                    <Icon name="cancel" size={16} filled />
+                    No
+                  </>
+                )}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Allow anonymous answers</Span>
+              <FocusSpan
+                className={
+                  formik.values.advancedSettings.allowAnonymousAnswers
+                    ? "flex items-center gap-1 text-feedback-success"
+                    : "flex items-center gap-1 text-feedback-error"
+                }
+              >
+                {formik.values.advancedSettings.allowAnonymousAnswers ? (
+                  <>
+                    <Icon name="check_circle" size={16} filled />
+                    Yes
+                  </>
+                ) : (
+                  <>
+                    <Icon name="cancel" size={16} filled />
+                    No
+                  </>
+                )}
+              </FocusSpan>
+            </div>
+          </div>
+
+          {/* Timing */}
+          <div className="space-y-3 rounded-md bg-gray-50 p-4">
+            <div className="border-b border-gray-200 pb-2">
+              <Span className="font-medium">Timing</Span>
+            </div>
+            <div className="flex justify-between">
+              <Span>Time Limit</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="schedule" size={16} filled />
+                {formik.values.advancedSettings.timing.setting === "NONE"
+                  ? "No time limit"
+                  : `${formik.values.advancedSettings.timing.hours ? `${formik.values.advancedSettings.timing.hours}h ` : ""}${formik.values.advancedSettings.timing.minutes ? `${formik.values.advancedSettings.timing.minutes}m ` : ""}${formik.values.advancedSettings.timing.seconds ? `${formik.values.advancedSettings.timing.seconds}s` : ""}`}
+              </FocusSpan>
+            </div>
+          </div>
+
+          {/* Questions */}
+          <div className="space-y-3 rounded-md bg-gray-50 p-4">
+            <div className="border-b border-gray-200 pb-2">
+              <Span className="font-medium">Questions</Span>
             </div>
             <div className="flex justify-between">
               <Span>Randomize question order</Span>
@@ -175,15 +330,51 @@ export const Review = () => {
               </FocusSpan>
             </div>
             <div className="flex justify-between">
-              <Span>Show results at the end</Span>
+              <Span>Randomize options order</Span>
               <FocusSpan
                 className={
-                  formik.values.advancedSettings.showCorrectAnswers
+                  formik.values.advancedSettings.randomizeOptionsOrder
                     ? "flex items-center gap-1 text-feedback-success"
                     : "flex items-center gap-1 text-feedback-error"
                 }
               >
-                {formik.values.advancedSettings.showCorrectAnswers ? (
+                {formik.values.advancedSettings.randomizeOptionsOrder ? (
+                  <>
+                    <Icon name="check_circle" size={16} filled />
+                    Yes
+                  </>
+                ) : (
+                  <>
+                    <Icon name="cancel" size={16} filled />
+                    No
+                  </>
+                )}
+              </FocusSpan>
+            </div>
+          </div>
+
+          {/* Feedback and Results */}
+          <div className="space-y-3 rounded-md bg-gray-50 p-4">
+            <div className="border-b border-gray-200 pb-2">
+              <Span className="font-medium">Feedback & Results</Span>
+            </div>
+            <div className="flex justify-between">
+              <Span>Minimum passing score</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="grade" size={16} filled />
+                {formik.values.advancedSettings.passingScore || "Not set"}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Send email report</Span>
+              <FocusSpan
+                className={
+                  formik.values.advancedSettings.sendEmailReport
+                    ? "flex items-center gap-1 text-feedback-success"
+                    : "flex items-center gap-1 text-feedback-error"
+                }
+              >
+                {formik.values.advancedSettings.sendEmailReport ? (
                   <>
                     <Icon name="check_circle" size={16} filled />
                     Yes
@@ -197,37 +388,15 @@ export const Review = () => {
               </FocusSpan>
             </div>
             <div className="flex justify-between">
-              <Span>Time Limit</Span>
-              <FocusSpan className="flex items-center gap-1">
-                <Icon name="schedule" size={16} filled />
-                {formik.values.advancedSettings.timing.setting === "NONE"
-                  ? "No time limit"
-                  : `${formik.values.advancedSettings.timing.hours ? `${formik.values.advancedSettings.timing.hours}h ` : ""}${formik.values.advancedSettings.timing.minutes ? `${formik.values.advancedSettings.timing.minutes}m ` : ""}${formik.values.advancedSettings.timing.seconds ? `${formik.values.advancedSettings.timing.seconds}s` : ""}`}
-              </FocusSpan>
-            </div>
-            <div className="flex justify-between">
-              <Span>Number of attempts</Span>
-              <FocusSpan className="flex items-center gap-1">
-                <Icon name="refresh" size={16} filled />
-                {formik.values.advancedSettings.maxAttempts}
-              </FocusSpan>
-            </div>
-          </div>
-
-          <div className="space-y-3 rounded-md bg-gray-50 p-4">
-            <div className="border-b border-gray-200 pb-2">
-              <Span className="font-medium">Results & Sharing</Span>
-            </div>
-            <div className="flex justify-between">
-              <Span>Send email report</Span>
+              <Span>Show correct answers</Span>
               <FocusSpan
                 className={
-                  formik.values.advancedSettings.sendEmailReport
+                  formik.values.advancedSettings.showCorrectAnswers
                     ? "flex items-center gap-1 text-feedback-success"
                     : "flex items-center gap-1 text-feedback-error"
                 }
               >
-                {formik.values.advancedSettings.sendEmailReport ? (
+                {formik.values.advancedSettings.showCorrectAnswers ? (
                   <>
                     <Icon name="check_circle" size={16} filled />
                     Yes
@@ -262,18 +431,19 @@ export const Review = () => {
                 )}
               </FocusSpan>
             </div>
-            <div className="flex justify-between">
-              <Span>Privacy</Span>
-              <FocusSpan className="flex items-center gap-1">
-                <Icon name="lock" size={16} filled />
-                {toTitleCase(formik.values.advancedSettings.privacy.setting)}
-              </FocusSpan>
-            </div>
           </div>
 
+          {/* Price */}
           <div className="space-y-3 rounded-md bg-gray-50 p-4">
             <div className="border-b border-gray-200 pb-2">
-              <Span className="font-medium">Appearance & Price</Span>
+              <Span className="font-medium">Price & Theme</Span>
+            </div>
+            <div className="flex justify-between">
+              <Span>Price</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="payments" size={16} filled />
+                {formik.values.price}
+              </FocusSpan>
             </div>
             <div className="flex justify-between">
               <Span>Theme</Span>
@@ -288,13 +458,6 @@ export const Review = () => {
                   {toTitleCase(formik.values.theme).replaceAll("_", " ")}
                 </FocusSpan>
               </div>
-            </div>
-            <div className="flex justify-between">
-              <Span>Price</Span>
-              <FocusSpan className="flex items-center gap-1">
-                <Icon name="payments" size={16} filled />
-                {formik.values.price}
-              </FocusSpan>
             </div>
           </div>
         </div>

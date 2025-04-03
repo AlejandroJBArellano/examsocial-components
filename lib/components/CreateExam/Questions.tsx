@@ -43,37 +43,39 @@ export const Questions = () => {
                 : errors.questions}
             </Span>
           </div>
+          {values.questions?.length === 0 && (
+            <Paragraph className="text-sm text-gray-700">
+              Click the "Add new question" button below to create your first
+              question.
+            </Paragraph>
+          )}
         </div>
       )}
-      {values.questions?.length === 0 && (
-        <Paragraph className="text-sm text-gray-700">
-          Click the "Add new question" button below to create your first
-          question.
-        </Paragraph>
+      {values.questions?.length > 0 && (
+        <article className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+          {values.questions?.map((question, index) => (
+            <QuestionSet
+              {...question}
+              index={index}
+              key={index}
+              image={
+                question.image
+                  ? URL.createObjectURL(question.image as Blob)
+                  : undefined
+              }
+              onDelete={() => {
+                setFieldValue(
+                  "questions",
+                  values.questions?.filter((_, i) => i !== index),
+                );
+              }}
+              onEdit={() => {
+                setIndex(index);
+              }}
+            />
+          ))}
+        </article>
       )}
-      <article className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-        {values.questions?.map((question, index) => (
-          <QuestionSet
-            {...question}
-            index={index}
-            key={index}
-            image={
-              question.image
-                ? URL.createObjectURL(question.image as Blob)
-                : undefined
-            }
-            onDelete={() => {
-              setFieldValue(
-                "questions",
-                values.questions?.filter((_, i) => i !== index),
-              );
-            }}
-            onEdit={() => {
-              setIndex(index);
-            }}
-          />
-        ))}
-      </article>
       <Button
         onClick={() => {
           dialogRef.current?.showModal();

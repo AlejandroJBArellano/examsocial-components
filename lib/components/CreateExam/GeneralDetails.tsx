@@ -10,14 +10,7 @@ import { PremiumBadge } from "../Badges";
 import SoonBadge from "../Badges/SoonBadge";
 import { BannerInput } from "../BannerInput";
 import { Field } from "../Field";
-import {
-  FocusSpan,
-  Heading4,
-  Heading5,
-  Heading6,
-  Paragraph,
-  Span,
-} from "../FontFaces";
+import { FocusSpan, Heading4, Heading5, Heading6, Span } from "../FontFaces";
 import { Helper } from "../Helper";
 import { Icon } from "../Icon";
 import { ImageUploader } from "../ImageUploader";
@@ -89,34 +82,42 @@ export const GeneralDetails = () => {
       />
       <article className="space-y-1">
         <Field.Select
-          label="Category"
+          label="Categories"
+          error={errors.categories?.toString()}
           selectProps={{
-            text: values.category ? (
-              <div className="flex items-center gap-2">
-                <Icon
-                  name={CategoryMetadata[values.category as ExamCategory].icon}
-                  size={18}
-                />
-                {CategoryMetadata[values.category as ExamCategory].displayName}
-              </div>
-            ) : (
-              "Select a category"
-            ),
+            error: !!errors.categories,
+            text:
+              values.categories?.length > 0 ? (
+                <div className="flex flex-wrap items-center gap-2">
+                  {values.categories.map((category) => (
+                    <div key={category} className="flex items-center gap-1">
+                      <Icon
+                        name={CategoryMetadata[category as ExamCategory].icon}
+                        size={18}
+                      />
+                      {CategoryMetadata[category as ExamCategory].displayName}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                "Select a category"
+              ),
           }}
         >
           {Object.entries(ExamCategory).map(([key, value]) => (
             <Select.Option
               key={key}
               onClick={() => {
-                setFieldValue("category", value);
-                if (value === ExamCategory.OTHER) {
+                if (values.categories.includes(value)) {
                   setFieldValue(
-                    "description",
-                    "Please describe the category here",
+                    "categories",
+                    values.categories.filter((c) => c !== value),
                   );
+                } else {
+                  setFieldValue("categories", [...values.categories, value]);
                 }
               }}
-              checked={values.category === value}
+              checked={values.categories?.includes(value)}
             >
               <div className="flex items-center gap-2">
                 <Icon name={CategoryMetadata[value].icon} size={18} />
@@ -125,15 +126,10 @@ export const GeneralDetails = () => {
             </Select.Option>
           ))}
         </Field.Select>
-        {values.category === ExamCategory.OTHER && (
+        {values.categories?.includes(ExamCategory.OTHER) && (
           <Heading6 className="mt-2 text-sm text-accent-shadow">
             Please describe the category in the description
           </Heading6>
-        )}
-        {errors.category && (
-          <Paragraph className="text-sm text-red-500">
-            {errors.category.toString()}
-          </Paragraph>
         )}
       </article>
       <article className="relative">

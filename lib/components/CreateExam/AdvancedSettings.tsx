@@ -20,7 +20,6 @@ import {
   Span,
 } from "../FontFaces";
 import { Helper } from "../Helper";
-import { Switch } from "../Switch";
 import { PrivacySettings } from "./PrivacySettings";
 import { TimingSettings } from "./TimingSettings";
 
@@ -401,65 +400,73 @@ export const AdvancedSettings = () => {
         </section>
         <PrivacySettings />
         <section className="space-y-4">
-          <Field.Switch
-            className="w-20"
-            checked={values.advancedSettings.limitParticipants}
-            onCheckedChange={() =>
-              setFieldValue(
-                "advancedSettings.limitParticipants",
-                !values.advancedSettings.limitParticipants,
-              )
-            }
-          >
-            <div>
-              <FocusSpan>Limit number of participants</FocusSpan>
-              <Paragraph className="text-sm">
-                Set a maximum number of participants who can take this exam.
-              </Paragraph>
-            </div>
-          </Field.Switch>
-          {values.advancedSettings.limitParticipants && (
-            <Field
-              label={
+          <div className="relative">
+            <div className="pointer-events-none blur-sm">
+              <Field.Switch
+                className="w-20"
+                checked={values.advancedSettings.limitParticipants}
+                onCheckedChange={() =>
+                  setFieldValue(
+                    "advancedSettings.limitParticipants",
+                    !values.advancedSettings.limitParticipants,
+                  )
+                }
+              >
                 <div>
-                  <FocusSpan>Max participants</FocusSpan>
+                  <FocusSpan>Limit number of participants</FocusSpan>
                   <Paragraph className="text-sm">
                     Set a maximum number of participants who can take this exam.
                   </Paragraph>
                 </div>
-              }
-              inputProps={{
-                id: "maxParticipants",
-                type: "number",
-                placeholder: !["PUBLIC", "ONLY_ME"].includes(
-                  values.advancedSettings.privacy.setting,
-                )
-                  ? userPlan === "PREMIUM"
-                    ? "500"
-                    : userPlan === "PRO"
-                      ? "100"
-                      : "0"
-                  : "0",
-                max: !["PUBLIC", "ONLY_ME"].includes(
-                  values.advancedSettings.privacy.setting,
-                )
-                  ? userPlan === "PREMIUM"
-                    ? 500
-                    : userPlan === "PRO"
-                      ? 100
-                      : undefined
-                  : undefined,
-                className: "block w-1/6",
-                value: values.advancedSettings.maxParticipants || "",
-                onChange: (e) =>
-                  setFieldValue(
-                    "advancedSettings.maxParticipants",
-                    parseInt(e.target.value) || 0,
-                  ),
-                min: 1,
-              }}
-            />
-          )}
+              </Field.Switch>
+              {values.advancedSettings.limitParticipants && (
+                <Field
+                  label={
+                    <div>
+                      <FocusSpan>Max participants</FocusSpan>
+                      <Paragraph className="text-sm">
+                        Set a maximum number of participants who can take this
+                        exam.
+                      </Paragraph>
+                    </div>
+                  }
+                  inputProps={{
+                    id: "maxParticipants",
+                    type: "number",
+                    placeholder: !["PUBLIC", "ONLY_ME"].includes(
+                      values.advancedSettings.privacy.setting,
+                    )
+                      ? userPlan === "PREMIUM"
+                        ? "500"
+                        : userPlan === "PRO"
+                          ? "100"
+                          : "0"
+                      : "0",
+                    max: !["PUBLIC", "ONLY_ME"].includes(
+                      values.advancedSettings.privacy.setting,
+                    )
+                      ? userPlan === "PREMIUM"
+                        ? 500
+                        : userPlan === "PRO"
+                          ? 100
+                          : undefined
+                      : undefined,
+                    className: "block w-1/6",
+                    value: values.advancedSettings.maxParticipants || "",
+                    onChange: (e) =>
+                      setFieldValue(
+                        "advancedSettings.maxParticipants",
+                        parseInt(e.target.value) || 0,
+                      ),
+                    min: 1,
+                  }}
+                />
+              )}
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <SoonBadge />
+            </div>
+          </div>
         </section>
         <section className="space-y-4">
           <Field.Switch
@@ -506,25 +513,31 @@ export const AdvancedSettings = () => {
           )}
         </section>
         <section className="space-y-4">
-          <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-            <div>
-              <FocusSpan>Allow anonymous answers</FocusSpan>
-              <Paragraph className="text-sm">
-                Allows users who are not registered on ExamSocial to take this
-                exam. Their results in the table will be displayed as:
-                "Anonymous user".
-              </Paragraph>
+          <div className="relative">
+            <div className="pointer-events-none blur-sm">
+              <Field.Switch
+                checked={values.advancedSettings.allowAnonymousAnswers}
+                onCheckedChange={() =>
+                  setFieldValue(
+                    "advancedSettings.allowAnonymousAnswers",
+                    !values.advancedSettings.allowAnonymousAnswers,
+                  )
+                }
+                className="w-20"
+              >
+                <div>
+                  <FocusSpan>Allow anonymous answers</FocusSpan>
+                  <Paragraph className="text-sm">
+                    Allows users who are not registered on ExamSocial to take
+                    this exam. Their results in the table will be displayed as:
+                    "Anonymous user".
+                  </Paragraph>
+                </div>
+              </Field.Switch>
             </div>
-            <Switch
-              className="w-20"
-              checked={values.advancedSettings.allowAnonymousAnswers}
-              onCheckedChange={() =>
-                setFieldValue(
-                  "advancedSettings.allowAnonymousAnswers",
-                  !values.advancedSettings.allowAnonymousAnswers,
-                )
-              }
-            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <SoonBadge />
+            </div>
           </div>
         </section>
       </div>

@@ -179,8 +179,9 @@ export const examSchema = Yup.object({
     .required("Image is required")
     .test(
       "fileSize",
-      "File too large",
-      (value) => !value || (value instanceof File && value.size <= 1024 * 1024),
+      "File too large. Maximum size is 5MB.",
+      (value) =>
+        !value || (value instanceof File && value.size <= 5 * 1024 * 1024),
     )
     .test(
       "fileType",

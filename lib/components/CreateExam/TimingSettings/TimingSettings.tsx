@@ -132,14 +132,16 @@ const TimingSettings = () => {
                 Total
               </Select.Option>
               <Select.Option
-                onClick={() => handleTimingSettingChange("PER_QUESTION")}
+                //onClick={() => handleTimingSettingChange("PER_QUESTION")}
                 checked={timingSetting === "PER_QUESTION"}
+                disabled
               >
                 Per Question
+                <SoonBadge />
               </Select.Option>
               <Select.Option
                 //onClick={() => handleTimingSettingChange("CUSTOM")}
-                onClick={() => null}
+                disabled
                 checked={timingSetting === "CUSTOM"}
               >
                 Custom <SoonBadge />

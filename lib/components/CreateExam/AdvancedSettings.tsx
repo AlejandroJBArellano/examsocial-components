@@ -4,7 +4,7 @@ import { useFormikContext } from "formik";
 import { useRef, useState } from "react";
 import * as Yup from "yup";
 import { examSchema, feedbackSchema } from "../../schemas";
-import { PremiumBadge, ProBadge } from "../Badges";
+import { PremiumBadge } from "../Badges";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { FeedbackScreen, NewFeedbackScreen } from "../FeedbackScreen";
@@ -19,7 +19,7 @@ import {
   Span,
 } from "../FontFaces";
 import { Helper } from "../Helper";
-import { ComingSoonWrapper } from "../Wrapper";
+import { ComingSoonWrapper, PremiumWrapper, ProWrapper } from "../Wrapper";
 import { PrivacySettings } from "./PrivacySettings";
 import { TimingSettings } from "./TimingSettings";
 
@@ -253,7 +253,7 @@ export const AdvancedSettings = () => {
           {userPlan !== "PREMIUM" && <PremiumBadge />}
         </div>
         <div className="space-y-4">
-          <ComingSoonWrapper>
+          <PremiumWrapper show={userPlan !== "PREMIUM"}>
             <Field.Switch
               checked={values.advancedSettings.showLogo}
               onCheckedChange={() =>
@@ -269,12 +269,9 @@ export const AdvancedSettings = () => {
               })}
               helperText="Display your logo in the exam metadata and details view."
             >
-              <div className="flex items-center gap-2">
-                Show logo in exam
-                {userPlan !== "PREMIUM" && <PremiumBadge />}
-              </div>
+              <div className="flex items-center gap-2">Show logo in exam</div>
             </Field.Switch>
-          </ComingSoonWrapper>
+          </PremiumWrapper>
           <ComingSoonWrapper>
             <Field.Switch
               checked={values.advancedSettings.showBrandName}
@@ -286,15 +283,9 @@ export const AdvancedSettings = () => {
                 )
               }
               disabled={userPlan !== "PREMIUM"}
-              className={cn({
-                "cursor-not-allowed opacity-50 blur-sm": userPlan !== "PREMIUM",
-              })}
               helperText="Display your brand name in the exam metadata and details view."
             >
-              <div className="flex items-center gap-2">
-                Show brand name
-                {userPlan !== "PREMIUM" && <PremiumBadge />}
-              </div>
+              <div className="flex items-center gap-2">Show brand name</div>
             </Field.Switch>
           </ComingSoonWrapper>
           <div className="space-y-2">
@@ -587,26 +578,22 @@ export const AdvancedSettings = () => {
                 ),
             }}
           />
-          <Field.Switch
-            checked={values.advancedSettings.sendEmailReport}
-            onCheckedChange={() =>
-              userPlan !== "BASIC" &&
-              setFieldValue(
-                "advancedSettings.sendEmailReport",
-                !values.advancedSettings.sendEmailReport,
-              )
-            }
-            disabled={userPlan === "BASIC"}
-            className={cn({
-              "cursor-not-allowed opacity-50 blur-sm": userPlan === "BASIC",
-            })}
-            helperText="Send an email report to the user when they complete the exam."
-          >
-            <div className="flex items-center gap-2">
-              Send email report
-              {userPlan === "BASIC" && <ProBadge />}
-            </div>
-          </Field.Switch>
+          <ProWrapper show={userPlan === "BASIC"}>
+            <Field.Switch
+              checked={values.advancedSettings.sendEmailReport}
+              onCheckedChange={() =>
+                userPlan !== "BASIC" &&
+                setFieldValue(
+                  "advancedSettings.sendEmailReport",
+                  !values.advancedSettings.sendEmailReport,
+                )
+              }
+              disabled={userPlan === "BASIC"}
+              helperText="Send an email report to the user when they complete the exam."
+            >
+              <div className="flex items-center gap-2">Send email report</div>
+            </Field.Switch>
+          </ProWrapper>
           <Field.Switch
             checked={values.advancedSettings.showCorrectAnswers}
             onCheckedChange={() =>

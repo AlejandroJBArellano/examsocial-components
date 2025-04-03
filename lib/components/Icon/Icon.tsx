@@ -77,16 +77,52 @@ export const Icon: React.FC<IconProps> = ({
     fontSize: `${size}px`,
   };
 
-  // Generate responsive class names if responsiveSizes is provided
-  const responsiveClasses = responsiveSizes
-    ? Object.entries(responsiveSizes)
-        .map(([breakpoint, breakpointSize]) => {
-          return `${breakpoint}:text-[${breakpointSize}px] ${breakpoint}:[font-variation-settings:'FILL'_${
-            filled ? 1 : 0
-          },_'wght'_${weight},_'GRAD'_${grade},_'opsz'_${breakpointSize}]`;
-        })
-        .join(" ")
-    : "";
+  // Generate responsive styles if responsiveSizes is provided
+  let responsiveClasses = "";
+  if (responsiveSizes) {
+    // Create media query styles for each breakpoint
+    const mediaQueries = {
+      sm: "@media (min-width: 640px)",
+      md: "@media (min-width: 768px)",
+      xl: "@media (min-width: 1280px)",
+      "2xl": "@media (min-width: 1536px)",
+    };
+
+    // Create a style element to inject responsive styles
+    const styleId = `icon-responsive-styles-${name}-${Math.random().toString(36).substr(2, 9)}`;
+
+    // Remove existing style element if it exists
+    const existingStyle = document.getElementById(styleId);
+    if (existingStyle) {
+      existingStyle.remove();
+    }
+
+    // Create CSS content
+    let cssContent = "";
+    Object.entries(responsiveSizes).forEach(([breakpoint, breakpointSize]) => {
+      if (mediaQueries[breakpoint as keyof typeof mediaQueries]) {
+        cssContent += `
+          ${mediaQueries[breakpoint as keyof typeof mediaQueries]} {
+            .${styleId} {
+              font-size: ${breakpointSize}px !important;
+              font-variation-settings: 'FILL' ${filled ? 1 : 0}, 'wght' ${weight}, 'GRAD' ${grade}, 'opsz' ${breakpointSize} !important;
+            }
+          }
+        `;
+      }
+    });
+
+    // Inject styles if we have content
+    if (cssContent) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.textContent = cssContent;
+      document.head.appendChild(style);
+
+      // Set the class for the icon
+      responsiveClasses = styleId;
+    }
+  }
 
   return (
     <span

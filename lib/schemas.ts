@@ -219,7 +219,8 @@ export const examSchema = Yup.object({
   questions: Yup.array()
     .of(questionSchema)
     .required("Questions are required")
-    .min(1, "At least one question is required"),
+    .min(1, "At least one question is required")
+    .max(100, "Maximum of 100 questions allowed"),
 });
 
 export const collectionSchema = Yup.object({

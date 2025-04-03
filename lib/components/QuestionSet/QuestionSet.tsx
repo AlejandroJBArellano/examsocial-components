@@ -40,7 +40,7 @@ const QuestionSet = ({
           <img
             src={props.image}
             alt={title}
-            className="h-40 w-full rounded-md object-cover"
+            className="h-40 w-full rounded-md object-contain"
           />
         )
       ) : (
@@ -49,7 +49,7 @@ const QuestionSet = ({
             <img
               src={(props as QuestionSetPropsEditable).image as string}
               alt={title}
-              className="h-40 w-full rounded-md object-cover"
+              className="h-40 w-full rounded-md object-contain"
             />
           )}
           <div className="space-y-2.5">

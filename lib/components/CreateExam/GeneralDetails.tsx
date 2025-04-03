@@ -94,6 +94,7 @@ export const GeneralDetails = () => {
                       <Icon
                         name={CategoryMetadata[category as ExamCategory].icon}
                         size={18}
+                        filled
                       />
                       {CategoryMetadata[category as ExamCategory].displayName}
                     </div>
@@ -120,7 +121,7 @@ export const GeneralDetails = () => {
               checked={values.categories?.includes(value)}
             >
               <div className="flex items-center gap-2">
-                <Icon name={CategoryMetadata[value].icon} size={18} />
+                <Icon name={CategoryMetadata[value].icon} size={18} filled />
                 {CategoryMetadata[value].displayName}
               </div>
             </Select.Option>

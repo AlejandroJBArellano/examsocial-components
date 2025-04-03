@@ -66,7 +66,9 @@ export const PremiumPlan: Story = {
 
 export const WithSellingEnabled: Story = {
   args: {
-    onSubmit: () => {},
+    onSubmit: (values) => {
+      console.log("Submitted values:", values);
+    },
     onCancel: () => {},
     userPlan: "PREMIUM",
     canSellExams: true,

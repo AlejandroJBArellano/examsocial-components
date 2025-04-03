@@ -91,6 +91,13 @@ export const timingSchema = Yup.object({
   }),
 });
 
+export const inviteesSchema = Yup.array(
+  Yup.object({
+    email: Yup.string().email("Invalid email").required("Required"),
+    name: Yup.string(),
+  }),
+);
+
 export const advancedSettingsSchema = Yup.object({
   showCorrectAnswers: Yup.boolean(),
   sendEmailReport: Yup.boolean(),
@@ -98,15 +105,7 @@ export const advancedSettingsSchema = Yup.object({
   feedback: Yup.array().of(feedbackSchema),
   privacy: Yup.object({
     setting: Yup.string().required("Required"),
-    invitees: Yup.array(
-      Yup.object({
-        email: Yup.string().email("Invalid email").required("Required"),
-        name: Yup.string(),
-      }),
-    ).when("setting", {
-      is: (val: string) => val === "INVITE_ONLY",
-      then: (schema) => schema.of(Yup.string().email("Invalid email")),
-    }),
+    invitees: inviteesSchema,
     password: Yup.string().when("setting", {
       is: (val: string) => val === "PASSWORD",
       then: (schema) => schema.required("Required"),

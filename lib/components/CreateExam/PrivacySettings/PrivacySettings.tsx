@@ -192,7 +192,11 @@ const NewInvitee = ({ onSubmit }: INewInvitee) => {
           ...formik.getFieldProps("emails"),
           error: formik.touched.emails && !!formik.errors.emails,
         }}
-        error={formik.touched.emails && formik.errors.emails}
+        error={
+          Array.isArray(formik.errors.emails)
+            ? formik.errors.emails.join(", ")
+            : formik.errors.emails
+        }
       />
       <Button
         theme="extra"
@@ -243,21 +247,27 @@ const UploadCSV = ({ handleInvite }: IUploadCSV) => {
   };
 
   return (
-    <Button rounded className="w-full p-0" type="button">
-      <label
-        htmlFor="upload-csv"
-        className="flex cursor-pointer place-content-center gap-2 py-2"
-      >
-        <Icon name="upload_file" filled />
-        <FocusSpan>Upload .csv</FocusSpan>
-        <input
-          type="file"
-          accept=".csv"
-          onChange={handleFileUpload}
-          className="hidden"
-          id="upload-csv"
-        />
-      </label>
-    </Button>
+    <>
+      <Button rounded className="w-full p-0" type="button">
+        <label
+          htmlFor="upload-csv"
+          className="flex cursor-pointer place-content-center gap-2 py-2"
+        >
+          <Icon name="upload_file" filled />
+          <FocusSpan>Upload .csv</FocusSpan>
+          <input
+            type="file"
+            accept=".csv"
+            onChange={handleFileUpload}
+            className="hidden"
+            id="upload-csv"
+          />
+        </label>
+      </Button>
+      <Paragraph>
+        Upload a .csv file to invite multiple users at once. The file should
+        have two columns: email and name.
+      </Paragraph>
+    </>
   );
 };

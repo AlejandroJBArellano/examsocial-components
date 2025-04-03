@@ -250,7 +250,11 @@ export const Review = () => {
               <Span>Privacy</Span>
               <FocusSpan className="flex items-center gap-1">
                 <Icon name="lock" size={16} filled />
-                {toTitleCase(formik.values.advancedSettings.privacy.setting)}
+                {toTitleCase(
+                  formik.values.advancedSettings.privacy.setting
+                    .toUpperCase()
+                    .replaceAll("_", " "),
+                )}
               </FocusSpan>
             </div>
             <div className="flex justify-between">

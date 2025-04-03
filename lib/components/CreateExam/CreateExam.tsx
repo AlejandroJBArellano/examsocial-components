@@ -110,6 +110,7 @@ const CreateExam = ({
         onSubmit={onSubmit}
       >
         {({ isValid, errors, values }) => {
+          console.log(errors);
           const isValidGeneralDetails = !(
             errors.title &&
             errors.description &&

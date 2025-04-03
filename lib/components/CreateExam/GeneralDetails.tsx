@@ -58,8 +58,13 @@ export const GeneralDetails = () => {
           />
         )}
         {errors.image && (
-          <p className="text-sm text-red-500">{errors.image.toString()}</p>
+          <Span className="text-red-500">{errors.image.toString()}</Span>
         )}
+        <Span className="flex items-center gap-1 text-gray-600">
+          <Icon name="info" size={14} className="text-gray-500" />
+          Recommended: Upload a 16:9 image for optimal display across all
+          devices
+        </Span>
       </article>
       <Field
         label="Title"

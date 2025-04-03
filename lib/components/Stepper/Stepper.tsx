@@ -131,7 +131,7 @@ const Stepper = ({
                   }}
                   key={step.id}
                   rounded
-                  className="aspect-square"
+                  className="flex aspect-square w-12 items-center justify-center xl:p-2"
                   theme={
                     (step.status
                       ? themeStep[step.status]

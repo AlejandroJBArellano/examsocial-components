@@ -31,7 +31,7 @@ export const PremiumWrapper = ({
 
   return (
     <div className="relative">
-      <div className="pointer-events-none blur-sm">{children}</div>
+      <div className="pointer-events-none select-none blur-sm">{children}</div>
       <div className="absolute inset-0 flex items-center justify-center">
         <PremiumBadge size={badgeSize} />
       </div>

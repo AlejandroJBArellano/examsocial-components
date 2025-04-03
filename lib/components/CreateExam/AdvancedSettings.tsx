@@ -550,18 +550,25 @@ export const AdvancedSettings = () => {
         >
           Randomize question order
         </Field.Switch>
-        <Field.Switch
-          checked={values.advancedSettings.randomizeOptionsOrder}
-          onCheckedChange={() =>
-            setFieldValue(
-              "advancedSettings.randomizeOptionsOrder",
-              !values.advancedSettings.randomizeOptionsOrder,
-            )
-          }
-          helperText="Shuffles the order of options order for each question."
-        >
-          Randomize options order
-        </Field.Switch>
+        <div className="relative">
+          <div className="pointer-events-none blur-sm">
+            <Field.Switch
+              checked={values.advancedSettings.randomizeOptionsOrder}
+              onCheckedChange={() =>
+                setFieldValue(
+                  "advancedSettings.randomizeOptionsOrder",
+                  !values.advancedSettings.randomizeOptionsOrder,
+                )
+              }
+              helperText="Shuffles the order of options order for each question."
+            >
+              Randomize options order
+            </Field.Switch>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <SoonBadge />
+          </div>
+        </div>
       </div>
       <div className="relative">
         <div className="pointer-events-none blur-sm">

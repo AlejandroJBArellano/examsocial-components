@@ -1,3 +1,4 @@
+import SoonBadge from "@/components/Badges/SoonBadge";
 import { Helper } from "@/components/Helper";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
@@ -137,10 +138,11 @@ const TimingSettings = () => {
                 Per Question
               </Select.Option>
               <Select.Option
-                onClick={() => handleTimingSettingChange("CUSTOM")}
+                //onClick={() => handleTimingSettingChange("CUSTOM")}
+                onClick={() => null}
                 checked={timingSetting === "CUSTOM"}
               >
-                Custom
+                Custom <SoonBadge />
               </Select.Option>
             </Select>
           </div>

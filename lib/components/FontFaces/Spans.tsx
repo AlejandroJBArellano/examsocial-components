@@ -26,7 +26,7 @@ export const FocusSpan = (
   <span
     {...props}
     className={cn(
-      "font-medium leading-tight xl:text-lg xl:leading-normal",
+      "text-base font-medium leading-tight xl:text-lg xl:leading-normal",
       props.className,
     )}
   />

@@ -47,18 +47,8 @@ const CreateExam = ({
   // Save exam progress to localStorage whenever step changes
   const saveToLocalStorage = (values: Yup.InferType<typeof examSchema>) => {
     try {
-      const key = `exam_progress_${values.title.replace(/\s+/g, "_")}`;
+      const key = `exam_progress`;
       localStorage.setItem(key, JSON.stringify(values));
-
-      // Keep only the 5 most recent saved exams
-      const keys = Object.keys(localStorage)
-        .filter((k) => k.startsWith("exam_progress_"))
-        .sort()
-        .reverse();
-
-      if (keys.length > 5) {
-        keys.slice(5).forEach((k) => localStorage.removeItem(k));
-      }
     } catch (error) {
       console.error("Failed to save exam progress to localStorage:", error);
     }

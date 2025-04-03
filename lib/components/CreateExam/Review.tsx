@@ -32,9 +32,11 @@ export const Review = () => {
           />
           <ExamCard.Content>
             <ExamCard.Title>{formik.values.title}</ExamCard.Title>
-            <ExamCard.Description>
-              {formik.values.description}
-            </ExamCard.Description>
+            {formik.values.description && (
+              <ExamCard.Description>
+                {formik.values.description}
+              </ExamCard.Description>
+            )}
             <ExamCard.Footer>
               <ExamCard.Tag className="flex items-end gap-1">
                 <Icon
@@ -56,6 +58,39 @@ export const Review = () => {
             </ExamCard.Footer>
           </ExamCard.Content>
         </ExamCard>
+        <div className="space-y-3 rounded-md bg-gray-50 p-4">
+          <div className="border-b border-gray-200 pb-2">
+            <Span className="font-medium">Price & Theme</Span>
+          </div>
+          <div className="flex justify-between">
+            <Span>Price</Span>
+            <FocusSpan className="flex items-center gap-1">
+              <Icon name="payments" size={16} filled />
+              {formik.values.price}
+            </FocusSpan>
+          </div>
+          <div className="flex justify-between">
+            <Span>Currency</Span>
+            <FocusSpan className="flex items-center gap-1">
+              <Icon name="currency_exchange" size={16} filled />
+              {formik.values.currency || "USD"}
+            </FocusSpan>
+          </div>
+          <div className="flex justify-between">
+            <Span>Theme</Span>
+            <div className="flex items-center gap-2">
+              <div className={"flex gap-1.5 " + formik.values.theme}>
+                <div className="size-5 rounded-full border border-black bg-primary"></div>
+                <div className="size-5 rounded-full border border-black bg-secondary"></div>
+                <div className="size-5 rounded-full border border-black bg-accent"></div>
+                <div className="size-5 rounded-full border border-black bg-extra"></div>
+              </div>
+              <FocusSpan>
+                {toTitleCase(formik.values.theme).replaceAll("_", " ")}
+              </FocusSpan>
+            </div>
+          </div>
+        </div>
       </article>
       <article className="space-y-1">
         <Heading4>Questions</Heading4>
@@ -434,32 +469,6 @@ export const Review = () => {
           </div>
 
           {/* Price */}
-          <div className="space-y-3 rounded-md bg-gray-50 p-4">
-            <div className="border-b border-gray-200 pb-2">
-              <Span className="font-medium">Price & Theme</Span>
-            </div>
-            <div className="flex justify-between">
-              <Span>Price</Span>
-              <FocusSpan className="flex items-center gap-1">
-                <Icon name="payments" size={16} filled />
-                {formik.values.price}
-              </FocusSpan>
-            </div>
-            <div className="flex justify-between">
-              <Span>Theme</Span>
-              <div className="flex items-center gap-2">
-                <div className={"flex gap-1.5 " + formik.values.theme}>
-                  <div className="size-5 rounded-full border border-black bg-primary"></div>
-                  <div className="size-5 rounded-full border border-black bg-secondary"></div>
-                  <div className="size-5 rounded-full border border-black bg-accent"></div>
-                  <div className="size-5 rounded-full border border-black bg-extra"></div>
-                </div>
-                <FocusSpan>
-                  {toTitleCase(formik.values.theme).replaceAll("_", " ")}
-                </FocusSpan>
-              </div>
-            </div>
-          </div>
         </div>
       </article>
     </section>

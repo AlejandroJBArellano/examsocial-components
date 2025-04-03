@@ -200,9 +200,14 @@ export const examSchema = Yup.object({
             "image/hevc",
           ].includes(value instanceof File ? value.type : "")),
     ),
-  category: Yup.string()
-    .required("Category is required")
-    .oneOf(Object.keys(ExamCategory)),
+  categories: Yup.array()
+    .of(
+      Yup.string()
+        .required("Category is required")
+        .oneOf(Object.keys(ExamCategory)),
+    )
+    .required("At least one category is required")
+    .min(1, "At least one category is required"),
   currency: Yup.string().required("Required").oneOf(Object.keys(Currency)),
   price: Yup.number().min(0, "Must be at least 0").required("Required"),
   advancedSettings: advancedSettingsSchema,

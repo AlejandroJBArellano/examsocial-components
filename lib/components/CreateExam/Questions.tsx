@@ -5,7 +5,7 @@ import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { EditQuestion } from "../EditQuestion";
-import { Heading3 } from "../FontFaces";
+import { Heading3, Paragraph, Span } from "../FontFaces";
 import { Icon } from "../Icon";
 import { NewQuestion } from "../NewQuestion";
 import { QuestionSet } from "../QuestionSet";
@@ -28,6 +28,25 @@ export const Questions = () => {
   return (
     <section className="space-y-6">
       <Heading3>Questions</Heading3>
+      {values.questions?.length === 0 && (
+        <div className="space-y-2 rounded-md border border-feedback-error bg-feedback-error-tint p-4">
+          <div className="flex items-center gap-2">
+            <Icon
+              name="error"
+              size={20}
+              className="text-feedback-error"
+              filled
+            />
+            <Span className="text-feedback-error">
+              You need to add at least one question to your exam
+            </Span>
+          </div>
+          <Paragraph className="text-sm text-gray-700">
+            Click the "Add new question" button below to create your first
+            question.
+          </Paragraph>
+        </div>
+      )}
       <article className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {values.questions?.map((question, index) => (
           <QuestionSet

@@ -185,7 +185,7 @@ export const examSchema = Yup.object({
     )
     .test(
       "fileType",
-      "Unsupported File Format",
+      "Unsupported file format. Only images are supported.",
       (value) =>
         !value ||
         (value &&

@@ -11,7 +11,10 @@ const ImageUploader = ({
   return (
     <article className="flex items-center justify-between border-sm border-black bg-white p-2">
       <div className="flex items-center gap-2">
-        <img className="h-10 w-[81px]" src={URL.createObjectURL(image)} />
+        <img
+          className="h-10 w-auto object-contain"
+          src={URL.createObjectURL(image)}
+        />
         <div className="space-y-1">
           <Span className="block">{image.name}</Span>
           <Smoll>

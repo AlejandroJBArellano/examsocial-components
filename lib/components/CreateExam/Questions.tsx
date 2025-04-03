@@ -12,7 +12,7 @@ import { QuestionSet } from "../QuestionSet";
 
 export const Questions = () => {
   const [index, setIndex] = useState<number | null>(null);
-  const { values, setFieldValue } =
+  const { values, setFieldValue, errors } =
     useFormikContext<Yup.InferType<typeof examSchema>>();
   const editDialogRef = useRef<HTMLDialogElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -28,7 +28,7 @@ export const Questions = () => {
   return (
     <section className="space-y-6">
       <Heading3>Questions</Heading3>
-      {values.questions?.length === 0 && (
+      {errors.questions && (
         <div className="space-y-2 rounded-md border border-feedback-error bg-feedback-error-tint p-4">
           <div className="flex items-center gap-2">
             <Icon
@@ -38,14 +38,18 @@ export const Questions = () => {
               filled
             />
             <Span className="text-feedback-error">
-              You need to add at least one question to your exam
+              {Array.isArray(errors.questions)
+                ? errors.questions.join(", ")
+                : errors.questions}
             </Span>
           </div>
-          <Paragraph className="text-sm text-gray-700">
-            Click the "Add new question" button below to create your first
-            question.
-          </Paragraph>
         </div>
+      )}
+      {values.questions?.length === 0 && (
+        <Paragraph className="text-sm text-gray-700">
+          Click the "Add new question" button below to create your first
+          question.
+        </Paragraph>
       )}
       <article className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {values.questions?.map((question, index) => (

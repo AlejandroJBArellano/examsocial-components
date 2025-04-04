@@ -9,7 +9,7 @@ const Switch = (
   <SwitchReact.Root
     {...props}
     className={cn(
-      "group flex w-20 min-w-20 rounded-full border border-black p-1 transition-all duration-300 ease-in-out data-[state=checked]:justify-end data-[state=checked]:bg-primary",
+      "group flex w-20 min-w-20 rounded-full border border-black p-1 transition-all duration-300 ease-in-out data-[disabled]:cursor-not-allowed data-[state=checked]:justify-end data-[state=checked]:bg-primary",
       props.className,
     )}
   >

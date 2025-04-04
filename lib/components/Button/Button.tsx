@@ -109,7 +109,7 @@ const ActionButton = ({
           : " hover:shadow-accent-shadow")
       }
     >
-      <Icon name={name} filled />
+      <Icon name={name} />
     </button>
   );
 

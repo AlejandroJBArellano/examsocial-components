@@ -53,6 +53,7 @@ export * from "./Stepper";
 export * from "./Switch";
 export * from "./Tab";
 export * from "./Tag";
+export * from "./TakeExam";
 export * from "./Textarea";
 export * from "./Tooltip";
 export * from "./UserAnswers";

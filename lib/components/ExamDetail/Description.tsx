@@ -1,4 +1,9 @@
-import { ComponentPropsWithoutRef, ReactNode, useState } from "react";
+import {
+  ComponentPropsWithoutRef,
+  PropsWithChildren,
+  ReactNode,
+  useState,
+} from "react";
 import { cn } from "../../utils";
 import { Button } from "../Button";
 import { FocusParagraph, FocusSpan, Paragraph } from "../FontFaces";
@@ -32,7 +37,7 @@ interface MainContainerActionsProps {
   className?: string;
 }
 
-interface MainContainerActionProps {
+interface MainContainerActionProps extends PropsWithChildren {
   type: "favorite" | "bookmark";
   onClick?: () => void;
   className?: string;
@@ -89,13 +94,17 @@ const ExamDescription = ({
               onClick={onFavorite}
               tooltipText="Add to favorites"
               favorite={favorite}
-            />
+            >
+              Mark this exam as one of your favorites
+            </ExamDescription.Action>
             <ExamDescription.Action
               type="bookmark"
               onClick={onBookmark}
               tooltipText="Bookmark exam"
               saved={saved}
-            />
+            >
+              Bookmark exam into one of your collections
+            </ExamDescription.Action>
           </ExamDescription.Actions>
           <ExamDescription.Button onClick={onStartExam}>
             <FocusSpan>Start exam</FocusSpan>
@@ -153,6 +162,7 @@ const MainContainerAction = ({
   className,
   favorite = false,
   saved = false,
+  children,
 }: MainContainerActionProps) => {
   return (
     <Button.Action
@@ -167,7 +177,9 @@ const MainContainerAction = ({
             name: "favorite",
             selected: favorite,
           })}
-    />
+    >
+      {children}
+    </Button.Action>
   );
 };
 

@@ -9,11 +9,11 @@ const Switch = (
   <SwitchReact.Root
     {...props}
     className={cn(
-      "flex w-20 min-w-20 rounded-full border border-black p-1 transition-all duration-300 ease-in-out data-[state=checked]:justify-end data-[state=checked]:bg-primary",
+      "group flex w-20 min-w-20 rounded-full border border-black p-1 transition-all duration-300 ease-in-out data-[state=checked]:justify-end data-[state=checked]:bg-primary",
       props.className,
     )}
   >
-    <SwitchReact.Thumb className="block h-7 w-7 rounded-full bg-black xl:h-8 xl:w-8" />
+    <SwitchReact.Thumb className="block h-7 w-7 rounded-full bg-black group-data-[state=checked]:bg-light xl:h-8 xl:w-8" />
   </SwitchReact.Root>
 );
 

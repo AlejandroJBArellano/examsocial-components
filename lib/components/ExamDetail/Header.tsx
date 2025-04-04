@@ -2,7 +2,7 @@ import { Anchor, Heading3, Heading5, Heading6 } from "../FontFaces";
 import { Icon } from "../Icon";
 import BannerExam from "./Banner";
 
-export interface HeaderExamProps {
+export interface ExamDetailHeaderProps {
   title: string;
   author: {
     name: string;
@@ -29,7 +29,7 @@ const HeaderExam = ({
   duration,
   rating,
   imageUrl,
-}: HeaderExamProps) => {
+}: ExamDetailHeaderProps) => {
   const formattedDuration = duration.hours
     ? `${duration.hours} ${duration.hours === 1 ? "hour" : "hours"}${duration.minutes ? ` ${duration.minutes} min` : ""}`
     : `${duration.minutes} ${duration.minutes === 1 ? "min" : "mins"}`;

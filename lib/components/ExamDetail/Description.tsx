@@ -11,7 +11,7 @@ type MainContainerContextType = {
 
 // Props for main component
 export interface ExamDescriptionProps {
-  description: string;
+  description?: string;
   onStartExam: () => void;
   onFavorite: () => void;
   onBookmark: () => void;
@@ -75,14 +75,13 @@ const ExamDescription = ({
   };
 
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-6 rounded bg-primary-tint p-6 xl:gap-6 xl:p-6",
-        className,
-      )}
-    >
+    <div className={cn("space-y-6 bg-primary-tint p-6", className)}>
       <MainContainerContext.Provider value={{ isOpen, toggleOpen }}>
-        <ExamDescription.Description>{description}</ExamDescription.Description>
+        {description && (
+          <ExamDescription.Description>
+            {description}
+          </ExamDescription.Description>
+        )}
         <ExamDescription.Footer>
           <ExamDescription.Actions>
             <ExamDescription.Action

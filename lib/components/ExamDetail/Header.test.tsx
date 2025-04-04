@@ -24,9 +24,11 @@ const mockProps = {
     href: "/categories/svelte",
   },
   participants: 391,
-  duration: {
+  timing: {
     hours: 2,
     minutes: 0,
+    seconds: 0,
+    setting: "TOTAL",
   },
   rating: 4.9,
   imageUrl: "https://example.com/image.jpg",

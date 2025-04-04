@@ -7,7 +7,19 @@ import { Stepper } from "../Stepper";
 import { Step } from "../Stepper/Stepper";
 import SelectedQuestion from "./SelectedQuestion";
 
-const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
+interface TakeExamProps {
+  exam: Yup.InferType<typeof examSchema>;
+  onFinish: () => void;
+  onReportExam: (reason: string, questions: string[]) => void;
+  onSelectOption: (questionId: string, optionId: string) => void;
+}
+
+const TakeExam = ({
+  exam,
+  onFinish,
+  onReportExam,
+  onSelectOption,
+}: TakeExamProps) => {
   const reportExamDialogRef = useRef<HTMLDialogElement>(null);
 
   const [recordQuestionSelectedOptions, setRecordQuestionSelectedOptions] =
@@ -47,6 +59,13 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
       : "pending",
   }));
 
+  useEffect(() => {
+    onSelectOption(
+      exam.questions[selectedQuestion].id!,
+      recordQuestionSelectedOptions[exam.questions[selectedQuestion].id!],
+    );
+  }, [recordQuestionSelectedOptions]);
+
   return (
     <main>
       <Stepper
@@ -78,9 +97,7 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
         selected={selectedQuestion}
         setSelected={setSelectedQuestion}
         questions={exam.questions}
-        onFinish={() => {
-          console.log(recordQuestionSelectedOptions);
-        }}
+        onFinish={onFinish}
         canJumpBetweenSteps
       />
       <Dialog innerRef={reportExamDialogRef}>
@@ -89,7 +106,7 @@ const TakeExam = ({ exam }: { exam: Yup.InferType<typeof examSchema> }) => {
           onCancel={() => {
             reportExamDialogRef.current?.close();
           }}
-          onSubmit={() => {}}
+          onSubmit={onReportExam}
         />
       </Dialog>
     </main>

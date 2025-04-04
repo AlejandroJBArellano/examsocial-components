@@ -109,7 +109,14 @@ const ActionButton = ({
           : " hover:shadow-accent-shadow")
       }
     >
-      <Icon name={name} />
+      <Icon
+        name={name}
+        filled={selected}
+        responsiveSizes={{
+          sm: 20,
+          xl: 24,
+        }}
+      />
     </button>
   );
 

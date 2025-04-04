@@ -133,7 +133,7 @@ export const NewFeedbackScreen = ({
       validateOnChange
     >
       {(formik) => (
-        <div className="space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
+        <div className="bg-light space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
           <Heading4>Thank You Screen</Heading4>
           <section className="space-y-4">
             <article className="space-y-1">
@@ -194,7 +194,7 @@ export const EditFeedbackScreen = ({
       validateOnChange
     >
       {(formik) => (
-        <div className="space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
+        <div className="bg-light space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
           <Heading4>Edit Thank You Screen</Heading4>
           <section className="space-y-4">
             <article className="space-y-1">

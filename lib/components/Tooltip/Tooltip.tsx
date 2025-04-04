@@ -26,6 +26,13 @@ interface TooltipProps extends PropsWithChildren {
   theme?: "accent" | "primary" | "secondary" | "extra";
 }
 
+const themeSVG = {
+  extra: "fill-extra",
+  primary: "fill-primary",
+  secondary: "fill-secondary",
+  accent: "fill-accent",
+};
+
 const Tooltip = ({
   align = "center",
   side = "top",
@@ -58,7 +65,7 @@ const Tooltip = ({
               >
                 <path
                   d="M10.3301 0.5L6 8L1.66987 0.499999L10.3301 0.5Z"
-                  fill="#FFC34D"
+                  className={themeSVG[theme]}
                   stroke="black"
                 />
               </svg>

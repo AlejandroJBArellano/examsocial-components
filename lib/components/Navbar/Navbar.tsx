@@ -48,7 +48,7 @@ export interface NavbarProps {
  */
 export const Navbar = ({ items, profileInfo, children }: NavbarProps) => {
   return (
-    <nav className="mb-4 flex justify-center border-y-sm border-black bg-white px-4 md:justify-between">
+    <nav className="bg-light mb-4 flex justify-center border-y-sm border-black px-4 md:justify-between">
       <ul className="flex divide-x-sm divide-gray-600 [&>li>a]:border-0">
         {items.map((item, index) => (
           <li

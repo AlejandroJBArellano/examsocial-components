@@ -33,7 +33,7 @@ export const Default: Story = {
   args: {
     children: "This is a tooltip",
     trigger: (
-      <button className="rounded-md border-2 border-black bg-white px-4 py-2">
+      <button className="bg-light rounded-md border-2 border-black px-4 py-2">
         Hover me
       </button>
     ),
@@ -46,7 +46,7 @@ export const Left: Story = {
   args: {
     children: "This is a tooltip on the left",
     trigger: (
-      <button className="rounded-md border-2 border-black bg-white px-4 py-2">
+      <button className="bg-light rounded-md border-2 border-black px-4 py-2">
         Hover me
       </button>
     ),
@@ -59,7 +59,7 @@ export const Right: Story = {
   args: {
     children: "This is a tooltip on the right",
     trigger: (
-      <button className="rounded-md border-2 border-black bg-white px-4 py-2">
+      <button className="bg-light rounded-md border-2 border-black px-4 py-2">
         Hover me
       </button>
     ),
@@ -72,7 +72,7 @@ export const Bottom: Story = {
   args: {
     children: "This is a tooltip on the bottom",
     trigger: (
-      <button className="rounded-md border-2 border-black bg-white px-4 py-2">
+      <button className="bg-light rounded-md border-2 border-black px-4 py-2">
         Hover me
       </button>
     ),
@@ -90,7 +90,7 @@ export const WithCustomContent: Story = {
       </div>
     ),
     trigger: (
-      <button className="rounded-md border-2 border-black bg-white px-4 py-2">
+      <button className="bg-light rounded-md border-2 border-black px-4 py-2">
         Hover me
       </button>
     ),

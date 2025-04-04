@@ -41,7 +41,7 @@ export const InContext: Story = {
   render: () => (
     <div className="flex flex-col gap-4 rounded-md bg-gray-100 p-4">
       <Back>Return to Dashboard</Back>
-      <div className="rounded-md bg-white p-4">
+      <div className="bg-light rounded-md p-4">
         <h2 className="text-xl font-bold">Content Section</h2>
         <p>This shows the Back component in a typical page context.</p>
       </div>

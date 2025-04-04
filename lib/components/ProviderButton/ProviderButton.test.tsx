@@ -87,7 +87,7 @@ describe("ProviderButton", () => {
     render(<ProviderButton provider="github" />);
     const button = screen.getByRole("button");
     expect(screen.getByText("Sign In with GitHub")).toBeInTheDocument();
-    expect(button).toHaveClass("bg-white");
+    expect(button).toHaveClass("bg-light");
     expect(button).toHaveClass("text-black/80");
   });
 

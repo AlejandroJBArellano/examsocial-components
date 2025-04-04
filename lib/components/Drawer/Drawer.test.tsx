@@ -81,7 +81,7 @@ describe("Drawer Component", () => {
     expect(trigger).toBeInTheDocument();
     expect(trigger).toHaveTextContent("Open Drawer");
     expect(trigger.className).toContain("rounded-full");
-    expect(trigger.className).toContain("bg-white");
+    expect(trigger.className).toContain("bg-light");
   });
 
   it("renders Overlay component with correct styles", () => {

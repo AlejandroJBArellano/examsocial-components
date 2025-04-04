@@ -69,7 +69,7 @@ const CustomTooltip = ({
 }: TooltipProps<number, string> & { valueLabel?: string }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="rounded border border-black bg-white p-2 shadow-md">
+      <div className="bg-light rounded border border-black p-2 shadow-md">
         <p className="font-semibold">{label}</p>
         <p className="text-sm">{`${valueLabel || "Value"}: ${payload[0].value}`}</p>
       </div>
@@ -121,7 +121,7 @@ const Chart: React.FC<ChartProps> = ({
     accent: "bg-accent-tint",
     extra: "bg-extra-tint",
     primary: "bg-primary-tint",
-    light: "bg-white",
+    light: "bg-light",
   };
 
   // Define the stroke color based on variant

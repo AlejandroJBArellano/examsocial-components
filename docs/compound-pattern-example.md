@@ -211,7 +211,7 @@ export const CustomStyles: Story = {
         <Tabs.Tab id="tab1" className="rounded-t-lg">First Tab</Tabs.Tab>
         <Tabs.Tab id="tab2" className="rounded-t-lg">Second Tab</Tabs.Tab>
       </Tabs.List>
-      <Tabs.Panels className="bg-white p-4 rounded-b-lg">
+      <Tabs.Panels className="bg-light p-4 rounded-b-lg">
         <Tabs.Panel id="tab1">Content for the first tab</Tabs.Panel>
         <Tabs.Panel id="tab2">Content for the second tab</Tabs.Panel>
       </Tabs.Panels>

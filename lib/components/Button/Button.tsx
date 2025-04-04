@@ -20,7 +20,7 @@ const Button = ({ rounded, theme, ...props }: ButtonProps) => {
     extra:
       "bg-extra border-black disabled:border-extra disabled:bg-extra-tint disabled:text-extra",
     light:
-      "bg-white border-black disabled:border-[#27272A] disabled:bg-[#E4E4E7] disabled:text-[#27272A] hover:!shadow-right-sm !shadow-none xl:hover:!shadow-right-sm xl:!shadow-none",
+      "bg-light border-black disabled:border-[#27272A] disabled:bg-[#E4E4E7] disabled:text-[#27272A] hover:!shadow-right-sm !shadow-none xl:hover:!shadow-right-sm xl:!shadow-none",
     accent:
       "bg-accent border-black disabled:border-accent disabled:bg-accent-tint disabled:text-accent",
     primary:
@@ -99,8 +99,8 @@ const ActionButton = ({
         cn(
           "flex h-10 w-10 items-center justify-center rounded-md border-2 border-black p-2 xl:h-11 xl:w-11",
           selected
-            ? "border-accent-shadow bg-accent-tint text-accent-shadow hover:border-black hover:bg-white hover:text-black"
-            : "bg-white hover:border-accent-shadow hover:bg-accent-tint hover:text-accent-shadow",
+            ? "hover:bg-light border-accent-shadow bg-accent-tint text-accent-shadow hover:border-black hover:text-black"
+            : "bg-light hover:border-accent-shadow hover:bg-accent-tint hover:text-accent-shadow",
           className,
         ) +
         " hover:shadow-right-sm" +

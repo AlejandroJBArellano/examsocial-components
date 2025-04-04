@@ -146,7 +146,7 @@ export const NewAdditionalContent = ({
   };
 
   return (
-    <section className="space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
+    <section className="bg-light space-y-6 rounded-lg border border-black p-4 shadow-right shadow-black md:space-y-7 md:p-6 lg:space-y-8 lg:p-7 xl:space-y-9 xl:p-8">
       <Heading4>New Content</Heading4>
       <article className="space-y-1">
         <FocusSpan>Content Type</FocusSpan>

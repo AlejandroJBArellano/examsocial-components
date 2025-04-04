@@ -45,7 +45,7 @@ export const RadioGroup = ({
             value={item.value}
             disabled={item.disabled}
             className={
-              "h-6 w-6 rounded-full border border-black bg-white " +
+              "bg-light h-6 w-6 rounded-full border border-black " +
               " focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2" +
               " hover:border-accent" +
               " data-[state=checked]:border-accent" +

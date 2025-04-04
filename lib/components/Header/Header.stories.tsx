@@ -27,7 +27,7 @@ export const Default: Story = {
 
 export const WithCustomButtonText: Story = {
   render: () => (
-    <div className="bg-white">
+    <div className="bg-light">
       <Header>
         <Button theme="accent">Sign Up</Button>
       </Header>
@@ -37,7 +37,7 @@ export const WithCustomButtonText: Story = {
 
 export const WithCustomTheme: Story = {
   render: () => (
-    <div className="bg-white">
+    <div className="bg-light">
       <Header>
         <Button theme="primary">Login</Button>
       </Header>
@@ -47,7 +47,7 @@ export const WithCustomTheme: Story = {
 
 export const WithMenu: Story = {
   render: () => (
-    <div className="bg-white">
+    <div className="bg-light">
       <Header>
         <Menu
           items={[
@@ -68,7 +68,7 @@ export const AllVariants: Story = {
     <div className="flex flex-col gap-8 p-4">
       <div className="overflow-hidden rounded-md border">
         <h3 className="bg-gray-100 p-2 font-medium">Default Header</h3>
-        <div className="bg-white p-4">
+        <div className="bg-light p-4">
           <Header />
         </div>
       </div>
@@ -77,7 +77,7 @@ export const AllVariants: Story = {
         <h3 className="bg-gray-100 p-2 font-medium">
           Header with Custom Button Text
         </h3>
-        <div className="bg-white p-4">
+        <div className="bg-light p-4">
           <Header>
             <Button theme="accent">Sign Up</Button>
           </Header>
@@ -88,7 +88,7 @@ export const AllVariants: Story = {
         <h3 className="bg-gray-100 p-2 font-medium">
           Header with Primary Button Theme
         </h3>
-        <div className="bg-white p-4">
+        <div className="bg-light p-4">
           <Header>
             <Button theme="primary">Login</Button>
           </Header>

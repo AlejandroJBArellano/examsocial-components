@@ -15,7 +15,7 @@ const Menu = ({ items }: { items: IMenuItem[] }) => (
         <NavigationMenu.Trigger>
           <Icon name="menu" className="cursor-pointer" />
         </NavigationMenu.Trigger>
-        <NavigationMenu.Content className="w-50 absolute right-0 top-full z-50 border-sm border-black bg-white">
+        <NavigationMenu.Content className="w-50 bg-light absolute right-0 top-full z-50 border-sm border-black">
           {items.map((item) => (
             <MenuItem key={item.href} href={item.href} icon={item.icon}>
               {item.label}

@@ -77,7 +77,7 @@ const ProviderButton = ({
       ),
     },
     google: {
-      bgColor: "bg-white",
+      bgColor: "bg-light",
       textColor: "text-black/80",
       defaultText: "Sign In with Google",
       defaultIcon: (
@@ -171,7 +171,7 @@ const ProviderButton = ({
       ),
     },
     github: {
-      bgColor: "bg-white",
+      bgColor: "bg-light",
       textColor: "text-black/80",
       defaultText: "Sign In with GitHub",
       defaultIcon: (

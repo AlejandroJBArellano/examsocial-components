@@ -14,7 +14,7 @@ const AnswerOption = ({
   onClick,
 }: PropsWithChildren<IAnswerOption>) => {
   const theme = {
-    default: "bg-white",
+    default: "bg-light",
     selectable: "bg-secondary-tint text-secondary-shadow cursor-pointer",
     viewOnly: "bg-feedback-success-tint cursor-not-allowed",
   };

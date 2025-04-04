@@ -78,7 +78,7 @@ const SocialPost = ({
     <SocialPostContext.Provider value={{ type }}>
       <article
         className={cn(
-          "flex flex-col gap-2 rounded-lg bg-white p-4 shadow-sm",
+          "bg-light flex flex-col gap-2 rounded-lg p-4 shadow-sm",
           className,
         )}
         {...props}

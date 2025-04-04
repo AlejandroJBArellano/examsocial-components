@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 
 const themes = {
-  light: "border-black bg-white text-black",
+  light: "border-black bg-light text-black",
   accent: "border-accent bg-accent-tint text-accent",
   extra: "border-extra bg-extra-tint text-extra",
   primary: "border-primary bg-primary-tint text-primary",

@@ -80,7 +80,7 @@ interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
 const Button = ({ rounded, theme, ...props }: ButtonProps) => {
   const classTheme = {
     extra: "bg-extra border-black",
-    light: "bg-white border-black",
+    light: "bg-light border-black",
     accent: "bg-accent border-black",
     primary: "bg-primary border-black",
     "feedback-error": "bg-feedback-error-tint border-error-tint",

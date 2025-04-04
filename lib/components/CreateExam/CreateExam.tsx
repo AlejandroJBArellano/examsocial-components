@@ -149,8 +149,8 @@ const CreateExam = ({
           );
 
           return (
-            <Form className="flex h-full min-h-screen w-full max-w-screen-2xl flex-col">
-              <header className="sticky top-0 z-10 bg-white">
+            <Form className="bg-light flex h-full min-h-screen w-full max-w-screen-2xl flex-col">
+              <header className="bg-light sticky top-0 z-10">
                 <Stepper
                   allowManualStepChange
                   activeStep={step}

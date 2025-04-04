@@ -9,7 +9,7 @@ const ImageUploader = ({
   onDelete: () => void;
 }) => {
   return (
-    <article className="flex items-center justify-between border-sm border-black bg-white p-2">
+    <article className="bg-light flex items-center justify-between border-sm border-black p-2">
       <div className="flex items-center gap-2">
         <img
           className="h-10 w-auto object-contain"

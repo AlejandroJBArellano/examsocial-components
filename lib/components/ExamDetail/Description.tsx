@@ -95,7 +95,9 @@ const ExamDescription = ({
               tooltipText="Add to favorites"
               favorite={favorite}
             >
-              Mark this exam as one of your favorites
+              {favorite
+                ? "Remove from favorites"
+                : "Mark this exam as one of your favorites"}
             </ExamDescription.Action>
             <ExamDescription.Action
               type="bookmark"
@@ -103,7 +105,9 @@ const ExamDescription = ({
               tooltipText="Bookmark exam"
               saved={saved}
             >
-              Bookmark exam into one of your collections
+              {saved
+                ? "Remove from collections"
+                : "Bookmark exam into one of your collections"}
             </ExamDescription.Action>
           </ExamDescription.Actions>
           <ExamDescription.Button onClick={onStartExam}>

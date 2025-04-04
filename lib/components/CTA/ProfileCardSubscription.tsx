@@ -13,15 +13,17 @@ const ProfileCardSubscription = ({
   onSubscribe,
 }: ProfileCardSubscriptionProps) => {
   return (
-    <article className="space-y-4 rounded-md border-sm border-black bg-secondary-tint p-4">
-      <Heading4 className="text-secondary-shadow">Go Pro</Heading4>
+    <article className="space-y-4 rounded-md border-sm border-black bg-extra-tint p-4">
+      <Heading4 className="text-extra-shadow">
+        Select your plan: Pro or Premium
+      </Heading4>
       <div className="mb-3 space-y-2">
         <FeaturesCarousel features={features} type="subscribe" />
       </div>
       <Button
         className="flex w-full items-center justify-center gap-2"
         rounded
-        theme="accent"
+        theme="extra"
         onClick={onSubscribe}
       >
         <Icon filled name="workspace_premium" size={24} />

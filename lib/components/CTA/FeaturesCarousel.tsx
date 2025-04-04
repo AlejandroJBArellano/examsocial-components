@@ -84,7 +84,7 @@ const FeaturesCarousel = ({
       <div className="flex flex-col gap-4">
         {currentFeatures.map((feature, index) => (
           <div key={index} className="flex flex-col">
-            <div className="flex items-center gap-2 text-secondary-shadow">
+            <div className="flex items-center gap-2 text-extra-shadow">
               <Icon name={feature.icon} size={24} aria-hidden="true" filled />
               <FocusSpan>{feature.name}</FocusSpan>
             </div>
@@ -102,9 +102,7 @@ const FeaturesCarousel = ({
               onClick={() => goToSlide(index)}
               className={cn(
                 "h-4 rounded-full transition-all",
-                index === currentSlide
-                  ? "w-8 bg-secondary-shadow"
-                  : "w-4 bg-secondary",
+                index === currentSlide ? "w-8 bg-extra-shadow" : "w-4 bg-extra",
               )}
               aria-label={`Go to slide ${index + 1}`}
               aria-current={index === currentSlide ? "true" : "false"}

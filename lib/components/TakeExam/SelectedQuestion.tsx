@@ -1,7 +1,7 @@
 import { Question } from "../../types";
 import { AnswerOption } from "../AnswerOption";
 import { Button } from "../Button";
-import { FocusSpan, Heading3, Heading6 } from "../FontFaces";
+import { Heading3, Heading6 } from "../FontFaces";
 import { Icon } from "../Icon";
 
 interface ISelectedQuestion {
@@ -53,7 +53,7 @@ const SelectedQuestion = ({
           ))}
         </div>
       </article>
-      <article className="flex justify-between">
+      <article className="flex justify-between gap-1.5 xl:justify-end">
         <Button
           theme="light"
           rounded
@@ -66,7 +66,7 @@ const SelectedQuestion = ({
           }}
           disabled={selected === 0 || !canJumpBetweenSteps}
         >
-          <FocusSpan>Previous</FocusSpan>
+          Previous
         </Button>
         <Button
           rounded
@@ -86,9 +86,7 @@ const SelectedQuestion = ({
           ) : (
             <Icon name="arrow_forward" />
           )}
-          <FocusSpan>
-            {selected === questions.length - 1 ? "Finish" : "Next"}
-          </FocusSpan>
+          {selected === questions.length - 1 ? "Finish" : "Next"}
         </Button>
       </article>
     </section>

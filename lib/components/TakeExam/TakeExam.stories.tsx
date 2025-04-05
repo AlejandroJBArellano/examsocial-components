@@ -5,6 +5,9 @@ import TakeExam from "./TakeExam";
 export default {
   title: "Components/TakeExam",
   component: TakeExam,
+  parameters: {
+    layout: "fullscreen",
+  },
 } as Meta;
 
 type Story = StoryObj<typeof TakeExam>;

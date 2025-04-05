@@ -8,7 +8,7 @@ interface RetentionRateProps {
 
 const RetentionRate = ({ completed, outOfTime, quit }: RetentionRateProps) => {
   return (
-    <div className="space-y-4 rounded-lg border border-secondary-shadow bg-secondary-tint p-8">
+    <div className="h-full space-y-4 rounded-lg border border-secondary-shadow bg-secondary-tint p-8">
       <Heading3>Retention Rate</Heading3>
       <div className="flex w-full divide-x-sm divide-black border-sm border-black">
         {completed > 0 && (

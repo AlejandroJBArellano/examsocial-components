@@ -172,7 +172,7 @@ export const examSchema = Yup.object({
   description: Yup.string()
     .min(20, "Description must be at least 20 characters long")
     .nullable(),
-  pathname: Yup.string(),
+  pathname: Yup.string().nullable(),
   image: Yup.mixed()
     .required("Image is required")
     .test(

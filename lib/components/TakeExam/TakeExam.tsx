@@ -1,6 +1,5 @@
+import { Exam } from "@/types";
 import { useEffect, useRef, useState } from "react";
-import * as Yup from "yup";
-import { examSchema } from "../../schemas";
 import { Dialog } from "../Dialog";
 import { ReportExam } from "../ReportExam";
 import { Stepper } from "../Stepper";
@@ -8,7 +7,7 @@ import { Step } from "../Stepper/Stepper";
 import SelectedQuestion from "./SelectedQuestion";
 
 interface TakeExamProps {
-  exam: Yup.InferType<typeof examSchema>;
+  exam: Exam;
   onFinish: () => void;
   onReportExam: (reason: string, questions: string[]) => void;
   onSelectOption: (questionId: string, optionId: string) => void;
@@ -74,11 +73,13 @@ const TakeExam = ({
         steps={steps}
         showDivision
         time={
-          ["PER_QUESTION", "CUSTOM"].includes(
-            exam.advancedSettings.timing.setting,
-          )
-            ? new Date(time * 1000).toISOString().substr(14, 5)
-            : new Date(time * 1000).toISOString().substr(11, 8)
+          exam.advancedSettings.timing.setting !== "NONE"
+            ? ["PER_QUESTION", "CUSTOM"].includes(
+                exam.advancedSettings.timing.setting,
+              )
+              ? new Date(time * 1000).toISOString().substr(14, 5)
+              : new Date(time * 1000).toISOString().substr(11, 8)
+            : undefined
         }
         onReportExam={() => {
           reportExamDialogRef.current?.showModal();

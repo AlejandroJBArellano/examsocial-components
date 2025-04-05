@@ -37,7 +37,7 @@ const Button = ({ rounded, theme, ...props }: ButtonProps) => {
       className={cn(
         `border px-4 py-2 shadow-right-sm duration-300 ease-out hover:shadow-right hover:transition-all disabled:cursor-not-allowed disabled:shadow-none xl:px-6 xl:text-2xl xl:font-medium xl:shadow-right xl:hover:shadow-right-lg xl:disabled:hover:shadow-none`,
         classTheme[theme || "light"],
-        rounded ? "rounded-full" : "rounded-md",
+        rounded ? "rounded-full" : "rounded-md xl:rounded-lg",
         props.className,
       )}
     />
@@ -99,7 +99,7 @@ const ActionButton = ({
         cn(
           "flex h-10 w-10 items-center justify-center rounded-md border-2 border-black p-2 xl:h-11 xl:w-11",
           selected
-            ? "hover:bg-light border-accent-shadow bg-accent-tint text-accent-shadow hover:border-black hover:text-black"
+            ? "border-accent-shadow bg-accent-tint text-accent-shadow hover:border-black hover:bg-light hover:text-black"
             : "bg-light hover:border-accent-shadow hover:bg-accent-tint hover:text-accent-shadow",
           className,
         ) +

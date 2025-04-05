@@ -138,7 +138,7 @@ export const GeneralDetails = () => {
           </Heading6>
         )}
       </article>
-      <ComingSoonWrapper badgeSize="small">
+      <ComingSoonWrapper badgeSize="big">
         <article>
           <Field
             label="Pathname"

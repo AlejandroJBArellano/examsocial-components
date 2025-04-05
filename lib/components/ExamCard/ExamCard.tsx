@@ -80,7 +80,8 @@ const ExamCardImage = ({ src, alt, className }: ExamCardImageProps) => {
         "aspect-video rounded-lg border-2 border-black object-cover shadow-right-sm",
         size === "default" && "w-full",
         size === "md" &&
-          "h-[72px] w-[128px] md:h-[72px] md:w-[128px] xl:h-[72px] xl:w-[128px] 2xl:h-[72px] 2xl:w-[128px]",
+          //"h-[72px] w-[128px] md:h-[72px] md:w-[128px] xl:h-[72px] xl:w-[128px] 2xl:h-[72px] 2xl:w-[128px]",
+          "aspect-video object-contain",
         size === "sm" &&
           "h-[75px] w-full md:h-[72px] md:w-[128px] xl:h-[72px] xl:w-[128px] 2xl:h-[72px] 2xl:w-[128px]",
         className,

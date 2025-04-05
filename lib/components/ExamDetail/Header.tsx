@@ -13,9 +13,9 @@ export interface ExamDetailHeaderProps {
     name: string;
     href: string;
   };
-  participants: number;
-  timing: Timing;
-  rating: number;
+  participants?: number;
+  timing?: Timing;
+  rating?: number;
   imageUrl: string;
 }
 
@@ -28,9 +28,11 @@ const HeaderExam = ({
   rating,
   imageUrl,
 }: ExamDetailHeaderProps) => {
-  const formattedDuration = timing.hours
-    ? `${timing.hours} ${timing.hours === 1 ? "hour" : "hours"}${timing.minutes ? ` ${timing.minutes} min` : ""}${timing.seconds ? ` ${timing.seconds} sec` : ""}`
-    : `${timing.minutes} ${timing.minutes === 1 ? "min" : "mins"}`;
+  const formattedDuration = timing
+    ? timing.hours
+      ? `${timing.hours} ${timing.hours === 1 ? "hour" : "hours"}${timing.minutes ? ` ${timing.minutes} min` : ""}${timing.seconds ? ` ${timing.seconds} sec` : ""}`
+      : `${timing.minutes} ${timing.minutes === 1 ? "min" : "mins"}`
+    : null;
 
   return (
     <header className="space-y-6 bg-secondary-tint p-6">
@@ -53,32 +55,34 @@ const HeaderExam = ({
           </div>
         ) : null}
       </div>
-      <div className="flex items-center justify-between">
-        {timing && (
-          <div
-            className="flex items-center gap-2 text-secondary-shadow"
-            aria-label={`Duration: ${formattedDuration}`}
-          >
-            <Icon name="timer" size={32} filled aria-hidden="true" />
-            <Heading3>{formattedDuration}.</Heading3>
-          </div>
-        )}
-        {rating ? (
-          <div
-            className="flex items-center gap-1"
-            aria-label={`Rating: ${rating} out of 5`}
-          >
-            <Heading5>{rating}</Heading5>
-            <Icon
-              name="grade"
-              size={32}
-              filled
-              aria-hidden="true"
-              className="text-extra"
-            />
-          </div>
-        ) : null}
-      </div>
+      {timing || rating ? (
+        <div className="flex items-center justify-between">
+          {timing && (
+            <div
+              className="flex items-center gap-2 text-secondary-shadow"
+              aria-label={`Duration: ${formattedDuration}`}
+            >
+              <Icon name="timer" size={32} filled aria-hidden="true" />
+              <Heading3>{formattedDuration}.</Heading3>
+            </div>
+          )}
+          {rating ? (
+            <div
+              className="flex items-center gap-1"
+              aria-label={`Rating: ${rating} out of 5`}
+            >
+              <Heading5>{rating}</Heading5>
+              <Icon
+                name="grade"
+                size={32}
+                filled
+                aria-hidden="true"
+                className="text-extra"
+              />
+            </div>
+          ) : null}
+        </div>
+      ) : null}
     </header>
   );
 };

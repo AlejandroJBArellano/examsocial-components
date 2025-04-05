@@ -1,9 +1,9 @@
-import { QRCode } from "react-qrcode-logo";
+import { QRCode, IProps as QRCodeProps } from "react-qrcode-logo";
 import { Button } from "../Button";
 import { FocusSpan, Heading3 } from "../FontFaces";
 import { Icon } from "../Icon";
 
-interface QRCodeCardProps {
+interface QRCodeCardProps extends QRCodeProps {
   /**
    * URL to encode in the QR code
    * @default window.location.href
@@ -33,6 +33,7 @@ const QRCodeCard = ({
   onShare,
   onDownload,
   className = "",
+  ...props
 }: QRCodeCardProps) => {
   const handleShare = () => {
     if (onShare) {
@@ -75,6 +76,7 @@ const QRCodeCard = ({
           bgColor="transparent"
           quietZone={0}
           style={{ width: "100%", height: "100%" }}
+          {...props}
         />
         <figcaption className="sr-only">{alt}</figcaption>
       </figure>

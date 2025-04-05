@@ -45,6 +45,42 @@ export const DisabledChecked: Story = {
   },
 };
 
+export const SmollSize: Story = {
+  args: {
+    size: "smoll",
+    checked: false,
+  },
+};
+
+export const SmollSizeChecked: Story = {
+  args: {
+    size: "smoll",
+    checked: true,
+  },
+};
+
+export const SmollSizeDisabled: Story = {
+  args: {
+    size: "smoll",
+    disabled: true,
+  },
+};
+
+export const SmollSizeDisabledChecked: Story = {
+  args: {
+    size: "smoll",
+    disabled: true,
+    checked: true,
+  },
+};
+
+export const CustomClassName: Story = {
+  args: {
+    className: "bg-gray-200",
+    checked: false,
+  },
+};
+
 // Interactive example with state
 const SwitchWithState = () => {
   const [checked, setChecked] = useState(false);
@@ -62,6 +98,25 @@ const SwitchWithState = () => {
 
 export const Interactive: Story = {
   render: () => <SwitchWithState />,
+};
+
+const SmollSwitchWithState = () => {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div className="flex items-center gap-4">
+      <Switch
+        size="smoll"
+        checked={checked}
+        onCheckedChange={(isChecked) => setChecked(isChecked as boolean)}
+      />
+      <span>{checked ? "On" : "Off"}</span>
+    </div>
+  );
+};
+
+export const InteractiveSmoll: Story = {
+  render: () => <SmollSwitchWithState />,
 };
 
 export const AllVariants: Story = {
@@ -83,7 +138,24 @@ export const AllVariants: Story = {
         <Switch disabled checked />
         <span>Disabled On</span>
       </div>
+      <div className="flex items-center gap-4">
+        <Switch size="smoll" checked={false} />
+        <span>Smoll Off</span>
+      </div>
+      <div className="flex items-center gap-4">
+        <Switch size="smoll" checked={true} />
+        <span>Smoll On</span>
+      </div>
+      <div className="flex items-center gap-4">
+        <Switch size="smoll" disabled />
+        <span>Smoll Disabled Off</span>
+      </div>
+      <div className="flex items-center gap-4">
+        <Switch size="smoll" disabled checked />
+        <span>Smoll Disabled On</span>
+      </div>
       <SwitchWithState />
+      <SmollSwitchWithState />
     </div>
   ),
 };

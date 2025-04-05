@@ -253,7 +253,7 @@ export const AdvancedSettings = () => {
           {userPlan !== "PREMIUM" && <PremiumBadge />}
         </div>
         <div className="space-y-4">
-          <PremiumWrapper show={userPlan !== "PREMIUM"}>
+          <PremiumWrapper show={userPlan !== "PREMIUM"} badgeSize="big">
             <Field.Switch
               checked={values.advancedSettings.showLogo}
               onCheckedChange={() =>
@@ -272,7 +272,7 @@ export const AdvancedSettings = () => {
               <div className="flex items-center gap-2">Show logo in exam</div>
             </Field.Switch>
           </PremiumWrapper>
-          <ComingSoonWrapper>
+          <ComingSoonWrapper badgeSize="big">
             <Field.Switch
               checked={values.advancedSettings.showBrandName}
               onCheckedChange={() =>
@@ -379,7 +379,7 @@ export const AdvancedSettings = () => {
         </section>
         <PrivacySettings />
         <section className="space-y-4">
-          <ComingSoonWrapper>
+          <ComingSoonWrapper badgeSize="big">
             <Field.Switch
               className="w-20"
               checked={values.advancedSettings.limitParticipants}
@@ -487,7 +487,7 @@ export const AdvancedSettings = () => {
           )}
         </section>
         <section className="space-y-4">
-          <ComingSoonWrapper>
+          <ComingSoonWrapper badgeSize="big">
             <Field.Switch
               checked={values.advancedSettings.allowAnonymousAnswers}
               onCheckedChange={() =>
@@ -532,7 +532,7 @@ export const AdvancedSettings = () => {
         >
           Randomize question order
         </Field.Switch>
-        <ComingSoonWrapper>
+        <ComingSoonWrapper badgeSize="big">
           <Field.Switch
             checked={values.advancedSettings.randomizeOptionsOrder}
             onCheckedChange={() =>
@@ -547,7 +547,7 @@ export const AdvancedSettings = () => {
           </Field.Switch>
         </ComingSoonWrapper>
       </div>
-      <ComingSoonWrapper>
+      <ComingSoonWrapper badgeSize="big">
         <div className="space-y-1">
           <Heading5>Feedback and Results</Heading5>
           <Paragraph className="text-sm">
@@ -578,7 +578,7 @@ export const AdvancedSettings = () => {
                 ),
             }}
           />
-          <ProWrapper show={userPlan === "BASIC"}>
+          <ProWrapper show={userPlan === "BASIC"} badgeSize="big">
             <Field.Switch
               checked={values.advancedSettings.sendEmailReport}
               onCheckedChange={() =>

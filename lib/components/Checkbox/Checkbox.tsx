@@ -8,16 +8,26 @@ export const Checkbox = ({ className, ...props }: CheckboxProps) => {
   return (
     <CheckboxElement.Root
       {...props}
-      className={cn(
-        "flex aspect-square h-6 w-6 items-center justify-center rounded border border-black shadow-black transition-shadow duration-300 ease-in-out",
-        "data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-zinc-200",
-        "hover:shadow-right-sm",
-        "disabled:cursor-not-allowed disabled:border-zinc-800 disabled:bg-zinc-200 disabled:text-zinc-800 disabled:hover:shadow-none",
-        className,
-      )}
+      className={
+        cn(
+          "flex aspect-square h-6 w-6 items-center justify-center rounded-md border-black text-primary-tint shadow-black transition-shadow duration-300 ease-in-out",
+          "data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-primary-shadow",
+          "hover:shadow-right-sm",
+          "data-[state=checked]:hover:bg-primary-shadow",
+          "disabled:cursor-not-allowed disabled:border-gray-800 disabled:bg-gray-200 disabled:hover:shadow-none",
+          "xl:h-8 xl:w-8",
+          className,
+        ) + " border-sm"
+      }
     >
-      <CheckboxElement.Indicator className="flex size-5 place-items-center">
-        <Icon name="check" size={20} />
+      <CheckboxElement.Indicator className="flex place-items-center">
+        <Icon
+          name="check"
+          responsiveSizes={{
+            sm: 18,
+            xl: 24,
+          }}
+        />
       </CheckboxElement.Indicator>
     </CheckboxElement.Root>
   );

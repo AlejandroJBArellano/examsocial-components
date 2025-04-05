@@ -39,14 +39,14 @@ const HeaderExam = ({
       <BannerExam imageUrl={imageUrl} title={title} />
       <Heading3>{title}</Heading3>
       <div className="flex items-center justify-between gap-4">
+        <Anchor className="flex-1 text-accent-shadow" href={author.href}>
+          {author.name}
+        </Anchor>
         {category ? (
           <Anchor className="text-accent-shadow" href={category.href}>
             {category.name}
           </Anchor>
         ) : null}
-        <Anchor className="flex-1 text-accent-shadow" href={author.href}>
-          {author.name}
-        </Anchor>
         {participants ? (
           <div
             className="flex items-center gap-2"

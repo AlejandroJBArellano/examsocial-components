@@ -27,7 +27,7 @@ const SelectedQuestion = ({
 
   return (
     <section className="h-full space-y-4 px-4 py-6">
-      <article className="flex flex-col gap-5">
+      <article className="grid gap-5 xl:grid-cols-2">
         <div className="space-y-1">
           <Heading6>Question {selected + 1}</Heading6>
           <Heading3>{question.title}</Heading3>

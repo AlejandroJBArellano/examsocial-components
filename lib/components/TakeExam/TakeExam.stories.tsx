@@ -11,6 +11,9 @@ type Story = StoryObj<typeof TakeExam>;
 
 export const Default: Story = {
   args: {
+    onSelectOption(questionId, optionId) {
+      console.log(questionId, optionId);
+    },
     exam: {
       title: "Sample Exam",
       description: "This is a sample exam description.",

@@ -186,7 +186,6 @@ export const Default: Story = {
     setSelected: action("setSelected"),
     onFinish: action("onFinish"),
     onSelectOption: action("onSelectOption"),
-    canJumpBetweenSteps: true,
     selectedOptions: {},
   },
   parameters: {
@@ -207,7 +206,6 @@ export const WithSelectedOption: Story = {
     setSelected: action("setSelected"),
     onFinish: action("onFinish"),
     onSelectOption: action("onSelectOption"),
-    canJumpBetweenSteps: true,
     selectedOptions: {
       [questionIds.q1]: optionIds.q1.a,
     },
@@ -230,7 +228,6 @@ export const LastQuestion: Story = {
     setSelected: action("setSelected"),
     onFinish: action("onFinish"),
     onSelectOption: action("onSelectOption"),
-    canJumpBetweenSteps: true,
     selectedOptions: {
       [questionIds.q1]: optionIds.q1.a,
       [questionIds.q2]: optionIds.q2.a,
@@ -257,7 +254,6 @@ export const RestrictedNavigation: Story = {
     setSelected: action("setSelected"),
     onFinish: action("onFinish"),
     onSelectOption: action("onSelectOption"),
-    canJumpBetweenSteps: false,
     selectedOptions: {
       [questionIds.q1]: optionIds.q1.a,
       [questionIds.q2]: optionIds.q2.a,
@@ -305,7 +301,6 @@ export const Interactive: Story = {
         setSelected={handleSetSelected}
         onFinish={() => action("onFinish")("Exam completed!")}
         onSelectOption={handleSelectOption}
-        canJumpBetweenSteps={true}
         selectedOptions={selectedOptions}
       />
     );

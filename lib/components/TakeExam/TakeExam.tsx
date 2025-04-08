@@ -77,8 +77,8 @@ const formatTime = (time: number, timingSetting: string) => {
   if (timingSetting === "NONE") return undefined;
 
   return ["PER_QUESTION", "CUSTOM"].includes(timingSetting)
-    ? new Date(time * 1000).toISOString().substr(14, 5)
-    : new Date(time * 1000).toISOString().substr(11, 8);
+    ? new Date(time * 1000).toISOString().slice(14, 19)
+    : new Date(time * 1000).toISOString().slice(11, 19);
 };
 
 const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {

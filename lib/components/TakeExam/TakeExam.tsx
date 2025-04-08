@@ -124,7 +124,6 @@ const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {
         setSelected={setSelectedQuestion}
         questions={exam.questions}
         onFinish={(selected) => onFinish(selected, "FINISHED")}
-        canJumpBetweenSteps
       />
 
       <Dialog innerRef={reportExamDialogRef}>

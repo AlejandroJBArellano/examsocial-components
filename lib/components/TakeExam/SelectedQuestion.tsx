@@ -10,7 +10,6 @@ interface SelectedQuestionProps {
   onSelectOption: (questionId: string, optionId: string) => void;
   selected: number;
   setSelected: (selected: (prev: number) => number) => void;
-  canJumpBetweenSteps?: boolean;
   selectedOptions: Record<string, string>;
 }
 
@@ -20,7 +19,6 @@ const SelectedQuestion = ({
   selected,
   setSelected,
   onSelectOption,
-  canJumpBetweenSteps,
   selectedOptions,
 }: SelectedQuestionProps) => {
   const currentQuestion = questions[selected];
@@ -29,7 +27,7 @@ const SelectedQuestion = ({
   const hasSelectedOption = Boolean(selectedOptions[currentQuestion.id!]);
 
   const handlePrevious = () => {
-    if (!isFirstQuestion && canJumpBetweenSteps) {
+    if (!isFirstQuestion) {
       setSelected((prev) => prev - 1);
     }
   };
@@ -71,7 +69,7 @@ const SelectedQuestion = ({
           theme="light"
           rounded
           onClick={handlePrevious}
-          disabled={isFirstQuestion || !canJumpBetweenSteps}
+          disabled={isFirstQuestion}
         >
           Previous
         </Button>

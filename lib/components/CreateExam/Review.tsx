@@ -251,7 +251,7 @@ export const Review = () => {
               <FocusSpan className="flex items-center gap-1">
                 <Icon name="lock" size={16} filled />
                 {toTitleCase(
-                  formik.values.advancedSettings.privacy.setting
+                  formik.values.privacy.setting
                     .toUpperCase()
                     .replaceAll("_", " "),
                 )}

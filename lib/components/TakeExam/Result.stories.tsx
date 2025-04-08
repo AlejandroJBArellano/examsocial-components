@@ -1,49 +1,16 @@
 import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/react";
-import Result, { Feedback } from "./Result";
+import Result from "./Result";
 
 // Sample feedback messages for different score conditions
-const sampleFeedback: Feedback[] = [
-  {
-    message: "Perfect score! You're a genius!",
-    condition: "EQUAL_TO",
-    equal: 100,
-  },
-  {
-    message: "Excellent job! You have a strong understanding of the material.",
-    condition: "BETWEEN",
-    min: 90,
-    max: 99,
-  },
-  {
-    message: "Great work! You've demonstrated good knowledge.",
-    condition: "BETWEEN",
-    min: 80,
-    max: 89,
-  },
-  {
-    message: "Good job! You've passed with a solid score.",
-    condition: "BETWEEN",
-    min: 70,
-    max: 79,
-  },
-  {
-    message: "You've passed, but there's room for improvement.",
-    condition: "BETWEEN",
-    min: 60,
-    max: 69,
-  },
-  {
-    message: "You were close! A bit more study and you'll pass next time.",
-    condition: "BETWEEN",
-    min: 50,
-    max: 59,
-  },
-  {
-    message: "You need to study more to pass this exam.",
-    condition: "LESS_THAN",
-    lt: 50,
-  },
+const sampleMessages = [
+  "Perfect score! You're a genius!",
+  "Excellent job! You have a strong understanding of the material.",
+  "Great work! You've demonstrated good knowledge.",
+  "Good job! You've passed with a solid score.",
+  "You've passed, but there's room for improvement.",
+  "You were close! A bit more study and you'll pass next time.",
+  "You need to study more to pass this exam.",
 ];
 
 export default {
@@ -75,13 +42,9 @@ export default {
       control: { type: "number", min: 1, max: 5 },
       description: "Maximum number of attempts allowed",
     },
-    passingPercentage: {
+    minimum: {
       control: { type: "number", min: 0, max: 100 },
       description: "Minimum percentage required to pass",
-    },
-    showRetryButton: {
-      control: "boolean",
-      description: "Whether to show the retry button",
     },
     onRetry: {
       action: "retried",
@@ -113,8 +76,9 @@ export const Passed: Story = {
     totalQuestions: 20,
     attemptsLeft: 2,
     maxAttempts: 3,
-    passingPercentage: 60,
-    showRetryButton: true,
+    minimum: 60,
+    score: 90,
+    messages: sampleMessages,
     onRetry: action("retry-clicked"),
   },
   parameters: {
@@ -133,8 +97,9 @@ export const Failed: Story = {
     totalQuestions: 20,
     attemptsLeft: 2,
     maxAttempts: 3,
-    passingPercentage: 60,
-    showRetryButton: true,
+    minimum: 60,
+    score: 20,
+    messages: sampleMessages,
     onRetry: action("retry-clicked"),
   },
   parameters: {
@@ -153,7 +118,7 @@ export const PerfectScore: Story = {
     totalQuestions: 20,
     attemptsLeft: 3,
     maxAttempts: 3,
-    feedback: sampleFeedback,
+    messages: sampleMessages,
     onRetry: action("retry-clicked"),
   },
   parameters: {
@@ -172,7 +137,7 @@ export const ExcellentScore: Story = {
     totalQuestions: 20,
     attemptsLeft: 3,
     maxAttempts: 3,
-    feedback: sampleFeedback,
+    messages: sampleMessages,
     onRetry: action("retry-clicked"),
   },
   parameters: {
@@ -191,7 +156,7 @@ export const LowScore: Story = {
     totalQuestions: 20,
     attemptsLeft: 2,
     maxAttempts: 3,
-    feedback: sampleFeedback,
+    messages: sampleMessages,
     onRetry: action("retry-clicked"),
   },
   parameters: {
@@ -210,7 +175,7 @@ export const NoAttemptsLeft: Story = {
     totalQuestions: 20,
     attemptsLeft: 0,
     maxAttempts: 3,
-    feedback: sampleFeedback,
+    messages: sampleMessages,
     onRetry: action("retry-clicked"),
   },
   parameters: {

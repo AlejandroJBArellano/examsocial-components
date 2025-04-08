@@ -38,7 +38,7 @@ describe("ResultTakeExam component", () => {
   });
 
   it("shows default pass message when score is above passing percentage", () => {
-    render(<Result {...defaultProps} passingPercentage={60} />);
+    render(<Result {...defaultProps} minimum={60} />);
     const message = screen.getByText("Congrats! You have passed this exam.");
     expect(message).toBeInTheDocument();
   });
@@ -49,7 +49,7 @@ describe("ResultTakeExam component", () => {
         {...defaultProps}
         correctAnswers={10}
         totalQuestions={20}
-        passingPercentage={60}
+        minimum={60}
       />,
     );
     const message = screen.getByText("Sorry, you did not pass this exam.");

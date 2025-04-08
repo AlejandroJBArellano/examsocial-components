@@ -103,14 +103,6 @@ export const advancedSettingsSchema = Yup.object({
   sendEmailReport: Yup.boolean(),
   leaderboard: Yup.boolean(),
   feedback: Yup.array().of(feedbackSchema),
-  privacy: Yup.object({
-    setting: Yup.string().required("Required"),
-    invitees: inviteesSchema,
-    password: Yup.string().when("setting", {
-      is: (val: string) => val === "PASSWORD",
-      then: (schema) => schema.required("Required"),
-    }),
-  }),
   limitParticipants: Yup.boolean(),
   maxParticipants: Yup.number().when("limitParticipants", {
     is: (val: boolean) => val,
@@ -165,6 +157,17 @@ export const contentSchema = Yup.object({
   }),
 });
 
+const privacySchema = Yup.object({
+  setting: Yup.string()
+    .required("Required")
+    .oneOf(["ONLY_ME", "INVITE_ONLY", "PASSWORD", "LINK", "PUBLIC"]),
+  invitees: inviteesSchema.nullable().optional(),
+  password: Yup.string().when("setting", {
+    is: (val: string) => val === "PASSWORD",
+    then: (schema) => schema.required("Required"),
+  }),
+});
+
 export const examSchema = Yup.object({
   title: Yup.string()
     .required("Title is required")
@@ -172,7 +175,8 @@ export const examSchema = Yup.object({
   description: Yup.string()
     .min(20, "Description must be at least 20 characters long")
     .nullable(),
-  pathname: Yup.string().nullable(),
+  pathname: Yup.string().nullable().optional(),
+  privacy: privacySchema,
   image: Yup.mixed()
     .required("Image is required")
     .test(

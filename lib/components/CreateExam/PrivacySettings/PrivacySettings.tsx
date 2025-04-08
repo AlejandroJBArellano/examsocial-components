@@ -31,7 +31,7 @@ const PrivacySettings = () => {
   const formik = useFormikContext<Yup.InferType<typeof examSchema>>();
   const { userPlan } = useExamCreation();
 
-  const privacySetting = formik.values.advancedSettings.privacy
+  const privacySetting = formik.values.privacy
     .setting as keyof typeof PrivacySettingsNameMap;
 
   const handlePrivacySettingChange = (newPrivacySetting: PrivacySetting) => {
@@ -41,9 +41,9 @@ const PrivacySettings = () => {
     ) {
       return;
     }
-    formik.setFieldValue("advancedSettings.privacy.setting", newPrivacySetting);
+    formik.setFieldValue("privacy.setting", newPrivacySetting);
     if (newPrivacySetting === "INVITE_ONLY") {
-      formik.setFieldValue("advancedSettings.privacy.invitees", []);
+      formik.setFieldValue("privacy.invitees", []);
     }
   };
 
@@ -54,20 +54,16 @@ const PrivacySettings = () => {
     }[],
   ) => {
     const updatedInvitees = [
-      ...new Set([
-        ...(formik.values.advancedSettings.privacy.invitees || []),
-        ...users,
-      ]),
+      ...new Set([...(formik.values.privacy.invitees || []), ...users]),
     ];
-    formik.setFieldValue("advancedSettings.privacy.invitees", updatedInvitees);
+    formik.setFieldValue("privacy.invitees", updatedInvitees);
   };
 
   const handleRemoveInvitee = (email: string) => {
-    const updatedInvitees =
-      formik.values.advancedSettings.privacy.invitees?.filter(
-        (invitee) => invitee.email !== email,
-      );
-    formik.setFieldValue("advancedSettings.privacy.invitees", updatedInvitees);
+    const updatedInvitees = formik.values.privacy.invitees?.filter(
+      (invitee) => invitee.email !== email,
+    );
+    formik.setFieldValue("privacy.invitees", updatedInvitees);
   };
 
   const PrivacyControls = {
@@ -80,10 +76,10 @@ const PrivacySettings = () => {
         <article>
           <UploadCSV handleInvite={handleInvite} />
         </article>
-        {formik.values.advancedSettings.privacy.invitees?.length ? (
+        {formik.values.privacy.invitees?.length ? (
           <article className="space-y-3">
             <Separator>Invitees</Separator>
-            {formik.values.advancedSettings.privacy.invitees.map((invitee) => (
+            {formik.values.privacy.invitees.map((invitee) => (
               <div
                 key={invitee.email}
                 className="flex w-full items-center justify-between"
@@ -115,7 +111,7 @@ const PrivacySettings = () => {
     <section className="space-y-4">
       <article className="flex items-center justify-between">
         <FocusSpan>Privacy</FocusSpan>
-        <div className="w-1/2">
+        <div>
           <Select text={PrivacySettingsNameMap[privacySetting]}>
             <Select.Option
               onClick={() => handlePrivacySettingChange("PUBLIC")}

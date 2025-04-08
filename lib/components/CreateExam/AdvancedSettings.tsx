@@ -412,7 +412,7 @@ export const AdvancedSettings = () => {
                   id: "maxParticipants",
                   type: "number",
                   placeholder: !["PUBLIC", "ONLY_ME"].includes(
-                    values.advancedSettings.privacy.setting,
+                    values.privacy.setting,
                   )
                     ? userPlan === "PREMIUM"
                       ? "500"
@@ -420,9 +420,7 @@ export const AdvancedSettings = () => {
                         ? "100"
                         : "0"
                     : "0",
-                  max: !["PUBLIC", "ONLY_ME"].includes(
-                    values.advancedSettings.privacy.setting,
-                  )
+                  max: !["PUBLIC", "ONLY_ME"].includes(values.privacy.setting)
                     ? userPlan === "PREMIUM"
                       ? 500
                       : userPlan === "PRO"

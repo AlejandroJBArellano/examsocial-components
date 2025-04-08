@@ -122,17 +122,16 @@ export const WithPrefilledValues: Story = {
       contents: [],
       currency: "USD",
       price: 0,
+      privacy: {
+        setting: "PRIVATE",
+      },
       advancedSettings: {
         randomizeQuestionOrder: false,
         showCorrectAnswers: true,
         sendEmailReport: true,
         leaderboard: true,
         feedback: [],
-        privacy: {
-          setting: "PRIVATE",
-          invitees: [],
-          password: "",
-        },
+
         timing: {
           setting: "TIMED",
           hours: 1,

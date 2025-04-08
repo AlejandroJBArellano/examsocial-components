@@ -69,6 +69,10 @@ const CreateExam = ({
           currency: initialValues?.currency || "USD",
           price: initialValues?.price ?? 0,
           theme: initialValues?.theme || "WHITEBOARD",
+          privacy: {
+            setting: initialValues?.privacy?.setting || "PUBLIC",
+            invitees: initialValues?.privacy?.invitees,
+          },
           advancedSettings: {
             randomizeQuestionOrder:
               initialValues?.advancedSettings?.randomizeQuestionOrder ?? true,
@@ -80,12 +84,6 @@ const CreateExam = ({
             maxAttempts: initialValues?.advancedSettings?.maxAttempts ?? 3,
             feedback: initialValues?.advancedSettings?.feedback || [],
             passingScore: initialValues?.advancedSettings?.passingScore ?? 70,
-            privacy: {
-              setting:
-                initialValues?.advancedSettings?.privacy?.setting || "PUBLIC",
-              invitees:
-                initialValues?.advancedSettings?.privacy?.invitees || [],
-            },
             timing: {
               setting:
                 initialValues?.advancedSettings?.timing?.setting || "NONE",
@@ -149,8 +147,8 @@ const CreateExam = ({
           );
 
           return (
-            <Form className="bg-light flex h-full min-h-screen w-full max-w-screen-2xl flex-col">
-              <header className="bg-light sticky top-0 z-10">
+            <Form className="flex h-full min-h-screen w-full max-w-screen-2xl flex-col bg-light">
+              <header className="sticky top-0 z-10 bg-light">
                 <Stepper
                   allowManualStepChange
                   activeStep={step}

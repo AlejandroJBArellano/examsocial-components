@@ -29,16 +29,14 @@ export const Default: Story = {
       categories: ["COMPUTER_SCIENCE"],
       currency: "USD",
       price: 0,
+      privacy: {
+        setting: "PUBLIC",
+      },
       advancedSettings: {
         showCorrectAnswers: true,
         sendEmailReport: true,
         leaderboard: true,
         passingScore: 80,
-        privacy: {
-          setting: "PUBLIC",
-          invitees: [],
-          password: "",
-        },
         timing: {
           setting: "TOTAL",
           hours: 1,

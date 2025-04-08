@@ -10,11 +10,11 @@ export interface ResultTakeExamProps {
   /**
    * Number of attempts left
    */
-  attemptsLeft: number;
+  attemptsLeft?: number;
   /**
    * Maximum number of attempts allowed for the exam
    */
-  maxAttempts: number;
+  maxAttempts?: number;
   /**
    * Array of feedback messages based on score conditions
    */
@@ -74,22 +74,24 @@ const ResultTakeExam = ({
           {messages?.join(", ")}
         </Heading3>
       ) : null}
-      <div className="flex items-center justify-between">
-        <FocusSpan>
-          Attempts left: {attemptsLeft} of {maxAttempts}
-        </FocusSpan>
-        {attemptsLeft > 0 && (
-          <Button
-            theme="extra"
-            rounded
-            className="flex items-center justify-center gap-2"
-            onClick={onRetry}
-          >
-            <Icon name="replay" size={20} />
-            Retry
-          </Button>
-        )}
-      </div>
+      {attemptsLeft && maxAttempts ? (
+        <div className="flex items-center justify-between">
+          <FocusSpan>
+            Attempts left: {attemptsLeft} of {maxAttempts}
+          </FocusSpan>
+          {attemptsLeft > 0 && (
+            <Button
+              theme="extra"
+              rounded
+              className="flex items-center justify-center gap-2"
+              onClick={onRetry}
+            >
+              <Icon name="replay" size={20} />
+              Retry
+            </Button>
+          )}
+        </div>
+      ) : null}
     </div>
   );
 };

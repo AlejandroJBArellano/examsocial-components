@@ -1,7 +1,7 @@
+import { questionSchema } from "@/schemas";
 import { cn } from "@/utils";
 import { useState } from "react";
 import * as Yup from "yup";
-import { questionSchema } from "../../schemas";
 import { Heading5, Smoll } from "../FontFaces";
 import { Icon } from "../Icon";
 

@@ -1,5 +1,5 @@
+import { cn } from "@/utils";
 import * as Checkbox from "@radix-ui/react-checkbox";
-import { cn } from "../../utils";
 import { Icon } from "../Icon";
 
 const AnswerToggle = ({ className, ...props }: Checkbox.CheckboxProps) => {

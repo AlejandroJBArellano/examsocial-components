@@ -1,5 +1,5 @@
+import { cn } from "@/utils";
 import React, { createContext, ReactNode, useContext } from "react";
-import { cn } from "../../utils";
 import { ExamCard } from "../ExamCard";
 import { FocusSmoll, Smoll } from "../FontFaces";
 import { Icon } from "../Icon";
@@ -78,7 +78,7 @@ const SocialPost = ({
     <SocialPostContext.Provider value={{ type }}>
       <article
         className={cn(
-          "bg-light flex flex-col gap-2 rounded-lg p-4 shadow-sm",
+          "flex flex-col gap-2 rounded-lg bg-light p-4 shadow-sm",
           className,
         )}
         {...props}

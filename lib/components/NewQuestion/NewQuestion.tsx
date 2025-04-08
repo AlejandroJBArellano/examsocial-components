@@ -1,6 +1,6 @@
+import { questionSchema } from "@/schemas";
+import { Question } from "@/types";
 import { Formik } from "formik";
-import { questionSchema } from "../../schemas";
-import { Question } from "../../types";
 import { Button } from "../Button";
 import { Heading4 } from "../FontFaces";
 import { QuestionForm } from "../QuestionForm";

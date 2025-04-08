@@ -1,5 +1,5 @@
+import { cn } from "@/utils";
 import * as CheckboxElement from "@radix-ui/react-checkbox";
-import { cn } from "../../utils";
 import { Icon } from "../Icon";
 
 export type CheckboxProps = CheckboxElement.CheckboxProps;

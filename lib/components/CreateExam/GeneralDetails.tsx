@@ -1,11 +1,11 @@
 import { Currency } from "@/constants";
 import { useExamCreation } from "@/hooks/exam";
+import { examSchema } from "@/schemas";
 import { CategoryMetadata, ExamCategory, ThemeSetting } from "@/types";
 import { cn } from "@/utils";
 import { useFormikContext } from "formik";
 import { useCallback, useEffect, useState } from "react";
 import * as Yup from "yup";
-import { examSchema } from "../../schemas";
 import { PremiumBadge } from "../Badges";
 import { BannerInput } from "../BannerInput";
 import { Field } from "../Field";

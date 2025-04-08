@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import React from "react";
 import {
   Bar,
@@ -11,7 +12,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { cn } from "../../utils";
 import { Heading3 } from "../FontFaces";
 
 export interface ChartDataPoint {
@@ -69,7 +69,7 @@ const CustomTooltip = ({
 }: TooltipProps<number, string> & { valueLabel?: string }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-light rounded border border-black p-2 shadow-md">
+      <div className="rounded border border-black bg-light p-2 shadow-md">
         <p className="font-semibold">{label}</p>
         <p className="text-sm">{`${valueLabel || "Value"}: ${payload[0].value}`}</p>
       </div>

@@ -1,6 +1,6 @@
 import SoonBadge from "@/components/Badges/SoonBadge";
 import { Helper } from "@/components/Helper";
-import { ThemeSetting } from "../../../types";
+import { ThemeSetting } from "@/types";
 import { Heading5 } from "../../FontFaces";
 import { Select } from "../../Select";
 

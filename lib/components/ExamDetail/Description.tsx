@@ -1,10 +1,10 @@
+import { cn } from "@/utils";
 import {
   ComponentPropsWithoutRef,
   PropsWithChildren,
   ReactNode,
   useState,
 } from "react";
-import { cn } from "../../utils";
 import { Button } from "../Button";
 import { FocusParagraph, FocusSpan, Paragraph } from "../FontFaces";
 

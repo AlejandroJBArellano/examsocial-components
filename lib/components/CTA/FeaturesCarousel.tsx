@@ -1,5 +1,5 @@
+import { cn } from "@/utils";
 import { useState } from "react";
-import { cn } from "../../utils";
 import { FocusSpan, Heading6, Span } from "../FontFaces";
 import { Icon } from "../Icon";
 

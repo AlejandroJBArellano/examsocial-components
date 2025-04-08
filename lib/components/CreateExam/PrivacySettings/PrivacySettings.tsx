@@ -1,10 +1,10 @@
 import { ProBadge } from "@/components/Badges";
 import SoonBadge from "@/components/Badges/SoonBadge";
 import { useExamCreation } from "@/hooks/exam";
+import { examSchema } from "@/schemas";
 import { useFormik, useFormikContext } from "formik";
 import { ChangeEvent } from "react";
 import * as Yup from "yup";
-import { examSchema } from "../../../schemas";
 import { Button } from "../../Button";
 import { Field } from "../../Field";
 import { FocusSpan, Paragraph, Span } from "../../FontFaces";

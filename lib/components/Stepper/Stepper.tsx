@@ -1,5 +1,5 @@
+import { cn } from "@/utils";
 import { PropsWithChildren } from "react";
-import { cn } from "../../utils";
 import { Button } from "../Button";
 import { ButtonTheme } from "../Button/Button";
 import { FocusSpan, Heading2, Heading3, Heading5 } from "../FontFaces";

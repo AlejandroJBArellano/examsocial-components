@@ -70,7 +70,7 @@ export { default as ComponentName } from './ComponentName';
 
 ```tsx
 import { ComponentPropsWithoutRef } from "react";
-import { cn } from "../../utils";
+import { cn } from "@/utils";
 
 interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   rounded?: boolean;

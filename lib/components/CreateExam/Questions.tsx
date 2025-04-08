@@ -1,7 +1,7 @@
+import { examSchema } from "@/schemas";
 import { useFormikContext } from "formik";
 import { useEffect, useRef, useState } from "react";
 import * as Yup from "yup";
-import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
 import { EditQuestion } from "../EditQuestion";

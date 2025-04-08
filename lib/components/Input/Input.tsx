@@ -1,5 +1,5 @@
+import { cn } from "@/utils";
 import { InputHTMLAttributes, ReactNode } from "react";
-import { cn } from "../../utils";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   LeftIcon?: ReactNode;

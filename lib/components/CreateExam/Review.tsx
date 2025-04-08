@@ -1,10 +1,10 @@
+import { examSchema } from "@/schemas";
 import { CategoryMetadata, ExamCategory } from "@/types";
+import { toTitleCase } from "@/utils";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
-import { examSchema } from "../../schemas";
-import { toTitleCase } from "../../utils";
 import { Button } from "../Button";
-import ExamCard from "../ExamCard/ExamCard";
+import { ExamCard } from "../ExamCard";
 import { FocusSpan, Heading3, Heading4, Span } from "../FontFaces";
 import { Icon } from "../Icon";
 import { QuestionSet } from "../QuestionSet";

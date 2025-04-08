@@ -1,9 +1,9 @@
 import { useExamCreation } from "@/hooks/exam";
+import { examSchema, feedbackSchema } from "@/schemas";
 import { cn } from "@/utils";
 import { useFormikContext } from "formik";
 import { useRef, useState } from "react";
 import * as Yup from "yup";
-import { examSchema, feedbackSchema } from "../../schemas";
 import { PremiumBadge } from "../Badges";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";

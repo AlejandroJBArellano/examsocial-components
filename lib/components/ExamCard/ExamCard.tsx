@@ -1,5 +1,5 @@
+import { cn } from "@/utils";
 import React, { createContext, ReactNode, useContext } from "react";
-import { cn } from "../../utils";
 import { Button } from "../Button";
 import { ButtonTheme } from "../Button/Button";
 import { Anchor, Heading4, Heading5, Heading6, Paragraph } from "../FontFaces";

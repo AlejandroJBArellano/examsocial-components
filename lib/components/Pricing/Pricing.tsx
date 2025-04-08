@@ -1,5 +1,5 @@
+import { cn } from "@/utils";
 import { PropsWithChildren } from "react";
-import { cn } from "../../utils";
 import {
   FocusDisplay,
   FocusSmoll,

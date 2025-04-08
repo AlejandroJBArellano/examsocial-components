@@ -1,7 +1,7 @@
+import { questionSchema } from "@/schemas";
 import { Field, FieldArray, FormikProps } from "formik";
 import { v4 as uuidv4 } from "uuid";
 import * as Yup from "yup";
-import { questionSchema } from "../../schemas";
 import { Button } from "../Button";
 import { CreateAnswer } from "../CreateAnswer";
 import { ImageInput } from "../ImageInput";

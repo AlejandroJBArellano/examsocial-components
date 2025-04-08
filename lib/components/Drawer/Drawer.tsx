@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/utils";
 import { forwardRef } from "react";
 import { DialogProps, Drawer as VaulDrawer } from "vaul";
-import { cn } from "../../utils";
 import { Heading4 } from "../FontFaces/Headers";
 
 // Define the Drawer object directly with all subcomponents
@@ -20,7 +20,7 @@ export const Drawer = {
     <VaulDrawer.Trigger
       ref={ref}
       className={cn(
-        "bg-light relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]",
+        "relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-light px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]",
         className,
       )}
       {...props}

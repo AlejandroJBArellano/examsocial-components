@@ -1,8 +1,8 @@
 import SoonBadge from "@/components/Badges/SoonBadge";
 import { Helper } from "@/components/Helper";
+import { examSchema } from "@/schemas";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
-import { examSchema } from "../../../schemas";
 import { Field } from "../../Field";
 import { Heading5, Smoll } from "../../FontFaces";
 import { Select } from "../../Select";

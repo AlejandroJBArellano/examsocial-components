@@ -1,4 +1,4 @@
-import { Question } from "../../types";
+import { Question } from "@/types";
 import { Button } from "../Button";
 import { Heading5, Span } from "../FontFaces";
 import { Tag } from "../Tag";

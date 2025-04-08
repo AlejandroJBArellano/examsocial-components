@@ -1,6 +1,6 @@
+import { collectionSchema } from "@/schemas";
+import { CollectionType } from "@/types";
 import { Form, Formik } from "formik";
-import { collectionSchema } from "../../schemas";
-import { CollectionType } from "../../types";
 import { Button } from "../Button";
 import { Heading4 } from "../FontFaces";
 import { CollectionForm } from "./Collection";

@@ -1,6 +1,6 @@
+import { feedbackSchema } from "@/schemas";
+import { handleCondition } from "@/utils";
 import * as Yup from "yup";
-import { feedbackSchema } from "../../schemas";
-import { handleCondition } from "../../utils";
 import { Button } from "../Button";
 import { FocusSpan, Paragraph } from "../FontFaces";
 

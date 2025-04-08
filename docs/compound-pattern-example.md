@@ -18,7 +18,7 @@ Below is an example of a Tabs component using the compound pattern:
 ```tsx
 // Tabs.tsx
 import React, { createContext, useState, useContext } from 'react';
-import { cn } from '../../utils';
+import { cn } from '@/utils';
 
 // Step 1: Create a context to share state between components
 interface TabsContextType {

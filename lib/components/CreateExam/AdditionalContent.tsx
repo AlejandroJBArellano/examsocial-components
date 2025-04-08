@@ -1,7 +1,7 @@
+import { contentSchema, examSchema } from "@/schemas";
 import { useFormikContext } from "formik";
 import { useRef } from "react";
 import * as Yup from "yup";
-import { contentSchema, examSchema } from "../../schemas";
 import { NewAdditionalContent } from "../AdditionalContent/New";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
@@ -25,7 +25,7 @@ const ContentSet = ({
     ),
     TEXT: <p className="break-all">{content.text}</p>,
     LINK: (
-      <article className="bg-light flex items-center justify-between border-sm border-black p-2">
+      <article className="flex items-center justify-between border-sm border-black bg-light p-2">
         <div className="flex items-center gap-2">
           <Icon name="link" className="!h-10 !w-10" />
           <div className="space-y-1">

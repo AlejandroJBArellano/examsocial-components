@@ -1,9 +1,9 @@
 import { ExamCreationContext } from "@/hooks/exam";
+import { examSchema } from "@/schemas";
 import { UserPlan } from "@/types";
 import { Form, Formik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
-import { examSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
 import { Step } from "../Stepper/Stepper";

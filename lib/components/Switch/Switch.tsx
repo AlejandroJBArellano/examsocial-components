@@ -1,7 +1,7 @@
 "use client";
+import { cn } from "@/utils";
 import * as SwitchReact from "@radix-ui/react-switch";
 import { RefAttributes } from "react";
-import { cn } from "../../utils";
 
 const Switch = (
   props: Partial<SwitchReact.SwitchProps & RefAttributes<HTMLButtonElement>> & {

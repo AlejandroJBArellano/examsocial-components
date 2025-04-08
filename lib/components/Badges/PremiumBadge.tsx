@@ -1,4 +1,4 @@
-import { cn } from "../../utils";
+import { cn } from "@/utils";
 import { Icon } from "../Icon";
 
 const PremiumBadge = ({ size = "small" }: { size?: "big" | "small" }) => {

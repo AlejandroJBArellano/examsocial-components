@@ -1,5 +1,5 @@
+import { cn } from "@/utils";
 import { ComponentPropsWithoutRef } from "react";
-import { cn } from "../../utils";
 import { Span } from "../FontFaces";
 import { Icon } from "../Icon";
 import { Tooltip } from "../Tooltip";

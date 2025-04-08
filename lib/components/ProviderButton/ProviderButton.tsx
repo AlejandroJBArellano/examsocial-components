@@ -1,5 +1,5 @@
+import { cn } from "@/utils";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
-import { cn } from "../../utils";
 import { FocusSpan } from "../FontFaces/Spans";
 
 export type ProviderType =

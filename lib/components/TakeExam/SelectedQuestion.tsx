@@ -4,7 +4,7 @@ import { Button } from "../Button";
 import { Heading3, Heading6 } from "../FontFaces";
 import { Icon } from "../Icon";
 
-interface ISelectedQuestion {
+interface SelectedQuestionProps {
   questions: Question[];
   onFinish: (selected: Record<string, string>) => void;
   onSelectOption: (questionId: string, optionId: string) => void;
@@ -21,29 +21,42 @@ const SelectedQuestion = ({
   setSelected,
   onSelectOption,
   canJumpBetweenSteps,
-  selectedOptions: recordQuestionSelectedOptions,
-}: ISelectedQuestion) => {
-  const question = questions[selected];
+  selectedOptions,
+}: SelectedQuestionProps) => {
+  const currentQuestion = questions[selected];
+  const isFirstQuestion = selected === 0;
+  const isLastQuestion = selected === questions.length - 1;
+  const hasSelectedOption = Boolean(selectedOptions[currentQuestion.id!]);
+
+  const handlePrevious = () => {
+    if (!isFirstQuestion && canJumpBetweenSteps) {
+      setSelected((prev) => prev - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (isLastQuestion) {
+      onFinish(selectedOptions);
+    } else {
+      setSelected((prev) => prev + 1);
+    }
+  };
 
   return (
     <section className="h-full space-y-4 px-4 py-6">
       <article className="grid gap-5 xl:grid-cols-2">
         <div className="space-y-1">
           <Heading6>Question {selected + 1}</Heading6>
-          <Heading3>{question.title}</Heading3>
+          <Heading3>{currentQuestion.title}</Heading3>
         </div>
         <div className="flex flex-auto flex-col gap-2">
-          {question.options.map((option) => (
+          {currentQuestion.options.map((option) => (
             <AnswerOption
-              onClick={() => {
-                onSelectOption(question.id!, option.id!);
-              }}
               key={option.id}
-              checked={
-                recordQuestionSelectedOptions[question.id!] === option.id
-              }
+              onClick={() => onSelectOption(currentQuestion.id!, option.id!)}
+              checked={selectedOptions[currentQuestion.id!] === option.id}
               type={
-                recordQuestionSelectedOptions[question.id!] === option.id
+                selectedOptions[currentQuestion.id!] === option.id
                   ? "selectable"
                   : undefined
               }
@@ -57,14 +70,8 @@ const SelectedQuestion = ({
         <Button
           theme="light"
           rounded
-          onClick={() => {
-            if (selected === 0) return;
-            if (canJumpBetweenSteps) {
-              setSelected((prev: number) => prev - 1);
-              return;
-            }
-          }}
-          disabled={selected === 0 || !canJumpBetweenSteps}
+          onClick={handlePrevious}
+          disabled={isFirstQuestion || !canJumpBetweenSteps}
         >
           Previous
         </Button>
@@ -72,21 +79,20 @@ const SelectedQuestion = ({
           rounded
           theme="accent"
           className="flex items-center justify-center gap-2"
-          disabled={!recordQuestionSelectedOptions[question.id!]}
-          onClick={() => {
-            if (selected === questions.length - 1) {
-              onFinish(recordQuestionSelectedOptions);
-              return;
-            }
-            setSelected((prev: number) => prev + 1);
-          }}
+          disabled={!hasSelectedOption}
+          onClick={handleNext}
         >
-          {selected === questions.length - 1 ? (
-            <Icon name="sports_score" />
+          {isLastQuestion ? (
+            <>
+              <Icon name="sports_score" />
+              Finish
+            </>
           ) : (
-            <Icon name="arrow_forward" />
+            <>
+              <Icon name="arrow_forward" />
+              Next
+            </>
           )}
-          {selected === questions.length - 1 ? "Finish" : "Next"}
         </Button>
       </article>
     </section>

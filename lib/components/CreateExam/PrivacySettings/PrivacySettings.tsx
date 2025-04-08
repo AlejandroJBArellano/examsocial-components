@@ -1,5 +1,4 @@
-import { ProBadge } from "@/components/Badges";
-import SoonBadge from "@/components/Badges/SoonBadge";
+import { ProBadge, SoonBadge } from "@/components/Badges";
 import { useExamCreation } from "@/hooks/exam";
 import { examSchema } from "@/schemas";
 import { useFormik, useFormikContext } from "formik";

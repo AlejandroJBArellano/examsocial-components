@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import SoonBadge from "../Badges/SoonBadge";
+import { SoonBadge } from "../Badges";
 
 export interface ComingSoonWrapperProps {
   /**

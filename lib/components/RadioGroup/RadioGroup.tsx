@@ -1,7 +1,6 @@
 import { cn } from "@/utils";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import React from "react";
-import { twMerge } from "tailwind-merge";
 
 export interface RadioGroupProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> {
@@ -30,7 +29,7 @@ export const RadioGroup = ({
 }: RadioGroupProps) => {
   return (
     <RadioGroupPrimitive.Root
-      className={twMerge(
+      className={cn(
         "flex",
         orientation === "vertical" ? "flex-col gap-2" : "flex-row gap-4",
         className,
@@ -45,7 +44,7 @@ export const RadioGroup = ({
             value={item.value}
             disabled={item.disabled}
             className={
-              "bg-light h-6 w-6 rounded-full border border-black " +
+              "h-6 w-6 rounded-full border border-black bg-light " +
               " focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2" +
               " hover:border-accent" +
               " data-[state=checked]:border-accent" +
@@ -66,7 +65,7 @@ export const RadioGroup = ({
           </RadioGroupPrimitive.Item>
           <label
             htmlFor={item.value}
-            className={twMerge(
+            className={cn(
               "ml-2 text-sm font-medium text-gray-700",
               "cursor-pointer",
               item.disabled && "cursor-not-allowed text-gray-400",

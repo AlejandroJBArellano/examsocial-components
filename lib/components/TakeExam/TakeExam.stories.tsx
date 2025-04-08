@@ -86,7 +86,8 @@ const examDefault: Exam = {
 
 export const Default: Story = {
   args: {
-    async onFinish() {
+    async onFinish(selection, reason) {
+      console.log({ selection, reason });
       console.log(
         "La función asíncrona se está ejecutando antes de abandonar la página...",
       );

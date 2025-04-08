@@ -6,7 +6,7 @@ import { Icon } from "../Icon";
 
 interface ISelectedQuestion {
   questions: Question[];
-  onFinish: () => void;
+  onFinish: (selected: Record<string, string>) => void;
   onSelectOption: (questionId: string, optionId: string) => void;
   selected: number;
   setSelected: (selected: (prev: number) => number) => void;
@@ -75,7 +75,7 @@ const SelectedQuestion = ({
           disabled={!recordQuestionSelectedOptions[question.id!]}
           onClick={() => {
             if (selected === questions.length - 1) {
-              onFinish();
+              onFinish(recordQuestionSelectedOptions);
               return;
             }
             setSelected((prev: number) => prev + 1);

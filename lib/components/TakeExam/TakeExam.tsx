@@ -6,19 +6,19 @@ import { Stepper } from "../Stepper";
 import { Step } from "../Stepper/Stepper";
 import SelectedQuestion from "./SelectedQuestion";
 
+type FinishReasons = "OUT_OF_TIME" | "REPORT" | "FINISHED" | "DROPPED";
+
 interface TakeExamProps {
   exam: Exam;
-  onFinish: () => void;
-  onReportExam: (reason: string, questions: string[]) => void;
-  onSelectOption: (questionId: string, optionId: string) => void;
+  onFinish: (selections: Record<string, string>, reason: FinishReasons) => void;
+  onReportExam: (
+    reason: string,
+    questions: string[],
+    selections: Record<string, string>,
+  ) => void;
 }
 
-const TakeExam = ({
-  exam,
-  onFinish,
-  onReportExam,
-  onSelectOption,
-}: TakeExamProps) => {
+const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {
   const reportExamDialogRef = useRef<HTMLDialogElement>(null);
 
   const [recordQuestionSelectedOptions, setRecordQuestionSelectedOptions] =
@@ -42,6 +42,7 @@ const TakeExam = ({
       setTime((prevTime) => {
         if (prevTime <= 0) {
           clearInterval(timer);
+          onFinish(recordQuestionSelectedOptions, "OUT_OF_TIME");
           return 0;
         }
         return prevTime - 1;
@@ -59,11 +60,25 @@ const TakeExam = ({
   }));
 
   useEffect(() => {
-    onSelectOption(
-      exam.questions[selectedQuestion].id!,
-      recordQuestionSelectedOptions[exam.questions[selectedQuestion].id!],
-    );
-  }, [recordQuestionSelectedOptions]);
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      const confirmationMessage =
+        "Are you sure you want to leave this page? Your exam might not be submitted.";
+      event.returnValue = confirmationMessage; // Required by some browsers
+
+      if (window.confirm(confirmationMessage)) {
+        onFinish(recordQuestionSelectedOptions, "DROPPED");
+      } else {
+        return (event.returnValue = "");
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [onFinish]);
 
   return (
     <main>
@@ -98,7 +113,7 @@ const TakeExam = ({
         selected={selectedQuestion}
         setSelected={setSelectedQuestion}
         questions={exam.questions}
-        onFinish={onFinish}
+        onFinish={(selected) => onFinish(selected, "FINISHED")}
         canJumpBetweenSteps
       />
       <Dialog innerRef={reportExamDialogRef}>
@@ -107,7 +122,9 @@ const TakeExam = ({
           onCancel={() => {
             reportExamDialogRef.current?.close();
           }}
-          onSubmit={onReportExam}
+          onSubmit={(reason, questions) =>
+            onReportExam(reason, questions, recordQuestionSelectedOptions)
+          }
         />
       </Dialog>
     </main>

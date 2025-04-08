@@ -83,22 +83,26 @@ const formatTime = (time: number, timingSetting: string) => {
 
 const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {
   const reportExamDialogRef = useRef<HTMLDialogElement>(null);
-  const [selected, setSelected] = useState<Record<string, string>>({});
-  const [selectedQuestion, setSelectedQuestion] = useState(0);
+  const [selectedOptions, setSelectedOptions] = useState<
+    Record<string, string>
+  >({});
+  const [selected, setSelected] = useState(0);
 
   const time = useExamTimer(exam.advancedSettings.timing, () =>
-    onFinish(selected, "OUT_OF_TIME"),
+    onFinish(selectedOptions, "OUT_OF_TIME"),
   );
 
-  useBeforeUnload(() => onFinish(selected, "DROPPED"));
+  useBeforeUnload(() => onFinish(selectedOptions, "DROPPED"));
 
   const steps: Step[] = exam.questions.map((_, index) => ({
     id: index + 1,
-    status: selected[exam.questions[index].id!] ? "completed" : "pending",
+    status: selectedOptions[exam.questions[index].id!]
+      ? "completed"
+      : "pending",
   }));
 
   const handleSelectOption = (questionId: string, optionId: string) => {
-    setSelected((prev) => ({
+    setSelectedOptions((prev) => ({
       ...prev,
       [questionId]: optionId,
     }));
@@ -108,7 +112,7 @@ const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {
     <main>
       <Stepper
         theme="secondary"
-        activeStep={selectedQuestion + 1}
+        activeStep={selected + 1}
         steps={steps}
         showDivision
         time={formatTime(time, exam.advancedSettings.timing.setting)}
@@ -118,10 +122,10 @@ const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {
       </Stepper>
 
       <SelectedQuestion
-        selectedOptions={selected}
+        selectedOptions={selectedOptions}
         onSelectOption={handleSelectOption}
-        selected={selectedQuestion}
-        setSelected={setSelectedQuestion}
+        selected={selected}
+        setSelected={setSelected}
         questions={exam.questions}
         onFinish={(selected) => onFinish(selected, "FINISHED")}
       />
@@ -131,7 +135,7 @@ const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {
           questions={exam.questions}
           onCancel={() => reportExamDialogRef.current?.close()}
           onSubmit={(reason, questions) =>
-            onReportExam(reason, questions, selected)
+            onReportExam(reason, questions, selectedOptions)
           }
         />
       </Dialog>

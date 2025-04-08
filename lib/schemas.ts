@@ -23,7 +23,7 @@ export const questionSchema = Yup.object({
     .of(
       Yup.object({
         text: Yup.string().required("Option text is required"),
-        correct: Yup.boolean(),
+        correct: Yup.boolean().optional(),
         id: Yup.string().required(),
       }),
     )

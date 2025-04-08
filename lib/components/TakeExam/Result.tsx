@@ -86,7 +86,7 @@ const ResultTakeExam = ({
             onClick={onRetry}
           >
             <Icon name="replay" size={20} />
-            <FocusSpan>Retry</FocusSpan>
+            Retry
           </Button>
         )}
       </div>

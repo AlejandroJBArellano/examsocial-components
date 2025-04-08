@@ -83,25 +83,22 @@ const formatTime = (time: number, timingSetting: string) => {
 
 const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {
   const reportExamDialogRef = useRef<HTMLDialogElement>(null);
-  const [recordQuestionSelectedOptions, setRecordQuestionSelectedOptions] =
-    useState<Record<string, string>>({});
+  const [selected, setSelected] = useState<Record<string, string>>({});
   const [selectedQuestion, setSelectedQuestion] = useState(0);
 
   const time = useExamTimer(exam.advancedSettings.timing, () =>
-    onFinish(recordQuestionSelectedOptions, "OUT_OF_TIME"),
+    onFinish(selected, "OUT_OF_TIME"),
   );
 
-  useBeforeUnload(() => onFinish(recordQuestionSelectedOptions, "DROPPED"));
+  useBeforeUnload(() => onFinish(selected, "DROPPED"));
 
   const steps: Step[] = exam.questions.map((_, index) => ({
     id: index + 1,
-    status: recordQuestionSelectedOptions[exam.questions[index].id!]
-      ? "completed"
-      : "pending",
+    status: selected[exam.questions[index].id!] ? "completed" : "pending",
   }));
 
   const handleSelectOption = (questionId: string, optionId: string) => {
-    setRecordQuestionSelectedOptions((prev) => ({
+    setSelected((prev) => ({
       ...prev,
       [questionId]: optionId,
     }));
@@ -121,7 +118,7 @@ const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {
       </Stepper>
 
       <SelectedQuestion
-        recordQuestionSelectedOptions={recordQuestionSelectedOptions}
+        recordQuestionSelectedOptions={selected}
         onSelectOption={handleSelectOption}
         selected={selectedQuestion}
         setSelected={setSelectedQuestion}
@@ -135,7 +132,7 @@ const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {
           questions={exam.questions}
           onCancel={() => reportExamDialogRef.current?.close()}
           onSubmit={(reason, questions) =>
-            onReportExam(reason, questions, recordQuestionSelectedOptions)
+            onReportExam(reason, questions, selected)
           }
         />
       </Dialog>

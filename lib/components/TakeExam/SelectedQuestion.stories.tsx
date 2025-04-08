@@ -155,7 +155,7 @@ export default {
       description: "Whether the user can navigate backwards",
       control: "boolean",
     },
-    recordQuestionSelectedOptions: {
+    selectedOptions: {
       description: "Record of selected options for each question",
       control: { type: "object" },
     },
@@ -187,7 +187,7 @@ export const Default: Story = {
     onFinish: action("onFinish"),
     onSelectOption: action("onSelectOption"),
     canJumpBetweenSteps: true,
-    recordQuestionSelectedOptions: {},
+    selectedOptions: {},
   },
   parameters: {
     docs: {
@@ -208,7 +208,7 @@ export const WithSelectedOption: Story = {
     onFinish: action("onFinish"),
     onSelectOption: action("onSelectOption"),
     canJumpBetweenSteps: true,
-    recordQuestionSelectedOptions: {
+    selectedOptions: {
       [questionIds.q1]: optionIds.q1.a,
     },
   },
@@ -231,7 +231,7 @@ export const LastQuestion: Story = {
     onFinish: action("onFinish"),
     onSelectOption: action("onSelectOption"),
     canJumpBetweenSteps: true,
-    recordQuestionSelectedOptions: {
+    selectedOptions: {
       [questionIds.q1]: optionIds.q1.a,
       [questionIds.q2]: optionIds.q2.a,
       [questionIds.q3]: optionIds.q3.a,
@@ -258,7 +258,7 @@ export const RestrictedNavigation: Story = {
     onFinish: action("onFinish"),
     onSelectOption: action("onSelectOption"),
     canJumpBetweenSteps: false,
-    recordQuestionSelectedOptions: {
+    selectedOptions: {
       [questionIds.q1]: optionIds.q1.a,
       [questionIds.q2]: optionIds.q2.a,
       [questionIds.q3]: optionIds.q3.a,
@@ -306,7 +306,7 @@ export const Interactive: Story = {
         onFinish={() => action("onFinish")("Exam completed!")}
         onSelectOption={handleSelectOption}
         canJumpBetweenSteps={true}
-        recordQuestionSelectedOptions={selectedOptions}
+        selectedOptions={selectedOptions}
       />
     );
   },

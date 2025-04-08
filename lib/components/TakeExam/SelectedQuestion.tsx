@@ -11,7 +11,7 @@ interface ISelectedQuestion {
   selected: number;
   setSelected: (selected: (prev: number) => number) => void;
   canJumpBetweenSteps?: boolean;
-  recordQuestionSelectedOptions: Record<string, string>;
+  selectedOptions: Record<string, string>;
 }
 
 const SelectedQuestion = ({
@@ -21,7 +21,7 @@ const SelectedQuestion = ({
   setSelected,
   onSelectOption,
   canJumpBetweenSteps,
-  recordQuestionSelectedOptions,
+  selectedOptions: recordQuestionSelectedOptions,
 }: ISelectedQuestion) => {
   const question = questions[selected];
 

@@ -118,7 +118,7 @@ const TakeExam = ({ exam, onFinish, onReportExam }: TakeExamProps) => {
       </Stepper>
 
       <SelectedQuestion
-        recordQuestionSelectedOptions={selected}
+        selectedOptions={selected}
         onSelectOption={handleSelectOption}
         selected={selectedQuestion}
         setSelected={setSelectedQuestion}

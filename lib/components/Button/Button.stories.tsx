@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import Button from "./Button";
 
 const meta: Meta<typeof Button> = {
@@ -72,6 +73,48 @@ export const Disabled: Story = {
     children: "Disabled Button",
     theme: "light",
     disabled: true,
+  },
+};
+
+export const IndexButtonDefault: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <Button.Index index={1} status="done" />
+      <Button.Index index={2} status="current" />
+      <Button.Index index={3} status="pending" />
+    </div>
+  ),
+};
+
+export const IndexButtonSelected: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <Button.Index index={1} status="done" />
+      <Button.Index index={2} status="current" />
+      <Button.Index index={3} status="pending" />
+    </div>
+  ),
+};
+
+export const IndexButtonInteractive: Story = {
+  render: function IndexButtonInteractiveRender() {
+    const [selected, setSelected] = useState(1);
+
+    return (
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center gap-4">
+          {[1, 2, 3, 4, 5].map((index) => (
+            <Button.Index
+              key={index}
+              index={index}
+              status={selected === index ? "current" : "done"}
+              onClick={() => setSelected(index)}
+            />
+          ))}
+        </div>
+        <p>Selected: {selected}</p>
+      </div>
+    );
   },
 };
 

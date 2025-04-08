@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef } from "react";
 import { cn } from "../../utils";
+import { Span } from "../FontFaces";
 import { Icon } from "../Icon";
 import { Tooltip } from "../Tooltip";
 
@@ -134,3 +135,38 @@ const ActionButton = ({
 };
 
 Button.Action = ActionButton;
+
+interface IndexButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  index: number;
+  status: "done" | "pending" | "current";
+}
+
+const IndexButton = ({
+  index,
+  status = "pending",
+  className,
+  ...props
+}: IndexButtonProps) => {
+  return (
+    <button
+      type="button"
+      data-testid="index-button"
+      {...props}
+      className={cn(
+        "flex aspect-square h-5 w-5 items-center justify-center rounded-full border-sm border-black p-[7px] xl:h-6 xl:w-6 xl:p-[8px]",
+        {
+          "bg-extra": status === "done",
+          "bg-primary text-light shadow-right-sm hover:shadow-right":
+            status === "current",
+          "bg-light": status === "pending",
+        },
+        className,
+      )}
+    >
+      <Span>{index}</Span>
+    </button>
+  );
+};
+
+Button.Index = IndexButton;

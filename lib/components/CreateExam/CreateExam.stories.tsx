@@ -122,10 +122,10 @@ export const WithPrefilledValues: Story = {
       contents: [],
       currency: "USD",
       price: 0,
-      privacy: {
-        setting: "PRIVATE",
-      },
       advancedSettings: {
+        privacy: {
+          setting: "PRIVATE",
+        },
         randomizeQuestionOrder: false,
         showCorrectAnswers: true,
         sendEmailReport: true,

@@ -20,10 +20,10 @@ const examDefault: Exam = {
   categories: ["COMPUTER_SCIENCE"],
   currency: "USD",
   price: 0,
-  privacy: {
-    setting: "PUBLIC",
-  },
   advancedSettings: {
+    privacy: {
+      setting: "PUBLIC",
+    },
     showCorrectAnswers: true,
     sendEmailReport: true,
     leaderboard: true,
@@ -158,8 +158,11 @@ export const PrivateExam: Story = {
     ...Default.args,
     exam: {
       ...examDefault,
-      privacy: {
-        setting: "PRIVATE",
+      advancedSettings: {
+        ...examDefault.advancedSettings,
+        privacy: {
+          setting: "PRIVATE",
+        },
       },
     },
   },

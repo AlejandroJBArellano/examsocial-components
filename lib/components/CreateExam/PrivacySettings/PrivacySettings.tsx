@@ -40,9 +40,9 @@ const PrivacySettings = () => {
     ) {
       return;
     }
-    formik.setFieldValue("privacy.setting", newPrivacySetting);
+    formik.setFieldValue("advancedSettings.privacy.setting", newPrivacySetting);
     if (newPrivacySetting === "INVITE_ONLY") {
-      formik.setFieldValue("privacy.invitees", []);
+      formik.setFieldValue("advancedSettings.privacy.invitees", []);
     }
   };
 
@@ -58,7 +58,7 @@ const PrivacySettings = () => {
         ...users,
       ]),
     ];
-    formik.setFieldValue("privacy.invitees", updatedInvitees);
+    formik.setFieldValue("advancedSettings.privacy.invitees", updatedInvitees);
   };
 
   const handleRemoveInvitee = (email: string) => {
@@ -66,7 +66,7 @@ const PrivacySettings = () => {
       formik.values.advancedSettings.privacy.invitees?.filter(
         (invitee) => invitee.email !== email,
       );
-    formik.setFieldValue("privacy.invitees", updatedInvitees);
+    formik.setFieldValue("advancedSettings.privacy.invitees", updatedInvitees);
   };
 
   const PrivacyControls = {

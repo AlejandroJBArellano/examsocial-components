@@ -30,7 +30,7 @@ const PrivacySettings = () => {
   const formik = useFormikContext<Yup.InferType<typeof examSchema>>();
   const { userPlan } = useExamCreation();
 
-  const privacySetting = formik.values.privacy
+  const privacySetting = formik.values.advancedSettings.privacy
     .setting as keyof typeof PrivacySettingsNameMap;
 
   const handlePrivacySettingChange = (newPrivacySetting: PrivacySetting) => {
@@ -53,15 +53,19 @@ const PrivacySettings = () => {
     }[],
   ) => {
     const updatedInvitees = [
-      ...new Set([...(formik.values.privacy.invitees || []), ...users]),
+      ...new Set([
+        ...(formik.values.advancedSettings.privacy.invitees || []),
+        ...users,
+      ]),
     ];
     formik.setFieldValue("privacy.invitees", updatedInvitees);
   };
 
   const handleRemoveInvitee = (email: string) => {
-    const updatedInvitees = formik.values.privacy.invitees?.filter(
-      (invitee) => invitee.email !== email,
-    );
+    const updatedInvitees =
+      formik.values.advancedSettings.privacy.invitees?.filter(
+        (invitee) => invitee.email !== email,
+      );
     formik.setFieldValue("privacy.invitees", updatedInvitees);
   };
 
@@ -75,10 +79,10 @@ const PrivacySettings = () => {
         <article>
           <UploadCSV handleInvite={handleInvite} />
         </article>
-        {formik.values.privacy.invitees?.length ? (
+        {formik.values.advancedSettings.privacy.invitees?.length ? (
           <article className="space-y-3">
             <Separator>Invitees</Separator>
-            {formik.values.privacy.invitees.map((invitee) => (
+            {formik.values.advancedSettings.privacy.invitees.map((invitee) => (
               <div
                 key={invitee.email}
                 className="flex w-full items-center justify-between"

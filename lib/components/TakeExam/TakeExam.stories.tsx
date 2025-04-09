@@ -175,7 +175,10 @@ export const PaidExam: Story = {
     ...Default.args,
     exam: {
       ...examDefault,
-      price: 9.99,
+      marketplaceSettings: {
+        currency: "USD",
+        price: 9.99,
+      },
     },
   },
 };

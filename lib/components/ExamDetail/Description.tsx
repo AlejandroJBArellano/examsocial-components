@@ -1,7 +1,7 @@
 import { cn } from "@/utils";
 import { PropsWithChildren, ReactNode, useState } from "react";
 import { Button } from "../Button";
-import { FocusParagraph, FocusSpan, Paragraph } from "../FontFaces";
+import { FocusParagraph, Paragraph } from "../FontFaces";
 
 // Context
 type MainContainerContextType = {
@@ -68,7 +68,8 @@ const ExamDescription = ({
   className,
   favorite,
   saved,
-}: ExamDescriptionProps) => {
+  children,
+}: PropsWithChildren<ExamDescriptionProps>) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => {
@@ -107,7 +108,7 @@ const ExamDescription = ({
             </ExamDescription.Action>
           </ExamDescription.Actions>
           <ExamDescription.Button onClick={onStartExam}>
-            <FocusSpan>Start exam</FocusSpan>
+            {children}
           </ExamDescription.Button>
         </ExamDescription.Footer>
       </MainContainerContext.Provider>

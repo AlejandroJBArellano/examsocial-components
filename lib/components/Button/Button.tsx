@@ -11,7 +11,7 @@ export type ButtonTheme =
   | "feedback-error"
   | "primary";
 
-interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
+export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   rounded?: boolean;
   theme?: ButtonTheme;
 }

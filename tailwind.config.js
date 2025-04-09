@@ -16,10 +16,9 @@ export default {
       },
       borderWidth: {
         xs: "0.5px",
-        sm: "1px",
-        DEFAULT: "2px",
-        lg: "4px",
-        xl: "6px",
+        DEFAULT: "1px",
+        lg: "2px",
+        xl: "4px",
       },
       borderRadius: {
         sm: "4px",

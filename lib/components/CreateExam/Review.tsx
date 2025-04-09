@@ -66,14 +66,14 @@ export const Review = () => {
             <Span>Price</Span>
             <FocusSpan className="flex items-center gap-1">
               <Icon name="payments" size={16} filled />
-              {formik.values.price}
+              {formik.values.marketplaceSettings.price}
             </FocusSpan>
           </div>
           <div className="flex justify-between">
             <Span>Currency</Span>
             <FocusSpan className="flex items-center gap-1">
               <Icon name="currency_exchange" size={16} filled />
-              {formik.values.currency || "USD"}
+              {formik.values.marketplaceSettings.currency || "USD"}
             </FocusSpan>
           </div>
           <div className="flex justify-between">

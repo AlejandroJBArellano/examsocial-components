@@ -169,6 +169,11 @@ export const contentSchema = Yup.object({
   }),
 });
 
+const marketplaceSettingsSchema = Yup.object({
+  currency: Yup.string().required("Required").oneOf(Object.keys(Currency)),
+  price: Yup.number().min(0, "Must be at least 0").required("Required"),
+});
+
 export const examSchema = Yup.object({
   title: Yup.string()
     .required("Title is required")
@@ -211,8 +216,7 @@ export const examSchema = Yup.object({
     )
     .required("At least one category is required")
     .min(1, "At least one category is required"),
-  currency: Yup.string().required("Required").oneOf(Object.keys(Currency)),
-  price: Yup.number().min(0, "Must be at least 0").required("Required"),
+  marketplaceSettings: marketplaceSettingsSchema,
   advancedSettings: advancedSettingsSchema,
   contents: Yup.array().of(contentSchema).required("Contents are required"),
   theme: Yup.string()

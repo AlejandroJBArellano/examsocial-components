@@ -120,8 +120,10 @@ export const WithPrefilledValues: Story = {
       categories: ["COMPUTER_SCIENCE"],
       questions: [],
       contents: [],
-      currency: "USD",
-      price: 0,
+      marketplaceSettings: {
+        currency: "USD",
+        price: 0,
+      },
       advancedSettings: {
         privacy: {
           setting: "PRIVATE",

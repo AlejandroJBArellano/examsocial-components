@@ -198,7 +198,9 @@ export const GeneralDetails = () => {
           <Field.Select
             label="Currency"
             selectProps={{
-              text: Currency[values.currency as keyof typeof Currency],
+              text: Currency[
+                values.marketplaceSettings.currency as keyof typeof Currency
+              ],
               disabled: !canSellExams,
             }}
           >
@@ -207,12 +209,12 @@ export const GeneralDetails = () => {
                 key={key}
                 onClick={() => {
                   setFieldValue(
-                    "advancedSettings.currency",
+                    "advancedSettings.marketplaceSettings.currency",
                     key as keyof typeof Currency,
                   );
                 }}
                 disabled={!canSellExams}
-                checked={values.currency === key}
+                checked={values.marketplaceSettings.currency === key}
               >
                 {value}
               </Select.Option>
@@ -234,12 +236,12 @@ export const GeneralDetails = () => {
               </div>
             }
             inputProps={{
-              id: "price",
+              id: "marketplaceSettings.price",
               type: "number",
               placeholder: "0",
               className: "w-full",
               disabled: !canSellExams,
-              ...getFieldProps("price"),
+              ...getFieldProps("marketplaceSettings.price"),
             }}
           />
         </section>

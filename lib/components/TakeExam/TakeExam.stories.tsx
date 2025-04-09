@@ -18,8 +18,10 @@ const examDefault: Exam = {
   description: "This is a sample exam description.",
   image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA",
   categories: ["COMPUTER_SCIENCE"],
-  currency: "USD",
-  price: 0,
+  marketplaceSettings: {
+    currency: "USD",
+    price: 0,
+  },
   advancedSettings: {
     privacy: {
       setting: "PUBLIC",

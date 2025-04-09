@@ -66,8 +66,10 @@ const CreateExam = ({
           categories: initialValues?.categories || [],
           questions: initialValues?.questions || [],
           contents: initialValues?.contents || [],
-          currency: initialValues?.currency || "USD",
-          price: initialValues?.price ?? 0,
+          marketplaceSettings: {
+            currency: initialValues?.marketplaceSettings?.currency || "USD",
+            price: initialValues?.marketplaceSettings?.price ?? 0,
+          },
           theme: initialValues?.theme || "WHITEBOARD",
           advancedSettings: {
             privacy: {

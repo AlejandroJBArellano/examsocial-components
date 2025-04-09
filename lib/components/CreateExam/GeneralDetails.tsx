@@ -1,11 +1,9 @@
 import { Currency } from "@/constants";
 import { useExamCreation } from "@/hooks/exam";
-import { examSchema } from "@/schemas";
-import { CategoryMetadata, ExamCategory, ThemeSetting } from "@/types";
+import { CategoryMetadata, Exam, ExamCategory, ThemeSetting } from "@/types";
 import { cn } from "@/utils";
 import { useFormikContext } from "formik";
 import { useCallback, useEffect, useState } from "react";
-import * as Yup from "yup";
 import { PremiumBadge } from "../Badges";
 import { BannerInput } from "../BannerInput";
 import { Field } from "../Field";
@@ -22,7 +20,7 @@ export const GeneralDetails = () => {
   const [valid, setValid] = useState(false);
 
   const { getFieldProps, values, setFieldValue, errors, touched } =
-    useFormikContext<Yup.InferType<typeof examSchema>>();
+    useFormikContext<Exam>();
 
   const { userPlan, validatePathname, canSellExams } = useExamCreation();
 
@@ -209,7 +207,7 @@ export const GeneralDetails = () => {
                 key={key}
                 onClick={() => {
                   setFieldValue(
-                    "advancedSettings.marketplaceSettings.currency",
+                    "marketplaceSettings.currency",
                     key as keyof typeof Currency,
                   );
                 }}

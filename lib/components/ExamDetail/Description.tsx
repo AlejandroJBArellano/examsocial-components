@@ -1,10 +1,5 @@
 import { cn } from "@/utils";
-import {
-  ComponentPropsWithoutRef,
-  PropsWithChildren,
-  ReactNode,
-  useState,
-} from "react";
+import { PropsWithChildren, ReactNode, useState } from "react";
 import { Button } from "../Button";
 import { FocusParagraph, FocusSpan, Paragraph } from "../FontFaces";
 
@@ -48,6 +43,7 @@ interface MainContainerActionProps extends PropsWithChildren {
 
 // Context creation
 import { createContext, useContext } from "react";
+import { ButtonProps } from "../Button/Button";
 
 const MainContainerContext = createContext<
   MainContainerContextType | undefined
@@ -187,16 +183,9 @@ const MainContainerAction = ({
   );
 };
 
-const MainContainerButton = ({
-  children,
-  ...props
-}: ComponentPropsWithoutRef<"button">) => {
-  return (
-    <Button theme="accent" {...props}>
-      <FocusSpan>{children}</FocusSpan>
-    </Button>
-  );
-};
+const MainContainerButton = (props: ButtonProps) => (
+  <Button theme="accent" {...props} />
+);
 
 const MainContainerFooter = ({
   children,

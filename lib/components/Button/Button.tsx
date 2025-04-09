@@ -21,9 +21,9 @@ const Button = ({ rounded, theme, ...props }: ButtonProps) => {
     extra:
       "bg-extra border-black disabled:border-extra disabled:bg-extra-tint disabled:text-extra",
     light:
-      "bg-light border-black disabled:border-[#27272A] disabled:bg-[#E4E4E7] disabled:text-[#27272A] hover:!shadow-right-sm !shadow-none xl:hover:!shadow-right-sm xl:!shadow-none",
+      "bg-light border-black disabled:border-gray-800 disabled:bg-gray-200 disabled:text-gray-800 hover:!shadow-right-sm !shadow-none xl:hover:!shadow-right-sm xl:!shadow-none",
     accent:
-      "bg-accent border-black disabled:border-accent disabled:bg-accent-tint disabled:text-accent",
+      "bg-accent text-light border-black disabled:border-accent disabled:bg-accent-tint disabled:text-accent",
     primary:
       "bg-primary border-black disabled:border-primary disabled:bg-primary-tint disabled:text-primary",
     "feedback-error":

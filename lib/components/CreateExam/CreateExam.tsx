@@ -69,11 +69,12 @@ const CreateExam = ({
           currency: initialValues?.currency || "USD",
           price: initialValues?.price ?? 0,
           theme: initialValues?.theme || "WHITEBOARD",
-          privacy: {
-            setting: initialValues?.privacy?.setting || "PUBLIC",
-            invitees: initialValues?.privacy?.invitees,
-          },
           advancedSettings: {
+            privacy: {
+              setting:
+                initialValues?.advancedSettings?.privacy?.setting || "PUBLIC",
+              invitees: initialValues?.advancedSettings?.privacy?.invitees,
+            },
             randomizeQuestionOrder:
               initialValues?.advancedSettings?.randomizeQuestionOrder ?? true,
             showCorrectAnswers:

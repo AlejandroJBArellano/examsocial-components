@@ -47,10 +47,10 @@ export const RadioGroup = ({
               "h-6 w-6 rounded-full border border-black bg-light " +
               " focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2" +
               " hover:border-accent" +
-              " data-[state=checked]:border-accent" +
+              " data-[state=checked]:border-accent data-[state=checked]:shadow-right-sm data-[state=checked]:shadow-accent" +
               " disabled:cursor-not-allowed disabled:border-zinc-500 disabled:bg-zinc-100" +
               " disabled:data-[state=checked]:border-accent-tint" +
-              " hover:data-[state=checked]:shadow-right-sm hover:data-[state=checked]:shadow-accent disabled:data-[state=checked]:bg-zinc-100" +
+              " hover:data-[state=checked] hover:data-[state=checked]:shadow-right-sm hover:data-[state=checked]:shadow-accent-shadow disabled:data-[state=checked]:bg-zinc-100" +
               ` ${itemClassName}`
             }
           >

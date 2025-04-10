@@ -1,8 +1,10 @@
 import * as Yup from "yup";
 import {
+  answerOptionSchema,
   collectionSchema,
   contentSchema,
   examSchema,
+  optionSchema,
   questionDetailSchema,
   questionSchema,
   timingSchema,
@@ -11,6 +13,8 @@ import {
 export type Exam = Yup.InferType<typeof examSchema>;
 export type Question = Yup.InferType<typeof questionSchema>;
 export type QuestionDetailType = Yup.InferType<typeof questionDetailSchema>;
+export type OptionType = Yup.InferType<typeof optionSchema>;
+export type AnswerOptionType = Yup.InferType<typeof answerOptionSchema>;
 export type Content = Yup.InferType<typeof contentSchema>;
 export type CollectionType = Yup.InferType<typeof collectionSchema>;
 export type Timing = Yup.InferType<typeof timingSchema>;

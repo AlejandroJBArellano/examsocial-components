@@ -2,6 +2,19 @@ import * as Yup from "yup";
 import { Currency, FeedbackCondition } from "./constants";
 import { ExamCategory } from "./types";
 
+const optionBaseSchema = {
+  text: Yup.string().required("Option text is required"),
+  correct: Yup.boolean().optional(),
+  id: Yup.string().required(),
+};
+
+export const optionSchema = Yup.object(optionBaseSchema);
+
+export const answerOptionSchema = Yup.object({
+  ...optionBaseSchema,
+  percentage: Yup.number().min(0).max(100).optional(),
+});
+
 const baseQuestionSchema = {
   title: Yup.string().required("Question is required"),
   id: Yup.string().required(),
@@ -20,13 +33,7 @@ const baseQuestionSchema = {
         !value || (value instanceof File && value.size <= 5 * 1024 * 1024),
     ),
   options: Yup.array()
-    .of(
-      Yup.object({
-        text: Yup.string().required("Option text is required"),
-        correct: Yup.boolean().optional(),
-        id: Yup.string().required(),
-      }),
-    )
+    .of(optionSchema)
     .required()
     .min(2, "At least two options are required")
     .test(
@@ -46,14 +53,7 @@ export const questionSchema = Yup.object(baseQuestionSchema);
 export const questionDetailSchema = Yup.object({
   ...baseQuestionSchema,
   options: Yup.array()
-    .of(
-      Yup.object({
-        text: Yup.string().required("Option text is required"),
-        correct: Yup.boolean().optional(),
-        id: Yup.string().required(),
-        percentage: Yup.number().min(0).max(100).optional(),
-      }),
-    )
+    .of(answerOptionSchema)
     .required()
     .min(2, "At least two options are required")
     .test(

@@ -3,12 +3,14 @@ import {
   collectionSchema,
   contentSchema,
   examSchema,
+  questionDetailSchema,
   questionSchema,
   timingSchema,
 } from "./schemas";
 
 export type Exam = Yup.InferType<typeof examSchema>;
 export type Question = Yup.InferType<typeof questionSchema>;
+export type QuestionDetailType = Yup.InferType<typeof questionDetailSchema>;
 export type Content = Yup.InferType<typeof contentSchema>;
 export type CollectionType = Yup.InferType<typeof collectionSchema>;
 export type Timing = Yup.InferType<typeof timingSchema>;

@@ -9,13 +9,21 @@ export interface QuestionListProps {
    */
   questions: Question[];
   /**
-   * Function to handle question editing
+   * Whether questions can be modified (edited/deleted)
+   * @default true
    */
-  onEditQuestion?: (questionId: string) => void;
+  canModify?: boolean;
   /**
-   * Function to handle question deletion
+   * Callback when a question is edited
+   * @param values - Updated question values
    */
-  onDeleteQuestion?: (questionId: string) => void;
+  onEditQuestion: (values: Question) => void;
+
+  /**
+   * Callback when a question is deleted
+   * @param id - ID of the question to delete
+   */
+  onDeleteQuestion: (id: string) => void;
   /**
    * Currently selected question to display details for
    */
@@ -29,10 +37,11 @@ export interface QuestionListProps {
 
 const QuestionList = ({
   questions,
-  onEditQuestion,
-  onDeleteQuestion,
   selectedQuestion,
+  onDeleteQuestion,
+  onEditQuestion,
   onSelectQuestion,
+  canModify,
 }: QuestionListProps) => {
   return (
     <section className="grid grid-cols-12 gap-8 p-8">
@@ -53,25 +62,22 @@ const QuestionList = ({
       </article>
       <article className="col-span-5">
         <QuestionDetail
-          options={selectedQuestion.options.map((option) => ({
-            id: option.id,
-            text: option.text,
-            correct: option.correct || false,
-            percentage: 0, // Default value for percentage
-          }))}
-          onEdit={
-            onEditQuestion
-              ? () => onEditQuestion(selectedQuestion.id)
-              : undefined
-          }
+          detail={{
+            id: selectedQuestion.id,
+            title: selectedQuestion.title,
+            image: selectedQuestion.image,
+            options: selectedQuestion.options.map((option) => ({
+              id: option.id,
+              text: option.text,
+              correct: option.correct || false,
+              percentage: 0, // Default value for percentage
+            })),
+          }}
+          onEdit={canModify ? (values) => onEditQuestion(values) : undefined}
           onDelete={
-            onDeleteQuestion
-              ? () => onDeleteQuestion(selectedQuestion.id)
-              : undefined
+            canModify ? () => onDeleteQuestion(selectedQuestion.id) : undefined
           }
-        >
-          {selectedQuestion.title}
-        </QuestionDetail>
+        />
       </article>
     </section>
   );

@@ -20,7 +20,7 @@ export const Checkbox = ({ className, ...props }: CheckboxProps) => {
         ) + " border"
       }
     >
-      <CheckboxElement.Indicator className="flex place-items-center">
+      <CheckboxElement.Indicator className="flex place-items-center text-light">
         <Icon
           name="check"
           responsiveSizes={{

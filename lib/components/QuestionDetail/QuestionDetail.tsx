@@ -100,7 +100,7 @@ const QuestionDetail: FC<QuestionDetailProps> & {
       }}
     >
       <section
-        className="w-full max-w-2xl space-y-8 rounded-md border border-black p-8 shadow-right"
+        className="w-full max-w-2xl space-y-8 rounded-md border border-black bg-light p-8 shadow-right"
         aria-labelledby="question-title"
       >
         <header className="flex gap-6">

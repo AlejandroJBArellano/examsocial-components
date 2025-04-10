@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { AnswerOptionType, QuestionDetail } from "./index";
+import { QuestionDetail } from "./index";
 
 const meta: Meta<typeof QuestionDetail> = {
   title: "Components/QuestionDetail",
@@ -24,51 +24,46 @@ const meta: Meta<typeof QuestionDetail> = {
 export default meta;
 type Story = StoryObj<typeof QuestionDetail>;
 
-// Sample options for all stories
-const sampleOptions: AnswerOptionType[] = [
-  {
-    id: "1",
-    text: 'import {"{writable}"} from \'svelte/store\'; {"\n"} const store = writable([]);',
-    correct: true,
-    percentage: 42,
-  },
-  {
-    id: "2",
-    text: "import { useState } from 'react'; {\"\\n\"} const [state, setState] = useState([]);",
-    correct: false,
-    percentage: 30,
-  },
-  {
-    id: "3",
-    text: "import { reactive } from 'vue'; {\"\\n\"} const state = reactive([]);",
-    correct: false,
-    percentage: 28,
-  },
-];
+// Sample detail for all stories
+const sampleDetail = {
+  id: "1",
+  title: "Which code snippet creates a store in Svelte?",
+  options: [
+    {
+      id: "1",
+      text: 'import {"{writable}"} from \'svelte/store\'; {"\n"} const store = writable([]);',
+      correct: true,
+      percentage: 42,
+    },
+    {
+      id: "2",
+      text: "import { useState } from 'react'; {\"\\n\"} const [state, setState] = useState([]);",
+      correct: false,
+      percentage: 30,
+    },
+    {
+      id: "3",
+      text: "import { reactive } from 'vue'; {\"\\n\"} const state = reactive([]);",
+      correct: false,
+      percentage: 28,
+    },
+  ],
+};
 
 // Basic story with props
 export const Default: Story = {
   args: {
-    children: "Which code snippet creates a store in Svelte?",
-    options: sampleOptions,
+    detail: sampleDetail,
   },
 };
 
 // Using compound component pattern
 const CompoundPatternTemplate = () => (
-  <QuestionDetail>
-    <QuestionDetail.Header
-      onEdit={() => console.log("Edit")}
-      onDelete={() => console.log("Delete")}
-    >
-      Which code snippet creates a store in Svelte?
-    </QuestionDetail.Header>
-    <QuestionDetail.Options>
-      {sampleOptions.map((option) => (
-        <QuestionDetail.Option key={option.id} id={option.id} />
-      ))}
-    </QuestionDetail.Options>
-  </QuestionDetail>
+  <QuestionDetail
+    detail={sampleDetail}
+    onEdit={() => console.log("Edit")}
+    onDelete={() => console.log("Delete")}
+  />
 );
 
 export const CompoundPattern: Story = {
@@ -85,38 +80,26 @@ export const CompoundPattern: Story = {
 
 // With custom question and options
 const CustomContentTemplate = () => {
-  const customOptions: AnswerOptionType[] = [
-    {
-      id: "1",
-      text: (
-        <div className="flex items-center gap-2">
-          <div className="h-4 w-4 rounded-full bg-blue-500" />
-          <span>Option with custom styling</span>
-        </div>
-      ),
-      correct: true,
-      percentage: 55,
-    },
-    {
-      id: "2",
-      text: (
-        <div className="flex items-center gap-2">
-          <div className="h-4 w-4 rounded-full bg-red-500" />
-          <span>Another custom option</span>
-        </div>
-      ),
-      correct: false,
-      percentage: 45,
-    },
-  ];
+  const customDetail = {
+    id: "2",
+    title: "Question with custom content",
+    options: [
+      {
+        id: "1",
+        text: "Option with custom styling",
+        correct: true,
+        percentage: 55,
+      },
+      {
+        id: "2",
+        text: "Another custom option",
+        correct: false,
+        percentage: 45,
+      },
+    ],
+  };
 
-  return (
-    <QuestionDetail options={customOptions}>
-      <span className="flex items-center gap-2">
-        <span className="text-blue-500">●</span> Question with custom content
-      </span>
-    </QuestionDetail>
-  );
+  return <QuestionDetail detail={customDetail} />;
 };
 
 export const CustomContent: Story = {
@@ -133,55 +116,60 @@ export const CustomContent: Story = {
 
 // Multiple questions comparison
 const MultipleQuestionsTemplate = () => {
-  const programmingOptions: AnswerOptionType[] = [
-    {
-      id: "p1",
-      text: "JavaScript",
-      correct: true,
-      percentage: 60,
-    },
-    {
-      id: "p2",
-      text: "Java",
-      correct: false,
-      percentage: 25,
-    },
-    {
-      id: "p3",
-      text: "Python",
-      correct: false,
-      percentage: 15,
-    },
-  ];
+  const programmingDetail = {
+    id: "3",
+    title: "Which language is primarily used for web development?",
+    options: [
+      {
+        id: "p1",
+        text: "JavaScript",
+        correct: true,
+        percentage: 60,
+      },
+      {
+        id: "p2",
+        text: "Java",
+        correct: false,
+        percentage: 25,
+      },
+      {
+        id: "p3",
+        text: "Python",
+        correct: false,
+        percentage: 15,
+      },
+    ],
+  };
 
-  const mathOptions: AnswerOptionType[] = [
-    {
-      id: "m1",
-      text: "9",
-      correct: false,
-      percentage: 15,
-    },
-    {
-      id: "m2",
-      text: "6",
-      correct: true,
-      percentage: 75,
-    },
-    {
-      id: "m3",
-      text: "3",
-      correct: false,
-      percentage: 10,
-    },
-  ];
+  const mathDetail = {
+    id: "4",
+    title: "What is 2 × 3?",
+    options: [
+      {
+        id: "m1",
+        text: "9",
+        correct: false,
+        percentage: 15,
+      },
+      {
+        id: "m2",
+        text: "6",
+        correct: true,
+        percentage: 75,
+      },
+      {
+        id: "m3",
+        text: "3",
+        correct: false,
+        percentage: 10,
+      },
+    ],
+  };
 
   return (
     <div className="space-y-8">
-      <QuestionDetail options={programmingOptions}>
-        Which language is primarily used for web development?
-      </QuestionDetail>
-
-      <QuestionDetail options={mathOptions}>What is 2 × 3?</QuestionDetail>
+      <QuestionDetail detail={programmingDetail} />
+      <QuestionDetail detail={mathDetail} />
     </div>
   );
 };
@@ -200,20 +188,20 @@ export const MultipleQuestions: Story = {
 
 // Error state
 const MissingOptionTemplate = () => {
-  const [options] = useState<AnswerOptionType[]>([
-    {
-      id: "1",
-      text: "This is the only option",
-      correct: true,
-      percentage: 100,
-    },
-  ]);
+  const [detail] = useState({
+    id: "5",
+    title: "Question with missing selected option",
+    options: [
+      {
+        id: "1",
+        text: "This is the only option",
+        correct: true,
+        percentage: 100,
+      },
+    ],
+  });
 
-  return (
-    <QuestionDetail options={options}>
-      Question with missing selected option
-    </QuestionDetail>
-  );
+  return <QuestionDetail detail={detail} />;
 };
 
 export const MissingOption: Story = {
@@ -230,9 +218,7 @@ export const MissingOption: Story = {
 // Mobile view (narrow container)
 const MobileViewTemplate = () => (
   <div className="w-80">
-    <QuestionDetail options={sampleOptions}>
-      Which code snippet creates a store in Svelte?
-    </QuestionDetail>
+    <QuestionDetail detail={sampleDetail} />
   </div>
 );
 

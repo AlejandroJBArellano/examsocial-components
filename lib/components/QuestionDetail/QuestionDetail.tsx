@@ -1,30 +1,21 @@
+import {
+  AnswerOptionType,
+  QuestionDetailType,
+  Question as QuestionType,
+} from "@/types";
 import { cn } from "@/utils";
-import React, {
+import {
   FC,
   PropsWithChildren,
-  ReactNode,
   createContext,
   useContext,
-  useState,
+  useRef,
 } from "react";
 import { AnswerOption } from "../AnswerOption";
 import { Button } from "../Button";
+import { Dialog } from "../Dialog";
+import { EditQuestion } from "../EditQuestion";
 import { Heading3 } from "../FontFaces";
-
-/**
- * Interface representing an answer option for a question
- * @public
- */
-export interface AnswerOptionType {
-  /** Unique identifier for the option */
-  id: string;
-  /** Content to display for this option (can be text or React nodes) */
-  text: ReactNode;
-  /** Whether this option is the correct answer */
-  correct: boolean;
-  /** Percentage of users who selected this option */
-  percentage: number;
-}
 
 /**
  * Context type for sharing state between QuestionDetail components
@@ -33,10 +24,6 @@ export interface AnswerOptionType {
 interface QuestionDetailContextType {
   /** Available answer options */
   options: AnswerOptionType[];
-  /** ID of the currently selected option */
-  selectedOptionId: string | null;
-  /** Function to select an option */
-  selectOption: (id: string) => void;
 }
 
 // Create context with a default value
@@ -63,20 +50,12 @@ const useQuestionDetail = () => {
 /**
  * Props for the QuestionDetail component
  */
-interface QuestionDetailProps extends PropsWithChildren {
-  /**
-   * Callback for edit button click
-   */
-  onEdit?: () => void;
-  /**
-   * Callback for delete button click
-   */
+interface QuestionDetailProps {
   onDelete?: () => void;
-  /**
-   * Array of answer options
-   * @default []
-   */
-  options?: AnswerOptionType[];
+
+  onEdit?: (values: QuestionType) => void;
+
+  detail: QuestionDetailType;
 }
 
 /**
@@ -111,48 +90,47 @@ const QuestionDetail: FC<QuestionDetailProps> & {
   Question: typeof Question;
   Actions: typeof Actions;
   Header: typeof Header;
-} = ({ children, onEdit, onDelete, options = [] }) => {
-  const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
-
-  const contextValue = {
-    options,
-    selectedOptionId,
-    selectOption: (id: string) => setSelectedOptionId(id),
-  };
-
-  // Check if children contains our compound components or if it's just text content
-  const hasCompoundComponents = React.Children.toArray(children).some(
-    (child) =>
-      React.isValidElement(child) &&
-      (child.type === Header || child.type === Options),
-  );
+} = ({ onDelete, detail, onEdit }) => {
+  const editQuestionDialogRef = useRef<HTMLDialogElement>(null);
 
   return (
-    <QuestionDetailContext.Provider value={contextValue}>
+    <QuestionDetailContext.Provider
+      value={{
+        options: detail.options,
+      }}
+    >
       <section
         className="w-full max-w-2xl space-y-8 rounded-md border border-black p-8 shadow-right"
         aria-labelledby="question-title"
       >
-        {hasCompoundComponents ? (
-          // Render compound components
-          children
-        ) : (
-          // Render with props
-          <>
-            <header className="flex gap-6">
-              <Question>{children}</Question>
-              <Actions onEdit={onEdit} onDelete={onDelete} />
-            </header>
-            <main>
-              <Options>
-                {options.map((option) => (
-                  <Option key={option.id} id={option.id} />
-                ))}
-              </Options>
-            </main>
-          </>
-        )}
+        <header className="flex gap-6">
+          <Question>{detail.title}</Question>
+          <Actions
+            onEdit={() => {
+              editQuestionDialogRef.current?.showModal();
+            }}
+            onDelete={onDelete}
+          />
+        </header>
+        <main>
+          <Options>
+            {detail.options.map((option) => (
+              <Option key={option.id} id={option.id} />
+            ))}
+          </Options>
+        </main>
       </section>
+      {onEdit ? (
+        <Dialog innerRef={editQuestionDialogRef}>
+          <EditQuestion
+            onSubmit={onEdit}
+            initialValues={detail}
+            onCancel={() => {
+              editQuestionDialogRef.current?.close();
+            }}
+          />
+        </Dialog>
+      ) : null}
     </QuestionDetailContext.Provider>
   );
 };
@@ -229,7 +207,7 @@ const Options: FC<PropsWithChildren> = ({ children }) => {
  * Option component for rendering a single answer option
  */
 const Option: FC<{ id: string }> = ({ id }) => {
-  const { options, selectOption } = useQuestionDetail();
+  const { options } = useQuestionDetail();
   const option = options.find((opt) => opt.id === id);
 
   if (!option) return null;
@@ -240,7 +218,6 @@ const Option: FC<{ id: string }> = ({ id }) => {
         <AnswerOption
           checked={option.correct}
           type={option.correct ? "viewOnly" : "default"}
-          onClick={() => selectOption(id)}
         >
           {option.text}
         </AnswerOption>

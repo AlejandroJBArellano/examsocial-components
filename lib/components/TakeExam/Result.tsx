@@ -59,7 +59,7 @@ const ResultTakeExam = ({
               : "border-feedback-error bg-feedback-error-tint"
           }`}
         />
-        <div className="absolute left-0 top-[-0px] h-[171px] w-[171px] rounded-full bg-[#edfafd]" />
+        <div className="absolute left-0 top-[-0px] h-[171px] w-[171px] rounded-full bg-primary-tint" />
         <Heading1 className="absolute left-[35.50px] top-[51.50px] w-[100px] text-center">
           {score}%
         </Heading1>

@@ -25,7 +25,7 @@ const Tab = ({
   return (
     <div
       className={cn(
-        "border-x-sm border-black px-4 py-2 xl:px-5 xl:py-3",
+        "border-x-sm border-black bg-light px-4 py-2 xl:px-5 xl:py-3",
         selected
           ? themeSelector[theme].background
           : themeSelector[theme].unselected,

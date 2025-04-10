@@ -61,7 +61,12 @@ const Comment = ({
             })}
           </div>
         </div>
-        <Button.Icon rounded theme={liked ? "accent" : "light"} size={20}>
+        <Button.Icon
+          filled={liked}
+          rounded
+          theme={liked ? "accent" : "light"}
+          size={20}
+        >
           favorite_border
         </Button.Icon>
       </article>

@@ -131,7 +131,7 @@ const PricingFeatureRow = ({
   includes,
 }: PricingFeatureRowProps) => {
   return (
-    <tr className="flex w-full gap-6 border-b-sm border-gray-300 px-4 py-2 md:px-5 xl:px-6">
+    <tr className="flex w-full gap-6 border-b border-gray-300 px-4 py-2 md:px-5 xl:px-6">
       <td className="my-auto flex w-1/2 items-center justify-between gap-2 py-2 md:justify-start">
         <FocusSpan>{feature}</FocusSpan>
         {children && (

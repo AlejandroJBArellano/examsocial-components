@@ -88,7 +88,7 @@ describe("ProfileCardSubscription", () => {
     // Check if the article has the correct classes
     const article = screen.getByText("Go Pro").closest("article");
     expect(article).toHaveClass("rounded-md");
-    expect(article).toHaveClass("border-sm");
+    expect(article).toHaveClass("border");
     expect(article).toHaveClass("border-black");
     expect(article).toHaveClass("bg-secondary");
     expect(article).toHaveClass("p-4");

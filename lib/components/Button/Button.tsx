@@ -154,7 +154,7 @@ const IndexButton = ({
       data-testid="index-button"
       {...props}
       className={cn(
-        "flex aspect-square h-5 w-5 items-center justify-center rounded-full border-sm border-black p-[7px] xl:h-6 xl:w-6 xl:p-[8px]",
+        "flex aspect-square h-5 w-5 items-center justify-center rounded-full border border-black p-[7px] xl:h-6 xl:w-6 xl:p-[8px]",
         {
           "bg-extra": status === "done",
           "bg-primary text-light shadow-right-sm hover:shadow-right":

@@ -15,7 +15,7 @@ interface AddProps extends PropsWithChildren {
 const Add: React.FC<AddProps> = ({ children, onClick }) => {
   return (
     <button
-      className="flex w-full items-center justify-between border-b-sm border-gray-300 pb-4"
+      className="flex w-full items-center justify-between border-b border-gray-300 pb-4"
       onClick={onClick}
     >
       <Heading5>{children}</Heading5>

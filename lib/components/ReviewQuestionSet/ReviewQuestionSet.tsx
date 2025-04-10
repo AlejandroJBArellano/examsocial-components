@@ -50,7 +50,7 @@ const ReviewQuestionSet = ({
 }: IReviewQuestionSet) => {
   const [showOptions, setShowOptions] = useState(false);
   return (
-    <article className="space-y-4 rounded-md border-sm border-black bg-gray-50 p-4 hover:shadow-right-sm hover:shadow-black xl:space-y-5 xl:p-5">
+    <article className="space-y-4 rounded-md border border-black bg-gray-50 p-4 hover:shadow-right-sm hover:shadow-black xl:space-y-5 xl:p-5">
       <header
         className={cn(
           "flex items-center gap-2",

@@ -56,7 +56,7 @@ describe("Profile Component", () => {
   it("applies correct styling classes", () => {
     render(<Profile gender="male" />);
     const button = screen.getByRole("button");
-    expect(button).toHaveClass("border-sm");
+    expect(button).toHaveClass("border");
     expect(button).toHaveClass("border-gray-600");
     expect(button).toHaveClass("px-4");
     expect(button).toHaveClass("hover:border-black");

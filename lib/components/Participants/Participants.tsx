@@ -72,11 +72,11 @@ const Participants = ({
 }: ParticipantsProps) => {
   return (
     <section
-      className={`space-y-8 rounded-md border-sm border-black p-8 shadow-right ${className}`}
+      className={`space-y-8 rounded-md border border-black p-8 shadow-right ${className}`}
       data-testid="participants-container"
     >
       <Heading3>{title}</Heading3>
-      <div className="w-full divide-y-sm divide-black">{children}</div>
+      <div className="divide-y-sm w-full divide-black">{children}</div>
     </section>
   );
 };

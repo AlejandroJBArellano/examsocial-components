@@ -19,7 +19,7 @@ const Tag = ({
   return (
     <div
       className={
-        "rounded-full border-sm px-2 py-1 text-xs xl:text-sm " + themes[theme]
+        "rounded-full border px-2 py-1 text-xs xl:text-sm " + themes[theme]
       }
     >
       {children}

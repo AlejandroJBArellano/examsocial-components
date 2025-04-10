@@ -13,7 +13,7 @@ const ProfileCardSubscription = ({
   onSubscribe,
 }: ProfileCardSubscriptionProps) => {
   return (
-    <article className="space-y-4 rounded-md border-sm border-black bg-extra-tint p-4">
+    <article className="space-y-4 rounded-md border border-black bg-extra-tint p-4">
       <Heading4 className="text-extra-shadow">
         Select your plan: Pro or Premium
       </Heading4>

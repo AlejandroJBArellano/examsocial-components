@@ -17,7 +17,7 @@ export const Checkbox = ({ className, ...props }: CheckboxProps) => {
           "disabled:cursor-not-allowed disabled:border-gray-800 disabled:bg-gray-200 disabled:hover:shadow-none",
           "xl:h-8 xl:w-8",
           className,
-        ) + " border-sm"
+        ) + " border"
       }
     >
       <CheckboxElement.Indicator className="flex place-items-center">

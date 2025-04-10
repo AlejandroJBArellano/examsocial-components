@@ -96,7 +96,7 @@ const EmailTemplate = () => {
         }}
       >
         <Body className="space-y-6">
-          <Section className="bg-primary-tint text-primary-shadow my-auto border-b-sm border-black p-6 pb-3 flex gap-3 items-center space-x-3">
+          <Section className="my-auto flex items-center gap-3 space-x-3 border-b border-black bg-primary-tint p-6 pb-3 text-primary-shadow">
             <Text>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -111,12 +111,12 @@ const EmailTemplate = () => {
                 />
               </svg>
             </Text>
-            <Text className="sentient font-medium text-2xl leading-7 tracking-[0.48px]">
+            <Text className="sentient text-2xl font-medium leading-7 tracking-[0.48px]">
               ExamSocial
             </Text>
           </Section>
           <Section className="border-t-sm !m-0 border-black bg-extra-tint">
-            <Text className="text-xs px-6 py-2">
+            <Text className="px-6 py-2 text-xs">
               Recibiste este correo porque estás suscrito a nuestro listado de
               [Nombre del listado]. Si deseas dejar de recibir estos correos,
               por favor, haz click aquí.

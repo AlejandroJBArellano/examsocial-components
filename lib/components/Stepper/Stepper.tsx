@@ -63,7 +63,7 @@ const Stepper = ({
         cn(
           "sentient space-y-3 border-b-gray-500 p-4 pt-3",
           theme === "primary" ? "bg-primary-tint" : "bg-secondary-tint",
-        ) + " border-b-sm"
+        ) + " border-b"
       }
     >
       {theme === "primary" ? (

@@ -25,7 +25,7 @@ const ContentSet = ({
     ),
     TEXT: <p className="break-all">{content.text}</p>,
     LINK: (
-      <article className="flex items-center justify-between border-sm border-black bg-light p-2">
+      <article className="flex items-center justify-between border border-black bg-light p-2">
         <div className="flex items-center gap-2">
           <Icon name="link" className="!h-10 !w-10" />
           <div className="space-y-1">

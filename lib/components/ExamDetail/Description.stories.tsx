@@ -86,7 +86,7 @@ export const WithBookmarkActive: Story = {
 // Story showing all variants
 export const AllVariants: Story = {
   render: () => (
-    <section className="flex flex-col gap-4 [&>*]:space-y-4 [&>*]:border-b-sm [&>*]:border-black [&>*]:p-4">
+    <section className="flex flex-col gap-4 [&>*]:space-y-4 [&>*]:border-b [&>*]:border-black [&>*]:p-4">
       <div>
         <Heading3>Default (Free Exam)</Heading3>
         <Description

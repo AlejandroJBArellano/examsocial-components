@@ -2,7 +2,7 @@ import * as Yup from "yup";
 import { Currency, FeedbackCondition } from "./constants";
 import { ExamCategory } from "./types";
 
-export const questionSchema = Yup.object({
+const baseQuestionSchema = {
   title: Yup.string().required("Question is required"),
   id: Yup.string().required(),
   image: Yup.mixed()
@@ -25,6 +25,33 @@ export const questionSchema = Yup.object({
         text: Yup.string().required("Option text is required"),
         correct: Yup.boolean().optional(),
         id: Yup.string().required(),
+      }),
+    )
+    .required()
+    .min(2, "At least two options are required")
+    .test(
+      "at-least-one-correct",
+      "At least one option must be correct",
+      (options) => options?.some((option) => option.correct),
+    )
+    .test(
+      "at-least-one-incorrect",
+      "At least one option must be incorrect",
+      (options) => options?.some((option) => !option.correct),
+    ),
+};
+
+export const questionSchema = Yup.object(baseQuestionSchema);
+
+export const questionDetailSchema = Yup.object({
+  ...baseQuestionSchema,
+  options: Yup.array()
+    .of(
+      Yup.object({
+        text: Yup.string().required("Option text is required"),
+        correct: Yup.boolean().optional(),
+        id: Yup.string().required(),
+        percentage: Yup.number().min(0).max(100).optional(),
       }),
     )
     .required()

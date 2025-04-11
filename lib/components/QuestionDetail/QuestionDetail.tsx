@@ -228,6 +228,7 @@ const Option: FC<{ id: string }> = ({ id }) => {
       <div
         className={"col-span-2 grid grid-cols-2 gap-2"}
         aria-label={`${option.percentage}% of students selected this answer`}
+        //TODO: animate when question.id changes
       >
         <div className="relative size-12 -rotate-90">
           <svg
@@ -243,7 +244,6 @@ const Option: FC<{ id: string }> = ({ id }) => {
               fill="none"
               className={cn(
                 "stroke-current",
-
                 option.correct
                   ? "text-feedback-success-tint"
                   : "text-feedback-error-tint",

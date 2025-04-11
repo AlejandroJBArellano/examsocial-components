@@ -41,15 +41,12 @@ export interface ResultTakeExamProps {
 const ResultTakeExam = ({
   attemptsLeft,
   maxAttempts,
-  minimum = 60,
   onRetry,
   score,
   messages,
   correctAnswers,
   totalQuestions,
 }: ResultTakeExamProps) => {
-  const passed = score >= minimum;
-
   return (
     <div className="space-y-6 p-6">
       <div className="relative mx-auto h-[171px] w-[171px]">
@@ -70,9 +67,9 @@ const ResultTakeExam = ({
               score <= 25
                 ? "text-feedback-error-tint"
                 : score <= 50
-                  ? "text-secondary-shadow"
+                  ? "text-secondary-tint"
                   : score <= 75
-                    ? "text-primary-shadow"
+                    ? "text-primary-tint"
                     : "text-feedback-success-tint",
             )}
             strokeWidth="5"
@@ -106,7 +103,16 @@ const ResultTakeExam = ({
       </div>
       {messages ? (
         <Heading3
-          className={`text-center ${passed ? "text-primary-shadow" : "text-feedback-error"}`}
+          className={cn(
+            "text-center",
+            score <= 25
+              ? "text-feedback-error"
+              : score <= 50
+                ? "text-secondary-shadow"
+                : score <= 75
+                  ? "text-primary-shadow"
+                  : "text-feedback-success",
+          )}
         >
           {messages?.join(", ")}
         </Heading3>

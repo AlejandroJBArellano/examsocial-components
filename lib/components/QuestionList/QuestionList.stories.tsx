@@ -128,11 +128,30 @@ const DefaultTemplate = () => {
   const handleEdit = async (question: Question) => {
     setIsLoading(true);
     try {
+      const prevQuestion = questions.find((q) => q.id === question.id);
       // Simulate API delay
       await new Promise((resolve) => setTimeout(resolve, 1000));
       console.log({ question });
-      setQuestions(questions.map((q) => (q.id === question.id ? question : q)));
-      setSelectedQuestion(question);
+      setQuestions(
+        questions.map((q) =>
+          q.id === question.id
+            ? {
+                ...question,
+                options: question.options.map((opt, index) => ({
+                  ...opt,
+                  percentage: prevQuestion?.options[index].percentage || 0, // Add missing percentage field
+                })),
+              }
+            : q,
+        ),
+      );
+      setSelectedQuestion({
+        ...question,
+        options: question.options.map((opt, index) => ({
+          ...opt,
+          percentage: prevQuestion?.options[index].percentage || 0,
+        })),
+      });
     } finally {
       setIsLoading(false);
     }

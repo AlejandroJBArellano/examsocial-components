@@ -1,6 +1,6 @@
-import { QuestionDetailType } from "@/types";
-import { action } from "@storybook/addon-actions";
+import { Question, QuestionDetailType } from "@/types";
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import QuestionList from "./QuestionList";
 
 // Sample questions data for stories
@@ -108,20 +108,41 @@ export default meta;
 type Story = StoryObj<typeof QuestionList>;
 
 // Default story with sample questions
+const DefaultTemplate = () => {
+  const [selectedQuestion, setSelectedQuestion] = useState(sampleQuestions[0]);
+  const [questions, setQuestions] = useState(sampleQuestions);
+
+  const handleDelete = (id: string) => {
+    setQuestions(questions.filter((q) => q.id !== id));
+    setSelectedQuestion(sampleQuestions[0]);
+  };
+
+  const handleEdit = (question: Question) => {
+    console.log({ question });
+    setQuestions(questions.map((q) => (q.id === question.id ? question : q)));
+  };
+
+  return (
+    <QuestionList
+      questions={questions}
+      onEditQuestion={handleEdit}
+      onDeleteQuestion={handleDelete}
+      selectedQuestion={selectedQuestion}
+      onSelectQuestion={(id) => {
+        setSelectedQuestion(questions.find((q) => q.id === id) || questions[0]);
+      }}
+      canModify
+    />
+  );
+};
+
 export const Default: Story = {
-  args: {
-    questions: sampleQuestions,
-    onEditQuestion: action("onEditQuestion"),
-    onDeleteQuestion: action("onDeleteQuestion"),
-    selectedQuestion: sampleQuestions[0],
-    onSelectQuestion: action("onSelectQuestion"),
-    canModify: true,
-  },
+  render: () => <DefaultTemplate />,
   parameters: {
     docs: {
       description: {
         story:
-          "Default view showing multiple questions with options and controls.",
+          "Default view showing multiple questions with options and controls. Questions can be selected, edited and deleted with state management.",
       },
     },
   },

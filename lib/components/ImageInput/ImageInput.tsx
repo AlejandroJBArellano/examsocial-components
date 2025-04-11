@@ -73,7 +73,7 @@ const ImageInput = (
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className="inline-flex h-36 w-full max-w-sm flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-black bg-accent-tint p-4 xl:h-56 xl:max-w-2xl xl:border-dashed xl:p-7"
+        className="inline-flex h-36 w-full max-w-sm flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-black bg-secondary-tint p-4 xl:h-56 xl:max-w-2xl xl:border-dashed xl:p-7"
       >
         <input
           accept="image/*"

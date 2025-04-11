@@ -226,7 +226,7 @@ const Option: FC<{ id: string }> = ({ id }) => {
         </AnswerOption>
       </div>
       <div
-        className={"col-span-2 grid grid-cols-2 gap-2"}
+        className={"col-span-2 grid grid-cols-2 items-center gap-2"}
         aria-label={`${option.percentage}% of students selected this answer`}
         //TODO: animate when question.id changes
       >

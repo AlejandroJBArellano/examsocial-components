@@ -249,11 +249,17 @@ interface ExamCardActionProps {
   onClick?: () => void;
   type: string;
   className?: string;
+  theme?: string;
 }
 
-const ExamCardAction = ({ onClick, type, className }: ExamCardActionProps) => {
+const ExamCardAction = ({
+  onClick,
+  type,
+  className,
+  theme = "primary",
+}: ExamCardActionProps) => {
   const props = {
-    theme: type === "delete" ? "feedback-error" : ("light" as ButtonTheme),
+    theme: type === "delete" ? "feedback-error" : (theme as ButtonTheme),
     size: 20,
     onClick,
     className,

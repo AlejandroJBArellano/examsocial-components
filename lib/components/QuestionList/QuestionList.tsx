@@ -61,17 +61,7 @@ const QuestionList = ({
       </article>
       <article className="col-span-5">
         <QuestionDetail
-          detail={{
-            id: selectedQuestion.id,
-            title: selectedQuestion.title,
-            image: selectedQuestion.image,
-            options: selectedQuestion.options.map((option) => ({
-              id: option.id,
-              text: option.text,
-              correct: option.correct || false,
-              percentage: 0, // Default value for percentage
-            })),
-          }}
+          detail={selectedQuestion}
           onEdit={canModify ? (values) => onEditQuestion(values) : undefined}
           onDelete={
             canModify ? () => onDeleteQuestion(selectedQuestion.id) : undefined

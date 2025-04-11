@@ -119,6 +119,7 @@ export const PerfectScore: Story = {
     attemptsLeft: 3,
     maxAttempts: 3,
     messages: sampleMessages,
+    score: 100,
     onRetry: action("retry-clicked"),
   },
   parameters: {
@@ -138,6 +139,7 @@ export const ExcellentScore: Story = {
     attemptsLeft: 3,
     maxAttempts: 3,
     messages: sampleMessages,
+    score: 90,
     onRetry: action("retry-clicked"),
   },
   parameters: {
@@ -157,6 +159,7 @@ export const LowScore: Story = {
     attemptsLeft: 2,
     maxAttempts: 3,
     messages: sampleMessages,
+    score: 40,
     onRetry: action("retry-clicked"),
   },
   parameters: {
@@ -176,6 +179,7 @@ export const NoAttemptsLeft: Story = {
     attemptsLeft: 0,
     maxAttempts: 3,
     messages: sampleMessages,
+    score: 50,
     onRetry: action("retry-clicked"),
   },
   parameters: {

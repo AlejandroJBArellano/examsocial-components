@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import { Button } from "../Button";
 import { FocusSpan, Heading1, Heading3, Heading6 } from "../FontFaces";
 import { Icon } from "../Icon";
@@ -52,14 +53,38 @@ const ResultTakeExam = ({
   return (
     <div className="space-y-6 p-6">
       <div className="relative mx-auto h-[171px] w-[171px]">
-        <div
-          className={`absolute left-0 top-0 h-[171px] w-[171px] rounded-full border ${
-            passed
-              ? "border-primary-shadow bg-primary"
-              : "border-feedback-error bg-feedback-error-tint"
-          }`}
-        />
-        <div className="absolute left-0 top-[-0px] h-[171px] w-[171px] rounded-full bg-primary-tint" />
+        <svg
+          viewBox="0 0 48 48"
+          width={171}
+          height={171}
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute left-0 top-0"
+        >
+          <circle
+            cx="24"
+            cy="24"
+            r="21.5"
+            fill="none"
+            className={cn(
+              "stroke-current",
+              passed ? "text-primary-shadow" : "text-feedback-error-tint",
+            )}
+            strokeWidth="5"
+          />
+          <circle
+            cx="24"
+            cy="24"
+            r="21.5"
+            fill="none"
+            className={cn(
+              "animate-[circle-grow_1s_ease-out] stroke-current",
+              passed ? "text-primary" : "text-feedback-error",
+            )}
+            strokeWidth="5"
+            strokeDasharray="135"
+            strokeDashoffset={`${135 - (135 * score) / 100}`}
+          />
+        </svg>
         <Heading1 className="absolute left-[35.50px] top-[51.50px] w-[100px] text-center">
           {score}%
         </Heading1>

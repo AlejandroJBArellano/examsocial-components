@@ -243,9 +243,10 @@ const Option: FC<{ id: string }> = ({ id }) => {
               fill="none"
               className={cn(
                 "stroke-current",
+
                 option.correct
-                  ? "text-feedback-success-tint"
-                  : "text-feedback-error-tint",
+                  ? "text-feedback-success"
+                  : "text-feedback-error",
               )}
               strokeWidth="5"
             />
@@ -257,13 +258,12 @@ const Option: FC<{ id: string }> = ({ id }) => {
               className={cn(
                 "stroke-current",
                 option.correct
-                  ? "text-feedback-success"
-                  : "text-feedback-error",
+                  ? "text-feedback-success-tint"
+                  : "text-feedback-error-tint",
               )}
               strokeWidth="5"
               strokeDasharray="100"
-              strokeDashoffset={(100 - option.percentage).toString()}
-              strokeLinecap="round"
+              strokeDashoffset={option.percentage.toString()}
             />
           </svg>
         </div>

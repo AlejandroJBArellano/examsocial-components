@@ -314,3 +314,33 @@ export const Interactive: Story = {
     },
   },
 };
+
+export const IsLoading: Story = {
+  args: {
+    questions: [
+      {
+        id: "1",
+        title: "Loading question...",
+        options: [
+          { id: "a", text: "Loading option A..." },
+          { id: "b", text: "Loading option B..." },
+          { id: "c", text: "Loading option C..." },
+          { id: "d", text: "Loading option D..." },
+        ],
+      },
+    ],
+    selected: 0,
+    setSelected: action("setSelected"),
+    onFinish: action("onFinish"),
+    onSelectOption: action("onSelectOption"),
+    selectedOptions: {},
+    isLoading: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Shows the component in a loading state.",
+      },
+    },
+  },
+};

@@ -7,7 +7,7 @@ export interface QuestionListProps {
    * Array of questions to display
    * @default []
    */
-  questions: Question[];
+  questions: { id: string; title: string }[];
   /**
    * Whether questions can be modified (edited/deleted)
    * @default true
@@ -18,7 +18,6 @@ export interface QuestionListProps {
    * @param values - Updated question values
    */
   onEditQuestion: (values: Question) => void;
-
   /**
    * Callback when a question is deleted
    * @param id - ID of the question to delete

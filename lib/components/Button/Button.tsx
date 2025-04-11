@@ -91,7 +91,7 @@ const ActionButton = ({
   className,
   ...props
 }: ActionButtonProps) => {
-  const buttonElement = (
+  const Trigger = (
     <button
       type="button"
       data-testid="favorite-button"
@@ -124,7 +124,7 @@ const ActionButton = ({
   // Envolvemos el botón con el tooltip
   return (
     <Tooltip
-      trigger={buttonElement}
+      trigger={Trigger}
       contentClassName="hidden xl:inline-block"
       side="top"
       align="center"

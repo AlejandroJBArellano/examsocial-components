@@ -237,9 +237,9 @@ const Option: FC<{ id: string }> = ({ id }) => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <circle
-              cx="18"
-              cy="18"
-              r="16"
+              cx="24"
+              cy="24"
+              r="21.5"
               fill="none"
               className={cn(
                 "stroke-current",
@@ -250,9 +250,9 @@ const Option: FC<{ id: string }> = ({ id }) => {
               strokeWidth="5"
             />
             <circle
-              cx="18"
-              cy="18"
-              r="16"
+              cx="24"
+              cy="24"
+              r="21.5"
               fill="none"
               className={cn(
                 "stroke-current",

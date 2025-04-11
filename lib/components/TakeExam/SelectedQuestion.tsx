@@ -84,8 +84,17 @@ const SelectedQuestion = ({
         >
           {isLastQuestion ? (
             <>
-              <Icon name="sports_score" />
-              {isLoading ? "Finishing..." : "Finish"}
+              {isLoading ? (
+                <>
+                  <Icon name="refresh" className="animate-spin" />
+                  Submitting...
+                </>
+              ) : (
+                <>
+                  <Icon name="sports_score" filled />
+                  Finish
+                </>
+              )}
             </>
           ) : (
             <>

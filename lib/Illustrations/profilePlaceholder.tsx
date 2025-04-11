@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import { SVGProps } from "react";
 
 export const FemaleFilled = (props: SVGProps<SVGSVGElement>) => (
@@ -6,10 +7,11 @@ export const FemaleFilled = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
+    className={cn(props.className, "group")}
   >
     <path
       d="M80.0004 151.078C120.119 151.078 152.641 118.556 152.641 78.4375C152.641 38.319 120.119 5.79649 80.0004 5.79649C39.8819 5.79649 7.35938 38.319 7.35938 78.4375C7.35938 118.556 39.8819 151.078 80.0004 151.078Z"
-      fill="#5647EB"
+      className="fill-primary group-hover:fill-primary-shadow"
     />
     <path
       fillRule="evenodd"
@@ -56,10 +58,11 @@ export const FemaleUnfilled = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
+    className={cn(props.className, "group")}
   >
     <path
       d="M80.0004 151.078C120.119 151.078 152.641 118.556 152.641 78.4375C152.641 38.319 120.119 5.79649 80.0004 5.79649C39.8819 5.79649 7.35938 38.319 7.35938 78.4375C7.35938 118.556 39.8819 151.078 80.0004 151.078Z"
-      fill="#B9B3FF"
+      className="fill-primary group-hover:fill-primary-shadow"
     />
     <path
       fillRule="evenodd"
@@ -106,10 +109,11 @@ export const MaleFilled = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
+    className={cn(props.className, "group")}
   >
     <path
       d="M80.0004 151.078C120.119 151.078 152.641 118.556 152.641 78.4375C152.641 38.319 120.119 5.7965 80.0004 5.7965C39.8819 5.7965 7.35938 38.319 7.35938 78.4375C7.35938 118.556 39.8819 151.078 80.0004 151.078Z"
-      fill="#5647EB"
+      className="fill-primary group-hover:fill-primary-shadow"
     />
     <path
       fillRule="evenodd"
@@ -156,10 +160,11 @@ export const MaleUnfilled = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
+    className={cn(props.className, "group")}
   >
     <path
       d="M80.0004 151.078C120.119 151.078 152.641 118.556 152.641 78.4375C152.641 38.319 120.119 5.7965 80.0004 5.7965C39.8819 5.7965 7.35938 38.319 7.35938 78.4375C7.35938 118.556 39.8819 151.078 80.0004 151.078Z"
-      fill="#B9B3FF"
+      className="fill-primary group-hover:fill-primary-shadow"
     />
     <path
       fillRule="evenodd"

@@ -12,7 +12,7 @@ export const optionSchema = Yup.object(optionBaseSchema);
 
 export const answerOptionSchema = Yup.object({
   ...optionBaseSchema,
-  percentage: Yup.number().min(0).max(100).optional(),
+  percentage: Yup.number().min(0).max(100).required(),
 });
 
 const baseQuestionSchema = {

@@ -11,6 +11,7 @@ interface SelectedQuestionProps {
   selected: number;
   setSelected: (selected: (prev: number) => number) => void;
   selectedOptions: Record<string, string>;
+  isLoading?: boolean;
 }
 
 const SelectedQuestion = ({
@@ -20,6 +21,7 @@ const SelectedQuestion = ({
   setSelected,
   onSelectOption,
   selectedOptions,
+  isLoading,
 }: SelectedQuestionProps) => {
   const currentQuestion = questions[selected];
   const isFirstQuestion = selected === 0;
@@ -83,7 +85,7 @@ const SelectedQuestion = ({
           {isLastQuestion ? (
             <>
               <Icon name="sports_score" />
-              Finish
+              {isLoading ? "Finishing..." : "Finish"}
             </>
           ) : (
             <>

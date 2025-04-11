@@ -2,8 +2,7 @@ import { Exam } from "@/types";
 import { useEffect, useRef, useState } from "react";
 import { Dialog } from "../Dialog";
 import { ReportExam } from "../ReportExam";
-import { Stepper } from "../Stepper";
-import { Step } from "../Stepper/Stepper";
+import { Step, Stepper } from "../Stepper";
 import SelectedQuestion from "./SelectedQuestion";
 
 type FinishReasons = "OUT_OF_TIME" | "REPORT" | "FINISHED" | "DROPPED";
@@ -32,6 +31,8 @@ const useExamTimer = (
       totalTime = (hours || 0) * 3600 + (minutes || 0) * 60;
     } else if (setting === "PER_QUESTION") {
       totalTime = (minutes || 0) * 60 + (seconds || 0);
+    } else {
+      return;
     }
 
     setTime(totalTime);

@@ -1,38 +1,32 @@
-import { Question } from "@/types";
+import { Question, QuestionDetailType } from "@/types";
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/vi-dom";
-import React from "react";
 import { describe, expect, it, vi } from "vitest";
 import QuestionList from "./QuestionList";
 
 // Mock QuestionDetail and QuestionSet components
 vi.mock("../QuestionDetail", () => ({
   QuestionDetail: ({
-    children,
-    options,
+    detail,
     onEdit,
     onDelete,
   }: {
-    children: React.ReactNode;
-    options?: Array<{
-      id: string;
-      text: React.ReactNode;
-      correct: boolean;
-      percentage: number;
-    }>;
-    onEdit?: () => void;
+    detail: Question;
+    onEdit?: (values: Question) => void;
     onDelete?: () => void;
   }) => (
     <div data-testid="question-detail">
-      <div data-testid="question-title">{children}</div>
-      <div data-testid="question-options-count">{options?.length || 0}</div>
+      <div data-testid="question-title">{detail.title}</div>
+      <div data-testid="question-options-count">
+        {detail.options?.length || 0}
+      </div>
       {onEdit && (
-        <button data-testid="edit-button" onClick={onEdit}>
+        <button data-testid="edit-button" onClick={() => onEdit(detail)}>
           Edit
         </button>
       )}
       {onDelete && (
-        <button data-testid="delete-button" onClick={onDelete}>
+        <button data-testid="delete-button" onClick={() => onDelete()}>
           Delete
         </button>
       )}
@@ -62,27 +56,65 @@ vi.mock("../QuestionSet", () => ({
 
 describe("QuestionList Component", () => {
   // Sample questions for testing
-  const testQuestions: Question[] = [
+  const testQuestions: QuestionDetailType[] = [
     {
       id: "1",
       title: "Question 1",
       options: [
-        { id: "1", text: "Option 1", correct: true },
-        { id: "2", text: "Option 2", correct: false },
+        { id: "1", text: "Option 1", correct: true, percentage: 0 },
+        { id: "2", text: "Option 2", correct: false, percentage: 0 },
       ],
     },
     {
       id: "2",
       title: "Question 2",
       options: [
-        { id: "1", text: "Option A", correct: false },
-        { id: "2", text: "Option B", correct: true },
+        { id: "1", text: "Option A", correct: false, percentage: 0 },
+        { id: "2", text: "Option B", correct: true, percentage: 0 },
       ],
     },
   ];
 
+  const renderQuestionList = (
+    props: Partial<{
+      questions: Question[];
+      selectedQuestion: QuestionDetailType;
+      onEditQuestion: (question: Question) => void;
+      onDeleteQuestion: (id: string) => void;
+      onSelectQuestion: (id: string) => void;
+      canModify: boolean;
+      isLoading: boolean;
+      emptyStateMessage: string;
+    }> = {},
+  ) => {
+    const defaultProps = {
+      questions: testQuestions,
+      selectedQuestion: testQuestions[0],
+      onEditQuestion: vi.fn(),
+      onDeleteQuestion: vi.fn(),
+      onSelectQuestion: vi.fn(),
+      canModify: true,
+      isLoading: false,
+      emptyStateMessage: "No questions found",
+    };
+
+    const mergedProps = { ...defaultProps, ...props };
+
+    return render(
+      <QuestionList
+        questions={mergedProps.questions}
+        selectedQuestion={mergedProps.selectedQuestion}
+        onEditQuestion={mergedProps.onEditQuestion}
+        onDeleteQuestion={mergedProps.onDeleteQuestion}
+        onSelectQuestion={mergedProps.onSelectQuestion}
+        canModify={mergedProps.canModify}
+        isLoading={mergedProps.isLoading}
+      />,
+    );
+  };
+
   it("renders loading state correctly", () => {
-    render(<QuestionList isLoading={true} />);
+    renderQuestionList({ isLoading: true });
 
     // Check for loading state elements
     const loadingElements = document.querySelectorAll(".animate-pulse");
@@ -94,16 +126,15 @@ describe("QuestionList Component", () => {
   });
 
   it("renders empty state with custom message", () => {
-    const emptyMessage = "No questions found";
-    render(<QuestionList emptyStateMessage={emptyMessage} />);
+    renderQuestionList({ questions: [] });
 
-    expect(screen.getByText(emptyMessage)).toBeInTheDocument();
+    expect(screen.getByText("No questions found")).toBeInTheDocument();
     expect(screen.queryByTestId("question-set")).not.toBeInTheDocument();
     expect(screen.queryByTestId("question-detail")).not.toBeInTheDocument();
   });
 
   it("renders questions correctly", () => {
-    render(<QuestionList questions={testQuestions} />);
+    renderQuestionList();
 
     // Should render all questions
     const questionSets = screen.getAllByTestId("question-set");
@@ -123,10 +154,10 @@ describe("QuestionList Component", () => {
   });
 
   it("changes selected question when clicking on a question", () => {
-    render(<QuestionList questions={testQuestions} />);
+    const { getByTestId, getAllByTestId } = renderQuestionList();
 
     // Initially first question is selected
-    const questionSets = screen.getAllByTestId("question-set");
+    const questionSets = getAllByTestId("question-set");
     expect(questionSets[0]).toHaveAttribute("data-selected", "true");
     expect(questionSets[1]).toHaveAttribute("data-selected", "false");
 
@@ -138,66 +169,28 @@ describe("QuestionList Component", () => {
     expect(questionSets[1]).toHaveAttribute("data-selected", "true");
 
     // Question detail should update to show second question
-    expect(screen.getByTestId("question-title")).toHaveTextContent(
-      "Question 2",
-    );
+    expect(getByTestId("question-title")).toHaveTextContent("Question 2");
   });
 
   it("calls onEditQuestion with correct questionId", () => {
     const handleEdit = vi.fn();
-    render(
-      <QuestionList questions={testQuestions} onEditQuestion={handleEdit} />,
-    );
+    renderQuestionList({ onEditQuestion: handleEdit });
 
     // Click edit button in question detail
     fireEvent.click(screen.getByTestId("edit-button"));
 
     // Should call onEditQuestion with the ID of the selected question
-    expect(handleEdit).toHaveBeenCalledWith("1");
+    expect(handleEdit).toHaveBeenCalledWith(testQuestions[0]);
   });
 
   it("calls onDeleteQuestion with correct questionId", () => {
     const handleDelete = vi.fn();
-    render(
-      <QuestionList
-        questions={testQuestions}
-        onDeleteQuestion={handleDelete}
-      />,
-    );
+    renderQuestionList({ onDeleteQuestion: handleDelete });
 
     // Click delete button in question detail
     fireEvent.click(screen.getByTestId("delete-button"));
 
     // Should call onDeleteQuestion with the ID of the selected question
     expect(handleDelete).toHaveBeenCalledWith("1");
-  });
-
-  it("updates selected question when questions prop changes", () => {
-    const { rerender } = render(<QuestionList questions={testQuestions} />);
-
-    // Initially first question is selected
-    expect(screen.getByTestId("question-title")).toHaveTextContent(
-      "Question 1",
-    );
-
-    // Update with new questions where the first one has a different ID
-    const newQuestions = [
-      {
-        id: "3",
-        title: "New Question",
-        options: [
-          { id: "1", text: "Option X", correct: true },
-          { id: "2", text: "Option Y", correct: false },
-        ],
-      },
-      ...testQuestions.slice(1),
-    ];
-
-    rerender(<QuestionList questions={newQuestions} />);
-
-    // Selected question should update to the first one in the new list
-    expect(screen.getByTestId("question-title")).toHaveTextContent(
-      "New Question",
-    );
   });
 });

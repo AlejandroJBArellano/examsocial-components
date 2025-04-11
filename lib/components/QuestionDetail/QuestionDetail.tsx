@@ -123,7 +123,10 @@ const QuestionDetail: FC<QuestionDetailProps> & {
       {onEdit ? (
         <Dialog innerRef={editQuestionDialogRef}>
           <EditQuestion
-            onSubmit={onEdit}
+            onSubmit={(values) => {
+              onEdit(values);
+              editQuestionDialogRef.current?.close();
+            }}
             initialValues={detail}
             onCancel={() => {
               editQuestionDialogRef.current?.close();

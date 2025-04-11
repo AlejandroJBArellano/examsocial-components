@@ -101,7 +101,7 @@ export const Review = () => {
             return (
               <QuestionSet
                 {...questionProps}
-                image={URL.createObjectURL(image as Blob)}
+                image={image ? URL.createObjectURL(image as Blob) : undefined}
                 index={index}
                 key={index}
                 onEdit={(index) => console.log(index)}

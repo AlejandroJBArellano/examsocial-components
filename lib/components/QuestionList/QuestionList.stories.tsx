@@ -111,15 +111,31 @@ type Story = StoryObj<typeof QuestionList>;
 const DefaultTemplate = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(sampleQuestions[0]);
   const [questions, setQuestions] = useState(sampleQuestions);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleDelete = (id: string) => {
-    setQuestions(questions.filter((q) => q.id !== id));
-    setSelectedQuestion(sampleQuestions[0]);
+  const handleDelete = async (id: string) => {
+    setIsLoading(true);
+    try {
+      // Simulate API delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setQuestions(questions.filter((q) => q.id !== id));
+      setSelectedQuestion(sampleQuestions[0]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleEdit = (question: Question) => {
-    console.log({ question });
-    setQuestions(questions.map((q) => (q.id === question.id ? question : q)));
+  const handleEdit = async (question: Question) => {
+    setIsLoading(true);
+    try {
+      // Simulate API delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log({ question });
+      setQuestions(questions.map((q) => (q.id === question.id ? question : q)));
+      setSelectedQuestion(question);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -132,6 +148,7 @@ const DefaultTemplate = () => {
         setSelectedQuestion(questions.find((q) => q.id === id) || questions[0]);
       }}
       canModify
+      isLoading={isLoading}
     />
   );
 };

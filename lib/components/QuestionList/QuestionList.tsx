@@ -32,6 +32,11 @@ export interface QuestionListProps {
    * @param id - ID of the selected question
    */
   onSelectQuestion: (id: string) => void;
+  /**
+   * Whether the questions are currently loading
+   * @default false
+   */
+  isLoading?: boolean;
 }
 
 const QuestionList = ({
@@ -41,6 +46,7 @@ const QuestionList = ({
   onEditQuestion,
   onSelectQuestion,
   canModify,
+  isLoading,
 }: QuestionListProps) => {
   return (
     <section className="grid grid-cols-12 gap-8 p-8">
@@ -60,13 +66,19 @@ const QuestionList = ({
         ))}
       </article>
       <article className="col-span-5">
-        <QuestionDetail
-          detail={selectedQuestion}
-          onEdit={canModify ? (values) => onEditQuestion(values) : undefined}
-          onDelete={
-            canModify ? () => onDeleteQuestion(selectedQuestion.id) : undefined
-          }
-        />
+        {isLoading ? (
+          <div className="h-72 w-full animate-pulse rounded-md bg-gray-200" />
+        ) : (
+          <QuestionDetail
+            detail={selectedQuestion}
+            onEdit={canModify ? (values) => onEditQuestion(values) : undefined}
+            onDelete={
+              canModify
+                ? () => onDeleteQuestion(selectedQuestion.id)
+                : undefined
+            }
+          />
+        )}
       </article>
     </section>
   );

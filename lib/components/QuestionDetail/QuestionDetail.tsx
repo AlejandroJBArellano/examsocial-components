@@ -256,7 +256,7 @@ const Option: FC<{ id: string }> = ({ id }) => {
               r="21.5"
               fill="none"
               className={cn(
-                "stroke-current",
+                "animate-[circle-grow_1s_ease-out] stroke-current",
                 option.correct
                   ? "text-feedback-success"
                   : "text-feedback-error",

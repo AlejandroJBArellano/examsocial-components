@@ -27,3 +27,9 @@ input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+
+@keyframes circle-grow {
+  0% {
+    stroke-dashoffset: 135;
+  }
+}

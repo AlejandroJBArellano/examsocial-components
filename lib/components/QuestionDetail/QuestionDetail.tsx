@@ -213,8 +213,8 @@ const Option: FC<{ id: string }> = ({ id }) => {
   if (!option) return null;
 
   return (
-    <div className="flex items-center gap-8">
-      <div className="flex-1">
+    <div className="grid grid-cols-7 items-center gap-8">
+      <div className="col-span-5">
         <AnswerOption
           checked={option.correct}
           type={option.correct ? "viewOnly" : "default"}
@@ -223,7 +223,7 @@ const Option: FC<{ id: string }> = ({ id }) => {
         </AnswerOption>
       </div>
       <div
-        className={"mt-2 flex items-center justify-center gap-2"}
+        className={"col-span-2 flex items-center justify-center gap-2"}
         aria-label={`${option.percentage}% of students selected this answer`}
       >
         <svg

@@ -126,22 +126,3 @@ export const Default: Story = {
     },
   },
 };
-
-// Single question
-export const SingleQuestion: Story = {
-  args: {
-    questions: [sampleQuestions[0]],
-    onEditQuestion: action("onEditQuestion"),
-    onDeleteQuestion: action("onDeleteQuestion"),
-    selectedQuestion: sampleQuestions[0],
-    onSelectQuestion: action("onSelectQuestion"),
-    canModify: true,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "View showing a single question with its options.",
-      },
-    },
-  },
-};

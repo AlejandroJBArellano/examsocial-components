@@ -77,7 +77,7 @@ export const Passed: Story = {
     attemptsLeft: 2,
     maxAttempts: 3,
     minimum: 60,
-    score: 90,
+    score: 72,
     messages: sampleMessages,
     onRetry: action("retry-clicked"),
   },

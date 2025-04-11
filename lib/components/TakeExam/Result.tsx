@@ -67,7 +67,13 @@ const ResultTakeExam = ({
             fill="none"
             className={cn(
               "stroke-current",
-              passed ? "text-primary-shadow" : "text-feedback-error-tint",
+              score <= 25
+                ? "text-feedback-error-tint"
+                : score <= 50
+                  ? "text-secondary-shadow"
+                  : score <= 75
+                    ? "text-primary-shadow"
+                    : "text-feedback-success-tint",
             )}
             strokeWidth="5"
           />
@@ -78,7 +84,13 @@ const ResultTakeExam = ({
             fill="none"
             className={cn(
               "animate-[circle-grow_1s_ease-out] stroke-current",
-              passed ? "text-primary" : "text-feedback-error",
+              score <= 25
+                ? "text-feedback-error"
+                : score <= 50
+                  ? "text-secondary"
+                  : score <= 75
+                    ? "text-primary"
+                    : "text-feedback-success",
             )}
             strokeWidth="5"
             strokeDasharray="135"

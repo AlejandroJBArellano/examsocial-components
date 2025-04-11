@@ -17,6 +17,10 @@ export interface NavbarItem extends ComponentPropsWithoutRef<"a"> {
    */
   isCTA?: boolean;
   /**
+   * Link al que apunta el item
+   */
+  href: string;
+  /**
    * Texto del tooltip (visible cuando está comprimido)
    */
   tooltipText?: string;
@@ -34,6 +38,8 @@ export interface NavbarProps {
   profileInfo?: {
     gender: ProfilePlaceholderGender;
     name: string;
+    picture?: string;
+    href: string;
   };
 
   children?: React.ReactNode;
@@ -48,8 +54,8 @@ export interface NavbarProps {
  */
 export const Navbar = ({ items, profileInfo, children }: NavbarProps) => {
   return (
-    <nav className="bg-light mb-4 flex justify-center border-y-sm border-black px-4 md:justify-between">
-      <ul className="flex divide-x-sm divide-gray-600 [&>li>a]:border-0">
+    <nav className="mb-4 flex justify-center border-y border-black bg-light px-4 md:justify-between">
+      <ul className="flex divide-x divide-gray-600 [&>li>a]:border-0">
         {items.map((item, index) => (
           <li
             key={index}
@@ -72,7 +78,7 @@ export const Navbar = ({ items, profileInfo, children }: NavbarProps) => {
           className="size-9 md:size-11 xl:size-12 2xl:size-13"
         />
       ) : (
-        <button className="group border-x-sm border-gray-600 px-4 hover:border-black md:px-6 md:py-1 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6">
+        <button className="group border-x border-gray-600 px-4 hover:border-black md:px-6 md:py-1 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6">
           {children}
         </button>
       )}

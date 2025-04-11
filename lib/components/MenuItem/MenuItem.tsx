@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import { Heading5, Smoll } from "../FontFaces";
 import { Icon } from "../Icon";
@@ -50,16 +51,19 @@ const MenuItem = forwardRef<HTMLAnchorElement, MenuItemProps>(
     ref,
   ) => {
     const CTAClasses = ` !text-black border-black bg-accent ${isSelected ? "hover:shadow-right" : "shadow-right-sm hover:border hover:shadow-right"}`;
-    // Renderizar el botón
     const Anchor = (
       <a
         ref={ref}
         className={
-          "flex cursor-pointer border border-gray-600 px-4 py-1 text-gray-600 hover:border-gray-900 hover:text-gray-900 data-[selected]:border-primary-shadow data-[selected]:bg-primary-tint data-[selected]:text-primary-shadow md:px-6 md:py-2 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6" +
-          (isCTA ? CTAClasses : "") +
-          (isCompressed
-            ? " flex-col place-items-center"
-            : " w-full min-w-80 flex-row-reverse items-center gap-2")
+          "flex cursor-pointer border border-gray-600 px-4 py-1 text-gray-600 hover:border-gray-900 hover:text-gray-900 data-[selected]:border-primary-shadow data-[selected]:bg-primary-tint data-[selected]:text-primary-shadow md:px-6 md:py-2 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6 " +
+          cn(
+            isCompressed
+              ? "flex-col place-items-center"
+              : "w-full min-w-80 flex-row-reverse items-center gap-2",
+            {
+              [CTAClasses]: isCTA,
+            },
+          )
         }
         data-testid="menu-item"
         data-selected={isSelected ? "true" : undefined}
@@ -78,7 +82,7 @@ const MenuItem = forwardRef<HTMLAnchorElement, MenuItemProps>(
     // Si se debe mostrar el tooltip, envolver el botón con el tooltip
     return (
       <Tooltip
-        contentClassName="hidden xl:block"
+        contentClassName={"hidden xl:block" + (isCTA ? " text-light" : "")}
         trigger={Anchor}
         side="right"
         align="center"

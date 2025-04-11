@@ -229,7 +229,7 @@ const Option: FC<{ id: string }> = ({ id }) => {
         className={"col-span-2 grid grid-cols-2 gap-2"}
         aria-label={`${option.percentage}% of students selected this answer`}
       >
-        <div className="relative size-12">
+        <div className="relative size-12 -rotate-90">
           <svg
             viewBox="0 0 48 48"
             width={48}
@@ -245,8 +245,8 @@ const Option: FC<{ id: string }> = ({ id }) => {
                 "stroke-current",
 
                 option.correct
-                  ? "text-feedback-success"
-                  : "text-feedback-error",
+                  ? "text-feedback-success-tint"
+                  : "text-feedback-error-tint",
               )}
               strokeWidth="5"
             />
@@ -258,12 +258,12 @@ const Option: FC<{ id: string }> = ({ id }) => {
               className={cn(
                 "stroke-current",
                 option.correct
-                  ? "text-feedback-success-tint"
-                  : "text-feedback-error-tint",
+                  ? "text-feedback-success"
+                  : "text-feedback-error",
               )}
               strokeWidth="5"
-              strokeDasharray="100"
-              strokeDashoffset={option.percentage.toString()}
+              strokeDasharray="135"
+              strokeDashoffset={`${135 - (135 * option.percentage) / 100}`}
             />
           </svg>
         </div>

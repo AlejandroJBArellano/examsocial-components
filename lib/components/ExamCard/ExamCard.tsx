@@ -247,23 +247,19 @@ const ExamCardActions = ({ children, className }: ExamCardActionsProps) => {
 
 interface ExamCardActionProps {
   onClick?: () => void;
-  type: "edit" | "delete";
+  type: string;
   className?: string;
 }
 
 const ExamCardAction = ({ onClick, type, className }: ExamCardActionProps) => {
   const props = {
-    theme: type === "edit" ? "light" : ("feedback-error" as ButtonTheme),
+    theme: type === "delete" ? "feedback-error" : ("light" as ButtonTheme),
     size: 20,
     onClick,
     className,
     filled: true,
   };
-  return type === "edit" ? (
-    <Button.Icon {...props}>edit</Button.Icon>
-  ) : (
-    <Button.Icon {...props}>delete</Button.Icon>
-  );
+  return <Button.Icon {...props}>{type}</Button.Icon>;
 };
 
 // Exportar componentes compuestos

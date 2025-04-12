@@ -308,14 +308,33 @@ export const Review = () => {
               <Span className="font-bold">Timing</Span>
             </div>
             <div className="flex justify-between">
-              <Span className="font-medium">Time Limit</Span>
+              <Span className="font-medium">Time Limit Type</Span>
               <FocusSpan className="flex items-center gap-1 rounded-md border-2 border-black bg-secondary px-2 py-1 shadow-right-sm">
                 <Icon name="schedule" size={16} filled />
                 {formik.values.advancedSettings.timing.setting === "NONE"
                   ? "No time limit"
-                  : `${formik.values.advancedSettings.timing.hours ? `${formik.values.advancedSettings.timing.hours}h ` : ""}${formik.values.advancedSettings.timing.minutes ? `${formik.values.advancedSettings.timing.minutes}m ` : ""}${formik.values.advancedSettings.timing.seconds ? `${formik.values.advancedSettings.timing.seconds}s` : ""}`}
+                  : formik.values.advancedSettings.timing.setting === "TOTAL"
+                    ? "Total time"
+                    : "Per question"}
               </FocusSpan>
             </div>
+            {formik.values.advancedSettings.timing.setting !== "NONE" && (
+              <div className="flex justify-between">
+                <Span className="font-medium">Duration</Span>
+                <FocusSpan className="flex items-center gap-1 rounded-md border-2 border-black bg-secondary px-2 py-1 shadow-right-sm">
+                  <Icon name="timer" size={16} filled />
+                  {formik.values.advancedSettings.timing.hours
+                    ? `${formik.values.advancedSettings.timing.hours}h `
+                    : ""}
+                  {formik.values.advancedSettings.timing.minutes
+                    ? `${formik.values.advancedSettings.timing.minutes}m `
+                    : ""}
+                  {formik.values.advancedSettings.timing.seconds
+                    ? `${formik.values.advancedSettings.timing.seconds}s`
+                    : ""}
+                </FocusSpan>
+              </div>
+            )}
           </div>
 
           {/* Questions */}

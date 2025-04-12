@@ -68,7 +68,7 @@ export const GeneralDetails = () => {
         label="Title"
         error={errors.title?.toString()}
         inputProps={{
-          placeholder: "The title of your exam",
+          placeholder: "Give your exam a clear, descriptive title",
           className: "w-full",
           ...getFieldProps("title"),
           error: !!errors.title,
@@ -78,7 +78,8 @@ export const GeneralDetails = () => {
         label="Description"
         error={errors.description?.toString()}
         textareaProps={{
-          placeholder: "A brief description of your exam",
+          placeholder:
+            "Describe what students will learn and what makes your exam unique",
           className: "w-full",
           ...getFieldProps("description"),
         }}
@@ -104,7 +105,7 @@ export const GeneralDetails = () => {
                   ))}
                 </div>
               ) : (
-                "Select a category"
+                "Choose categories that best describe your exam"
               ),
           }}
         >

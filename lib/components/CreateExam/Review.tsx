@@ -23,7 +23,7 @@ export const Review = () => {
           <FocusSpan>Preview exam</FocusSpan>
         </Button> */}
       </article>
-      <article className="space-y-10 lg:space-y-12 xl:space-y-14">
+      <article className="space-y-5">
         <Heading4>General Details</Heading4>
         <div className="lg:grid lg:grid-cols-2 lg:gap-8">
           <ExamCard>
@@ -99,9 +99,9 @@ export const Review = () => {
           </div>
         </div>
       </article>
-      <article className="space-y-1">
+      <article className="space-y-5">
         <Heading4>Questions</Heading4>
-        <div className="flex flex-nowrap gap-4 overflow-x-auto lg:grid lg:grid-cols-3 lg:overflow-x-visible xl:grid-cols-4">
+        <div className="flex flex-nowrap gap-4 overflow-x-auto lg:grid lg:grid-cols-3 lg:overflow-x-visible">
           {formik.values.questions.map((question, index) => {
             // Extract only the properties that QuestionSet expects
             const { image, ...questionProps } = question;
@@ -124,7 +124,7 @@ export const Review = () => {
         </div>
       </article>
       {formik.values.contents.length > 0 && (
-        <article className="space-y-1">
+        <article className="space-y-5">
           <Heading4>Additional Content</Heading4>
           <div className="flex flex-wrap gap-4 lg:flex-nowrap [&>div]:flex [&>div]:gap-1">
             <div>
@@ -187,7 +187,7 @@ export const Review = () => {
           </div>
         </article>
       )}
-      <article className="space-y-4 lg:space-y-6">
+      <article className="space-y-5">
         <Heading4>Advanced Settings</Heading4>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {/* Branding */}

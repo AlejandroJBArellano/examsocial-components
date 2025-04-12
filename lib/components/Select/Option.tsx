@@ -1,7 +1,7 @@
 import { cn } from "@/utils";
 import { CheckboxItem } from "@radix-ui/react-dropdown-menu";
 import { ComponentPropsWithoutRef } from "react";
-import { Checkbox } from "../Checkbox";
+import { Icon } from "../Icon";
 
 export const OptionSelect = (
   props: ComponentPropsWithoutRef<typeof CheckboxItem>,
@@ -17,7 +17,15 @@ export const OptionSelect = (
         props.className,
       )}
     >
-      <Checkbox checked={props.checked} />
+      {/* TODO: include <Checkbox checked={props.checked} /> */}
+      <Icon
+        name="check"
+        responsiveSizes={{
+          sm: 18,
+          xl: 24,
+        }}
+        className={props.checked ? "" : "text-transparent"}
+      />
       {props.children}
     </CheckboxItem>
   );

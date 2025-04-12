@@ -56,10 +56,10 @@ export const GeneralDetails = () => {
           />
         )}
         {errors.image && (
-          <Span className="text-red-500">{errors.image.toString()}</Span>
+          <Span className="text-feedback-error">{errors.image.toString()}</Span>
         )}
-        <Span className="flex items-center gap-1 text-gray-600">
-          <Icon name="info" size={14} className="text-gray-500" />
+        <Span className="flex items-center gap-1 text-feedback-error">
+          <Icon name="info" size={20} className="text-feedback-error" />
           Recommended: Upload a 16:9 image for optimal display across all
           devices
         </Span>

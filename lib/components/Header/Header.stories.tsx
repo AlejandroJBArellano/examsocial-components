@@ -53,7 +53,7 @@ export const WithMenu: Story = {
           items={[
             {
               icon: "workspace_premium",
-              label: "Go Pro",
+              children: "Go Pro",
               href: "#",
             },
           ]}
@@ -101,7 +101,7 @@ export const AllVariants: Story = {
           items={[
             {
               icon: "workspace_premium",
-              label: "Go Pro",
+              children: "Go Pro",
               href: "#",
             },
           ]}

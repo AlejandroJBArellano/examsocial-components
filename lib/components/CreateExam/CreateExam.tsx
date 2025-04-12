@@ -195,6 +195,7 @@ const CreateExam = ({
                       setStep((prev) => (prev + 1) as keyof typeof steps);
                     }}
                     type={step === 4 ? "submit" : "button"}
+                    className="flex items-center justify-center gap-2"
                   >
                     {step === 4 ? (
                       <>

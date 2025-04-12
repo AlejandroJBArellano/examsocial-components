@@ -1,9 +1,8 @@
 import { useExamCreation } from "@/hooks/exam";
-import { examSchema, feedbackSchema } from "@/schemas";
+import { Exam } from "@/types";
 import { cn } from "@/utils";
 import { useFormikContext } from "formik";
 import { useRef, useState } from "react";
-import * as Yup from "yup";
 import { PremiumBadge } from "../Badges";
 import { Button } from "../Button";
 import { Dialog } from "../Dialog";
@@ -24,213 +23,207 @@ import { PrivacySettings } from "./PrivacySettings";
 import { TimingSettings } from "./TimingSettings";
 
 // Función para verificar si hay solapamiento entre condiciones de feedback
-const checkFeedbackOverlap = (
-  feedbacks: Yup.InferType<
-    typeof examSchema
-  >["advancedSettings"]["feedback"] = [],
-) => {
-  if (!feedbacks || feedbacks.length <= 1) return false;
+// const checkFeedbackOverlap = (
+//   feedbacks: Yup.InferType<
+//     typeof examSchema
+//   >["advancedSettings"]["feedback"] = [],
+// ) => {
+//   if (!feedbacks || feedbacks.length <= 1) return false;
 
-  for (let i = 0; i < feedbacks.length; i++) {
-    const a = feedbacks[i];
-    if (!a) continue;
+//   for (let i = 0; i < feedbacks.length; i++) {
+//     const a = feedbacks[i];
+//     if (!a) continue;
 
-    for (let j = i + 1; j < feedbacks.length; j++) {
-      const b = feedbacks[j];
-      if (!b) continue;
+//     for (let j = i + 1; j < feedbacks.length; j++) {
+//       const b = feedbacks[j];
+//       if (!b) continue;
 
-      // Si alguno es ALL, siempre hay solapamiento con cualquier otro
-      if (a.condition === "ALL" || b.condition === "ALL") {
-        return true;
-      }
+//       // Si alguno es ALL, siempre hay solapamiento con cualquier otro
+//       if (a.condition === "ALL" || b.condition === "ALL") {
+//         return true;
+//       }
 
-      // Comprobando condición EQUAL_TO
-      if (a.condition === "EQUAL_TO" && b.condition === "EQUAL_TO") {
-        if (a.equal === b.equal) return true;
-      }
+//       // Comprobando condición EQUAL_TO
+//       if (a.condition === "EQUAL_TO" && b.condition === "EQUAL_TO") {
+//         if (a.equal === b.equal) return true;
+//       }
 
-      // Comprobando condición LESS_THAN
-      if (a.condition === "LESS_THAN" && b.condition === "LESS_THAN") {
-        if (a.lt === b.lt) return true;
-      }
+//       // Comprobando condición LESS_THAN
+//       if (a.condition === "LESS_THAN" && b.condition === "LESS_THAN") {
+//         if (a.lt === b.lt) return true;
+//       }
 
-      // Comprobando condición GREATER_THAN
-      if (a.condition === "GREATER_THAN" && b.condition === "GREATER_THAN") {
-        if (a.gt === b.gt) return true;
-      }
+//       // Comprobando condición GREATER_THAN
+//       if (a.condition === "GREATER_THAN" && b.condition === "GREATER_THAN") {
+//         if (a.gt === b.gt) return true;
+//       }
 
-      // Solapamiento entre EQUAL_TO y BETWEEN
-      if (
-        (a.condition === "EQUAL_TO" &&
-          b.condition === "BETWEEN" &&
-          typeof a.equal === "number" &&
-          typeof b.min === "number" &&
-          typeof b.max === "number" &&
-          a.equal >= b.min &&
-          a.equal <= b.max) ||
-        (b.condition === "EQUAL_TO" &&
-          a.condition === "BETWEEN" &&
-          typeof b.equal === "number" &&
-          typeof a.min === "number" &&
-          typeof a.max === "number" &&
-          b.equal >= a.min &&
-          b.equal <= a.max)
-      ) {
-        return true;
-      }
+//       // Solapamiento entre EQUAL_TO y BETWEEN
+//       if (
+//         (a.condition === "EQUAL_TO" &&
+//           b.condition === "BETWEEN" &&
+//           typeof a.equal === "number" &&
+//           typeof b.min === "number" &&
+//           typeof b.max === "number" &&
+//           a.equal >= b.min &&
+//           a.equal <= b.max) ||
+//         (b.condition === "EQUAL_TO" &&
+//           a.condition === "BETWEEN" &&
+//           typeof b.equal === "number" &&
+//           typeof a.min === "number" &&
+//           typeof a.max === "number" &&
+//           b.equal >= a.min &&
+//           b.equal <= a.max)
+//       ) {
+//         return true;
+//       }
 
-      // Solapamiento entre EQUAL_TO y LESS_THAN
-      if (
-        (a.condition === "EQUAL_TO" &&
-          b.condition === "LESS_THAN" &&
-          typeof a.equal === "number" &&
-          typeof b.lt === "number" &&
-          a.equal < b.lt) ||
-        (b.condition === "EQUAL_TO" &&
-          a.condition === "LESS_THAN" &&
-          typeof b.equal === "number" &&
-          typeof a.lt === "number" &&
-          b.equal < a.lt)
-      ) {
-        return true;
-      }
+//       // Solapamiento entre EQUAL_TO y LESS_THAN
+//       if (
+//         (a.condition === "EQUAL_TO" &&
+//           b.condition === "LESS_THAN" &&
+//           typeof a.equal === "number" &&
+//           typeof b.lt === "number" &&
+//           a.equal < b.lt) ||
+//         (b.condition === "EQUAL_TO" &&
+//           a.condition === "LESS_THAN" &&
+//           typeof b.equal === "number" &&
+//           typeof a.lt === "number" &&
+//           b.equal < a.lt)
+//       ) {
+//         return true;
+//       }
 
-      // Solapamiento entre EQUAL_TO y GREATER_THAN
-      if (
-        (a.condition === "EQUAL_TO" &&
-          b.condition === "GREATER_THAN" &&
-          typeof a.equal === "number" &&
-          typeof b.gt === "number" &&
-          a.equal > b.gt) ||
-        (b.condition === "EQUAL_TO" &&
-          a.condition === "GREATER_THAN" &&
-          typeof b.equal === "number" &&
-          typeof a.gt === "number" &&
-          b.equal > a.gt)
-      ) {
-        return true;
-      }
+//       // Solapamiento entre EQUAL_TO y GREATER_THAN
+//       if (
+//         (a.condition === "EQUAL_TO" &&
+//           b.condition === "GREATER_THAN" &&
+//           typeof a.equal === "number" &&
+//           typeof b.gt === "number" &&
+//           a.equal > b.gt) ||
+//         (b.condition === "EQUAL_TO" &&
+//           a.condition === "GREATER_THAN" &&
+//           typeof b.equal === "number" &&
+//           typeof a.gt === "number" &&
+//           b.equal > a.gt)
+//       ) {
+//         return true;
+//       }
 
-      // Solapamiento entre BETWEEN y BETWEEN
-      if (
-        a.condition === "BETWEEN" &&
-        b.condition === "BETWEEN" &&
-        typeof a.min === "number" &&
-        typeof a.max === "number" &&
-        typeof b.min === "number" &&
-        typeof b.max === "number"
-      ) {
-        // Verificar si los rangos se solapan
-        if (!(a.max < b.min || a.min > b.max)) {
-          return true;
-        }
-      }
+//       // Solapamiento entre BETWEEN y BETWEEN
+//       if (
+//         a.condition === "BETWEEN" &&
+//         b.condition === "BETWEEN" &&
+//         typeof a.min === "number" &&
+//         typeof a.max === "number" &&
+//         typeof b.min === "number" &&
+//         typeof b.max === "number"
+//       ) {
+//         // Verificar si los rangos se solapan
+//         if (!(a.max < b.min || a.min > b.max)) {
+//           return true;
+//         }
+//       }
 
-      // Solapamiento entre BETWEEN y LESS_THAN
-      if (
-        (a.condition === "BETWEEN" &&
-          b.condition === "LESS_THAN" &&
-          typeof a.min === "number" &&
-          typeof b.lt === "number" &&
-          a.min < b.lt) ||
-        (b.condition === "BETWEEN" &&
-          a.condition === "LESS_THAN" &&
-          typeof b.min === "number" &&
-          typeof a.lt === "number" &&
-          b.min < a.lt)
-      ) {
-        return true;
-      }
+//       // Solapamiento entre BETWEEN y LESS_THAN
+//       if (
+//         (a.condition === "BETWEEN" &&
+//           b.condition === "LESS_THAN" &&
+//           typeof a.min === "number" &&
+//           typeof b.lt === "number" &&
+//           a.min < b.lt) ||
+//         (b.condition === "BETWEEN" &&
+//           a.condition === "LESS_THAN" &&
+//           typeof b.min === "number" &&
+//           typeof a.lt === "number" &&
+//           b.min < a.lt)
+//       ) {
+//         return true;
+//       }
 
-      // Solapamiento entre BETWEEN y GREATER_THAN
-      if (
-        (a.condition === "BETWEEN" &&
-          b.condition === "GREATER_THAN" &&
-          typeof a.max === "number" &&
-          typeof b.gt === "number" &&
-          a.max > b.gt) ||
-        (b.condition === "BETWEEN" &&
-          a.condition === "GREATER_THAN" &&
-          typeof b.max === "number" &&
-          typeof a.gt === "number" &&
-          b.max > a.gt)
-      ) {
-        return true;
-      }
+//       // Solapamiento entre BETWEEN y GREATER_THAN
+//       if (
+//         (a.condition === "BETWEEN" &&
+//           b.condition === "GREATER_THAN" &&
+//           typeof a.max === "number" &&
+//           typeof b.gt === "number" &&
+//           a.max > b.gt) ||
+//         (b.condition === "BETWEEN" &&
+//           a.condition === "GREATER_THAN" &&
+//           typeof b.max === "number" &&
+//           typeof a.gt === "number" &&
+//           b.max > a.gt)
+//       ) {
+//         return true;
+//       }
 
-      // Solapamiento entre LESS_THAN y GREATER_THAN
-      if (
-        (a.condition === "LESS_THAN" &&
-          b.condition === "GREATER_THAN" &&
-          typeof b.gt === "number" &&
-          typeof a.lt === "number" &&
-          b.gt < a.lt) ||
-        (b.condition === "LESS_THAN" &&
-          a.condition === "GREATER_THAN" &&
-          typeof a.gt === "number" &&
-          typeof b.lt === "number" &&
-          a.gt < b.lt)
-      ) {
-        return true;
-      }
-    }
-  }
+//       // Solapamiento entre LESS_THAN y GREATER_THAN
+//       if (
+//         (a.condition === "LESS_THAN" &&
+//           b.condition === "GREATER_THAN" &&
+//           typeof b.gt === "number" &&
+//           typeof a.lt === "number" &&
+//           b.gt < a.lt) ||
+//         (b.condition === "LESS_THAN" &&
+//           a.condition === "GREATER_THAN" &&
+//           typeof a.gt === "number" &&
+//           typeof b.lt === "number" &&
+//           a.gt < b.lt)
+//       ) {
+//         return true;
+//       }
+//     }
+//   }
 
-  return false;
-};
+//   return false;
+// };
+
+// Comprueba superposiciones cuando cambia el feedback array
+// const validateFeedbackOverlap = (
+//   newFeedback: Yup.InferType<typeof feedbackSchema>,
+// ) => {
+//   const hasOverlap = false //checkFeedbackOverlap(allFeedbacks);
+
+//   if (hasOverlap) {
+//     setFeedbackError(
+//       "Error: Thank you screens conditions are overlapping. Please adjust the conditions to avoid overlaps.",
+//     );
+//     return false;
+//   } else {
+//     setFeedbackError(null);
+//     return true;
+//   }
+// };
+
+// Versión para edición
+// const validateFeedbackOverlapEdit = (
+//   newFeedback: Yup.InferType<typeof feedbackSchema>,
+//   editIndex: number,
+// ) => {
+//   const allFeedbacks = [...(values.advancedSettings.feedback || [])];
+//   allFeedbacks[editIndex] = newFeedback;
+
+//   const hasOverlap = checkFeedbackOverlap(allFeedbacks);
+
+//   if (hasOverlap) {
+//     setFeedbackError(
+//       "Error: Thank you screens conditions are overlapping. Please adjust the conditions to avoid overlaps.",
+//     );
+//     return false;
+//   } else {
+//     setFeedbackError(null);
+//     return true;
+//   }
+// };
 
 export const AdvancedSettings = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const editFeedbackDialogRef = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState<number>(0);
-  const [feedbackError, setFeedbackError] = useState<string | null>(null);
 
-  const { values, setFieldValue } =
-    useFormikContext<Yup.InferType<typeof examSchema>>();
+  const { values, setFieldValue } = useFormikContext<Exam>();
 
   const { userPlan } = useExamCreation();
-
-  // Comprueba superposiciones cuando cambia el feedback array
-  const validateFeedbackOverlap = (
-    newFeedback: Yup.InferType<typeof feedbackSchema>,
-  ) => {
-    const allFeedbacks = [
-      ...(values.advancedSettings.feedback || []),
-      newFeedback,
-    ];
-    const hasOverlap = checkFeedbackOverlap(allFeedbacks);
-
-    if (hasOverlap) {
-      setFeedbackError(
-        "Error: Thank you screens conditions are overlapping. Please adjust the conditions to avoid overlaps.",
-      );
-      return false;
-    } else {
-      setFeedbackError(null);
-      return true;
-    }
-  };
-
-  // Versión para edición
-  const validateFeedbackOverlapEdit = (
-    newFeedback: Yup.InferType<typeof feedbackSchema>,
-    editIndex: number,
-  ) => {
-    const allFeedbacks = [...(values.advancedSettings.feedback || [])];
-    allFeedbacks[editIndex] = newFeedback;
-
-    const hasOverlap = checkFeedbackOverlap(allFeedbacks);
-
-    if (hasOverlap) {
-      setFeedbackError(
-        "Error: Thank you screens conditions are overlapping. Please adjust the conditions to avoid overlaps.",
-      );
-      return false;
-    } else {
-      setFeedbackError(null);
-      return true;
-    }
-  };
 
   return (
     <section className="divide-y divide-secondary-tint [&>div]:space-y-4 [&>div]:py-4">
@@ -310,11 +303,11 @@ export const AdvancedSettings = () => {
               </Span>{" "}
               or <Span className="font-bold text-accent-shadow">services</Span>.
             </Paragraph>
-            {feedbackError && (
+            {/* {feedbackError && (
               <div className="mt-2 rounded-md bg-feedback-error p-2 text-white">
                 <p>{feedbackError}</p>
               </div>
-            )}
+            )} */}
             <div
               className={cn(
                 "flex flex-nowrap items-center gap-2 overflow-x-auto",
@@ -348,18 +341,16 @@ export const AdvancedSettings = () => {
                         (_, i) => i !== index,
                       ),
                     );
-                    // Al eliminar, verificar si aún hay solapamientos
-                    const updatedFeedbacks =
-                      values.advancedSettings.feedback?.filter(
-                        (_, i) => i !== index,
-                      );
-                    if (checkFeedbackOverlap(updatedFeedbacks)) {
-                      setFeedbackError(
-                        "Error: Thank you screens conditions are overlapping. Please adjust the conditions to avoid overlaps.",
-                      );
-                    } else {
-                      setFeedbackError(null);
-                    }
+                    // // Al eliminar, verificar si aún hay solapamientos
+                    // const updatedFeedbacks =
+                    //   values.advancedSettings.feedback?.filter(
+                    //     (_, i) => i !== index,
+                    //   );
+                    // if (checkFeedbackOverlap(updatedFeedbacks)) {
+                    //   setFeedbackError(
+                    //     "Error: Thank you screens conditions are overlapping. Please adjust the conditions to avoid overlaps.",
+                    //   );
+                    // }
                   }}
                 />
               ))}
@@ -613,13 +604,10 @@ export const AdvancedSettings = () => {
         <NewFeedbackScreen
           onSubmit={(newFeedback) => {
             // Validar superposición antes de añadir
-            if (validateFeedbackOverlap(newFeedback)) {
-              setFieldValue("advancedSettings.feedback", [
-                ...(values.advancedSettings.feedback || []),
-                newFeedback,
-              ]);
-              console.log({ newFeedback });
-            }
+            setFieldValue("advancedSettings.feedback", [
+              ...(values.advancedSettings.feedback || []),
+              newFeedback,
+            ]);
             dialogRef.current?.close();
           }}
           onCancel={() => {
@@ -633,20 +621,17 @@ export const AdvancedSettings = () => {
             feedback={values.advancedSettings.feedback![index]}
             onSubmit={(newFeedback) => {
               // Validar superposición antes de editar
-              if (validateFeedbackOverlapEdit(newFeedback, index)) {
-                setFieldValue("advancedSettings.feedback", [
-                  ...(values.advancedSettings.feedback || []).map(
-                    (feedback, i) => {
-                      if (i === index) {
-                        return newFeedback;
-                      }
-                      return feedback;
-                    },
-                  ),
-                ]);
-                console.log({ newFeedback });
-                editFeedbackDialogRef.current?.close();
-              }
+              setFieldValue("advancedSettings.feedback", [
+                ...(values.advancedSettings.feedback || []).map(
+                  (feedback, i) => {
+                    if (i === index) {
+                      return newFeedback;
+                    }
+                    return feedback;
+                  },
+                ),
+              ]);
+              editFeedbackDialogRef.current?.close();
             }}
             onCancel={() => {
               editFeedbackDialogRef.current?.close();

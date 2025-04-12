@@ -71,7 +71,11 @@ export const questionDetailSchema = Yup.object({
 export const feedbackSchema = Yup.object({
   message: Yup.string()
     .required("Message is required")
-    .min(20, "Message must be at least 20 characters long"),
+    .min(20, "Message must be at least 20 characters long")
+    .max(500, "Message cannot be longer than 500 characters")
+    .trim()
+    .matches(/^[^<>]*$/, "Message cannot contain HTML tags")
+    .matches(/^(?!\s*$).+/, "Message cannot be only whitespace"),
   condition: Yup.string()
     .oneOf(Object.keys(FeedbackCondition))
     .required("Condition is required"),
@@ -120,8 +124,17 @@ export const timingSchema = Yup.object({
 
 export const inviteesSchema = Yup.array(
   Yup.object({
-    email: Yup.string().email("Invalid email").required("Required"),
-    name: Yup.string(),
+    email: Yup.string()
+      .email("Invalid email")
+      .trim()
+      .lowercase()
+      .max(254, "Email must be less than 254 characters")
+      .required("Required"),
+    name: Yup.string()
+      .trim()
+      .min(2, "Name must be at least 2 characters")
+      .max(50, "Name must be less than 50 characters")
+      .matches(/^[a-zA-Z\s]*$/, "Name can only contain letters and spaces"),
   }),
 );
 
@@ -198,15 +211,50 @@ export const contentSchema = Yup.object({
 
 const marketplaceSettingsSchema = Yup.object({
   currency: Yup.string().required("Required").oneOf(Object.keys(Currency)),
-  price: Yup.number().min(0, "Must be at least 0").required("Required"),
+  price: Yup.number()
+    .min(0.5, "Price must be at least 0.50")
+    .max(999999.99, "Price cannot exceed 999,999.99")
+    .test(
+      "decimals",
+      "Price cannot have more than 2 decimal places",
+      (value) => !value || Number.isInteger(value * 100),
+    )
+    .required("Price is required"),
 });
 
 export const examSchema = Yup.object({
   title: Yup.string()
     .required("Title is required")
-    .min(5, "Title must be at least 5 characters long"),
+    .min(5, "Title must be at least 5 characters long")
+    .max(100, "Title cannot exceed 100 characters")
+    .matches(
+      /^[a-zA-Z0-9\s\-_.,!?()]+$/,
+      "Title can only contain letters, numbers, spaces and basic punctuation",
+    )
+    .trim()
+    .test(
+      "no-consecutive-spaces",
+      "Title cannot contain consecutive spaces",
+      (value) => !value?.includes("  "),
+    ),
   description: Yup.string()
     .min(20, "Description must be at least 20 characters long")
+    .max(1000, "Description cannot exceed 1000 characters")
+    .matches(
+      /^[a-zA-Z0-9\s\-_.,!?()'"]+$/,
+      "Description can only contain letters, numbers, spaces and basic punctuation",
+    )
+    .test(
+      "no-consecutive-spaces",
+      "Description cannot contain consecutive spaces",
+      (value) => !value?.includes("  "),
+    )
+    .test(
+      "no-consecutive-punctuation",
+      "Description cannot contain consecutive punctuation marks",
+      (value) => !value?.match(/[.,!?]{2,}/),
+    )
+    .trim()
     .nullable(),
   pathname: Yup.string().nullable().optional(),
   image: Yup.mixed()
@@ -239,7 +287,7 @@ export const examSchema = Yup.object({
     .of(
       Yup.string()
         .required("Category is required")
-        .oneOf(Object.keys(ExamCategory)),
+        .oneOf(Object.keys(ExamCategory), "Invalid exam category selected"),
     )
     .required("At least one category is required")
     .min(1, "At least one category is required"),
@@ -257,7 +305,15 @@ export const examSchema = Yup.object({
 });
 
 export const collectionSchema = Yup.object({
-  name: Yup.string().required("Collection name is required"),
+  name: Yup.string()
+    .required("Collection name is required")
+    .min(3, "Collection name must be at least 3 characters")
+    .max(50, "Collection name cannot exceed 50 characters")
+    .matches(
+      /^[a-zA-Z0-9\s-_]+$/,
+      "Collection name can only contain letters, numbers, spaces, hyphens and underscores",
+    )
+    .trim(),
   id: Yup.string().required(),
   description: Yup.string().optional(),
   private: Yup.boolean().default(false),

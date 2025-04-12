@@ -77,7 +77,7 @@ export const Passed: Story = {
     attemptsLeft: 2,
     maxAttempts: 3,
     minimum: 60,
-    score: 72,
+    score: 75,
     messages: sampleMessages,
     onRetry: action("retry-clicked"),
   },
@@ -98,7 +98,7 @@ export const Failed: Story = {
     attemptsLeft: 2,
     maxAttempts: 3,
     minimum: 60,
-    score: 20,
+    score: 55,
     messages: sampleMessages,
     onRetry: action("retry-clicked"),
   },
@@ -118,6 +118,7 @@ export const PerfectScore: Story = {
     totalQuestions: 20,
     attemptsLeft: 3,
     maxAttempts: 3,
+    minimum: 60,
     messages: sampleMessages,
     score: 100,
     onRetry: action("retry-clicked"),
@@ -138,6 +139,7 @@ export const ExcellentScore: Story = {
     totalQuestions: 20,
     attemptsLeft: 3,
     maxAttempts: 3,
+    minimum: 60,
     messages: sampleMessages,
     score: 90,
     onRetry: action("retry-clicked"),
@@ -158,6 +160,7 @@ export const LowScore: Story = {
     totalQuestions: 20,
     attemptsLeft: 2,
     maxAttempts: 3,
+    minimum: 60,
     messages: sampleMessages,
     score: 40,
     onRetry: action("retry-clicked"),
@@ -178,6 +181,7 @@ export const NoAttemptsLeft: Story = {
     totalQuestions: 20,
     attemptsLeft: 0,
     maxAttempts: 3,
+    minimum: 60,
     messages: sampleMessages,
     score: 50,
     onRetry: action("retry-clicked"),
@@ -186,6 +190,68 @@ export const NoAttemptsLeft: Story = {
     docs: {
       description: {
         story: "No attempts remaining, retry button is hidden.",
+      },
+    },
+  },
+};
+
+// Unlimited attempts
+export const UnlimitedAttempts: Story = {
+  args: {
+    correctAnswers: 12,
+    totalQuestions: 20,
+    attemptsLeft: 5,
+    maxAttempts: -1,
+    minimum: 60,
+    messages: sampleMessages,
+    score: 60,
+    onRetry: action("retry-clicked"),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Exam with unlimited attempts (maxAttempts = -1).",
+      },
+    },
+  },
+};
+
+// Single attempt
+export const SingleAttempt: Story = {
+  args: {
+    correctAnswers: 16,
+    totalQuestions: 20,
+    attemptsLeft: 1,
+    maxAttempts: 1,
+    minimum: 60,
+    messages: sampleMessages,
+    score: 80,
+    onRetry: action("retry-clicked"),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Exam with only one attempt allowed.",
+      },
+    },
+  },
+};
+
+// No feedback messages
+export const NoFeedback: Story = {
+  args: {
+    correctAnswers: 14,
+    totalQuestions: 20,
+    attemptsLeft: 2,
+    maxAttempts: 3,
+    minimum: 60,
+    score: 70,
+    onRetry: action("retry-clicked"),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Result display without feedback messages.",
       },
     },
   },

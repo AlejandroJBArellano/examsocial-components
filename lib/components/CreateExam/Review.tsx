@@ -12,7 +12,7 @@ import { QuestionSet } from "../QuestionSet";
 export const Review = () => {
   const formik = useFormikContext<Yup.InferType<typeof examSchema>>();
   return (
-    <section className="space-y-4">
+    <section className="space-y-4 lg:space-y-6 xl:space-y-8">
       <article className="flex items-center justify-between">
         <Heading3>Review</Heading3>
         <Button
@@ -23,78 +23,80 @@ export const Review = () => {
           <FocusSpan>Preview exam</FocusSpan>
         </Button>
       </article>
-      <article className="space-y-10">
+      <article className="space-y-10 lg:space-y-12 xl:space-y-14">
         <Heading4>General Details</Heading4>
-        <ExamCard>
-          <ExamCard.Image
-            src={URL.createObjectURL(formik.values.image as Blob)}
-            alt={formik.values.title}
-          />
-          <ExamCard.Content>
-            <ExamCard.Title>{formik.values.title}</ExamCard.Title>
-            {formik.values.description && (
-              <ExamCard.Description>
-                {formik.values.description}
-              </ExamCard.Description>
-            )}
-            <ExamCard.Footer>
-              <ExamCard.Tag className="flex items-end gap-1">
-                <Icon
-                  name={
-                    CategoryMetadata[
-                      formik.values.categories[0] as ExamCategory
-                    ].icon
-                  }
-                  size={16}
-                  filled
-                />
-                {toTitleCase(formik.values.categories[0])}
-              </ExamCard.Tag>
-              <ExamCard.Time>
-                {formik.values.advancedSettings.timing.setting === "NONE"
-                  ? "No time limit"
-                  : `${formik.values.advancedSettings.timing.hours ? `${formik.values.advancedSettings.timing.hours}h ` : ""}${formik.values.advancedSettings.timing.minutes ? `${formik.values.advancedSettings.timing.minutes}m ` : ""}${formik.values.advancedSettings.timing.seconds ? `${formik.values.advancedSettings.timing.seconds}s` : ""}`}
-              </ExamCard.Time>
-            </ExamCard.Footer>
-          </ExamCard.Content>
-        </ExamCard>
-        <div className="space-y-3 rounded-md bg-gray-50 p-4">
-          <div className="border-b border-gray-200 pb-2">
-            <Span className="font-medium">Price & Theme</Span>
-          </div>
-          <div className="flex justify-between">
-            <Span>Price</Span>
-            <FocusSpan className="flex items-center gap-1">
-              <Icon name="payments" size={16} filled />
-              {formik.values.marketplaceSettings.price}
-            </FocusSpan>
-          </div>
-          <div className="flex justify-between">
-            <Span>Currency</Span>
-            <FocusSpan className="flex items-center gap-1">
-              <Icon name="currency_exchange" size={16} filled />
-              {formik.values.marketplaceSettings.currency || "USD"}
-            </FocusSpan>
-          </div>
-          <div className="flex justify-between">
-            <Span>Theme</Span>
-            <div className="flex items-center gap-2">
-              <div className={"flex gap-1.5 " + formik.values.theme}>
-                <div className="size-5 rounded-full border border-black bg-primary"></div>
-                <div className="size-5 rounded-full border border-black bg-secondary"></div>
-                <div className="size-5 rounded-full border border-black bg-accent"></div>
-                <div className="size-5 rounded-full border border-black bg-extra"></div>
-              </div>
-              <FocusSpan>
-                {toTitleCase(formik.values.theme).replaceAll("_", " ")}
+        <div className="lg:grid lg:grid-cols-2 lg:gap-8">
+          <ExamCard>
+            <ExamCard.Image
+              src={URL.createObjectURL(formik.values.image as Blob)}
+              alt={formik.values.title}
+            />
+            <ExamCard.Content>
+              <ExamCard.Title>{formik.values.title}</ExamCard.Title>
+              {formik.values.description && (
+                <ExamCard.Description>
+                  {formik.values.description}
+                </ExamCard.Description>
+              )}
+              <ExamCard.Footer>
+                <ExamCard.Tag className="flex items-center gap-1">
+                  <Icon
+                    name={
+                      CategoryMetadata[
+                        formik.values.categories[0] as ExamCategory
+                      ].icon
+                    }
+                    size={16}
+                    filled
+                  />
+                  {toTitleCase(formik.values.categories[0])}
+                </ExamCard.Tag>
+                <ExamCard.Time>
+                  {formik.values.advancedSettings.timing.setting === "NONE"
+                    ? "No time limit"
+                    : `${formik.values.advancedSettings.timing.hours ? `${formik.values.advancedSettings.timing.hours}h ` : ""}${formik.values.advancedSettings.timing.minutes ? `${formik.values.advancedSettings.timing.minutes}m ` : ""}${formik.values.advancedSettings.timing.seconds ? `${formik.values.advancedSettings.timing.seconds}s` : ""}`}
+                </ExamCard.Time>
+              </ExamCard.Footer>
+            </ExamCard.Content>
+          </ExamCard>
+          <div className="space-y-3 rounded-md bg-gray-50 p-4 lg:h-fit">
+            <div className="border-b border-gray-200 pb-2">
+              <Span className="font-medium">Price & Theme</Span>
+            </div>
+            <div className="flex justify-between">
+              <Span>Price</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="payments" size={16} filled />
+                {formik.values.marketplaceSettings.price}
               </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Currency</Span>
+              <FocusSpan className="flex items-center gap-1">
+                <Icon name="currency_exchange" size={16} filled />
+                {formik.values.marketplaceSettings.currency || "USD"}
+              </FocusSpan>
+            </div>
+            <div className="flex justify-between">
+              <Span>Theme</Span>
+              <div className="flex items-center gap-2">
+                <div className={"flex gap-1.5 " + formik.values.theme}>
+                  <div className="size-5 rounded-full border border-black bg-primary"></div>
+                  <div className="size-5 rounded-full border border-black bg-secondary"></div>
+                  <div className="size-5 rounded-full border border-black bg-accent"></div>
+                  <div className="size-5 rounded-full border border-black bg-extra"></div>
+                </div>
+                <FocusSpan>
+                  {toTitleCase(formik.values.theme).replaceAll("_", " ")}
+                </FocusSpan>
+              </div>
             </div>
           </div>
         </div>
       </article>
       <article className="space-y-1">
         <Heading4>Questions</Heading4>
-        <div className="flex flex-nowrap gap-4 overflow-x-auto">
+        <div className="flex flex-nowrap gap-4 overflow-x-auto lg:grid lg:grid-cols-3 lg:overflow-x-visible xl:grid-cols-4">
           {formik.values.questions.map((question, index) => {
             // Extract only the properties that QuestionSet expects
             const { image, ...questionProps } = question;
@@ -119,7 +121,7 @@ export const Review = () => {
       {formik.values.contents.length > 0 && (
         <article className="space-y-1">
           <Heading4>Additional Content</Heading4>
-          <div className="flex gap-4 [&>div]:flex [&>div]:gap-1">
+          <div className="flex flex-wrap gap-4 lg:flex-nowrap [&>div]:flex [&>div]:gap-1">
             <div>
               <Icon name="view_headline" className="!h-6 !w-6" />
               <Span>
@@ -180,9 +182,9 @@ export const Review = () => {
           </div>
         </article>
       )}
-      <article className="space-y-4">
+      <article className="space-y-4 lg:space-y-6">
         <Heading4>Advanced Settings</Heading4>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {/* Branding */}
           <div className="space-y-3 rounded-md bg-gray-50 p-4">
             <div className="border-b border-gray-200 pb-2">
@@ -471,8 +473,6 @@ export const Review = () => {
               </FocusSpan>
             </div>
           </div>
-
-          {/* Price */}
         </div>
       </article>
     </section>

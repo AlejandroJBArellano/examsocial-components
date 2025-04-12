@@ -34,6 +34,14 @@ const meta: Meta<typeof QRCodeCard> = {
     },
     onShare: { action: "shared" },
     onDownload: { action: "downloaded" },
+    fileName: {
+      control: "text",
+      description: "Filename for downloaded QR code",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "qr-code" },
+      },
+    },
     className: {
       control: "text",
       description: "Additional CSS classes to apply",
@@ -121,6 +129,7 @@ export const WithCallbacks: Story = {
   args: {
     onShare: fn(),
     onDownload: fn(),
+    fileName: "custom-qr-code",
   },
 };
 
@@ -136,6 +145,7 @@ export const WithLogo: Story = {
     logoImage: "https://picsum.photos/100",
     logoWidth: 40,
     logoHeight: 40,
+    fileName: "logo-qr-code",
   },
 };
 
@@ -143,6 +153,20 @@ export const WithCustomSize: Story = {
   args: {
     size: 300,
     quietZone: 10,
+  },
+};
+
+export const WithCustomDownload: Story = {
+  args: {
+    fileName: "my-special-qr-code",
+    onDownload: fn(),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "QR code with custom download filename and callback.",
+      },
+    },
   },
 };
 

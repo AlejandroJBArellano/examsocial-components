@@ -79,6 +79,10 @@ const MenuItem = forwardRef<HTMLAnchorElement, MenuItemProps>(
       </a>
     );
 
+    if (!tooltipText) {
+      return Anchor;
+    }
+
     // Si se debe mostrar el tooltip, envolver el botón con el tooltip
     return (
       <Tooltip

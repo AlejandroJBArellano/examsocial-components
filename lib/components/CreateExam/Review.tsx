@@ -191,7 +191,7 @@ export const Review = () => {
         <Heading4>Advanced Settings</Heading4>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {/* Branding */}
-          <div className="space-y-3 rounded-md border-2 border-black bg-light p-4 shadow-right lg:h-fit">
+          <div className="h-full space-y-3 rounded-md border-2 border-black bg-light p-4 shadow-right">
             <div className="border-b-2 border-black pb-2">
               <Span className="font-bold">Branding</Span>
             </div>
@@ -237,7 +237,7 @@ export const Review = () => {
           </div>
 
           {/* Security */}
-          <div className="space-y-3 rounded-md border-2 border-black bg-light p-4 shadow-right lg:h-fit">
+          <div className="h-full space-y-3 rounded-md border-2 border-black bg-light p-4 shadow-right">
             <div className="border-b-2 border-black pb-2">
               <Span className="font-bold">Security</Span>
             </div>
@@ -303,7 +303,7 @@ export const Review = () => {
           </div>
 
           {/* Timing */}
-          <div className="space-y-3 rounded-md border-2 border-black bg-light p-4 shadow-right lg:h-fit">
+          <div className="h-full space-y-3 rounded-md border-2 border-black bg-light p-4 shadow-right">
             <div className="border-b-2 border-black pb-2">
               <Span className="font-bold">Timing</Span>
             </div>
@@ -319,7 +319,7 @@ export const Review = () => {
           </div>
 
           {/* Questions */}
-          <div className="space-y-3 rounded-md border-2 border-black bg-light p-4 shadow-right lg:h-fit">
+          <div className="h-full space-y-3 rounded-md border-2 border-black bg-light p-4 shadow-right">
             <div className="border-b-2 border-black pb-2">
               <Span className="font-bold">Questions</Span>
             </div>
@@ -358,7 +358,7 @@ export const Review = () => {
           </div>
 
           {/* Feedback and Results */}
-          <div className="space-y-3 rounded-md border-2 border-black bg-light p-4 shadow-right lg:h-fit">
+          <div className="h-full space-y-3 rounded-md border-2 border-black bg-light p-4 shadow-right">
             <div className="border-b-2 border-black pb-2">
               <Span className="font-bold">Feedback & Results</Span>
             </div>

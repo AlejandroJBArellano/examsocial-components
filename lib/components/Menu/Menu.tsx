@@ -1,14 +1,8 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { Icon } from "../Icon";
-import { MenuItem } from "../MenuItem";
+import { MenuItem, MenuItemProps } from "../MenuItem";
 
-interface IMenuItem {
-  icon: string;
-  label: string;
-  href: string;
-}
-
-const Menu = ({ items }: { items: IMenuItem[] }) => (
+const Menu = ({ items }: { items: MenuItemProps[] }) => (
   <NavigationMenu.Root delayDuration={0}>
     <NavigationMenu.List>
       <NavigationMenu.Item>
@@ -17,9 +11,7 @@ const Menu = ({ items }: { items: IMenuItem[] }) => (
         </NavigationMenu.Trigger>
         <NavigationMenu.Content className="w-50 absolute right-0 top-full z-50 border border-black bg-light">
           {items.map((item) => (
-            <MenuItem key={item.href} href={item.href} icon={item.icon}>
-              {item.label}
-            </MenuItem>
+            <MenuItem key={item.href} {...item} />
           ))}
         </NavigationMenu.Content>
       </NavigationMenu.Item>

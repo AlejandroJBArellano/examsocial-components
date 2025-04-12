@@ -5,6 +5,7 @@ import { Form, Formik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
 import { Button } from "../Button";
+import { Icon } from "../Icon";
 import { Stepper } from "../Stepper";
 import { Step } from "../Stepper/Stepper";
 import { AdditionalContent } from "./AdditionalContent";
@@ -20,6 +21,7 @@ interface CreateExamProps {
   canSellExams: boolean;
   validatePathname: (pathname: string) => Promise<boolean>;
   initialValues?: Partial<Yup.InferType<typeof examSchema>>;
+  isSubmitting: boolean;
 }
 
 const CreateExam = ({
@@ -29,6 +31,7 @@ const CreateExam = ({
   canSellExams,
   validatePathname,
   initialValues,
+  isSubmitting,
 }: CreateExamProps) => {
   const steps = {
     1: (
@@ -184,7 +187,8 @@ const CreateExam = ({
                     theme="accent"
                     disabled={
                       activeStep!.status === "disabled" ||
-                      activeStep!.status === "error"
+                      activeStep!.status === "error" ||
+                      isSubmitting
                     }
                     onClick={() => {
                       if (step === 4) return;
@@ -192,7 +196,23 @@ const CreateExam = ({
                     }}
                     type={step === 4 ? "submit" : "button"}
                   >
-                    {step === 4 ? "Finish" : "Next"}
+                    {step === 4 ? (
+                      <>
+                        {isSubmitting ? (
+                          <>
+                            <Icon name="refresh" className="animate-spin" />
+                            Submitting...
+                          </>
+                        ) : (
+                          <>
+                            <Icon name="draw" filled />
+                            Publish
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      "Next"
+                    )}
                   </Button>
                 </footer>
               </main>

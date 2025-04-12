@@ -3,7 +3,13 @@ import { Currency, FeedbackCondition } from "./constants";
 import { ExamCategory } from "./types";
 
 const optionBaseSchema = {
-  text: Yup.string().required("Option text is required"),
+  text: Yup.string()
+    .required("Option text is required")
+    .min(1, "Option text cannot be empty")
+    .max(200, "Option text must be less than 200 characters")
+    .trim()
+    //.matches(/^[^<>]*$/, "Option text cannot contain HTML tags")
+    .matches(/\S/, "Option text cannot be only whitespace"),
   correct: Yup.boolean().optional(),
   id: Yup.string().required(),
 };
@@ -16,7 +22,12 @@ export const answerOptionSchema = Yup.object({
 });
 
 const baseQuestionSchema = {
-  title: Yup.string().required("Question is required"),
+  title: Yup.string()
+    .required("Question is required")
+    .min(3, "Question must be at least 3 characters")
+    .max(500, "Question must be less than 500 characters")
+    .trim()
+    .matches(/^[^<>]*$/, "Question cannot contain HTML tags"),
   id: Yup.string().required(),
   image: Yup.mixed()
     .nullable()

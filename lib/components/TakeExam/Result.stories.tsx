@@ -116,7 +116,7 @@ export const PerfectScore: Story = {
   args: {
     correctAnswers: 20,
     totalQuestions: 20,
-    attemptsLeft: 3,
+    attemptsLeft: 2,
     maxAttempts: 3,
     minimum: 60,
     messages: sampleMessages,
@@ -137,7 +137,7 @@ export const ExcellentScore: Story = {
   args: {
     correctAnswers: 18,
     totalQuestions: 20,
-    attemptsLeft: 3,
+    attemptsLeft: 2,
     maxAttempts: 3,
     minimum: 60,
     messages: sampleMessages,
@@ -221,7 +221,7 @@ export const SingleAttempt: Story = {
   args: {
     correctAnswers: 16,
     totalQuestions: 20,
-    attemptsLeft: 1,
+    attemptsLeft: 0,
     maxAttempts: 1,
     minimum: 60,
     messages: sampleMessages,

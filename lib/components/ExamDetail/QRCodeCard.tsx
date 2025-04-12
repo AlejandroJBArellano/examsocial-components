@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { QRCode, IProps as QRCodeProps } from "react-qrcode-logo";
 import { Button } from "../Button";
 import { FocusSpan, Heading3 } from "../FontFaces";
@@ -22,6 +23,11 @@ interface QRCodeCardProps extends QRCodeProps {
    */
   onDownload?: () => void;
   /**
+   * Optional filename for QR code download
+   * @default "qr-code"
+   */
+  fileName?: string;
+  /**
    * Optional className for custom styling
    */
   className?: string;
@@ -33,8 +39,10 @@ const QRCodeCard = ({
   onShare,
   onDownload,
   className = "",
+  fileName,
   ...props
 }: QRCodeCardProps) => {
+  const ref = useRef<QRCode>(null);
   const handleShare = () => {
     if (onShare) {
       onShare();
@@ -54,6 +62,7 @@ const QRCodeCard = ({
 
   const handleDownload = () => {
     if (onDownload) {
+      ref.current!.download("png", fileName);
       onDownload();
     }
     // Download functionality would be implemented here
@@ -76,6 +85,7 @@ const QRCodeCard = ({
           bgColor="transparent"
           quietZone={0}
           style={{ width: "100%", height: "100%" }}
+          ref={ref}
           {...props}
         />
         <figcaption className="sr-only">{alt}</figcaption>

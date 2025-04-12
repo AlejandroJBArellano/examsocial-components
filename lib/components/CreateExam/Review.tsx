@@ -3,7 +3,6 @@ import { CategoryMetadata, ExamCategory } from "@/types";
 import { toTitleCase } from "@/utils";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
-import { Button } from "../Button";
 import { ExamCard } from "../ExamCard";
 import { FocusSpan, Heading3, Heading4, Span } from "../FontFaces";
 import { Icon } from "../Icon";
@@ -15,13 +14,14 @@ export const Review = () => {
     <section className="space-y-4 lg:space-y-6 xl:space-y-8">
       <article className="flex items-center justify-between">
         <Heading3>Review</Heading3>
-        <Button
+        {/*
+        //TODO: <Button
           theme="extra"
           className="flex items-center justify-center gap-2"
         >
           <Icon name="visibility" size={20} filled />
           <FocusSpan>Preview exam</FocusSpan>
-        </Button>
+        </Button> */}
       </article>
       <article className="space-y-10 lg:space-y-12 xl:space-y-14">
         <Heading4>General Details</Heading4>

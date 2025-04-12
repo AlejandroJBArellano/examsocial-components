@@ -107,9 +107,11 @@ const ExamDescription = ({
                 : "Bookmark exam into one of your collections"}
             </ExamDescription.Action>
           </ExamDescription.Actions>
-          <ExamDescription.Button onClick={onStartExam}>
-            {children}
-          </ExamDescription.Button>
+          {children ? (
+            <ExamDescription.Button onClick={onStartExam}>
+              {children}
+            </ExamDescription.Button>
+          ) : null}
         </ExamDescription.Footer>
       </MainContainerContext.Provider>
     </div>

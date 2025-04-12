@@ -4,6 +4,7 @@ import {
   collectionSchema,
   contentSchema,
   examSchema,
+  feedbackSchema,
   optionSchema,
   questionDetailSchema,
   questionSchema,
@@ -18,6 +19,7 @@ export type AnswerOptionType = Yup.InferType<typeof answerOptionSchema>;
 export type Content = Yup.InferType<typeof contentSchema>;
 export type CollectionType = Yup.InferType<typeof collectionSchema>;
 export type Timing = Yup.InferType<typeof timingSchema>;
+export type Feedback = Yup.InferType<typeof feedbackSchema>;
 
 export type ContentTypes =
   | "YOUTUBE"

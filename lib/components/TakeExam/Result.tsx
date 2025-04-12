@@ -117,13 +117,13 @@ const ResultTakeExam = ({
           {messages?.join(", ")}
         </Heading3>
       ) : null}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2">
         {maxAttempts > 0 ? (
           <FocusSpan>
             Attempts left: {attemptsLeft} of {maxAttempts}
           </FocusSpan>
         ) : null}
-        {(maxAttempts === -1 || attemptsLeft > 0) && (
+        {((maxAttempts === -1 && attemptsLeft === 0) || attemptsLeft > 0) && (
           <Button
             theme="extra"
             rounded

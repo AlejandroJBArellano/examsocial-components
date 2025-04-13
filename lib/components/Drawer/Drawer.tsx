@@ -2,15 +2,13 @@
 
 import { cn } from "@/utils";
 import { forwardRef } from "react";
-import { DialogProps, Drawer as VaulDrawer } from "vaul";
+import { Drawer as VaulDrawer } from "vaul";
 import { Heading4 } from "../FontFaces/Headers";
 
 // Define the Drawer object directly with all subcomponents
 export const Drawer = {
   // Root component
-  Root: forwardRef<HTMLDivElement, DialogProps>(({ ...props }) => (
-    <VaulDrawer.Root {...props} />
-  )),
+  Root: ({ ...props }) => <VaulDrawer.Root {...props} />,
 
   // Trigger component
   Trigger: forwardRef<

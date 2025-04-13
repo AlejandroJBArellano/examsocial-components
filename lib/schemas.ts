@@ -221,7 +221,7 @@ export const contentSchema = Yup.object({
 });
 
 const marketplaceSettingsSchema = Yup.object({
-  currency: Yup.string().required("Required").oneOf(Object.keys(Currency)),
+  currency: Yup.string().oneOf(Object.keys(Currency)),
   price: Yup.number()
     .min(0.5, "Price must be at least 0.50")
     .max(999999.99, "Price cannot exceed 999,999.99")
@@ -229,8 +229,7 @@ const marketplaceSettingsSchema = Yup.object({
       "decimals",
       "Price cannot have more than 2 decimal places",
       (value) => !value || Number.isInteger(value * 100),
-    )
-    .required("Price is required"),
+    ),
 });
 
 export const examSchema = Yup.object({

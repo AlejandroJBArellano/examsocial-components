@@ -123,7 +123,7 @@ const ResultTakeExam = ({
             Attempts left: {attemptsLeft} of {maxAttempts}
           </FocusSpan>
         ) : null}
-        {((maxAttempts === -1 && attemptsLeft >= 0) || attemptsLeft > 0) && (
+        {((maxAttempts === -1 && attemptsLeft <= 0) || attemptsLeft > 0) && (
           <Button
             theme="extra"
             rounded

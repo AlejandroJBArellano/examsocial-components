@@ -108,7 +108,9 @@ const CreateExam = ({
           const isValidGeneralDetails = !(
             errors.title &&
             errors.description &&
-            errors.image
+            errors.image &&
+            errors.marketplaceSettings?.price &&
+            errors.categories
           );
 
           const isValidAdvancedSettings =

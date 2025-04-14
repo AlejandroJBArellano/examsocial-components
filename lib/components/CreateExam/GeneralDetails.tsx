@@ -241,7 +241,9 @@ export const GeneralDetails = () => {
               className: "w-full",
               disabled: !canSellExams,
               ...getFieldProps("marketplaceSettings.price"),
+              error: !!errors.marketplaceSettings?.price,
             }}
+            error={errors.marketplaceSettings?.price}
           />
         </section>
       </article>

@@ -8,6 +8,7 @@ import { ImageInput } from "../ImageInput";
 import { ImageUploader } from "../ImageUploader";
 import { Input } from "../Input";
 import { Separator } from "../Separator";
+import { ComingSoonWrapper } from "../Wrapper";
 
 const QuestionForm = ({
   values,
@@ -27,24 +28,26 @@ const QuestionForm = ({
         />
       </article>
       <article className="space-y-1">
-        <label className="font-medium">Image</label>
-        {values.image ? (
-          <ImageUploader
-            image={values.image as File}
-            onDelete={() => setFieldValue("image", null)}
-          />
-        ) : (
-          <ImageInput
-            onChange={(e) => {
-              if (e.target.files) {
-                setFieldValue("image", e.target.files[0]);
-              }
-            }}
-          />
-        )}
-        {errors.image && (
-          <p className="text-sm text-red-500">{errors.image.toString()}</p>
-        )}
+        <ComingSoonWrapper>
+          <label className="font-medium">Image</label>
+          {values.image ? (
+            <ImageUploader
+              image={values.image as File}
+              onDelete={() => setFieldValue("image", null)}
+            />
+          ) : (
+            <ImageInput
+              onChange={(e) => {
+                if (e.target.files) {
+                  setFieldValue("image", e.target.files[0]);
+                }
+              }}
+            />
+          )}
+          {errors.image && (
+            <p className="text-sm text-red-500">{errors.image.toString()}</p>
+          )}
+        </ComingSoonWrapper>
       </article>
       <Separator />
       <article className="space-y-3">

@@ -26,8 +26,7 @@ const baseQuestionSchema = {
     .required("Question is required")
     .min(3, "Question must be at least 3 characters")
     .max(500, "Question must be less than 500 characters")
-    .trim()
-    .matches(/^[^<>]*$/, "Question cannot contain HTML tags"),
+    .trim(),
   id: Yup.string().required(),
   image: Yup.mixed()
     .nullable()
@@ -144,8 +143,7 @@ export const inviteesSchema = Yup.array(
     name: Yup.string()
       .trim()
       .min(2, "Name must be at least 2 characters")
-      .max(50, "Name must be less than 50 characters")
-      .matches(/^[a-zA-Z\s]*$/, "Name can only contain letters and spaces"),
+      .max(50, "Name must be less than 50 characters"),
   }),
 );
 
@@ -223,7 +221,6 @@ export const contentSchema = Yup.object({
 const marketplaceSettingsSchema = Yup.object({
   currency: Yup.string().oneOf(Object.keys(Currency)),
   price: Yup.number()
-    .min(0.5, "Price must be at least 0.50")
     .max(999999.99, "Price cannot exceed 999,999.99")
     .test(
       "decimals",
@@ -237,10 +234,6 @@ export const examSchema = Yup.object({
     .required("Title is required")
     .min(5, "Title must be at least 5 characters long")
     .max(100, "Title cannot exceed 100 characters")
-    .matches(
-      /^[a-zA-Z0-9\s\-_.,!?()]+$/,
-      "Title can only contain letters, numbers, spaces and basic punctuation",
-    )
     .trim()
     .test(
       "no-consecutive-spaces",
@@ -250,10 +243,6 @@ export const examSchema = Yup.object({
   description: Yup.string()
     .min(20, "Description must be at least 20 characters long")
     .max(1000, "Description cannot exceed 1000 characters")
-    .matches(
-      /^[a-zA-Z0-9\s\-_.,!?()'"]+$/,
-      "Description can only contain letters, numbers, spaces and basic punctuation",
-    )
     .test(
       "no-consecutive-spaces",
       "Description cannot contain consecutive spaces",

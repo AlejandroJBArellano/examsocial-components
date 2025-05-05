@@ -15,18 +15,23 @@ const QuestionForm = ({
 }: FormikProps<Question>) => (
   <div className="space-y-4">
     <section className="space-y-4">
-      <article className="space-y-1">
-        <label className="font-medium">Question</label>
+      <div className="space-y-2">
+        <label className="font-medium" htmlFor="questionTitle">
+          Question
+        </label>
         <Field
+          id="questionTitle"
           name="title"
           as={Input}
           placeholder="Type your question here..."
           className="w-full"
           error={errors.title}
         />
-      </article>
-      <article className="space-y-1">
-        <label className="font-medium">Image</label>
+        {/* Assuming Input component displays its own error or error prop handles it */}
+      </div>
+
+      <div className="space-y-2">
+        <label className="font-medium">Image (Optional)</label>
         {values.image ? (
           <ImageUploader
             image={values.image as File}
@@ -35,16 +40,16 @@ const QuestionForm = ({
         ) : (
           <ImageInput
             onChange={(e) => {
-              if (e.target.files) {
+              if (e.target.files && e.target.files.length > 0) {
                 setFieldValue("image", e.target.files[0]);
               }
             }}
           />
         )}
-        {errors.image && (
-          <p className="text-sm text-red-500">{errors.image.toString()}</p>
+        {errors.image && typeof errors.image === "string" && (
+          <p className="mt-1 text-sm text-feedback-error">{errors.image}</p>
         )}
-      </article>
+      </div>
       <Separator />
       <article className="space-y-3">
         <label className="font-medium">Options</label>

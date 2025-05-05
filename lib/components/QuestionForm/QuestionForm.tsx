@@ -16,21 +16,6 @@ const QuestionForm = ({
   <div className="space-y-4">
     <section className="space-y-4">
       <div className="space-y-2">
-        <label className="font-medium" htmlFor="questionTitle">
-          Question
-        </label>
-        <Field
-          id="questionTitle"
-          name="title"
-          as={Input}
-          placeholder="Type your question here..."
-          className="w-full"
-          error={errors.title}
-        />
-        {/* Assuming Input component displays its own error or error prop handles it */}
-      </div>
-
-      <div className="space-y-2">
         <label className="font-medium">Image (Optional)</label>
         {values.image ? (
           <ImageUploader
@@ -49,6 +34,20 @@ const QuestionForm = ({
         {errors.image && typeof errors.image === "string" && (
           <p className="mt-1 text-sm text-feedback-error">{errors.image}</p>
         )}
+      </div>
+      <div className="space-y-2">
+        <label className="font-medium" htmlFor="questionTitle">
+          Question
+        </label>
+        <Field
+          id="questionTitle"
+          name="title"
+          as={Input}
+          placeholder="Type your question here..."
+          className="w-full"
+          error={errors.title}
+        />
+        {/* Assuming Input component displays its own error or error prop handles it */}
       </div>
       <Separator />
       <article className="space-y-3">

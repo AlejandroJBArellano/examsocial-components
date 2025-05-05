@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../Button";
-import { FocusSpan, Span } from "../FontFaces";
+import { Span } from "../FontFaces";
 import { Icon } from "../Icon";
 
 const ImageInput = (
@@ -100,11 +100,11 @@ const ImageInput = (
       onDrop={handleDrop}
     >
       <input
-        accept="image/*"
         type="file"
         id="newImage"
         className="hidden"
         {...props}
+        accept={props.accept ?? "image/*"}
       />
       <Button.Icon
         rounded
@@ -113,14 +113,14 @@ const ImageInput = (
         className="flex p-2 xl:hidden"
         onClick={onClick}
       >
-        photo
+        description
       </Button.Icon>
       <div className="hidden items-center justify-center gap-2 space-y-2 text-center xl:grid">
-        <Icon name="photo" size={24} filled />
-        <Span>Drag and drop your images here to upload</Span>
+        <Icon name="description" size={24} filled />
+        <Span>Drag & drop your files here</Span>
         <Span>or</Span>
         <Button rounded theme="extra" onClick={onClick}>
-          <FocusSpan>Select from your files</FocusSpan>
+          Browse your device
         </Button>
       </div>
     </label>

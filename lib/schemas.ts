@@ -56,6 +56,10 @@ const baseQuestionSchema = {
       "At least one option must be incorrect",
       (options) => options?.some((option) => !option.correct),
     ),
+  helperText: Yup.string()
+    .optional()
+    .max(200, "Helper text must be less than 200 characters")
+    .trim(),
 };
 
 export const questionSchema = Yup.object(baseQuestionSchema);

@@ -1,7 +1,6 @@
-import { questionSchema } from "@/schemas";
+import { Question } from "@/types";
 import { Field, FieldArray, FormikProps } from "formik";
 import { v4 as uuidv4 } from "uuid";
-import * as Yup from "yup";
 import { Button } from "../Button";
 import { CreateAnswer } from "../CreateAnswer";
 import { ImageInput } from "../ImageInput";
@@ -14,7 +13,7 @@ const QuestionForm = ({
   values,
   setFieldValue,
   errors,
-}: FormikProps<Yup.InferType<typeof questionSchema>>) => (
+}: FormikProps<Question>) => (
   <div className="space-y-4">
     <section className="space-y-4">
       <article className="space-y-1">
@@ -98,6 +97,24 @@ const QuestionForm = ({
             </>
           )}
         </FieldArray>
+      </article>
+      <Separator />
+      <article className="space-y-1">
+        <label htmlFor="helperText" className="font-medium">
+          Incorrect Answer Feedback (Optional)
+        </label>
+        <Field
+          id="helperText"
+          name="helperText"
+          as={Input}
+          placeholder="Explain why the chosen option is incorrect or guide towards the correct one..."
+          className="w-full"
+          error={errors.helperText}
+        />
+        <p className="text-sm text-gray-500">
+          This feedback is shown to the user if they select an incorrect answer.
+          Leave blank if no feedback is needed.
+        </p>
       </article>
     </section>
   </div>

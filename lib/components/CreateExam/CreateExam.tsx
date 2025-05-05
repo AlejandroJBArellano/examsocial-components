@@ -5,7 +5,9 @@ import { Form, Formik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
 import { Button } from "../Button";
+import { Heading3 } from "../FontFaces";
 import { Icon } from "../Icon";
+import { ImageInput } from "../ImageInput";
 import { Stepper } from "../Stepper";
 import { Step } from "../Stepper/Stepper";
 import { AdditionalContent } from "./AdditionalContent";
@@ -35,9 +37,15 @@ const CreateExam = ({
 }: CreateExamProps) => {
   const steps = {
     1: (
-      <div className="grid gap-6 md:grid-cols-2">
-        <GeneralDetails />
-        <AdvancedSettings />
+      <div className="space-y-4 xl:space-y-10">
+        <section className="space-y-4 rounded-lg bg-primary-tint p-4 md:p-6 lg:p-7 xl:space-y-6 xl:p-8">
+          <Heading3>Do you have a file or any material?</Heading3>
+          <ImageInput accept="*" multiple />
+        </section>
+        <div className="grid gap-6 md:grid-cols-2">
+          <GeneralDetails />
+          <AdvancedSettings />
+        </div>
       </div>
     ),
     2: <Questions />,

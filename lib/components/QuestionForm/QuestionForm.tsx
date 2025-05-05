@@ -16,7 +16,7 @@ const QuestionForm = ({
   <div className="space-y-4">
     <section className="space-y-4">
       <div className="space-y-2">
-        <label className="font-medium">Image (Optional)</label>
+        <label className="font-medium">Question Image (Optional)</label>
         {values.image ? (
           <ImageUploader
             image={values.image as File}
@@ -37,13 +37,13 @@ const QuestionForm = ({
       </div>
       <div className="space-y-2">
         <label className="font-medium" htmlFor="questionTitle">
-          Question
+          Question Text
         </label>
         <Field
           id="questionTitle"
           name="title"
           as={Input}
-          placeholder="Type your question here..."
+          placeholder="Enter the question text..."
           className="w-full"
           error={errors.title}
         />
@@ -51,7 +51,7 @@ const QuestionForm = ({
       </div>
       <Separator />
       <article className="space-y-3">
-        <label className="font-medium">Options</label>
+        <label className="font-medium">Answer Options</label>
         <FieldArray name="options">
           {({ push, remove }) => (
             <>
@@ -102,7 +102,7 @@ const QuestionForm = ({
       <Separator />
       <article className="space-y-1">
         <label htmlFor="helperText" className="font-medium">
-          Incorrect Answer Feedback (Optional)
+          Feedback for Incorrect Answers (Optional)
         </label>
         <Field
           id="helperText"

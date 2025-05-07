@@ -24,6 +24,7 @@ interface CreateExamProps {
   validatePathname: (pathname: string) => Promise<boolean>;
   initialValues?: Partial<Yup.InferType<typeof examSchema>>;
   isSubmitting: boolean;
+  onClickGenerate?: () => void;
 }
 
 const CreateExam = ({
@@ -34,6 +35,7 @@ const CreateExam = ({
   validatePathname,
   initialValues,
   isSubmitting,
+  onClickGenerate,
 }: CreateExamProps) => {
   // Local state for this section
   const [files, setFiles] = useState<File[]>([]);
@@ -141,9 +143,7 @@ const CreateExam = ({
                 rounded
                 className="flex items-center gap-2 border-2 border-black font-bold transition-all duration-200 ease-in-out hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-right-lg active:translate-x-[0px] active:translate-y-[0px] active:shadow-right-sm"
                 disabled={!aiPrompt.trim() && files.length === 0}
-                onClick={() => {
-                  /* Add your AI generation logic here */
-                }}
+                onClick={onClickGenerate}
               >
                 <Icon name="smart_toy" className="h-5 w-5" filled />
                 Generate with AI

@@ -55,13 +55,17 @@ const CreateExam = ({
         <section className="space-y-4 rounded-lg bg-primary-tint p-4 md:p-6 lg:p-7 xl:space-y-6 xl:p-8">
           {/* AI Prompt textarea with drag and drop */}
           <div>
-            <Heading3 className="mb-2">AI Prompt</Heading3>
+            <Heading3 className="mb-2">AI Exam Generator</Heading3>
+            <p className="mb-3 text-sm text-gray-600">
+              Provide instructions for AI to generate exam content or upload
+              documents as reference material.
+            </p>
             <div className="relative">
               <textarea
                 value={aiPrompt}
                 onChange={(e) => setAiPrompt(e.target.value)}
                 className="min-h-[100px] w-full rounded-lg border p-3"
-                placeholder="Enter instructions for the AI to process your files or drag and drop files here..."
+                placeholder="Describe what kind of exam you want to create. For example: 'Create a beginner math quiz with 10 multiple choice questions about fractions.'"
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
                   e.preventDefault();
@@ -78,6 +82,7 @@ const CreateExam = ({
               <label
                 htmlFor="file-upload"
                 className="absolute bottom-3 right-3 cursor-pointer rounded-lg border bg-white p-1 text-gray-500 hover:bg-gray-50"
+                title="Upload files"
               >
                 <Icon name="upload" className="h-5 w-5" />
               </label>
@@ -95,6 +100,7 @@ const CreateExam = ({
                     <button
                       onClick={() => removeFile(index)}
                       className="ml-2 text-gray-500 hover:text-gray-700"
+                      aria-label="Remove file"
                     >
                       <Icon name="close" className="h-4 w-4" />
                     </button>
@@ -102,6 +108,22 @@ const CreateExam = ({
                 ))}
               </div>
             )}
+
+            {/* Submit button */}
+            <div className="mt-4 flex justify-end">
+              <Button
+                theme="primary"
+                rounded
+                className="flex place-content-center gap-2"
+                disabled={!aiPrompt.trim() && files.length === 0}
+                onClick={() => {
+                  /* Add your AI generation logic here */
+                }}
+              >
+                <Icon name="prompt_suggestion" className="h-4 w-4" />
+                Generate with AI
+              </Button>
+            </div>
           </div>
         </section>
         <div className="grid gap-6 md:grid-cols-2">

@@ -1,9 +1,8 @@
 import { ExamCreationContext } from "@/hooks/exam";
 import { examSchema } from "@/schemas";
-import { UserPlan } from "@/types";
+import { Exam, UserPlan } from "@/types";
 import { Form, Formik } from "formik";
 import { useState } from "react";
-import * as Yup from "yup";
 import { Button } from "../Button";
 import { Field } from "../Field";
 import { FocusSpan, Heading3 } from "../FontFaces";
@@ -17,12 +16,12 @@ import { Questions } from "./Questions";
 import { Review } from "./Review";
 
 interface CreateExamProps {
-  onSubmit: (values: Yup.InferType<typeof examSchema>) => void;
+  onSubmit: (values: Exam) => void;
   onCancel: () => void;
   userPlan: UserPlan;
   canSellExams: boolean;
   validatePathname: (pathname: string) => Promise<boolean>;
-  initialValues?: Partial<Yup.InferType<typeof examSchema>>;
+  initialValues?: Partial<Exam>;
   isSubmitting: boolean;
   onClickGenerate?: () => void;
   loadingGeneration?: boolean;
@@ -165,7 +164,7 @@ const CreateExam = ({
   const [step, setStep] = useState<keyof typeof steps>(1);
 
   // Save exam progress to localStorage whenever step changes
-  const saveToLocalStorage = (values: Yup.InferType<typeof examSchema>) => {
+  const saveToLocalStorage = (values: Exam) => {
     try {
       const key = `exam_progress`;
       localStorage.setItem(key, JSON.stringify(values));

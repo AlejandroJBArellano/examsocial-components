@@ -25,6 +25,7 @@ interface CreateExamProps {
   initialValues?: Partial<Yup.InferType<typeof examSchema>>;
   isSubmitting: boolean;
   onClickGenerate?: () => void;
+  loadingGeneration?: boolean;
 }
 
 const CreateExam = ({
@@ -36,6 +37,7 @@ const CreateExam = ({
   initialValues,
   isSubmitting,
   onClickGenerate,
+  loadingGeneration,
 }: CreateExamProps) => {
   // Local state for this section
   const [files, setFiles] = useState<File[]>([]);
@@ -138,7 +140,9 @@ const CreateExam = ({
                 theme="primary"
                 rounded
                 className="flex items-center gap-2 border-2 border-black font-bold transition-all duration-200 ease-in-out hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-right-lg active:translate-x-[0px] active:translate-y-[0px] active:shadow-right-sm"
-                disabled={!aiPrompt.trim() && files.length === 0}
+                disabled={
+                  (!aiPrompt.trim() && files.length === 0) || loadingGeneration
+                }
                 onClick={onClickGenerate}
               >
                 <Icon name="smart_toy" size={24} filled />

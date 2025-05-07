@@ -7,7 +7,6 @@ import * as Yup from "yup";
 import { Button } from "../Button";
 import { Heading3 } from "../FontFaces";
 import { Icon } from "../Icon";
-import { ImageInput } from "../ImageInput";
 import { Stepper } from "../Stepper";
 import { Step } from "../Stepper/Stepper";
 import { AdditionalContent } from "./AdditionalContent";
@@ -35,12 +34,84 @@ const CreateExam = ({
   initialValues,
   isSubmitting,
 }: CreateExamProps) => {
+  // Local state for this section
+  const [files, setFiles] = useState<File[]>([]);
+  const [aiPrompt, setAiPrompt] = useState("");
+
+  // Handle file additions
+  const handleFiles = (newFiles: FileList | null) => {
+    if (!newFiles) return;
+    const fileArray = Array.from(newFiles);
+    setFiles((prev) => [...prev, ...fileArray]);
+  };
+
+  // Remove a file
+  const removeFile = (index: number) => {
+    setFiles(files.filter((_, i) => i !== index));
+  };
   const steps = {
     1: (
       <div className="space-y-4 xl:space-y-10">
         <section className="space-y-4 rounded-lg bg-primary-tint p-4 md:p-6 lg:p-7 xl:space-y-6 xl:p-8">
           <Heading3>Do you have a file or any material?</Heading3>
-          <ImageInput accept="*" multiple />
+          {/* Drag and drop area */}
+          <div
+            className="relative flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-6 hover:bg-gray-50"
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={(e) => {
+              e.preventDefault();
+              handleFiles(e.dataTransfer.files);
+            }}
+          >
+            <Icon name="upload" className="mb-2 h-8 w-8 text-gray-400" />
+            <p className="text-sm text-gray-500">
+              Drag and drop files here, or click to select files
+            </p>
+            <input
+              type="file"
+              multiple
+              className="hidden"
+              id="file-upload"
+              onChange={(e) => handleFiles(e.target.files)}
+            />
+            <label
+              htmlFor="file-upload"
+              className="absolute inset-0 cursor-pointer opacity-0"
+            >
+              Upload files
+            </label>
+          </div>
+
+          {/* File capsules */}
+          {files.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {files.map((file, index) => (
+                <div
+                  key={index}
+                  className="flex items-center rounded-full border bg-white px-3 py-1 text-sm"
+                >
+                  <span className="max-w-xs truncate">{file.name}</span>
+                  <button
+                    onClick={() => removeFile(index)}
+                    className="ml-2 text-gray-500 hover:text-gray-700"
+                  >
+                    <Icon name="close" className="h-4 w-4" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* AI Prompt textarea */}
+          <div className="mt-4">
+            <Heading3 className="mb-2">AI Prompt</Heading3>
+            <textarea
+              value={aiPrompt}
+              onChange={(e) => setAiPrompt(e.target.value)}
+              className="min-h-[100px] w-full rounded-lg border p-3"
+              placeholder="Enter instructions for the AI to process your files..."
+            />
+          </div>
         </section>
         <div className="grid gap-6 md:grid-cols-2">
           <GeneralDetails />

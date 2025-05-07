@@ -5,7 +5,8 @@ import { Form, Formik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
 import { Button } from "../Button";
-import { Heading3 } from "../FontFaces";
+import { Field } from "../Field";
+import { FocusSpan, Heading3 } from "../FontFaces";
 import { Icon } from "../Icon";
 import { Stepper } from "../Stepper";
 import { Step } from "../Stepper/Stepper";
@@ -54,58 +55,77 @@ const CreateExam = ({
       <div className="space-y-4 xl:space-y-10">
         <section className="space-y-4 rounded-lg bg-primary-tint p-4 md:p-6 lg:p-7 xl:space-y-6 xl:p-8">
           {/* AI Prompt textarea with drag and drop */}
-          <div>
+          <div className="space-y-3">
             <Heading3 className="mb-2">AI Exam Generator</Heading3>
-            <p className="mb-3 text-sm text-gray-600">
+            <p className="text-sm text-gray-600">
               Provide instructions for AI to generate exam content or upload
               documents as reference material.
             </p>
-            <div className="relative">
-              <textarea
-                value={aiPrompt}
-                onChange={(e) => setAiPrompt(e.target.value)}
-                className="min-h-[100px] w-full rounded-lg border p-3"
-                placeholder="Describe what kind of exam you want to create. For example: 'Create a beginner math quiz with 10 multiple choice questions about fractions.'"
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={(e) => {
+
+            <Field.Textarea
+              label="Prompt"
+              helperText="Drag & drop files or use the upload button"
+              textareaProps={{
+                className: "min-h-[120px] w-full resize-none",
+                placeholder:
+                  "Describe what kind of exam you want to create. For example: 'Create a beginner math quiz with 10 multiple choice questions about fractions.'",
+                value: aiPrompt,
+                onChange: (e) => setAiPrompt(e.target.value),
+                onDragOver: (e) => e.preventDefault(),
+                onDrop: (e) => {
                   e.preventDefault();
                   handleFiles(e.dataTransfer.files);
-                }}
-              />
-              <input
-                type="file"
-                multiple
-                className="hidden"
-                id="file-upload"
-                onChange={(e) => handleFiles(e.target.files)}
-              />
+                },
+              }}
+            />
+
+            <input
+              type="file"
+              multiple
+              className="hidden"
+              id="file-upload"
+              onChange={(e) => handleFiles(e.target.files)}
+            />
+
+            {/* File upload button */}
+            <div className="flex justify-end">
               <label
                 htmlFor="file-upload"
-                className="absolute bottom-3 right-3 cursor-pointer rounded-lg border bg-white p-1 text-gray-500 hover:bg-gray-50"
-                title="Upload files"
+                className="flex cursor-pointer items-center gap-2 rounded-full border border-black bg-light px-4 py-2 text-gray-700 shadow-right-sm hover:bg-gray-50 hover:shadow-black"
               >
                 <Icon name="upload" className="h-5 w-5" />
+                <span className="font-medium">Upload Files</span>
               </label>
             </div>
 
             {/* File capsules */}
             {files.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {files.map((file, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center rounded-full border bg-white px-3 py-1 text-sm"
-                  >
-                    <span className="max-w-xs truncate">{file.name}</span>
-                    <button
-                      onClick={() => removeFile(index)}
-                      className="ml-2 text-gray-500 hover:text-gray-700"
-                      aria-label="Remove file"
+              <div className="mt-3 space-y-2">
+                <FocusSpan className="text-sm">Uploaded files</FocusSpan>
+                <div className="flex flex-wrap gap-2">
+                  {files.map((file, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center rounded-md border border-black bg-light px-3 py-1.5 text-sm shadow-right-sm"
                     >
-                      <Icon name="close" className="h-4 w-4" />
-                    </button>
-                  </div>
-                ))}
+                      <Icon
+                        name="description"
+                        className="mr-2 h-4 w-4"
+                        filled
+                      />
+                      <span className="max-w-[200px] truncate">
+                        {file.name}
+                      </span>
+                      <button
+                        onClick={() => removeFile(index)}
+                        className="ml-2 rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                        aria-label="Remove file"
+                      >
+                        <Icon name="close" className="h-4 w-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 
@@ -114,13 +134,13 @@ const CreateExam = ({
               <Button
                 theme="primary"
                 rounded
-                className="flex place-content-center gap-2"
+                className="flex items-center gap-2"
                 disabled={!aiPrompt.trim() && files.length === 0}
                 onClick={() => {
                   /* Add your AI generation logic here */
                 }}
               >
-                <Icon name="prompt_suggestion" className="h-4 w-4" />
+                <Icon name="smart_toy" className="h-5 w-5" filled />
                 Generate with AI
               </Button>
             </div>

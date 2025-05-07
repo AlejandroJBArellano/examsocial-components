@@ -1,8 +1,8 @@
 import { ExamCreationContext } from "@/hooks/exam";
 import { examSchema } from "@/schemas";
 import { Exam, UserPlan } from "@/types";
-import { Form, Formik } from "formik";
-import { useState } from "react";
+import { Form, Formik, useFormikContext } from "formik";
+import { useEffect, useState } from "react";
 import { Button } from "../Button";
 import { Field } from "../Field";
 import { FocusSpan, Heading3 } from "../FontFaces";
@@ -26,6 +26,58 @@ interface CreateExamProps {
   onClickGenerate?: () => void;
   loadingGeneration?: boolean;
 }
+
+// This component will handle resetting form values when initialValues change
+const FormValuesUpdater = ({
+  initialValues,
+}: {
+  initialValues?: Partial<Exam>;
+}) => {
+  const { resetForm, setValues } = useFormikContext<Exam>();
+
+  useEffect(() => {
+    if (initialValues) {
+      setValues({
+        title: initialValues.title || "",
+        description: initialValues.description || "",
+        image: initialValues.image || "",
+        categories: initialValues.categories || [],
+        questions: initialValues.questions || [],
+        contents: initialValues.contents || [],
+        marketplaceSettings: {
+          currency: initialValues.marketplaceSettings?.currency || "USD",
+          price: initialValues.marketplaceSettings?.price ?? 0,
+        },
+        theme: initialValues.theme || "WHITEBOARD",
+        advancedSettings: {
+          privacy: {
+            setting:
+              initialValues.advancedSettings?.privacy?.setting || "PUBLIC",
+            invitees: initialValues.advancedSettings?.privacy?.invitees,
+          },
+          randomizeQuestionOrder:
+            initialValues.advancedSettings?.randomizeQuestionOrder ?? true,
+          showCorrectAnswers:
+            initialValues.advancedSettings?.showCorrectAnswers ?? false,
+          sendEmailReport:
+            initialValues.advancedSettings?.sendEmailReport ?? false,
+          leaderboard: initialValues.advancedSettings?.leaderboard ?? false,
+          maxAttempts: initialValues.advancedSettings?.maxAttempts ?? 3,
+          feedback: initialValues.advancedSettings?.feedback || [],
+          passingScore: initialValues.advancedSettings?.passingScore ?? 70,
+          timing: {
+            setting: initialValues.advancedSettings?.timing?.setting || "NONE",
+            hours: initialValues.advancedSettings?.timing?.hours ?? 0,
+            minutes: initialValues.advancedSettings?.timing?.minutes ?? 0,
+            seconds: initialValues.advancedSettings?.timing?.seconds ?? 0,
+          },
+        },
+      });
+    }
+  }, [initialValues, resetForm, setValues]);
+
+  return null;
+};
 
 const CreateExam = ({
   onSubmit,
@@ -272,6 +324,9 @@ const CreateExam = ({
 
           return (
             <Form className="flex h-full min-h-screen w-full max-w-screen-2xl flex-col bg-light">
+              {/* Add the FormValuesUpdater component to watch for initialValues changes */}
+              <FormValuesUpdater initialValues={initialValues} />
+
               <header className="sticky top-0 z-10 bg-light">
                 <Stepper
                   allowManualStepChange

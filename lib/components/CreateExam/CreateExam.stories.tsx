@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import React from "react";
+import { Exam } from "../../types";
 import CreateExam from "./CreateExam";
 
 export default {
@@ -178,9 +179,8 @@ export const CustomStepInteractions: Story = {
 
 export const WithAIGenerationFlow: Story = {
   render: function AIGenerationRender(args) {
-    const [loadingGeneration, setLoadingGeneration] = useState(false);
-
-    const [initialValues, setInitialValues] = useState({});
+    const [loadingGeneration, setLoadingGeneration] = React.useState(false);
+    const [initialValues, setInitialValues] = React.useState<Partial<Exam>>({});
 
     const handleClickGenerate = () => {
       console.log("AI Generation requested");
@@ -195,75 +195,75 @@ export const WithAIGenerationFlow: Story = {
           title: "Introduction to Computer Science",
           description:
             "A comprehensive exam covering fundamental concepts in computer science, including algorithms, data structures, and programming basics.",
-          image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
-          categories: ["COMPUTER_SCIENCE", "EDUCATION"],
+          image: undefined,
+          categories: ["COMPUTER_SCIENCE", "PHYSICAL_EDUCATION"],
           questions: [
             {
               id: "q1",
-              prompt:
+              title:
                 "What is the time complexity of a binary search algorithm?",
-              type: "MULTIPLE_CHOICE",
               options: [
-                { id: "a", text: "O(n)" },
-                { id: "b", text: "O(n²)" },
-                { id: "c", text: "O(log n)" },
-                { id: "d", text: "O(n log n)" },
+                { id: "a", text: "O(n)", correct: false },
+                { id: "b", text: "O(n²)", correct: false },
+                { id: "c", text: "O(log n)", correct: true },
+                { id: "d", text: "O(n log n)", correct: false },
               ],
-              correctOptionId: "c",
-              explanation:
+              helperText:
                 "Binary search has a logarithmic time complexity because it divides the search interval in half with each iteration.",
             },
             {
               id: "q2",
-              prompt:
+              title:
                 "Which data structure operates on a LIFO (Last In, First Out) principle?",
-              type: "MULTIPLE_CHOICE",
               options: [
-                { id: "a", text: "Queue" },
-                { id: "b", text: "Stack" },
-                { id: "c", text: "Linked List" },
-                { id: "d", text: "Tree" },
+                { id: "a", text: "Queue", correct: false },
+                { id: "b", text: "Stack", correct: true },
+                { id: "c", text: "Linked List", correct: false },
+                { id: "d", text: "Tree", correct: false },
               ],
-              correctOptionId: "b",
-              explanation:
+              helperText:
                 "A stack follows the Last In, First Out principle, where the last element added is the first one to be removed.",
             },
             {
               id: "q3",
-              prompt: "What is encapsulation in object-oriented programming?",
-              type: "MULTIPLE_CHOICE",
+              title: "What is encapsulation in object-oriented programming?",
               options: [
                 {
                   id: "a",
                   text: "The ability of a class to inherit from multiple parent classes",
+                  correct: false,
                 },
                 {
                   id: "b",
                   text: "The process of hiding implementation details and exposing only necessary functionality",
+                  correct: true,
                 },
                 {
                   id: "c",
                   text: "The ability of different objects to respond differently to the same method call",
+                  correct: false,
                 },
                 {
                   id: "d",
                   text: "The process of creating an instance of a class",
+                  correct: false,
                 },
               ],
-              correctOptionId: "b",
-              explanation:
+              helperText:
                 "Encapsulation is the bundling of data and methods that operate on that data, restricting direct access to some of the object's components and protecting data integrity.",
             },
           ],
           contents: [
             {
-              id: "c1",
-              title: "Additional Resources",
-              content:
-                "For further study on computer science fundamentals, check these resources:\n- Introduction to Algorithms by Cormen, Leiserson, Rivest, and Stein\n- Structure and Interpretation of Computer Programs by Abelson and Sussman\n- Online platforms like Coursera, edX, and Khan Academy for interactive tutorials",
+              type: "TEXT",
+              text: "For further study on computer science fundamentals, check these resources:\n- Introduction to Algorithms by Cormen, Leiserson, Rivest, and Stein\n- Structure and Interpretation of Computer Programs by Abelson and Sussman\n- Online platforms like Coursera, edX, and Khan Academy for interactive tutorials",
             },
           ],
           theme: "WHITEBOARD",
+          marketplaceSettings: {
+            currency: "USD",
+            price: 0,
+          },
           advancedSettings: {
             privacy: {
               setting: "PUBLIC",

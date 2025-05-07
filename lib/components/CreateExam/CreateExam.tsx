@@ -67,40 +67,40 @@ const CreateExam = ({
               documents as reference material.
             </p>
 
-            <Field.Textarea
-              label="Prompt"
-              helperText="Drag & drop files or use the upload button"
-              textareaProps={{
-                className:
-                  "min-h-[120px] w-full resize-none border-2 shadow-right-sm focus:shadow-right hover:shadow-right transform transition-all duration-200 ease-in-out",
-                placeholder:
-                  "Describe what kind of exam you want to create. For example: 'Create a beginner math quiz with 10 multiple choice questions about fractions.'",
-                value: aiPrompt,
-                onChange: (e) => setAiPrompt(e.target.value),
-                onDragOver: (e) => e.preventDefault(),
-                onDrop: (e) => {
-                  e.preventDefault();
-                  handleFiles(e.dataTransfer.files);
-                },
-              }}
-            />
+            <div className="relative">
+              <Field.Textarea
+                label="Prompt"
+                helperText="Drag & drop files or use the upload button"
+                textareaProps={{
+                  className:
+                    "min-h-[120px] w-full resize-none border-2 shadow-right-sm focus:shadow-right hover:shadow-right transform transition-all duration-200 ease-in-out pb-12",
+                  placeholder:
+                    "Describe what kind of exam you want to create. For example: 'Create a beginner math quiz with 10 multiple choice questions about fractions.'",
+                  value: aiPrompt,
+                  onChange: (e) => setAiPrompt(e.target.value),
+                  onDragOver: (e) => e.preventDefault(),
+                  onDrop: (e) => {
+                    e.preventDefault();
+                    handleFiles(e.dataTransfer.files);
+                  },
+                }}
+              />
 
-            <input
-              type="file"
-              multiple
-              className="hidden"
-              id="file-upload"
-              onChange={(e) => handleFiles(e.target.files)}
-            />
+              <input
+                type="file"
+                multiple
+                className="hidden"
+                id="file-upload"
+                onChange={(e) => handleFiles(e.target.files)}
+              />
 
-            {/* File upload button */}
-            <div className="flex justify-end">
+              {/* File upload button positioned inside textarea */}
               <label
                 htmlFor="file-upload"
-                className="flex cursor-pointer items-center gap-2 rounded-full border-2 border-black bg-light px-4 py-2 text-gray-700 shadow-right-sm transition-all duration-200 ease-in-out hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-right active:translate-x-[0px] active:translate-y-[0px] active:shadow-right-sm"
+                className="absolute bottom-3.5 right-3.5 flex cursor-pointer place-content-center items-center gap-1.5 rounded-full border-2 border-black bg-light px-3 py-1.5 text-sm text-gray-700 shadow-right-sm transition-all duration-200 ease-in-out hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-right active:translate-x-[0px] active:translate-y-[0px] active:shadow-right-sm"
               >
-                <Icon name="upload" className="h-5 w-5" />
-                <span className="font-bold">Upload Files</span>
+                <Icon name="upload" size={20} />
+                <span className="font-semibold">Upload Files</span>
               </label>
             </div>
 

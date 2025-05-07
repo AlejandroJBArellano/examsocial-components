@@ -113,22 +113,18 @@ const CreateExam = ({
                   {files.map((file, index) => (
                     <div
                       key={index}
-                      className="flex items-center rounded-md border-2 border-black bg-light px-3 py-1.5 text-sm shadow-right-sm transition-all duration-200 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-right"
+                      className="flex items-center justify-between gap-1.5 rounded-md border-2 border-black bg-light px-3 py-1.5 text-sm shadow-right-sm transition-all duration-200 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-right"
                     >
-                      <Icon
-                        name="description"
-                        className="mr-2 h-4 w-4"
-                        filled
-                      />
+                      <Icon name="description" size={20} filled />
                       <span className="max-w-[200px] truncate font-medium">
                         {file.name}
                       </span>
                       <button
                         onClick={() => removeFile(index)}
-                        className="ml-2 rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                        className="ml-2 flex place-content-center rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                         aria-label="Remove file"
                       >
-                        <Icon name="close" className="h-4 w-4" />
+                        <Icon name="close" size={20} />
                       </button>
                     </div>
                   ))}

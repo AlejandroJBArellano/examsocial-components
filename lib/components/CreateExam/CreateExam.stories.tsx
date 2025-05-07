@@ -276,7 +276,7 @@ export const WithAIGenerationFlow: Story = {
             feedback: [],
             passingScore: 70,
             timing: {
-              setting: "TIMED",
+              setting: "TOTAL",
               hours: 0,
               minutes: 30,
               seconds: 0,

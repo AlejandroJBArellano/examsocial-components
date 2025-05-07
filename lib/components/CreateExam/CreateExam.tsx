@@ -141,7 +141,7 @@ const CreateExam = ({
                 disabled={!aiPrompt.trim() && files.length === 0}
                 onClick={onClickGenerate}
               >
-                <Icon name="smart_toy" className="h-5 w-5" filled />
+                <Icon name="smart_toy" size={24} filled />
                 Generate with AI
               </Button>
             </div>

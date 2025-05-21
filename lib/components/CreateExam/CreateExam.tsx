@@ -112,7 +112,7 @@ const CreateExam = ({
           {/* AI Prompt textarea with drag and drop */}
           <div className="space-y-3">
             <Heading3 className="relative mb-2 inline-block after:absolute after:bottom-0 after:left-0 after:h-2 after:w-full after:bg-accent after:opacity-30 after:content-['']">
-              AI Exam Generator
+              Generate Exam with AI
             </Heading3>
             <p className="text-sm text-gray-600">
               Provide instructions for AI to generate exam content or upload
@@ -121,7 +121,7 @@ const CreateExam = ({
 
             <div className="relative">
               <Field.Textarea
-                label="Prompt"
+                label="Describe your idea"
                 helperText="Drag & drop files or use the upload button"
                 textareaProps={{
                   className:
@@ -152,7 +152,7 @@ const CreateExam = ({
                 className="absolute bottom-3.5 right-3.5 flex cursor-pointer place-content-center items-center gap-1.5 rounded-full border-2 border-black bg-light px-3 py-1.5 text-sm text-gray-700 shadow-right-sm transition-all duration-200 ease-in-out hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-right active:translate-x-[0px] active:translate-y-[0px] active:shadow-right-sm"
               >
                 <Icon name="upload" size={20} />
-                <span className="font-semibold">Upload Files</span>
+                <span className="font-semibold">Upload</span>
               </label>
             </div>
 

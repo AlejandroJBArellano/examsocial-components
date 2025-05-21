@@ -23,7 +23,7 @@ interface CreateExamProps {
   validatePathname: (pathname: string) => Promise<boolean>;
   initialValues?: Partial<Exam>;
   isSubmitting: boolean;
-  onClickGenerate?: () => void;
+  onClickGenerate?: (prompt: string, files: File[]) => void;
   loadingGeneration?: boolean;
 }
 
@@ -92,7 +92,7 @@ const CreateExam = ({
 }: CreateExamProps) => {
   // Local state for this section
   const [files, setFiles] = useState<File[]>([]);
-  const [aiPrompt, setAiPrompt] = useState("");
+  const [prompt, setAiPrompt] = useState("");
 
   // Handle file additions
   const handleFiles = (newFiles: FileList | null) => {
@@ -128,7 +128,7 @@ const CreateExam = ({
                     "min-h-[120px] w-full resize-none border-2 shadow-right-sm focus:shadow-right hover:shadow-right transform transition-all duration-200 ease-in-out pb-12",
                   placeholder:
                     "Describe what kind of exam you want to create. For example: 'Create a beginner math quiz with 10 multiple choice questions about fractions.'",
-                  value: aiPrompt,
+                  value: prompt,
                   onChange: (e) => setAiPrompt(e.target.value),
                   onDragOver: (e) => e.preventDefault(),
                   onDrop: (e) => {
@@ -192,9 +192,13 @@ const CreateExam = ({
                 rounded
                 className="flex items-center gap-2 border-2 border-black font-bold transition-all duration-200 ease-in-out hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-right-lg active:translate-x-[0px] active:translate-y-[0px] active:shadow-right-sm"
                 disabled={
-                  (!aiPrompt.trim() && files.length === 0) || loadingGeneration
+                  (!prompt.trim() && files.length === 0) || loadingGeneration
                 }
-                onClick={onClickGenerate}
+                onClick={() => {
+                  if (onClickGenerate) {
+                    onClickGenerate(prompt, files);
+                  }
+                }}
               >
                 <Icon name="smart_toy" size={24} filled />
                 Generate with AI

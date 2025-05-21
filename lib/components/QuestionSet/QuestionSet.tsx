@@ -17,6 +17,7 @@ type QuestionSetPropsViewOnly = {
   title: string;
   image?: string;
   selected?: boolean;
+  helperText?: string;
 };
 
 type QuestionSetProps = QuestionSetPropsEditable | QuestionSetPropsViewOnly;
@@ -35,6 +36,9 @@ const QuestionSet = ({
       }
     >
       <Heading5>{title}</Heading5>
+      {viewOnly && props.helperText && (
+        <Span className="text-gray-600">{props.helperText}</Span>
+      )}
       {viewOnly ? (
         props.image && (
           <img

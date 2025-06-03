@@ -37,6 +37,7 @@ export * from "./Option";
 export * from "./Participants";
 export * from "./Pricing";
 export * from "./PricingComparisonCellWrapper";
+export * from "./Profile";
 export * from "./ProfilePlaceholder";
 export * from "./ProviderButton";
 export * from "./QuestionDetail";

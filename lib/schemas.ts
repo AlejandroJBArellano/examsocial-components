@@ -233,7 +233,7 @@ const marketplaceSettingsSchema = Yup.object({
     ),
 });
 
-export const examSchema = Yup.object({
+export const baseExamSchema = Yup.object({
   title: Yup.string()
     .required("Title is required")
     .min(5, "Title must be at least 5 characters long")
@@ -296,16 +296,21 @@ export const examSchema = Yup.object({
     .min(1, "At least one category is required"),
   marketplaceSettings: marketplaceSettingsSchema,
   advancedSettings: advancedSettingsSchema,
-  contents: Yup.array().of(contentSchema).required("Contents are required"),
   theme: Yup.string()
     .required("Required")
     .oneOf(["WHITEBOARD", "INDUSTRIAL_EDGE", "EARTHY_TONES", "VIBRANT_ORCHID"]),
-  questions: Yup.array()
-    .of(questionSchema)
-    .required("Questions are required")
-    .min(1, "You need to add at least one question to your exam")
-    .max(100, "Maximum of 100 questions allowed"),
 });
+
+export const examSchema = baseExamSchema.concat(
+  Yup.object({
+    contents: Yup.array().of(contentSchema).required("Contents are required"),
+    questions: Yup.array()
+      .of(questionSchema)
+      .required("Questions are required")
+      .min(1, "You need to add at least one question to your exam")
+      .max(100, "Maximum of 100 questions allowed"),
+  }),
+);
 
 export const collectionSchema = Yup.object({
   name: Yup.string()

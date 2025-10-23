@@ -6,17 +6,11 @@ export * from "./components";
 // Export utilities
 export * from "./utils";
 
-// Export types
-export * from "./types";
-
 // Export illustrations
 export * from "./illustrations";
 
 // Export constants
 export * from "./constants";
-
-// Export schemas
-export * from "./schemas";
 
 // Export Tailwind configuration
 // Note: We use a re-export pattern to maintain TypeScript compatibility

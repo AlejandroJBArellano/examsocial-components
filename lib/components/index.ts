@@ -13,6 +13,7 @@ export * from "./Header";
 export * from "./Helper";
 export * from "./Icon";
 export * from "./ImageField";
+export * from "./ImageInput";
 export * from "./ImageUploader";
 export * from "./IndexButton";
 export * from "./Input";

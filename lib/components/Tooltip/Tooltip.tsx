@@ -24,6 +24,21 @@ interface TooltipProps extends PropsWithChildren {
   delayDuration?: number;
 
   theme?: "accent" | "primary" | "secondary" | "extra";
+
+  /**
+   * Estado controlado de apertura del tooltip
+   */
+  open?: boolean;
+
+  /**
+   * Callback cuando el estado de apertura cambia (para modo controlado)
+   */
+  onOpenChange?: (open: boolean) => void;
+
+  /**
+   * Estado inicial de apertura (para modo no controlado)
+   */
+  defaultOpen?: boolean;
 }
 
 const themeSVG = {
@@ -41,10 +56,18 @@ const Tooltip = ({
   contentClassName = "",
   delayDuration = 0,
   theme = "extra",
+  open,
+  onOpenChange,
+  defaultOpen,
 }: TooltipProps) => {
   return (
     <RadixTooltip.Provider>
-      <RadixTooltip.Root delayDuration={delayDuration}>
+      <RadixTooltip.Root
+        delayDuration={delayDuration}
+        open={open}
+        onOpenChange={onOpenChange}
+        defaultOpen={defaultOpen}
+      >
         <RadixTooltip.Trigger asChild>{trigger}</RadixTooltip.Trigger>
         <RadixTooltip.Portal>
           <RadixTooltip.Content

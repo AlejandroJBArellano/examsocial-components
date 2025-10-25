@@ -7,12 +7,38 @@ interface IHelper extends PropsWithChildren {
   align: "start" | "center" | "end";
   side: "top" | "right" | "bottom" | "left";
   disabled?: boolean;
+  /**
+   * Estado controlado de apertura del helper
+   */
+  open?: boolean;
+  /**
+   * Callback cuando el estado de apertura cambia (para modo controlado)
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * Estado inicial de apertura (para modo no controlado)
+   */
+  defaultOpen?: boolean;
 }
 
-const Helper = ({ align, side, children, disabled = false }: IHelper) => {
+const Helper = ({
+  align,
+  side,
+  children,
+  disabled = false,
+  open,
+  onOpenChange,
+  defaultOpen,
+}: IHelper) => {
   return (
     <Tooltip.Provider>
-      <Tooltip.Root delayDuration={0} disableHoverableContent={disabled}>
+      <Tooltip.Root
+        delayDuration={0}
+        disableHoverableContent={disabled}
+        open={open}
+        onOpenChange={onOpenChange}
+        defaultOpen={defaultOpen}
+      >
         <Tooltip.Trigger asChild>
           <button
             className={cn(

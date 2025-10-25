@@ -3,6 +3,11 @@ import tailwindThemer from "tailwindcss-themer";
 
 export default {
   content: ["./lib/**/*.{js,ts,jsx,tsx}"],
+  safelist: [
+    {
+      pattern: /./,
+    },
+  ],
   theme: {
     extend: {
       lineHeight: {

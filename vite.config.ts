@@ -3,6 +3,12 @@ import { resolve } from "path";
 import tailwindcss from "tailwindcss";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import packageJson from "./package.json" assert { type: "json" };
+
+const externalPackages = [
+  ...Object.keys(packageJson.dependencies || {}),
+  ...Object.keys(packageJson.peerDependencies || {}),
+];
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
@@ -12,7 +18,7 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom", "tailwindcss"],
+      external: externalPackages,
       output: {
         globals: {
           react: "React",

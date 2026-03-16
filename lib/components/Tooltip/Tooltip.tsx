@@ -1,5 +1,6 @@
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 import { PropsWithChildren, ReactNode } from "react";
+import { useDialogPortalContainer } from "../Dialog/dialogPortalContext";
 
 interface TooltipProps extends PropsWithChildren {
   /**
@@ -39,6 +40,11 @@ interface TooltipProps extends PropsWithChildren {
    * Estado inicial de apertura (para modo no controlado)
    */
   defaultOpen?: boolean;
+
+  /**
+   * Container opcional para el portal del tooltip
+   */
+  container?: HTMLElement;
 }
 
 const themeSVG = {
@@ -46,6 +52,13 @@ const themeSVG = {
   primary: "fill-primary",
   secondary: "fill-secondary",
   accent: "fill-accent",
+};
+
+const themeBackground = {
+  extra: "bg-extra",
+  primary: "bg-primary",
+  secondary: "bg-secondary",
+  accent: "bg-accent",
 };
 
 const Tooltip = ({
@@ -59,7 +72,11 @@ const Tooltip = ({
   open,
   onOpenChange,
   defaultOpen,
+  container,
 }: TooltipProps) => {
+  const dialogContainer = useDialogPortalContainer();
+  const portalContainer = container ?? dialogContainer ?? undefined;
+
   return (
     <RadixTooltip.Provider>
       <RadixTooltip.Root
@@ -69,9 +86,9 @@ const Tooltip = ({
         defaultOpen={defaultOpen}
       >
         <RadixTooltip.Trigger asChild>{trigger}</RadixTooltip.Trigger>
-        <RadixTooltip.Portal>
+        <RadixTooltip.Portal container={portalContainer}>
           <RadixTooltip.Content
-            className={`z-50 max-w-xs rounded border border-black px-2 py-1 text-xs ${contentClassName} bg-${theme}`}
+            className={`z-50 max-w-xs rounded border border-black px-2 py-1 text-xs ${contentClassName} ${themeBackground[theme]}`}
             sideOffset={3}
             align={align}
             side={side}

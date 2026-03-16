@@ -1,4 +1,13 @@
-import { DetailedHTMLProps, DialogHTMLAttributes, Ref } from "react";
+import { cn } from "@/utils";
+import {
+  DetailedHTMLProps,
+  DialogHTMLAttributes,
+  MutableRefObject,
+  Ref,
+  useCallback,
+  useState,
+} from "react";
+import { DialogPortalContainerContext } from "./dialogPortalContext";
 
 interface DialogProps
   extends DetailedHTMLProps<
@@ -50,15 +59,37 @@ interface DialogProps
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog MDN Dialog Element}
  */
 const Dialog = ({ innerRef, ...props }: DialogProps) => {
-  return (
-    <dialog
-      {...props}
-      ref={innerRef}
-      className={
-        "rounded-lg bg-light shadow-right-sm shadow-black backdrop:bg-black/50 backdrop:backdrop-blur-md " +
-        props.className
+  const [dialogElement, setDialogElement] = useState<HTMLDialogElement | null>(
+    null,
+  );
+
+  const setDialogRef = useCallback(
+    (node: HTMLDialogElement | null) => {
+      setDialogElement(node);
+
+      if (typeof innerRef === "function") {
+        innerRef(node);
+        return;
       }
-    />
+
+      if (innerRef) {
+        (innerRef as MutableRefObject<HTMLDialogElement | null>).current = node;
+      }
+    },
+    [innerRef],
+  );
+
+  return (
+    <DialogPortalContainerContext.Provider value={dialogElement}>
+      <dialog
+        {...props}
+        ref={setDialogRef}
+        className={cn(
+          "rounded-lg bg-light shadow-right-sm shadow-black backdrop:bg-black/50 backdrop:backdrop-blur-md",
+          props.className,
+        )}
+      />
+    </DialogPortalContainerContext.Provider>
   );
 };
 

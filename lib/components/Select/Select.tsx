@@ -27,7 +27,7 @@ const Select = (props: SelectProps) => {
           theme="light"
           className={
             "group flex w-full items-center justify-between outline-none data-[error=true]:!border-feedback-error data-[state=open]:border-primary data-[error=true]:!bg-feedback-error-tint data-[error=true]:!text-feedback-error data-[error=true]:!shadow-feedback-error data-[state=open]:shadow-primary" +
-            (props.disabled ? "cursor-not-allowed" : "")
+            (props.disabled ? " cursor-not-allowed" : "")
           }
         >
           <Span>{props.text}</Span>

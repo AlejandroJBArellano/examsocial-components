@@ -23,28 +23,27 @@ const Input = ({
       <input
         data-testid="input"
         {...props}
-        className={
-          cn(
-            "peer rounded-md border border-black bg-light px-4 py-3 shadow-right-sm transition-all duration-300 ease-in-out",
-            "hover:border-black hover:shadow-black",
-            "placeholder:text-zinc-700 placeholder-shown:shadow-none placeholder-shown:hover:shadow-right-sm placeholder-shown:focus:shadow-right-sm placeholder-shown:focus:shadow-primary",
-            "focus:border-primary focus:shadow-right-sm focus:shadow-primary focus:outline-none",
-            "xl:px-4 xl:py-2 xl:text-lg xl:placeholder:text-lg",
-            "hover:shadow-right",
-            {
-              "border-feedback-error bg-feedback-error-tint text-feedback-error shadow-right-sm shadow-feedback-error":
-                error,
-              "hover:border-feedback-error hover:!shadow-feedback-error": error,
-              "placeholder:text-feedback-error placeholder-shown:focus:bg-light":
-                error,
-              "focus:border-feedback-error focus:text-black focus:shadow-feedback-error":
-                error,
-              "pl-10 xl:pl-10": LeftIcon,
-              "pr-10 xl:pr-10": RightIcon,
-            },
-            props.className,
-          ) + " shadow-right-sm"
-        }
+        className={cn(
+          "peer w-full rounded-md border border-black bg-light px-4 py-3 shadow-right-sm transition-all duration-300 ease-in-out",
+          "hover:border-black hover:shadow-black",
+          "placeholder:text-zinc-700 placeholder-shown:shadow-none placeholder-shown:hover:shadow-right-sm placeholder-shown:focus:shadow-right-sm placeholder-shown:focus:shadow-primary",
+          "focus:border-primary focus:shadow-right-sm focus:shadow-primary focus:outline-none",
+          "xl:px-4 xl:py-2 xl:text-lg xl:placeholder:text-lg",
+          "hover:shadow-right",
+          "file:mr-4 file:cursor-pointer file:rounded-md file:border-0 file:bg-transparent file:py-1 file:text-sm file:font-medium",
+          {
+            "border-feedback-error bg-feedback-error-tint text-feedback-error shadow-right-sm shadow-feedback-error":
+              error,
+            "hover:border-feedback-error hover:!shadow-feedback-error": error,
+            "placeholder:text-feedback-error placeholder-shown:focus:bg-light":
+              error,
+            "focus:border-feedback-error focus:text-black focus:shadow-feedback-error":
+              error,
+            "pl-10 xl:pl-10": LeftIcon,
+            "pr-10 xl:pr-10": RightIcon,
+          },
+          props.className,
+        )}
       />
       {LeftIcon && (
         <div

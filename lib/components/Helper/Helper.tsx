@@ -1,6 +1,7 @@
 import { cn } from "@/utils";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { PropsWithChildren } from "react";
+import { useDialogPortalContainer } from "../Dialog/dialogPortalContext";
 import { Icon } from "../Icon";
 
 interface IHelper extends PropsWithChildren {
@@ -30,6 +31,8 @@ const Helper = ({
   onOpenChange,
   defaultOpen,
 }: IHelper) => {
+  const dialogContainer = useDialogPortalContainer();
+
   return (
     <Tooltip.Provider>
       <Tooltip.Root
@@ -52,7 +55,7 @@ const Helper = ({
             <Icon filled name="help" size={20} />
           </button>
         </Tooltip.Trigger>
-        <Tooltip.Portal>
+        <Tooltip.Portal container={dialogContainer ?? undefined}>
           <Tooltip.Content
             className="max-w-xs rounded border border-black bg-extra px-2 py-1 text-xs"
             sideOffset={3}

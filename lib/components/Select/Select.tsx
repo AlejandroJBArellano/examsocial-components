@@ -3,6 +3,7 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { ReactNode } from "react";
 import { Button } from "../Button";
+import { useDialogPortalContainer } from "../Dialog/dialogPortalContext";
 import { Span } from "../FontFaces/Spans.tsx";
 import { Icon } from "../Icon";
 import { OptionSelect } from "./Option.tsx";
@@ -15,6 +16,9 @@ export interface SelectProps extends DropdownMenu.DropdownMenuProps {
 }
 
 const Select = (props: SelectProps) => {
+  const dialogContainer = useDialogPortalContainer();
+  const portalContainer = props.container ?? dialogContainer ?? undefined;
+
   return (
     <DropdownMenu.Root {...props}>
       <DropdownMenu.Trigger
@@ -41,10 +45,10 @@ const Select = (props: SelectProps) => {
           />
         </Button>
       </DropdownMenu.Trigger>
-      <DropdownMenu.Portal container={props.container}>
+      <DropdownMenu.Portal container={portalContainer}>
         <DropdownMenu.Content
           sideOffset={8}
-          className="DropdownMenuContent max-h-[300px] w-full translate-x-0 overflow-y-auto rounded-md border border-primary bg-light py-2 shadow-right-sm shadow-primary"
+          className="DropdownMenuContent z-50 max-h-[300px] w-full translate-x-0 overflow-y-auto rounded-md border border-primary bg-light py-2 shadow-right-sm shadow-primary"
         >
           {props.children}
         </DropdownMenu.Content>

@@ -8,6 +8,7 @@ export * from "./utils";
 
 // Export illustrations
 export * from "./illustrations";
+export { Logo } from "./illustrations";
 
 // Export constants
 export * from "./constants";

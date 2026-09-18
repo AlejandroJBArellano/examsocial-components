@@ -195,5 +195,16 @@ describe("Field.Textarea Component", () => {
     expect(screen.getByText("Bio is too short")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Tell us about you")).toBeInTheDocument();
   });
+
+  it("renders textarea field without label or helperText", () => {
+    render(
+      <Field.Textarea
+        textareaProps={{ id: "no-label", placeholder: "No label textarea" }}
+      />,
+    );
+    expect(
+      screen.getByPlaceholderText("No label textarea"),
+    ).toBeInTheDocument();
+  });
 });
 

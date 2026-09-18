@@ -21,6 +21,8 @@ function copyFontsPlugin(): Plugin {
         fs.mkdirSync(dest, { recursive: true });
         fs.cpSync(src, dest, { recursive: true });
       }
+      const illusDts = resolve(__dirname, "dist/illustrations.d.ts");
+      fs.writeFileSync(illusDts, "export * from './illustrations/index';\n");
     },
   };
 }

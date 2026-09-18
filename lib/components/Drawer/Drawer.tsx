@@ -14,11 +14,17 @@ import { Heading4 } from "../FontFaces/Headers";
 interface DrawerContextType {
   open: boolean;
   setOpen: (open: boolean) => void;
+  dragY: number;
+  isDragging: boolean;
+  onHandlePointerDown: (e: React.PointerEvent) => void;
 }
 
 const DrawerContext = createContext<DrawerContextType>({
   open: true,
   setOpen: () => {},
+  dragY: 0,
+  isDragging: false,
+  onHandlePointerDown: () => {},
 });
 
 export const useDrawer = () => useContext(DrawerContext);
@@ -43,6 +49,11 @@ export const Drawer = {
     const isControlled = controlledOpen !== undefined;
     const open = isControlled ? controlledOpen : uncontrolledOpen;
 
+    const [dragY, setDragY] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const dragStartY = React.useRef(0);
+    const currentDragY = React.useRef(0);
+
     const setOpen = useCallback(
       (nextOpen: boolean) => {
         if (!isControlled) {
@@ -51,6 +62,40 @@ export const Drawer = {
         onOpenChange?.(nextOpen);
       },
       [isControlled, onOpenChange],
+    );
+
+    const onHandlePointerDown = useCallback(
+      (e: React.PointerEvent) => {
+        if (!open) return;
+        dragStartY.current = e.clientY;
+        currentDragY.current = 0;
+        setIsDragging(true);
+        setDragY(0);
+
+        const handlePointerMove = (moveEvent: PointerEvent) => {
+          const deltaY = moveEvent.clientY - dragStartY.current;
+          const newY = deltaY > 0 ? deltaY : deltaY * 0.2;
+          currentDragY.current = newY;
+          setDragY(newY);
+        };
+
+        const handlePointerUp = () => {
+          document.removeEventListener("pointermove", handlePointerMove);
+          document.removeEventListener("pointerup", handlePointerUp);
+          document.removeEventListener("pointercancel", handlePointerUp);
+          setIsDragging(false);
+
+          if (currentDragY.current > 100) {
+            setOpen(false);
+          }
+          setDragY(0);
+        };
+
+        document.addEventListener("pointermove", handlePointerMove);
+        document.addEventListener("pointerup", handlePointerUp);
+        document.addEventListener("pointercancel", handlePointerUp);
+      },
+      [open, setOpen],
     );
 
     useEffect(() => {
@@ -65,7 +110,9 @@ export const Drawer = {
     }, [open, setOpen]);
 
     return (
-      <DrawerContext.Provider value={{ open, setOpen }}>
+      <DrawerContext.Provider
+        value={{ open, setOpen, dragY, isDragging, onHandlePointerDown }}
+      >
         <div data-testid="drawer-root">{children}</div>
       </DrawerContext.Provider>
     );
@@ -97,8 +144,9 @@ export const Drawer = {
 
   // Overlay component
   Overlay: forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-    ({ className, onClick, ...props }, ref) => {
-      const { open, setOpen } = useDrawer();
+    ({ className, onClick, style, ...props }, ref) => {
+      const { open, setOpen, dragY, isDragging } = useDrawer();
+      const dragOpacity = isDragging && dragY > 0 ? Math.max(0, 1 - dragY / 350) : undefined;
       return (
         <div
           ref={ref}
@@ -106,6 +154,11 @@ export const Drawer = {
           onClick={(e) => {
             setOpen(false);
             onClick?.(e);
+          }}
+          style={{
+            opacity: dragOpacity,
+            transition: isDragging ? "none" : undefined,
+            ...style,
           }}
           className={cn(
             "fixed inset-0 bg-black/40 transition-opacity duration-300",
@@ -120,16 +173,27 @@ export const Drawer = {
 
   // Content component
   Content: forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-    ({ className, ...props }, ref) => {
-      const { open } = useDrawer();
+    ({ className, style, ...props }, ref) => {
+      const { open, dragY, isDragging } = useDrawer();
+      const dragTransform =
+        open && (isDragging || dragY > 0)
+          ? `translate3d(0, ${Math.max(0, dragY)}px, 0)`
+          : undefined;
+
       return (
         <div
           ref={ref}
           role="dialog"
           aria-modal="true"
           data-testid="drawer-content"
+          style={{
+            transform: dragTransform,
+            transition: isDragging ? "none" : undefined,
+            ...style,
+          }}
           className={cn(
-            "fixed bottom-0 left-0 right-0 mt-24 flex h-fit flex-col rounded-t-3xl border-x border-y border-black bg-gray-100 outline-none transition-transform duration-300 ease-out",
+            "fixed bottom-0 left-0 right-0 mt-24 flex h-fit flex-col rounded-t-3xl border-x border-y border-black bg-gray-100 outline-none",
+            isDragging ? "" : "transition-transform duration-300 ease-out",
             open
               ? "translate-y-0 pointer-events-auto"
               : "translate-y-full pointer-events-none invisible",
@@ -182,16 +246,24 @@ export const Drawer = {
 
   // Handle component
   Handle: forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-    ({ className, ...props }, ref) => (
-      <div
-        ref={ref}
-        className={cn(
-          "mx-auto mb-8 h-2 w-24 flex-shrink-0 cursor-pointer rounded-full bg-black",
-          className,
-        )}
-        {...props}
-      />
-    ),
+    ({ className, onPointerDown, ...props }, ref) => {
+      const { onHandlePointerDown } = useDrawer();
+      return (
+        <div
+          ref={ref}
+          data-testid="drawer-handle"
+          onPointerDown={(e) => {
+            onHandlePointerDown(e);
+            onPointerDown?.(e);
+          }}
+          className={cn(
+            "mx-auto mb-8 h-2 w-24 flex-shrink-0 cursor-grab active:cursor-grabbing rounded-full bg-black touch-none select-none",
+            className,
+          )}
+          {...props}
+        />
+      );
+    },
   ),
 };
 

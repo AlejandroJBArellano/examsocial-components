@@ -184,13 +184,91 @@ describe("Drawer Component", () => {
   });
 
   it("useDrawer default context function can be called safely", () => {
-    let contextValue: { open: boolean; setOpen: (open: boolean) => void } | undefined;
+    let contextValue:
+      | {
+          open: boolean;
+          setOpen: (open: boolean) => void;
+          dragY: number;
+          isDragging: boolean;
+          onHandlePointerDown: (e: React.PointerEvent) => void;
+        }
+      | undefined;
     const TestComp = () => {
       contextValue = useDrawer();
       return null;
     };
     render(<TestComp />);
     expect(contextValue?.open).toBe(true);
+    expect(contextValue?.dragY).toBe(0);
+    expect(contextValue?.isDragging).toBe(false);
     expect(() => contextValue?.setOpen(false)).not.toThrow();
+    expect(() =>
+      contextValue?.onHandlePointerDown({} as React.PointerEvent),
+    ).not.toThrow();
+  });
+
+  it("supports dragging handle to dismiss drawer", () => {
+    const handleOpenChange = vi.fn();
+    const handlePointerDown = vi.fn();
+
+    render(
+      <Drawer.Root open={true} onOpenChange={handleOpenChange}>
+        <Drawer.Portal>
+          <Drawer.Overlay />
+          <Drawer.Content>
+            <Drawer.Handle onPointerDown={handlePointerDown} />
+            <p>Content</p>
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>,
+    );
+
+    const handle = screen.getByTestId("drawer-handle");
+
+    // Drag down slightly (< 100px) and release: should snap back without closing
+    fireEvent.pointerDown(handle, { clientY: 100 });
+    expect(handlePointerDown).toHaveBeenCalled();
+
+    fireEvent(document, new Event("pointermove", { bubbles: true }));
+    // Move with deltaY > 0
+    const moveDownEvent = new Event("pointermove", { bubbles: true }) as any;
+    moveDownEvent.clientY = 150;
+    document.dispatchEvent(moveDownEvent);
+
+    // Move with deltaY < 0 (rubber band damping)
+    const moveUpEvent = new Event("pointermove", { bubbles: true }) as any;
+    moveUpEvent.clientY = 80;
+    document.dispatchEvent(moveUpEvent);
+
+    // Release: does not close
+    const upEvent = new Event("pointerup", { bubbles: true });
+    document.dispatchEvent(upEvent);
+    expect(handleOpenChange).not.toHaveBeenCalled();
+
+    // Drag down significantly (> 100px) and release: should close
+    fireEvent.pointerDown(handle, { clientY: 100 });
+    const moveCloseEvent = new Event("pointermove", { bubbles: true }) as any;
+    moveCloseEvent.clientY = 250;
+    document.dispatchEvent(moveCloseEvent);
+
+    document.dispatchEvent(new Event("pointerup", { bubbles: true }));
+    expect(handleOpenChange).toHaveBeenCalledWith(false);
+  });
+
+  it("does not start dragging if drawer is closed", () => {
+    render(
+      <Drawer.Root open={false}>
+        <Drawer.Portal>
+          <Drawer.Content>
+            <Drawer.Handle />
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>,
+    );
+
+    const handle = screen.getByTestId("drawer-handle");
+    expect(() => {
+      fireEvent.pointerDown(handle, { clientY: 100 });
+    }).not.toThrow();
   });
 });

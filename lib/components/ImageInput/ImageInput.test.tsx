@@ -5,29 +5,30 @@ import ImageInput from "./ImageInput";
 describe("ImageInput component", () => {
   it("renders the input element with hidden class", async () => {
     const mockOnChange = vi.fn();
-    render(<ImageInput onChange={mockOnChange} />);
-    const inputElement = screen.getByRole("textbox", { hidden: true });
-    expect(inputElement.className).toContain("hidden");
+    const { container } = render(<ImageInput onChange={mockOnChange} />);
+    const inputElement = container.querySelector('input[type="file"]');
+    expect(inputElement).not.toBeNull();
+    expect(inputElement?.className).toContain("hidden");
   });
 
   it("renders the file input with correct accept attribute", () => {
     const mockOnChange = vi.fn();
-    render(<ImageInput onChange={mockOnChange} />);
-    const inputElement = screen.getByRole("textbox", { hidden: true });
-    expect(inputElement.getAttribute("accept")).toBe("image/*");
+    const { container } = render(<ImageInput onChange={mockOnChange} />);
+    const inputElement = container.querySelector('input[type="file"]');
+    expect(inputElement?.getAttribute("accept")).toBe("image/*");
   });
 
-  it("displays the photo icon", () => {
+  it("displays the description icon", () => {
     const mockOnChange = vi.fn();
     render(<ImageInput onChange={mockOnChange} />);
-    const iconElement = screen.getByText("photo");
-    expect(iconElement).toBeDefined();
+    const iconElements = screen.getAllByText("description");
+    expect(iconElements.length).toBeGreaterThan(0);
   });
 
   it("calls onChange when a file is selected", async () => {
     const mockOnChange = vi.fn();
-    render(<ImageInput onChange={mockOnChange} />);
-    const inputElement = screen.getByRole("textbox", { hidden: true });
+    const { container } = render(<ImageInput onChange={mockOnChange} />);
+    const inputElement = container.querySelector('input[type="file"]')!;
     const file = new File(["dummy content"], "example.png", {
       type: "image/png",
     });
@@ -41,10 +42,10 @@ describe("ImageInput component", () => {
     expect(mockOnChange).toHaveBeenCalled();
   });
 
-  it("displays 'Select from your files' text on desktop layout", () => {
+  it("displays 'Browse your device' text on desktop layout", () => {
     const mockOnChange = vi.fn();
     render(<ImageInput onChange={mockOnChange} />);
-    const buttonText = screen.getByText("Select from your files");
+    const buttonText = screen.getByText("Browse your device");
     expect(buttonText).toBeDefined();
   });
 
@@ -53,7 +54,7 @@ describe("ImageInput component", () => {
     const clickSpy = vi.spyOn(HTMLElement.prototype, "click");
 
     render(<ImageInput onChange={mockOnChange} />);
-    const button = screen.getByText("Select from your files");
+    const button = screen.getByText("Browse your device");
 
     fireEvent.click(button);
 
@@ -90,19 +91,15 @@ describe("ImageInput component", () => {
   });
 
   it("processes dropped files correctly", () => {
-    // Instead of mocking constructors, use a more direct approach to test the onChange handler
     const mockOnChange = vi.fn();
     const { container } = render(<ImageInput onChange={mockOnChange} />);
 
-    // Get the label element
     const labelElement = container.querySelector("label");
     expect(labelElement).not.toBeNull();
 
     if (labelElement) {
-      // Create test file
       const file = new File(["content"], "test.png", { type: "image/png" });
 
-      // Simulate drop event with minimal mock
       fireEvent.drop(labelElement, {
         preventDefault: () => {},
         stopPropagation: () => {},
@@ -111,9 +108,7 @@ describe("ImageInput component", () => {
         },
       });
 
-      // Because the actual file processing happens in a DOM manipulation that's
-      // hard to test directly, we'll verify that event handlers work correctly
-      expect(labelElement).toHaveAttribute("onDrop");
+      expect(mockOnChange).toHaveBeenCalled();
     }
   });
 

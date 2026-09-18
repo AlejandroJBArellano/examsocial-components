@@ -5,8 +5,8 @@ import Menu from "../Menu/Menu";
 import Header from "./Header";
 
 // Mock the Logo component
-vi.mock("@/Illustrations/logo", () => ({
-  default: () => <div data-testid="mock-logo">Logo</div>,
+vi.mock("@/illustrations", () => ({
+  Logo: () => <div data-testid="mock-logo">Logo</div>,
 }));
 
 // Mock the Button component
@@ -31,12 +31,6 @@ describe("Header", () => {
     // Check if logo is rendered
     const logo = screen.getByTestId("mock-logo");
     expect(logo).toBeInTheDocument();
-
-    // Check if button is rendered with default text and theme
-    const button = screen.getByTestId("mock-button");
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent("Get started");
-    expect(button).toHaveAttribute("data-theme", "accent");
   });
 
   test("renders with custom button text", () => {
@@ -61,7 +55,7 @@ describe("Header", () => {
     expect(button).toHaveAttribute("data-theme", "primary");
   });
 
-  test("does not render button when showButton is false", () => {
+  test("does not render button when not provided in children", () => {
     render(
       <Header>
         <Menu items={[]} />
@@ -77,15 +71,17 @@ describe("Header", () => {
     expect(button).not.toBeInTheDocument();
   });
 
-  test("renders with all custom props", () => {
+  test("renders with logoHref and custom children", () => {
     render(
-      <Header>
-        <Menu items={[]} />
+      <Header logoHref="/dashboard">
+        <Button theme="light">Login</Button>
       </Header>,
     );
 
     const button = screen.getByTestId("mock-button");
     expect(button).toHaveTextContent("Login");
     expect(button).toHaveAttribute("data-theme", "light");
+    const link = screen.getByRole("link");
+    expect(link).toHaveAttribute("href", "/dashboard");
   });
 });

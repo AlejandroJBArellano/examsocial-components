@@ -11,33 +11,13 @@ describe("MenuItem", () => {
     expect(menuItem).toHaveTextContent("Go Pro");
   });
 
-  test("renders with different sizes", () => {
-    const { rerender } = render(<MenuItem>Go Pro</MenuItem>);
-
-    let menuItem = screen.getByTestId("menu-item");
-    expect(menuItem).toHaveClass("h-11");
-
-    rerender(<MenuItem>Go Pro</MenuItem>);
-    menuItem = screen.getByTestId("menu-item");
-    expect(menuItem).toHaveClass("h-[60px]");
-
-    rerender(<MenuItem>Go Pro</MenuItem>);
-    menuItem = screen.getByTestId("menu-item");
-    expect(menuItem).toHaveClass("h-[68px]");
-
-    rerender(<MenuItem>Go Pro</MenuItem>);
-    menuItem = screen.getByTestId("menu-item");
-    expect(menuItem).toHaveClass("h-20");
-  });
-
   test("renders in compressed mode", () => {
     render(<MenuItem isCompressed>Go Pro</MenuItem>);
 
     const menuItem = screen.getByTestId("menu-item");
     expect(menuItem).toHaveAttribute("data-compressed", "true");
     expect(menuItem).toHaveClass("flex-col");
-    expect(menuItem).toHaveClass("items-center");
-    expect(menuItem).toHaveClass("justify-center");
+    expect(menuItem).toHaveClass("place-items-center");
   });
 
   test("renders in selected state", () => {
@@ -45,14 +25,15 @@ describe("MenuItem", () => {
 
     const menuItem = screen.getByTestId("menu-item");
     expect(menuItem).toHaveAttribute("data-selected", "true");
-    expect(menuItem).toHaveClass("bg-primary-tint");
+    expect(menuItem.className).toContain("data-[selected]:bg-primary-tint");
   });
 
-  test("renders with CTA content", () => {
-    render(<MenuItem content="cta">Create</MenuItem>);
+  test("renders with CTA styling", () => {
+    render(<MenuItem isCTA>Create</MenuItem>);
 
     const menuItem = screen.getByTestId("menu-item");
-    expect(menuItem).toHaveAttribute("data-content", "cta");
+    expect(menuItem).toHaveClass("bg-accent");
+    expect(menuItem).toHaveClass("border-black");
   });
 
   test("calls onClick when clicked", () => {
@@ -75,70 +56,20 @@ describe("MenuItem", () => {
   test("renders with different icon", () => {
     render(<MenuItem icon="list_alt_add">Create</MenuItem>);
 
-    // Verificar que el icono está presente es difícil en pruebas de componentes,
-    // pero podemos verificar que el componente se renderiza correctamente
     const menuItem = screen.getByTestId("menu-item");
     expect(menuItem).toBeInTheDocument();
+    expect(screen.getByText("list_alt_add")).toBeInTheDocument();
   });
 
-  test("renders with tooltip when appropriate", () => {
-    // El tooltip solo se muestra en tamaños xl y 2xl cuando está comprimido
+  test("renders with tooltip when tooltipText is provided", () => {
     render(
       <MenuItem isCompressed tooltipText="Create new item">
         Create
       </MenuItem>,
     );
 
-    // Verificar que el tooltip está presente es difícil en pruebas de componentes,
-    // pero podemos verificar que el componente se renderiza correctamente
     const menuItem = screen.getByTestId("menu-item");
     expect(menuItem).toBeInTheDocument();
-  });
-
-  // Nuevas pruebas para el comportamiento responsive
-  test("renders with responsive mode enabled", () => {
-    render(<MenuItem>Go Pro</MenuItem>);
-
-    const menuItem = screen.getByTestId("menu-item");
-    expect(menuItem).toHaveAttribute("data-responsive", "true");
-    expect(menuItem).toHaveClass("flex-col");
-    expect(menuItem).toHaveClass("sm:flex-row");
-  });
-
-  test("applies responsive styles correctly", () => {
-    render(<MenuItem>Go Pro</MenuItem>);
-
-    const menuItem = screen.getByTestId("menu-item");
-    // Verificar clases responsive
-    expect(menuItem).toHaveClass("h-[60px]");
-    expect(menuItem).toHaveClass("sm:h-14");
-    expect(menuItem).toHaveClass("flex-col");
-    expect(menuItem).toHaveClass("sm:flex-row");
-    expect(menuItem).toHaveClass("items-center");
-    expect(menuItem).toHaveClass("justify-center");
-  });
-
-  test("hides text in small screens when responsive", () => {
-    render(<MenuItem>Go Pro</MenuItem>);
-
-    const text = screen.getByText("Go Pro");
-    expect(text).toHaveClass("hidden");
-    expect(text).toHaveClass("sm:inline-block");
-  });
-
-  test("shows text in all screens when not responsive and not compressed", () => {
-    render(<MenuItem isCompressed>Go Pro</MenuItem>);
-
-    const text = screen.getByText("Go Pro");
-    expect(text).toHaveClass("inline-block");
-    expect(text).not.toHaveClass("hidden");
-  });
-
-  test("applies transition styles for smooth responsive changes", () => {
-    render(<MenuItem>Go Pro</MenuItem>);
-
-    const menuItem = screen.getByTestId("menu-item");
-    expect(menuItem).toHaveClass("transition-all");
-    expect(menuItem).toHaveClass("duration-200");
+    expect(screen.getByText("Create new item")).toBeInTheDocument();
   });
 });

@@ -16,7 +16,7 @@ describe("Back component", () => {
   });
 
   it("should have the correct styling classes", () => {
-    render(<Back>Go Back</Back>);
+    render(<Back href="#">Go Back</Back>);
     const link = screen.getByRole("link");
     expect(link.className).toContain("inline-flex");
     expect(link.className).toContain("items-center");

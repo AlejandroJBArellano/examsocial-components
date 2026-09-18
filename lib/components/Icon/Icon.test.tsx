@@ -32,9 +32,7 @@ describe("Icon Component", () => {
     const iconElement = screen.getByText("home");
 
     // Check that the fontVariationSettings includes FILL 1
-    expect(iconElement).toHaveStyle({
-      fontVariationSettings: expect.stringContaining("'FILL' 1"),
-    });
+    expect(iconElement.style.fontVariationSettings).toContain("'FILL' 1");
   });
 
   it("applies correct font size based on size prop", () => {
@@ -48,13 +46,8 @@ describe("Icon Component", () => {
     render(<Icon name="home" weight={700} grade={200} />);
     const iconElement = screen.getByText("home");
 
-    expect(iconElement).toHaveStyle({
-      fontVariationSettings: expect.stringContaining("'wght' 700"),
-    });
-
-    expect(iconElement).toHaveStyle({
-      fontVariationSettings: expect.stringContaining("'GRAD' 200"),
-    });
+    expect(iconElement.style.fontVariationSettings).toContain("'wght' 700");
+    expect(iconElement.style.fontVariationSettings).toContain("'GRAD' 200");
   });
 
   it("calls onClick handler when clicked", () => {

@@ -9,7 +9,7 @@ describe("Tag component", () => {
   });
 
   it("has the correct classes applied", () => {
-    render(<Tag>Test Tag</Tag>);
+    render(<Tag theme="feedback-success">Test Tag</Tag>);
     const divElement = screen.getByText("Test Tag");
     expect(divElement.className).toContain("rounded-full");
     expect(divElement.className).toContain("border");

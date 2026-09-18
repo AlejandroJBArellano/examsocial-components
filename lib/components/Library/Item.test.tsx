@@ -15,11 +15,11 @@ describe("LibraryItem component", () => {
     expect(content).toBeInTheDocument();
   });
 
-  it("should render the forward arrow icon", async () => {
+  it("should render the forward arrow icon", () => {
     render(<LibraryItem title="Test Title" />);
-    const icon = await screen.findByTestId("icon");
+    const icon = screen.getByText("arrow_forward");
     expect(icon).toBeInTheDocument();
-    expect(icon.getAttribute("data-icon-name")).toBe("shape: arrow_forward");
+    expect(icon).toHaveClass("material-symbols");
   });
 
   it("should have the correct spacing classes", () => {

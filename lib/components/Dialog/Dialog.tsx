@@ -9,13 +9,15 @@ import {
 } from "react";
 import { DialogPortalContainerContext } from "./dialogPortalContext";
 
-interface DialogProps
+export interface DialogProps
   extends DetailedHTMLProps<
     DialogHTMLAttributes<HTMLDialogElement>,
     HTMLDialogElement
   > {
   /** Reference to the dialog element. Required for controlling the dialog's open/close state */
   innerRef: Ref<HTMLDialogElement>;
+  /** Whether to close the dialog when clicking the backdrop overlay */
+  closeOnBackdropClick?: boolean;
 }
 
 /**
@@ -58,7 +60,12 @@ interface DialogProps
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog MDN Dialog Element}
  */
-const Dialog = ({ innerRef, ...props }: DialogProps) => {
+const Dialog = ({
+  innerRef,
+  closeOnBackdropClick = true,
+  onClick,
+  ...props
+}: DialogProps) => {
   const [dialogElement, setDialogElement] = useState<HTMLDialogElement | null>(
     null,
   );
@@ -79,13 +86,25 @@ const Dialog = ({ innerRef, ...props }: DialogProps) => {
     [innerRef],
   );
 
+  const handleClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+    if (closeOnBackdropClick && e.target === e.currentTarget) {
+      if (dialogElement && typeof dialogElement.close === "function") {
+        dialogElement.close();
+      }
+    }
+    onClick?.(e);
+  };
+
   return (
     <DialogPortalContainerContext.Provider value={dialogElement}>
       <dialog
+        role="dialog"
+        aria-modal="true"
+        onClick={handleClick}
         {...props}
         ref={setDialogRef}
         className={cn(
-          "rounded-lg bg-light shadow-right-sm shadow-black backdrop:bg-black/50 backdrop:backdrop-blur-md",
+          "rounded-lg bg-light shadow-right-sm shadow-black backdrop:bg-black/50 backdrop:backdrop-blur-md outline-none",
           props.className,
         )}
       />

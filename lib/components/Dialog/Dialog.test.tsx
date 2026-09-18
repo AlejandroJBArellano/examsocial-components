@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import Dialog from "./Dialog";
 import { useDialogPortalContainer } from "./dialogPortalContext";
@@ -75,5 +75,35 @@ describe("Dialog", () => {
     expect(dialog).toHaveClass("shadow-black");
     expect(dialog).toHaveClass("backdrop:bg-black/50");
     expect(dialog).toHaveClass("backdrop:backdrop-blur-md");
+  });
+
+  it("closes dialog when clicking directly on backdrop overlay", () => {
+    const mockClose = vi.fn();
+    const callbackRef = (node: HTMLDialogElement | null) => {
+      if (node) {
+        node.close = mockClose;
+      }
+    };
+    const handleClick = vi.fn();
+
+    render(
+      <Dialog innerRef={callbackRef} onClick={handleClick} data-testid="test-dialog">
+        <div data-testid="dialog-inner">Inside Dialog</div>
+      </Dialog>,
+    );
+
+    const dialog = screen.getByTestId("test-dialog");
+    expect(dialog).toHaveAttribute("role", "dialog");
+    expect(dialog).toHaveAttribute("aria-modal", "true");
+
+    // Click backdrop (e.target === e.currentTarget)
+    fireEvent.click(dialog);
+    expect(mockClose).toHaveBeenCalledTimes(1);
+    expect(handleClick).toHaveBeenCalledTimes(1);
+
+    // Click child inside dialog (e.target !== e.currentTarget)
+    const child = screen.getByTestId("dialog-inner");
+    fireEvent.click(child);
+    expect(mockClose).toHaveBeenCalledTimes(1); // not called again
   });
 });

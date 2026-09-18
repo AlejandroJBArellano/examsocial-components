@@ -108,11 +108,20 @@ const Select = ({
         <Button
           type="button"
           theme="light"
+          role="combobox"
+          aria-haspopup="menu"
+          aria-expanded={isOpen}
           data-testid="trigger"
           data-state={isOpen ? "open" : "closed"}
           data-error={error}
           disabled={disabled}
           onClick={handleToggle}
+          onKeyDown={(e) => {
+            if (!isOpen && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+              e.preventDefault();
+              setOpen(true);
+            }
+          }}
           className={cn(
             "group flex w-full items-center justify-between outline-none",
             "data-[state=open]:border-primary data-[state=open]:shadow-primary",

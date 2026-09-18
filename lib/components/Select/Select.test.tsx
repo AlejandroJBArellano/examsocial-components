@@ -101,4 +101,20 @@ describe("Select Component", () => {
     fireEvent.click(screen.getByRole("menuitemcheckbox"));
     expect(handleClick).toHaveBeenCalled();
   });
+
+  it("opens closed dropdown when ArrowDown or ArrowUp key is pressed", () => {
+    render(
+      <Select text="Choose">
+        <Select.Option>Option 1</Select.Option>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole("combobox");
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByRole("menuitemcheckbox")).not.toBeInTheDocument();
+
+    fireEvent.keyDown(trigger, { key: "ArrowDown" });
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByRole("menuitemcheckbox")).toBeInTheDocument();
+  });
 });

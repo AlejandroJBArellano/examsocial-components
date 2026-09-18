@@ -1,10 +1,43 @@
 import { cn } from "@/utils";
-import * as Checkbox from "@radix-ui/react-checkbox";
+import React, { useState } from "react";
+import { CheckboxProps } from "../Checkbox";
 import { Icon } from "../Icon";
 
-const AnswerToggle = ({ className, ...props }: Checkbox.CheckboxProps) => {
+export type AnswerToggleProps = CheckboxProps;
+
+const AnswerToggle = ({
+  checked: controlledChecked,
+  defaultChecked = false,
+  onCheckedChange,
+  disabled,
+  className,
+  onClick,
+  ...props
+}: AnswerToggleProps) => {
+  const [uncontrolledChecked, setUncontrolledChecked] = useState(defaultChecked);
+  const isControlled = controlledChecked !== undefined;
+  const isChecked = isControlled ? controlledChecked === true : uncontrolledChecked;
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (disabled) return;
+    const nextChecked = !isChecked;
+    if (!isControlled) {
+      setUncontrolledChecked(nextChecked);
+    }
+    onCheckedChange?.(nextChecked);
+    onClick?.(e);
+  };
+
   return (
-    <Checkbox.Root
+    <button
+      type="button"
+      role="checkbox"
+      aria-checked={isChecked}
+      data-state={isChecked ? "checked" : "unchecked"}
+      data-disabled={disabled ? "" : undefined}
+      data-checked={isChecked ? "true" : undefined}
+      disabled={disabled}
+      onClick={handleClick}
       {...props}
       className={cn(
         "flex aspect-square h-8 w-8 items-center justify-center rounded-md border border-black p-[7px] transition-all duration-300 ease-in-out xl:h-10 xl:w-10 xl:p-2",
@@ -14,18 +47,21 @@ const AnswerToggle = ({ className, ...props }: Checkbox.CheckboxProps) => {
         className,
       )}
     >
-      <Checkbox.Indicator className="flex h-5 w-5 place-items-center xl:h-6 xl:w-6">
-        <Icon
-          name="check"
-          data-testid="CheckIcon"
-          size={20}
-          responsiveSizes={{
-            xl: 24,
-          }}
-        />
-      </Checkbox.Indicator>
-    </Checkbox.Root>
+      {isChecked && (
+        <span className="flex h-5 w-5 place-items-center xl:h-6 xl:w-6">
+          <Icon
+            name="check"
+            data-testid="CheckIcon"
+            size={20}
+            responsiveSizes={{
+              xl: 24,
+            }}
+          />
+        </span>
+      )}
+    </button>
   );
 };
 
 export default AnswerToggle;
+

@@ -75,25 +75,25 @@ const getPositionClasses = (
 
   if (side === "top") {
     sideClass = "bottom-full mb-2";
-    arrowClass = "top-full left-1/2 -translate-x-1/2";
+    arrowClass = "top-[calc(100%-1px)] left-1/2 -translate-x-1/2";
     if (align === "center") alignClass = "left-1/2 -translate-x-1/2";
     else if (align === "start") alignClass = "left-0";
     else alignClass = "right-0";
   } else if (side === "bottom") {
     sideClass = "top-full mt-2";
-    arrowClass = "bottom-full left-1/2 -translate-x-1/2 rotate-180";
+    arrowClass = "bottom-[calc(100%-1px)] left-1/2 -translate-x-1/2 rotate-180";
     if (align === "center") alignClass = "left-1/2 -translate-x-1/2";
     else if (align === "start") alignClass = "left-0";
     else alignClass = "right-0";
   } else if (side === "left") {
     sideClass = "right-full mr-2";
-    arrowClass = "left-full top-1/2 -translate-y-1/2 -rotate-90";
+    arrowClass = "left-[calc(100%-1px)] top-1/2 -translate-y-1/2 -rotate-90";
     if (align === "center") alignClass = "top-1/2 -translate-y-1/2";
     else if (align === "start") alignClass = "top-0";
     else alignClass = "bottom-0";
   } else {
     sideClass = "left-full ml-2";
-    arrowClass = "right-full top-1/2 -translate-y-1/2 rotate-90";
+    arrowClass = "right-[calc(100%-1px)] top-1/2 -translate-y-1/2 rotate-90";
     if (align === "center") alignClass = "top-1/2 -translate-y-1/2";
     else if (align === "start") alignClass = "top-0";
     else alignClass = "bottom-0";
@@ -180,15 +180,20 @@ export const Tooltip = ({
           data-testid="tooltip-arrow"
           xmlns="http://www.w3.org/2000/svg"
           width="12"
-          height="9"
-          viewBox="0 0 12 9"
+          height="12"
+          viewBox="0 0 12 12"
           fill="none"
-          className={cn("absolute", arrowClass)}
+          className={cn("pointer-events-none absolute overflow-visible", arrowClass)}
         >
-          <path
-            d="M10.3301 0.5L6 8L1.66987 0.499999L10.3301 0.5Z"
+          <polygon
+            points="0,-1 12,-1 6,8"
             className={themeSVG[theme]}
+          />
+          <path
+            d="M0 0L6 8L12 0"
+            fill="none"
             stroke="black"
+            strokeWidth="1"
           />
         </svg>
       </div>

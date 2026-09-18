@@ -124,14 +124,18 @@ export const Tooltip = ({
 
   const handleOpen = () => {
     if (disabled) return;
+    if (isControlled) {
+      onOpenChange?.(true);
+      return;
+    }
     if (delayDuration > 0) {
       const timeout = setTimeout(() => {
-        if (!isControlled) setUncontrolledOpen(true);
+        setUncontrolledOpen(true);
         onOpenChange?.(true);
       }, delayDuration);
       setTimer(timeout);
     } else {
-      if (!isControlled) setUncontrolledOpen(true);
+      setUncontrolledOpen(true);
       onOpenChange?.(true);
     }
   };
@@ -141,7 +145,11 @@ export const Tooltip = ({
       clearTimeout(timer);
       setTimer(null);
     }
-    if (!isControlled) setUncontrolledOpen(false);
+    if (isControlled) {
+      onOpenChange?.(false);
+      return;
+    }
+    setUncontrolledOpen(false);
     onOpenChange?.(false);
   };
 
@@ -149,7 +157,7 @@ export const Tooltip = ({
 
   return (
     <div
-      className="group relative inline-flex"
+      className={cn("relative inline-flex", !isControlled && !disabled && "group")}
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}
       onFocus={handleOpen}
@@ -172,7 +180,9 @@ export const Tooltip = ({
           contentClassName,
           isOpen
             ? "visible opacity-100 pointer-events-auto"
-            : "invisible opacity-0 pointer-events-none group-hover:visible group-hover:opacity-100",
+            : !isControlled && !disabled
+              ? "invisible opacity-0 pointer-events-none group-hover:visible group-hover:opacity-100"
+              : "invisible opacity-0 pointer-events-none",
         )}
       >
         {children}

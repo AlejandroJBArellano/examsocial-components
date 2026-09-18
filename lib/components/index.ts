@@ -32,5 +32,6 @@ export * from "./Switch";
 export * from "./Tab";
 export * from "./Tag";
 export * from "./Textarea";
+export * from "./Theme";
 export * from "./Tooltip";
 export * from "./Wrapper";

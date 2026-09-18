@@ -1,7 +1,8 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
-import { Dialog } from ".";
+import { describe, expect, it, vi } from "vitest";
+import Dialog from "./Dialog";
+import { useDialogPortalContainer } from "./dialogPortalContext";
 
 describe("Dialog", () => {
   it("renders with basic props", () => {
@@ -39,6 +40,24 @@ describe("Dialog", () => {
     expect(dialog).toHaveAttribute("open");
     expect(dialog).toHaveAttribute("id", "test-id");
     expect(dialog).toHaveAttribute("aria-label", "Test Dialog");
+  });
+
+  it("supports innerRef as a callback and provides portal container context", () => {
+    const callbackRef = vi.fn();
+
+    const Child = () => {
+      const container = useDialogPortalContainer();
+      return <div data-testid="has-container">{container ? "yes" : "no"}</div>;
+    };
+
+    render(
+      <Dialog innerRef={callbackRef}>
+        <Child />
+      </Dialog>,
+    );
+
+    expect(callbackRef).toHaveBeenCalled();
+    expect(screen.getByTestId("has-container")).toHaveTextContent("yes");
   });
 
   it("merges custom className with default classes", () => {

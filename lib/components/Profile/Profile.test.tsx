@@ -62,6 +62,20 @@ describe("Profile Component", () => {
     expect(button).toHaveClass("hover:border-black");
   });
 
+  it("toggles filled state on hover", () => {
+    render(<Profile gender="male" />);
+    const button = screen.getByRole("button");
+    const placeholder = screen.getByTestId("profile-placeholder");
+
+    expect(placeholder).toHaveAttribute("data-filled", "false");
+
+    fireEvent.mouseEnter(button);
+    expect(placeholder).toHaveAttribute("data-filled", "true");
+
+    fireEvent.mouseLeave(button);
+    expect(placeholder).toHaveAttribute("data-filled", "false");
+  });
+
   it("can be clicked", () => {
     const handleClick = vi.fn();
     render(

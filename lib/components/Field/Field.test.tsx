@@ -115,3 +115,85 @@ describe("Field.Switch Component", () => {
     expect(switchElement.getAttribute("aria-checked")).toBe("true");
   });
 });
+
+describe("Field.Checkbox Component", () => {
+  it("renders checkbox with label, option, and helper text", () => {
+    render(
+      <Field.Checkbox option="Agree" helperText="Required">
+        Terms
+      </Field.Checkbox>,
+    );
+    expect(screen.getByText("Terms")).toBeInTheDocument();
+    expect(screen.getByText("Agree")).toBeInTheDocument();
+    expect(screen.getByText("Required")).toBeInTheDocument();
+    expect(screen.getByRole("checkbox")).toBeInTheDocument();
+  });
+});
+
+describe("Field.Radio Component", () => {
+  it("renders radio group with label and option", () => {
+    render(
+      <Field.Radio
+        option="Radio Option"
+        helperText="Select one"
+        radioProps={{
+          items: [{ value: "1", label: "One" }],
+        }}
+      >
+        Choose
+      </Field.Radio>,
+    );
+    expect(screen.getByText("Choose")).toBeInTheDocument();
+    expect(screen.getByText("Radio Option")).toBeInTheDocument();
+    expect(screen.getByText("Select one")).toBeInTheDocument();
+    expect(screen.getByRole("radio")).toBeInTheDocument();
+  });
+});
+
+describe("Field.Select Component", () => {
+  it("renders select field with label, helper, and error", () => {
+    render(
+      <Field.Select
+        label="Country"
+        helperText="Your home country"
+        error="Field required"
+        selectProps={{ text: "Select Country" }}
+      >
+        <div>Options</div>
+      </Field.Select>,
+    );
+    expect(screen.getByText("Country")).toBeInTheDocument();
+    expect(screen.getByText("Field required")).toBeInTheDocument();
+    expect(screen.getByText("Select Country")).toBeInTheDocument();
+  });
+});
+
+describe("Field.Switch Component", () => {
+  it("renders switch field with helper text", () => {
+    render(
+      <Field.Switch helperText="Enable notifications switch">
+        Notifications
+      </Field.Switch>,
+    );
+    expect(screen.getByText("Notifications")).toBeInTheDocument();
+    expect(screen.getByText("help")).toBeInTheDocument();
+  });
+});
+
+describe("Field.Textarea Component", () => {
+  it("renders textarea field with helperText and error", () => {
+    render(
+      <Field.Textarea
+        label="Biography"
+        helperText="Max 500 characters"
+        error="Bio is too short"
+        textareaProps={{ id: "bio", placeholder: "Tell us about you" }}
+      />,
+    );
+    expect(screen.getByText("Biography")).toBeInTheDocument();
+    expect(screen.getByText("Max 500 characters")).toBeInTheDocument();
+    expect(screen.getByText("Bio is too short")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Tell us about you")).toBeInTheDocument();
+  });
+});
+

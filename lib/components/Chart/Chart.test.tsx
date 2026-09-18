@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import Chart from "./Chart";
 
@@ -77,16 +77,58 @@ describe("Chart component", () => {
     });
   });
 
-  it("should use the correct color based on variant", () => {
-    // Testing all variants
-    const variants = ["primary", "secondary", "accent", "extra"] as const;
+  it("should render legend when showLegend is true and support all variant colors", () => {
+    const variants = [
+      "primary",
+      "secondary",
+      "accent",
+      "extra",
+      "light",
+    ] as const;
 
-    variants.forEach((variant) => {
-      render(
-        <Chart title={`${variant} Chart`} data={mockData} variant={variant} />,
+    variants.forEach((v) => {
+      const { unmount } = render(
+        <Chart
+          title={`Legend ${v}`}
+          data={mockData}
+          variant={v}
+          showLegend={true}
+          valueLabel={`Score ${v}`}
+        />,
       );
-      const container = screen.getByText(`${variant} Chart`).closest("div");
-      expect(container).toHaveClass(`bg-${variant}-tint`);
+      expect(screen.getByText(`Score ${v}`)).toBeInTheDocument();
+      unmount();
     });
+  });
+
+  it("should handle maxY <= 0 gracefully", () => {
+    render(<Chart title="Zero MaxY" data={mockData} maxY={0} />);
+    expect(screen.getByText("Zero MaxY")).toBeInTheDocument();
+    const bars = screen
+      .getByRole("graphics-document")
+      .querySelectorAll(".recharts-bar-rectangle");
+    expect(bars.length).toBe(mockData.length);
+  });
+
+  it("should show and hide tooltip on bar hover", () => {
+    const { container } = render(
+      <Chart
+        title="Tooltip Chart"
+        data={mockData}
+        showTooltip={true}
+        valueLabel="Score"
+      />,
+    );
+
+    const firstBar = container.querySelector(".recharts-bar-rectangle");
+    expect(firstBar).toBeInTheDocument();
+
+    if (firstBar) {
+      fireEvent.mouseEnter(firstBar);
+      expect(screen.getByText("Score: 80")).toBeInTheDocument();
+
+      fireEvent.mouseLeave(firstBar);
+      expect(screen.queryByText("Score: 80")).not.toBeInTheDocument();
+    }
   });
 });

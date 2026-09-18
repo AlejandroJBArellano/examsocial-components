@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
-import { Drawer } from "./Drawer";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { Drawer, useDrawer } from "./Drawer";
 
 describe("Drawer Component", () => {
   it("renders Root component correctly", () => {
@@ -54,7 +54,6 @@ describe("Drawer Component", () => {
   it("renders Handle component with correct styles", () => {
     const { container } = render(<Drawer.Handle />);
 
-    // Get the div directly from the container since it doesn't have a testid or role
     const handle = container.firstChild as HTMLElement;
     expect(handle).toBeInTheDocument();
     expect(handle.className).toContain("rounded-full");
@@ -73,6 +72,7 @@ describe("Drawer Component", () => {
               <Drawer.Title>Full Drawer Example</Drawer.Title>
               <p>This is drawer content</p>
             </div>
+            <Drawer.Close>Close Drawer</Drawer.Close>
           </Drawer.Content>
         </Drawer.Portal>
       </Drawer.Root>,
@@ -85,7 +85,38 @@ describe("Drawer Component", () => {
     expect(screen.getByTestId("drawer-content")).toBeInTheDocument();
     expect(screen.getByText("Full Drawer Example")).toBeInTheDocument();
     expect(screen.getByText("This is drawer content")).toBeInTheDocument();
+    expect(screen.getByTestId("drawer-close")).toBeInTheDocument();
   });
+
+  it("opens on trigger click and closes on overlay click, close click, and Escape", () => {
+    const onOpenChange = vi.fn();
+    render(
+      <Drawer.Root onOpenChange={onOpenChange}>
+        <Drawer.Trigger>Open Drawer</Drawer.Trigger>
+        <Drawer.Portal>
+          <Drawer.Overlay />
+          <Drawer.Content>
+            <Drawer.Close>Close Drawer</Drawer.Close>
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>,
+    );
+
+    fireEvent.click(screen.getByTestId("drawer-trigger"));
+    expect(onOpenChange).toHaveBeenCalledWith(true);
+
+    fireEvent.click(screen.getByTestId("drawer-overlay"));
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+
+    fireEvent.click(screen.getByTestId("drawer-trigger"));
+    fireEvent.click(screen.getByTestId("drawer-close"));
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+
+    fireEvent.click(screen.getByTestId("drawer-trigger"));
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+  });
+
 
   it("applies custom className to components", () => {
     const { container } = render(
@@ -103,10 +134,63 @@ describe("Drawer Component", () => {
     expect(screen.getByTestId("drawer-content")).toHaveClass("custom-content");
     expect(screen.getByText("Title").closest("h4")).toHaveClass("custom-title");
 
-    // Find the Handle element in the container
     const handleElements = Array.from(container.querySelectorAll("div")).filter(
       (el) => el.className.includes("custom-handle"),
     );
     expect(handleElements[0]).toHaveClass("custom-handle");
+  });
+
+  it("calls custom onClick handlers and supports default Close children and controlled mode", () => {
+    const handleTriggerClick = vi.fn();
+    const handleOverlayClick = vi.fn();
+    const handleCloseClick = vi.fn();
+    const handleOpenChange = vi.fn();
+
+    const { rerender } = render(
+      <Drawer.Root open={false} onOpenChange={handleOpenChange}>
+        <Drawer.Trigger onClick={handleTriggerClick}>Open</Drawer.Trigger>
+        <Drawer.Portal>
+          <Drawer.Overlay onClick={handleOverlayClick} />
+          <Drawer.Content>
+            <Drawer.Close onClick={handleCloseClick} />
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>,
+    );
+
+    expect(screen.getByText("Close")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId("drawer-trigger"));
+    expect(handleTriggerClick).toHaveBeenCalled();
+    expect(handleOpenChange).toHaveBeenCalledWith(true);
+
+    rerender(
+      <Drawer.Root open={true} onOpenChange={handleOpenChange}>
+        <Drawer.Trigger onClick={handleTriggerClick}>Open</Drawer.Trigger>
+        <Drawer.Portal>
+          <Drawer.Overlay onClick={handleOverlayClick} />
+          <Drawer.Content>
+            <Drawer.Close onClick={handleCloseClick} />
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>,
+    );
+
+    fireEvent.click(screen.getByTestId("drawer-overlay"));
+    expect(handleOverlayClick).toHaveBeenCalled();
+
+    fireEvent.click(screen.getByTestId("drawer-close"));
+    expect(handleCloseClick).toHaveBeenCalled();
+  });
+
+  it("useDrawer default context function can be called safely", () => {
+    let contextValue: { open: boolean; setOpen: (open: boolean) => void } | undefined;
+    const TestComp = () => {
+      contextValue = useDrawer();
+      return null;
+    };
+    render(<TestComp />);
+    expect(contextValue?.open).toBe(true);
+    expect(() => contextValue?.setOpen(false)).not.toThrow();
   });
 });

@@ -57,4 +57,31 @@ describe("Icon Component", () => {
     fireEvent.click(screen.getByText("home"));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
+
+  it("supports responsiveSizes and aria-label and replaces existing style", () => {
+    const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0.123456789);
+
+    const { rerender } = render(
+      <Icon
+        name="settings"
+        aria-label="Settings Icon"
+        responsiveSizes={{ sm: 16, md: 20, xl: 24, "2xl": 32 }}
+      />,
+    );
+
+    const icon = screen.getByRole("img", { name: "Settings Icon" });
+    expect(icon).toBeInTheDocument();
+
+    // Rerender with the same mocked styleId to trigger style removal branch
+    rerender(
+      <Icon
+        name="settings"
+        aria-label="Settings Icon"
+        responsiveSizes={{ sm: 18, md: 22 }}
+      />,
+    );
+    expect(icon).toBeInTheDocument();
+
+    randomSpy.mockRestore();
+  });
 });

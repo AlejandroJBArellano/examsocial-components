@@ -146,4 +146,16 @@ describe("ImageInput component", () => {
       expect(screen.queryByText("Drop it like it's hot")).toBeNull();
     }
   });
+
+  it("handles dragOver event", () => {
+    const mockOnChange = vi.fn();
+    const { container } = render(<ImageInput onChange={mockOnChange} />);
+    const labelElement = container.querySelector("label");
+    expect(labelElement).not.toBeNull();
+
+    if (labelElement) {
+      fireEvent.dragOver(labelElement);
+      expect(screen.getByText("Drop it like it's hot")).toBeInTheDocument();
+    }
+  });
 });

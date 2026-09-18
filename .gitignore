@@ -26,5 +26,6 @@ dist-ssr
 *storybook.log
 .cache/
 storybook-static/
-
+dist-storybook/
+coverage/
 .vscode/

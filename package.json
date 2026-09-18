@@ -2,17 +2,20 @@
   "name": "examsocial-components",
   "version": "0.3.2",
   "type": "module",
-  "main": "./dist/index.umd.js",
-  "module": "./dist/index.es.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "*.css",
+    "./dist/*.css"
+  ],
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./fonts/*": "./dist/fonts/*",
     "./index.css": "./dist/index.css"
@@ -20,6 +23,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "check": "tsc --noEmit && vitest run",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
@@ -27,16 +31,14 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@react-email/components": "^0.0.33",
-    "@testing-library/react": "^16.2.0",
     "clsx": "^2.1.1",
-    "date-fns": "^4.1.0",
     "formik": "^2.4.6",
     "material-symbols": "^0.29.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-themer": "^4.1.1"
   },
   "devDependencies": {
+    "@testing-library/react": "^16.2.0",
     "@chromatic-com/storybook": "^3.2.4",
     "@eslint/js": "^9.17.0",
     "@storybook/addon-essentials": "^8.5.1",

@@ -1,42 +1,57 @@
 import react from "@vitejs/plugin-react";
+import fs from "node:fs";
 import { resolve } from "path";
 import tailwindcss from "tailwindcss";
-import { defineConfig } from "vite";
+import { defineConfig, Plugin } from "vite";
 import dts from "vite-plugin-dts";
-import packageJson from "./package.json" assert { type: "json" };
+import packageJson from "./package.json" with { type: "json" };
 
 const externalPackages = [
   ...Object.keys(packageJson.dependencies || {}),
   ...Object.keys(packageJson.peerDependencies || {}),
 ];
+
+function copyFontsPlugin(): Plugin {
+  return {
+    name: "copy-fonts-plugin",
+    closeBundle() {
+      const src = resolve(__dirname, "lib/fonts");
+      const dest = resolve(__dirname, "dist/fonts");
+      if (fs.existsSync(src)) {
+        fs.mkdirSync(dest, { recursive: true });
+        fs.cpSync(src, dest, { recursive: true });
+      }
+    },
+  };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "./lib/index.ts"),
-      name: "examsocial-components",
-      fileName: (format) => `index.${format}.js`,
+      formats: ["es"],
+      fileName: () => "index.js",
     },
     rollupOptions: {
       external: externalPackages,
       output: {
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-          tailwindcss: "tailwindcss",
+        manualChunks(id) {
+          if (id.includes("lib/illustrations")) {
+            return "illustrations";
+          }
         },
+        chunkFileNames: "[name].js",
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "style.css") return "tailwind.css";
+          if (assetInfo.name?.endsWith(".css")) return "index.css";
           return assetInfo.name || "";
         },
       },
     },
     sourcemap: true,
     emptyOutDir: true,
-    // Asegurarse de que los estilos CSS se generen como archivos separados
-    cssCodeSplit: true,
   },
-  plugins: [react(), dts({ rollupTypes: true })],
+  plugins: [react(), dts(), copyFontsPlugin()],
   css: {
     postcss: {
       plugins: [tailwindcss],

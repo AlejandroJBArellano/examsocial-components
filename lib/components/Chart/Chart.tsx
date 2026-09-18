@@ -1,17 +1,7 @@
+"use client";
+
 import { cn } from "@/utils";
-import React from "react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  ReferenceLine,
-  ResponsiveContainer,
-  Tooltip,
-  TooltipProps,
-  XAxis,
-  YAxis,
-} from "recharts";
+import React, { useState } from "react";
 import { Heading3 } from "../FontFaces";
 
 export interface ChartDataPoint {
@@ -58,29 +48,6 @@ export interface ChartProps {
   valueLabel?: string;
 }
 
-/**
- * Custom tooltip component
- */
-const CustomTooltip = ({
-  active,
-  payload,
-  label,
-  valueLabel,
-}: TooltipProps<number, string> & { valueLabel?: string }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="rounded border border-black bg-light p-2 shadow-md">
-        <p className="font-semibold">{label}</p>
-        <p className="text-sm">{`${valueLabel || "Value"}: ${payload[0].value}`}</p>
-      </div>
-    );
-  }
-  return null;
-};
-
-/**
- * Chart component that uses Recharts with custom styling
- */
 const Chart: React.FC<ChartProps> = ({
   title,
   data,
@@ -92,26 +59,27 @@ const Chart: React.FC<ChartProps> = ({
   animated = true,
   valueLabel = "Value",
 }) => {
-  // Format the data for Recharts
-  const chartData = data.map((item) => ({
-    name: item.label,
-    value: item.value,
-  }));
+  const [hoveredPoint, setHoveredPoint] = useState<{
+    label: string;
+    value: number;
+    x: number;
+    y: number;
+  } | null>(null);
 
   // Determine the color based on variant
   const getColor = () => {
     switch (variant) {
       case "secondary":
-        return "#B9B2FF"; // secondary color
+        return "#B9B2FF";
       case "accent":
-        return "#FF5C96"; // accent color
+        return "#FF5C96";
       case "extra":
-        return "#FFC34D"; // extra color
+        return "#FFC34D";
       case "light":
-        return "#E0E0E0"; // light gray color for bars
+        return "#E0E0E0";
       case "primary":
       default:
-        return "#FFC34D"; // default to extra color for consistency with previous design
+        return "#FFC34D";
     }
   };
 
@@ -124,10 +92,27 @@ const Chart: React.FC<ChartProps> = ({
     light: "bg-light",
   };
 
-  // Define the stroke color based on variant
   const getStrokeColor = () => {
     return variant === "light" ? "#AAAAAA" : "#000000";
   };
+
+  const svgWidth = 600;
+  const svgHeight = 280;
+  const paddingLeft = 40;
+  const paddingRight = 20;
+  const paddingTop = 20;
+  const paddingBottom = 40;
+
+  const chartWidth = svgWidth - paddingLeft - paddingRight;
+  const chartHeight = svgHeight - paddingTop - paddingBottom;
+
+  const yTicks = [0, 0.2, 0.4, 0.6, 0.8, 1].map((ratio) =>
+    Math.round(maxY * ratio),
+  );
+
+  const numBars = data.length;
+  const slotWidth = numBars > 0 ? chartWidth / numBars : chartWidth;
+  const barWidth = Math.min(24, slotWidth * 0.5);
 
   return (
     <div
@@ -139,61 +124,160 @@ const Chart: React.FC<ChartProps> = ({
     >
       <Heading3>{title}</Heading3>
 
+      {showLegend && (
+        <div className="flex items-center gap-2 pt-2 text-sm font-medium">
+          <span
+            className="inline-block h-3 w-3 rounded-sm border border-black"
+            style={{ backgroundColor: getColor() }}
+          />
+          <span>{valueLabel}</span>
+        </div>
+      )}
+
       <div className="h-80 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={chartData}
-            margin={{ top: 20, right: 30, left: 30, bottom: 30 }}
-            barSize={20}
-            barGap={2}
+        <div
+          data-testid="responsive-container"
+          style={{ width: "100%", height: "100%" }}
+          className="relative w-full h-full"
+        >
+          <svg
+            role="graphics-document"
+            viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+            className="h-full w-full overflow-visible"
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              horizontal={true}
-              vertical={false}
-              stroke={variant === "light" ? "#E6E6E6" : "#E6E6E6"}
-            />
-            <XAxis
-              dataKey="name"
-              axisLine={{ stroke: getStrokeColor(), strokeWidth: 2 }}
-              tickLine={false}
-              padding={{ left: 10, right: 10 }}
-            />
-            <YAxis
-              domain={[0, maxY]}
-              axisLine={false}
-              tickLine={false}
-              tickCount={6}
-            />
-            <ReferenceLine y={0} stroke={getStrokeColor()} strokeWidth={2} />
-            {showTooltip && (
-              <Tooltip
-                content={<CustomTooltip valueLabel={valueLabel} />}
-                cursor={{ fill: "rgba(0, 0, 0, 0.1)" }}
-              />
-            )}
-            {showLegend && (
-              <Legend
-                verticalAlign="top"
-                height={36}
-                wrapperStyle={{ paddingTop: "10px" }}
-              />
-            )}
-            <Bar
-              name={valueLabel}
-              dataKey="value"
-              fill={getColor()}
+            {/* Grid horizontal lines */}
+            {yTicks.map((tick) => {
+              const y =
+                paddingTop +
+                chartHeight -
+                (maxY > 0 ? (tick / maxY) * chartHeight : 0);
+              return (
+                <line
+                  key={tick}
+                  x1={paddingLeft}
+                  y1={y}
+                  x2={paddingLeft + chartWidth}
+                  y2={y}
+                  stroke={variant === "light" ? "#E6E6E6" : "#E6E6E6"}
+                  strokeDasharray="3 3"
+                />
+              );
+            })}
+
+            {/* Y Axis */}
+            <g className="recharts-yAxis text-xs font-sans fill-gray-500">
+              {yTicks.map((tick) => {
+                const y =
+                  paddingTop +
+                  chartHeight -
+                  (maxY > 0 ? (tick / maxY) * chartHeight : 0);
+                return (
+                  <text
+                    key={tick}
+                    x={paddingLeft - 8}
+                    y={y + 4}
+                    textAnchor="end"
+                    fontSize="11"
+                    className="select-none"
+                  >
+                    {tick}
+                  </text>
+                );
+              })}
+            </g>
+
+            {/* Baseline */}
+            <line
+              x1={paddingLeft}
+              y1={paddingTop + chartHeight}
+              x2={paddingLeft + chartWidth}
+              y2={paddingTop + chartHeight}
               stroke={getStrokeColor()}
-              strokeWidth={1}
-              isAnimationActive={animated}
-              animationDuration={animated ? 1500 : 0}
-              animationEasing="ease-out"
+              strokeWidth={2}
             />
-          </BarChart>
-        </ResponsiveContainer>
+
+            {/* Bars */}
+            {data.map((item, index) => {
+              const barHeight =
+                maxY > 0
+                  ? (Math.min(Math.max(item.value, 0), maxY) / maxY) *
+                    chartHeight
+                  : 0;
+              const x =
+                paddingLeft +
+                index * slotWidth +
+                (slotWidth - barWidth) / 2;
+              const y = paddingTop + chartHeight - barHeight;
+
+              return (
+                <rect
+                  key={item.label}
+                  x={x}
+                  y={y}
+                  width={barWidth}
+                  height={barHeight}
+                  fill={getColor()}
+                  stroke={getStrokeColor()}
+                  strokeWidth={1}
+                  className={cn(
+                    "recharts-bar-rectangle cursor-pointer transition-all duration-300 hover:opacity-80",
+                    animated && "transition-all",
+                  )}
+                  onMouseEnter={() => {
+                    if (showTooltip) {
+                      setHoveredPoint({
+                        label: item.label,
+                        value: item.value,
+                        x: (x / svgWidth) * 100,
+                        y: (y / svgHeight) * 100,
+                      });
+                    }
+                  }}
+                  onMouseLeave={() => setHoveredPoint(null)}
+                />
+              );
+            })}
+
+            {/* X Axis */}
+            <g className="recharts-xAxis text-xs font-sans fill-gray-700">
+              {data.map((item, index) => {
+                const x = paddingLeft + index * slotWidth + slotWidth / 2;
+                const y = paddingTop + chartHeight + 20;
+
+                return (
+                  <text
+                    key={item.label}
+                    x={x}
+                    y={y}
+                    textAnchor="middle"
+                    fontSize="12"
+                    className="select-none"
+                  >
+                    {item.label}
+                  </text>
+                );
+              })}
+            </g>
+          </svg>
+
+          {/* Floating Tooltip */}
+          {showTooltip && hoveredPoint && (
+            <div
+              className="pointer-events-none absolute z-20 -translate-x-1/2 -translate-y-full rounded border border-black bg-light p-2 shadow-md text-xs"
+              style={{
+                left: `${hoveredPoint.x}%`,
+                top: `${hoveredPoint.y}%`,
+              }}
+            >
+              <p className="font-semibold">{hoveredPoint.label}</p>
+              <p className="text-sm">{`${valueLabel}: ${hoveredPoint.value}`}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
 export default Chart;
+

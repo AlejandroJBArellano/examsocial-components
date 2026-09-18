@@ -2,34 +2,6 @@ import { render } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import Chart from "./Chart";
 
-// Mock Recharts to allow testing of responsive behavior
-vi.mock("recharts", async () => {
-  const actual = await vi.importActual("recharts");
-
-  return {
-    ...actual,
-    ResponsiveContainer: ({
-      children,
-      width,
-      height,
-    }: {
-      children: React.ReactNode;
-      width: string | number;
-      height: string | number;
-    }) => (
-      <div
-        data-testid="responsive-container"
-        style={{
-          width: typeof width === "string" ? width : `${width}px`,
-          height: typeof height === "string" ? height : `${height}px`,
-        }}
-      >
-        {children}
-      </div>
-    ),
-  };
-});
-
 describe("Chart Responsiveness", () => {
   const mockData = [
     { label: "A", value: 80 },

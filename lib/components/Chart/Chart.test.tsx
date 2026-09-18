@@ -1,17 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import Chart from "./Chart";
-
-// Mock Recharts to avoid issues with ResponsiveContainer in tests
-vi.mock("recharts", async () => {
-  const actual = await vi.importActual("recharts");
-  return {
-    ...actual,
-    ResponsiveContainer: ({ children }: { children: React.ReactNode }) => (
-      <div data-testid="responsive-container">{children}</div>
-    ),
-  };
-});
 
 describe("Chart component", () => {
   const mockData = [

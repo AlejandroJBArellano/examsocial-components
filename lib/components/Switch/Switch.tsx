@@ -50,7 +50,7 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         onClick={handleClick}
         {...props}
         className={cn(
-          "group flex w-20 min-w-20 rounded-full border border-black transition-all duration-300 ease-in-out data-[disabled]:cursor-not-allowed data-[state=checked]:justify-end data-[state=checked]:bg-primary",
+          "group flex w-20 min-w-20 rounded-full border border-black transition-all duration-300 ease-in-out data-[disabled]:cursor-not-allowed data-[state=checked]:bg-primary",
           className,
           {
             "p-[1px] xl:p-[3px]": size === "smoll",
@@ -60,10 +60,12 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
       >
         <span
           className={cn(
-            "block rounded-full bg-black group-data-[state=checked]:bg-light",
+            "block rounded-full bg-black transition-all duration-300 ease-in-out group-data-[state=checked]:bg-light",
             {
-              "h-7 w-7 xl:h-8 xl:w-8": size === "default" || !size,
-              "h-4 w-4 xl:h-5 xl:w-5": size === "smoll",
+              "h-7 w-7 xl:h-8 xl:w-8 group-data-[state=checked]:translate-x-11 xl:group-data-[state=checked]:translate-x-10":
+                size === "default" || !size,
+              "h-4 w-4 xl:h-5 xl:w-5 group-data-[state=checked]:translate-x-[60px] xl:group-data-[state=checked]:translate-x-13":
+                size === "smoll",
             },
           )}
         />

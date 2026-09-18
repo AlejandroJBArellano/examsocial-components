@@ -1,39 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { Tooltip } from ".";
-
-// Mock de RadixTooltip ya que usa Portal que no funciona bien en pruebas
-vi.mock("@radix-ui/react-tooltip", () => {
-  return {
-    Root: ({ children }: { children: React.ReactNode }) => (
-      <div>{children}</div>
-    ),
-    Trigger: ({ children }: { children: React.ReactNode }) => (
-      <div data-testid="tooltip-trigger">{children}</div>
-    ),
-    Content: ({
-      children,
-      className,
-    }: {
-      children: React.ReactNode;
-      className: string;
-    }) => (
-      <div data-testid="tooltip-content" className={className}>
-        {children}
-      </div>
-    ),
-    Provider: ({ children }: { children: React.ReactNode }) => (
-      <div>{children}</div>
-    ),
-    Portal: ({ children }: { children: React.ReactNode }) => (
-      <div>{children}</div>
-    ),
-    Arrow: ({ children }: { children: React.ReactNode }) => (
-      <div data-testid="tooltip-arrow">{children}</div>
-    ),
-  };
-});
 
 describe("Tooltip", () => {
   it("renders correctly with default props", () => {

@@ -1,8 +1,7 @@
-import * as RadixTooltip from "@radix-ui/react-tooltip";
-import { PropsWithChildren, ReactNode } from "react";
-import { useDialogPortalContainer } from "../Dialog/dialogPortalContext";
+import { cn } from "@/utils";
+import { PropsWithChildren, ReactNode, useId, useState } from "react";
 
-interface TooltipProps extends PropsWithChildren {
+export interface TooltipProps extends PropsWithChildren {
   /**
    * Alineación horizontal del tooltip
    */
@@ -42,6 +41,11 @@ interface TooltipProps extends PropsWithChildren {
   defaultOpen?: boolean;
 
   /**
+   * Desactivar tooltip
+   */
+  disabled?: boolean;
+
+  /**
    * Container opcional para el portal del tooltip
    */
   container?: HTMLElement;
@@ -61,7 +65,44 @@ const themeBackground = {
   accent: "bg-accent",
 };
 
-const Tooltip = ({
+const getPositionClasses = (
+  side: "top" | "bottom" | "left" | "right",
+  align: "start" | "center" | "end",
+) => {
+  let sideClass = "";
+  let alignClass = "";
+  let arrowClass = "";
+
+  if (side === "top") {
+    sideClass = "bottom-full mb-2";
+    arrowClass = "top-full left-1/2 -translate-x-1/2";
+    if (align === "center") alignClass = "left-1/2 -translate-x-1/2";
+    else if (align === "start") alignClass = "left-0";
+    else alignClass = "right-0";
+  } else if (side === "bottom") {
+    sideClass = "top-full mt-2";
+    arrowClass = "bottom-full left-1/2 -translate-x-1/2 rotate-180";
+    if (align === "center") alignClass = "left-1/2 -translate-x-1/2";
+    else if (align === "start") alignClass = "left-0";
+    else alignClass = "right-0";
+  } else if (side === "left") {
+    sideClass = "right-full mr-2";
+    arrowClass = "left-full top-1/2 -translate-y-1/2 -rotate-90";
+    if (align === "center") alignClass = "top-1/2 -translate-y-1/2";
+    else if (align === "start") alignClass = "top-0";
+    else alignClass = "bottom-0";
+  } else {
+    sideClass = "left-full ml-2";
+    arrowClass = "right-full top-1/2 -translate-y-1/2 rotate-90";
+    if (align === "center") alignClass = "top-1/2 -translate-y-1/2";
+    else if (align === "start") alignClass = "top-0";
+    else alignClass = "bottom-0";
+  }
+
+  return { sideClass, alignClass, arrowClass };
+};
+
+export const Tooltip = ({
   align = "center",
   side = "top",
   children,
@@ -71,50 +112,89 @@ const Tooltip = ({
   theme = "extra",
   open,
   onOpenChange,
-  defaultOpen,
-  container,
+  defaultOpen = false,
+  disabled = false,
 }: TooltipProps) => {
-  const dialogContainer = useDialogPortalContainer();
-  const portalContainer = container ?? dialogContainer ?? undefined;
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
+  const [timer, setTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
+  const tooltipId = useId();
+
+  const isControlled = open !== undefined;
+  const isOpen = disabled ? false : isControlled ? open : uncontrolledOpen;
+
+  const handleOpen = () => {
+    if (disabled) return;
+    if (delayDuration > 0) {
+      const timeout = setTimeout(() => {
+        if (!isControlled) setUncontrolledOpen(true);
+        onOpenChange?.(true);
+      }, delayDuration);
+      setTimer(timeout);
+    } else {
+      if (!isControlled) setUncontrolledOpen(true);
+      onOpenChange?.(true);
+    }
+  };
+
+  const handleClose = () => {
+    if (timer) {
+      clearTimeout(timer);
+      setTimer(null);
+    }
+    if (!isControlled) setUncontrolledOpen(false);
+    onOpenChange?.(false);
+  };
+
+  const { sideClass, alignClass, arrowClass } = getPositionClasses(side, align);
 
   return (
-    <RadixTooltip.Provider>
-      <RadixTooltip.Root
-        delayDuration={delayDuration}
-        open={open}
-        onOpenChange={onOpenChange}
-        defaultOpen={defaultOpen}
+    <div
+      className="group relative inline-flex"
+      onMouseEnter={handleOpen}
+      onMouseLeave={handleClose}
+      onFocus={handleOpen}
+      onBlur={handleClose}
+    >
+      <div data-testid="tooltip-trigger" className="inline-flex" aria-describedby={isOpen ? tooltipId : undefined}>
+        {trigger}
+      </div>
+
+      <div
+        id={tooltipId}
+        role="tooltip"
+        data-testid="tooltip-content"
+        data-state={isOpen ? "open" : "closed"}
+        className={cn(
+          "absolute z-50 max-w-xs whitespace-nowrap rounded border border-black px-2 py-1 text-xs transition-opacity duration-150",
+          sideClass,
+          alignClass,
+          themeBackground[theme],
+          contentClassName,
+          isOpen
+            ? "visible opacity-100 pointer-events-auto"
+            : "invisible opacity-0 pointer-events-none group-hover:visible group-hover:opacity-100",
+        )}
       >
-        <RadixTooltip.Trigger asChild>{trigger}</RadixTooltip.Trigger>
-        <RadixTooltip.Portal container={portalContainer}>
-          <RadixTooltip.Content
-            className={`z-50 max-w-xs rounded border border-black px-2 py-1 text-xs ${contentClassName} ${themeBackground[theme]}`}
-            sideOffset={3}
-            align={align}
-            side={side}
-            alignOffset={2}
-          >
-            {children}
-            <RadixTooltip.Arrow asChild>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="9"
-                viewBox="0 0 12 9"
-                fill="none"
-              >
-                <path
-                  d="M10.3301 0.5L6 8L1.66987 0.499999L10.3301 0.5Z"
-                  className={themeSVG[theme]}
-                  stroke="black"
-                />
-              </svg>
-            </RadixTooltip.Arrow>
-          </RadixTooltip.Content>
-        </RadixTooltip.Portal>
-      </RadixTooltip.Root>
-    </RadixTooltip.Provider>
+        {children}
+        <svg
+          data-testid="tooltip-arrow"
+          xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="9"
+          viewBox="0 0 12 9"
+          fill="none"
+          className={cn("absolute", arrowClass)}
+        >
+          <path
+            d="M10.3301 0.5L6 8L1.66987 0.499999L10.3301 0.5Z"
+            className={themeSVG[theme]}
+            stroke="black"
+          />
+        </svg>
+      </div>
+    </div>
   );
 };
 
 export default Tooltip;
+

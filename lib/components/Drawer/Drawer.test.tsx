@@ -1,67 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { Drawer } from "./Drawer";
-
-// Mock Vaul since it uses Portal and animations that don't work well in tests
-vi.mock("vaul", () => {
-  return {
-    Drawer: {
-      Root: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="drawer-root">{children}</div>
-      ),
-      Trigger: ({
-        children,
-        className,
-        ...props
-      }: {
-        children: React.ReactNode;
-        className?: string;
-        [key: string]: unknown;
-      }) => (
-        <button data-testid="drawer-trigger" className={className} {...props}>
-          {children}
-        </button>
-      ),
-      Content: ({
-        children,
-        className,
-        ...props
-      }: {
-        children: React.ReactNode;
-        className?: string;
-        [key: string]: unknown;
-      }) => (
-        <div data-testid="drawer-content" className={className} {...props}>
-          {children}
-        </div>
-      ),
-      Overlay: ({
-        className,
-        ...props
-      }: {
-        className?: string;
-        [key: string]: unknown;
-      }) => (
-        <div data-testid="drawer-overlay" className={className} {...props} />
-      ),
-      Portal: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="drawer-portal">{children}</div>
-      ),
-      Close: ({
-        children,
-        ...props
-      }: {
-        children?: React.ReactNode;
-        [key: string]: unknown;
-      }) => (
-        <button data-testid="drawer-close" {...props}>
-          {children || "Close"}
-        </button>
-      ),
-    },
-  };
-});
 
 describe("Drawer Component", () => {
   it("renders Root component correctly", () => {

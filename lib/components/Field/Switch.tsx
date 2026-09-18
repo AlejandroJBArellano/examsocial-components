@@ -1,15 +1,14 @@
-import * as SwitchReact from "@radix-ui/react-switch";
-import { PropsWithChildren, RefAttributes } from "react";
+import { PropsWithChildren } from "react";
 import { FocusSpan } from "../FontFaces";
 import { Helper } from "../Helper";
-import { Switch } from "../Switch";
+import { Switch, SwitchProps } from "../Switch";
 
 export const SwitchField = ({
   children,
   helperText,
   ...props
 }: PropsWithChildren<
-  Partial<SwitchReact.SwitchProps & RefAttributes<HTMLButtonElement>> & {
+  SwitchProps & {
     helperText?: string;
   }
 >) => {

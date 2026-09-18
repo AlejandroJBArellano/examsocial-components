@@ -157,7 +157,7 @@ export const Tooltip = ({
 
   return (
     <div
-      className={cn("relative inline-flex", !isControlled && !disabled && "group")}
+      className="relative inline-flex"
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}
       onFocus={handleOpen}
@@ -180,9 +180,7 @@ export const Tooltip = ({
           contentClassName,
           isOpen
             ? "visible opacity-100 pointer-events-auto"
-            : !isControlled && !disabled
-              ? "invisible opacity-0 pointer-events-none group-hover:visible group-hover:opacity-100"
-              : "invisible opacity-0 pointer-events-none",
+            : "invisible opacity-0 pointer-events-none",
         )}
       >
         {children}

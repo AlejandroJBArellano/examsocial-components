@@ -4,6 +4,7 @@ import { cn } from "@/utils";
 import React, {
   createContext,
   forwardRef,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -42,12 +43,15 @@ export const Drawer = {
     const isControlled = controlledOpen !== undefined;
     const open = isControlled ? controlledOpen : uncontrolledOpen;
 
-    const setOpen = (nextOpen: boolean) => {
-      if (!isControlled) {
-        setUncontrolledOpen(nextOpen);
-      }
-      onOpenChange?.(nextOpen);
-    };
+    const setOpen = useCallback(
+      (nextOpen: boolean) => {
+        if (!isControlled) {
+          setUncontrolledOpen(nextOpen);
+        }
+        onOpenChange?.(nextOpen);
+      },
+      [isControlled, onOpenChange],
+    );
 
     useEffect(() => {
       if (!open) return;
@@ -58,7 +62,7 @@ export const Drawer = {
       };
       document.addEventListener("keydown", handleKeyDown);
       return () => document.removeEventListener("keydown", handleKeyDown);
-    }, [open]);
+    }, [open, setOpen]);
 
     return (
       <DrawerContext.Provider value={{ open, setOpen }}>

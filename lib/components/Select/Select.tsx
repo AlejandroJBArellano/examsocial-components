@@ -4,6 +4,7 @@ import { cn } from "@/utils";
 import {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useRef,
@@ -52,21 +53,24 @@ const Select = ({
   const isControlled = controlledOpen !== undefined;
   const isOpen = disabled ? false : isControlled ? controlledOpen : uncontrolledOpen;
 
-  const setOpen = (nextOpen: boolean) => {
-    if (!isControlled) {
-      setUncontrolledOpen(nextOpen);
-    }
-    onOpenChange?.(nextOpen);
-  };
+  const setOpen = useCallback(
+    (nextOpen: boolean) => {
+      if (!isControlled) {
+        setUncontrolledOpen(nextOpen);
+      }
+      onOpenChange?.(nextOpen);
+    },
+    [isControlled, onOpenChange],
+  );
 
   const handleToggle = () => {
     if (disabled) return;
     setOpen(!isOpen);
   };
 
-  const close = () => {
+  const close = useCallback(() => {
     setOpen(false);
-  };
+  }, [setOpen]);
 
   // Close on click outside and escape
   useEffect(() => {
@@ -96,7 +100,7 @@ const Select = ({
       document.removeEventListener("touchstart", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpen, close]);
 
   return (
     <SelectContext.Provider value={{ close }}>

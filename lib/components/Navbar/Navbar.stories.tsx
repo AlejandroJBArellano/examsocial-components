@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import Navbar from "./Navbar";
 
 const meta: Meta<typeof Navbar> = {
@@ -207,3 +208,106 @@ export const WithTooltips: Story = {
     },
   },
 };
+
+// Historia Variante Bottom (Dock Móvil)
+export const BottomDock: Story = {
+  args: {
+    variant: "bottom",
+    items: [
+      {
+        children: "Home",
+        isLogo: true,
+        href: "/",
+      },
+      {
+        children: "Create",
+        icon: "draw",
+        href: "/create",
+        isSelected: true,
+      },
+      {
+        children: "Library",
+        icon: "auto_stories",
+        href: "/library",
+      },
+      {
+        children: "History",
+        icon: "history",
+        href: "/history",
+      },
+    ],
+    profileInfo: {
+      gender: "male",
+      name: "Alex",
+      picture: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces",
+      href: "/profile",
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Variante 'bottom' diseñada específicamente para docks de navegación inferior en dispositivos móviles, con soporte para Logo, iconos apilados y fotos de perfil reales.",
+      },
+    },
+  },
+};
+
+// Historia Bottom Dock con botón Más/Menú interactivo
+export const BottomDockWithMore: Story = {
+  render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div className="w-full max-w-md mx-auto flex flex-col border border-black rounded-lg overflow-hidden bg-white shadow-lg">
+        <div className="p-8 text-center text-gray-500">
+          <p className="font-semibold text-black mb-2">Simulación de pantalla móvil</p>
+          <p className="text-sm">
+            {isOpen ? "Menú lateral / Drawer abierto" : "Haz clic en 'Menu' abajo"}
+          </p>
+        </div>
+        <Navbar
+          variant="bottom"
+          items={[
+            {
+              children: "AdaQuest",
+              isLogo: true,
+              href: "/",
+            },
+            {
+              children: "Create",
+              icon: "draw",
+              href: "/create",
+              isSelected: true,
+            },
+            {
+              children: "Library",
+              icon: "auto_stories",
+              href: "/library",
+            },
+          ]}
+          moreButton={{
+            isOpen,
+            onClick: () => setIsOpen(!isOpen),
+          }}
+          profileInfo={{
+            gender: "female",
+            name: "Sarah",
+            picture: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces",
+            href: "/profile",
+          }}
+        />
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demostración de la barra inferior con botón 'Menu' interactivo, ideal para abrir el Drawer de opciones secundarias.",
+      },
+    },
+  },
+};
+

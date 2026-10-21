@@ -49,6 +49,16 @@ export interface TooltipProps extends PropsWithChildren {
    * Container opcional para el portal del tooltip
    */
   container?: HTMLElement;
+
+  /**
+   * Clase CSS adicional para el wrapper del tooltip
+   */
+  className?: string;
+
+  /**
+   * Clase CSS adicional para el trigger del tooltip
+   */
+  triggerClassName?: string;
 }
 
 const themeSVG = {
@@ -60,9 +70,9 @@ const themeSVG = {
 
 const themeBackground = {
   extra: "bg-extra",
-  primary: "bg-primary",
-  secondary: "bg-secondary",
-  accent: "bg-accent",
+  primary: "bg-primary text-white",
+  secondary: "bg-secondary text-white",
+  accent: "bg-accent text-white",
 };
 
 const getPositionClasses = (
@@ -75,13 +85,13 @@ const getPositionClasses = (
 
   if (side === "top") {
     sideClass = "bottom-full mb-2";
-    arrowClass = "top-[calc(100%-1px)] left-1/2 -translate-x-1/2";
+    arrowClass = "top-full left-1/2 -translate-x-1/2";
     if (align === "center") alignClass = "left-1/2 -translate-x-1/2";
     else if (align === "start") alignClass = "left-0";
     else alignClass = "right-0";
   } else if (side === "bottom") {
     sideClass = "top-full mt-2";
-    arrowClass = "bottom-[calc(100%-1px)] left-1/2 -translate-x-1/2 rotate-180";
+    arrowClass = "bottom-full left-1/2 -translate-x-1/2 rotate-180";
     if (align === "center") alignClass = "left-1/2 -translate-x-1/2";
     else if (align === "start") alignClass = "left-0";
     else alignClass = "right-0";
@@ -114,6 +124,8 @@ export const Tooltip = ({
   onOpenChange,
   defaultOpen = false,
   disabled = false,
+  className = "",
+  triggerClassName = "",
 }: TooltipProps) => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const [timer, setTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
@@ -157,13 +169,17 @@ export const Tooltip = ({
 
   return (
     <div
-      className="relative inline-flex"
+      className={cn("relative inline-flex", className)}
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}
       onFocus={handleOpen}
       onBlur={handleClose}
     >
-      <div data-testid="tooltip-trigger" className="inline-flex" aria-describedby={isOpen ? tooltipId : undefined}>
+      <div
+        data-testid="tooltip-trigger"
+        className={cn("inline-flex", triggerClassName)}
+        aria-describedby={isOpen ? tooltipId : undefined}
+      >
         {trigger}
       </div>
 

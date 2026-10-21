@@ -64,7 +64,7 @@ const ImageInput = (
     }
   };
 
-  // If dragging, display the special UI
+  // Dragging state
   if (isDragging) {
     return (
       <label
@@ -73,7 +73,7 @@ const ImageInput = (
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className="inline-flex h-36 w-full max-w-sm flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-black bg-secondary-tint p-4 xl:h-56 xl:max-w-2xl xl:border-dashed xl:p-7"
+        className="flex w-full cursor-pointer flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-primary bg-primary-tint px-6 py-8 transition-all duration-200 ease-out"
       >
         <input
           accept="image/*"
@@ -82,18 +82,20 @@ const ImageInput = (
           className="hidden"
           {...props}
         />
-        <Icon name="place_item" size={40} filled />
-        <Span className="block text-center">Drop it like it's hot</Span>
+        <Icon name="place_item" size={32} filled />
+        <Span className="block text-center font-medium text-primary">
+          Drop it like it's hot
+        </Span>
       </label>
     );
   }
 
-  // Regular UI when not dragging
+  // Regular idle state
   return (
     <label
       draggable
       htmlFor="newImage"
-      className="flex h-36 w-full max-w-sm cursor-pointer items-center justify-center rounded-lg border border-black p-4 xl:h-56 xl:max-w-2xl xl:border-dashed xl:p-7"
+      className="flex w-full cursor-pointer flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-black bg-light px-6 py-8 transition-all duration-200 ease-out hover:bg-white"
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
@@ -106,25 +108,27 @@ const ImageInput = (
         {...props}
         accept={props.accept ?? "image/*"}
       />
-      <Button.Icon
-        rounded
-        size={24}
-        filled
-        className="flex p-2 xl:hidden"
-        onClick={onClick}
-      >
-        description
-      </Button.Icon>
-      <div className="hidden items-center justify-center gap-2 space-y-2 text-center xl:grid">
-        <Icon name="description" size={24} filled />
-        <Span>Drag & drop your files here</Span>
-        <Span>or</Span>
-        <Button rounded theme="extra" onClick={onClick}>
-          Browse your device
-        </Button>
+
+      {/* Icon */}
+      <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-black bg-white shadow-right-sm">
+        <Icon name="description" size={20} filled />
+      </span>
+
+      {/* Copy */}
+      <div className="flex flex-col items-center gap-1 text-center">
+        <Span className="font-medium text-zinc-700">
+          Drag &amp; drop your image here
+        </Span>
+        <Span className="text-sm text-zinc-400">or</Span>
       </div>
+
+      {/* CTA */}
+      <Button rounded theme="light" onClick={onClick}>
+        Browse your device
+      </Button>
     </label>
   );
 };
 
 export default ImageInput;
+
